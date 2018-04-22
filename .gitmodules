@@ -67,3 +67,9 @@
 [submodule "Architectures/AVR/OpenPLC"]
 	path = Architectures/AVR/OpenPLC
 	url = https://github.com/nwertzberger/OpenPLC.git
+[submodule "Architectures/PIC18/LCD"]
+	path = Architectures/PIC18/LCD
+	url = https://github.com/KentuckySolarCar/LCD.git
+[submodule "Architectures/PIC18/USBtin"]
+	path = Architectures/PIC18/USBtin
+	url = https://github.com/KentuckySolarCar/USBtin.git
