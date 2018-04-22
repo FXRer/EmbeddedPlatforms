@@ -85,3 +85,9 @@
 [submodule "Architectures/ARM/CORTEX-M/LPC/FreeOSEK_LPC1769"]
 	path = Architectures/ARM/CORTEX-M/LPC/FreeOSEK_LPC1769
 	url = https://github.com/ciaa/FreeOSEK_LPC1769.git
+[submodule "Architectures/ARM/CORTEX-M/SAM3/opentracker-arduino-board"]
+	path = Architectures/ARM/CORTEX-M/SAM3/opentracker-arduino-board
+	url = https://github.com/geolink/opentracker-arduino-board.git
+[submodule "Architectures/ARM/CORTEX-M/SAM3/opentracker-sam-core"]
+	path = Architectures/ARM/CORTEX-M/SAM3/opentracker-sam-core
+	url = https://github.com/geolink/opentracker-sam-core.git
