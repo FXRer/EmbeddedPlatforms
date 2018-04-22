@@ -91,3 +91,6 @@
 [submodule "Architectures/ARM/CORTEX-M/SAM3/opentracker-sam-core"]
 	path = Architectures/ARM/CORTEX-M/SAM3/opentracker-sam-core
 	url = https://github.com/geolink/opentracker-sam-core.git
+[submodule "Architectures/ARM/CORTEX-M/LPC/LPC1343-Obd2"]
+	path = Architectures/ARM/CORTEX-M/LPC/LPC1343-Obd2
+	url = https://github.com/kevinkrieger/CAN.git
