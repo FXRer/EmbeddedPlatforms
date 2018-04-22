@@ -1,0 +1,37 @@
+SIEVE BENCHMARK RESULTS
+August 2002
+------------------------------------------------------------------------
+
+
+Sieve benchmark (10 loops):
+
+   Atmel AT89C52 @ 11.059MHz Keil compiler                  9.0   secs
+   Intel 8051 @ 12MHz Keil compiler                         8.2   secs
+   Motorola 68HC16 @ 16.78MHz Cosmic compiler               3.1   secs
+   Intel 80C196KC @ 12.8MHz Intel compiler                  1.9   secs
+   Dallas 80C32 @ 33 MHz from literature                    1.2   secs
+   Philips XA 22.12MHz Tasking compiler                     1.0   secs
+   Atmel AVR @ 6 MHz from literature			    0.9   secs
+   386EX @ 25MHz Borland compiler Micro/Sys board           0.8   secs  
+   Cygnal 8051F005 @ 22.12MHz Keil compiler (eval board)    0.43  secs
+   ADSP-2181 @ 33MHz Analog Devices compiler                 96   msec
+   486DX @ 50MHz Cache Borland Compiler Domain PC            60   msec
+   ADSP-2189 @ 72MHz Analog Devices Visual C compiler        35   msec
+   Pentium 100MHz Compaq Armada notebook                     17   msec
+   Pentium 300MHz Dell Dimension XPS-300	            6.0   msec
+   Celeron 500MHz Abit Motherboard Borland Compiler         3.5   msec 
+
+Notes:
+   1. All results above are for large memory model.  Atmel, Intel,
+      and Cygnal 8051 results are for compiler set to OPT(6,SPEED).
+
+   2. With small model, the Atmel AT89C51 takes 6.5 secs, and
+      the Cygnal 8051F takes 0.36 secs at 22.12MHz.
+
+   3. For the Cygnal 8051F and ADSP-2181 the Sieve benchmark was run
+      with SIZE = 2000 because of limited on-chip RAM.  The result
+      shown above has been scaled to SIZE = 8190.
+
+
+
+

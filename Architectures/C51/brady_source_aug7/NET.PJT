@@ -1,0 +1,113 @@
+;Codewright Project File (do not remove or modify this line)
+[ProjInit]
+ProjSetConfigFlags=0x04010940
+ProjCheckPath='C:\C51\Net\\'
+
+[Files]
+C:\C51\NET\MAIN.C
+C:\C51\NET\ARP.C
+C:\C51\NET\IP.C
+C:\C51\NET\ETH.C
+C:\C51\NET\ICMP.C
+C:\C51\NET\UDP.C
+C:\C51\NET\TCP.C
+C:\C51\NET\Serial.c
+C:\C51\NET\C8051F.H
+C:\C51\NET\serial.h
+C:\C51\NET\Net.h
+C:\C51\NET\eth.h
+C:\C51\NET\ARP.H
+C:\C51\NET\IP.H
+C:\C51\NET\cksum.h
+C:\C51\NET\ICMP.H
+C:\C51\NET\UDP.H
+C:\C51\NET\TCP.H
+C:\C51\NET\Timer.c
+C:\C51\NET\timer.h
+C:\C51\NET\HTTP.C
+C:\C51\NET\HTTP.H
+C:\C51\NET\CS8900.h
+C:\C51\NET\Cs8900.A51
+C:\C51\NET\cksum.a51
+C:\C51\NET\start.a51
+C:\C51\NET\ANALOG.C
+C:\C51\NET\ANALOG.H
+C:\C51\NET\WEBDOC.C
+C:\C51\NET\CIRRUS.C
+C:\C51\NET\CIRRUS.H
+
+[State]
+SysSetCwd='C:\C51\Net'
+SrchSetFlags=0x0610600a
+FileSortMode=0x0
+StateWindowFrame=159,39,600,432,0x63097fca
+_StateHistory=FILELIST,'C:\C51\Net\TIMER.C','C:\C51\Net\TIMER.H','C:\C51\Net\UDP.C','C:\C51\Net\UDP.H','C:\C51\Net\WEBDOC.C','C:\C51\NET\START.A51','C:\C51\NET\CKSUM.A51','C:\C51\NET\CS8900.A51','C:\C51\NET\MAIN.C'
+_StateHistory=SEARCH,'Jan','Dec','packet','tcp_send','socket','SOCKET','Mar','Apr','Feb','July'
+_StateHistory=REPLACE,'socket','August'
+_StateHistory=XSYMBOL,'itoa','serial_send','NO_CONXN','NO_SOCKET','NO_CONNECTION','POST_PAGE','tcp_send','strstr','GET_JPEG','NONE'
+_StateHistory=EDITFILE,'C:\C51\Net\old-ser.c','C:\C51\Net\HTTP.SRC','C:\C51\Net\SERIAL.SRC','C:\C51\Net\HTTP.SRC','C:\C51\Net\UDP.SRC','C:\C51\Net\OUTPUT.TXT','C:\C51\Net\JPEG.TXT','C:\C51\Net\MAKEFILE','C:\C51\Net\JPEG.TXT','C:\C51\Net\README.TXT'
+_StateHistory=SHELLCMND,'lin main.c'
+
+[Editor]
+_RestoreSysFlags=0x63097fca, 0xfffffffc, 0
+VCSProject=''
+VCSProjectPath=''
+VCSProjectLocalPath=''
+ClipboardSetTermStr='\r\n',0
+ClipboardEnableTermStr=1
+ClipboardSetSepStr='\r\n',0
+ClipboardEnableSepStr=1
+ScrapSetCount=1
+
+[Compiler]
+TagSetCmd='${HOME}${WTAGS} -oc -d -t${TAGFILE}.tag -p${TAGFILE}.ptg',0x8000060
+BrowseSetFile='C:\C51\Net\Net.ptg'
+TagSetFile='C:\C51\Net\Net.tag'
+CompilerAddCmd='Microsoft Assembler','',1073741840,'',16,'',16,'',16,'',0,'',0,'','','','',''
+CompilerAddResponse='Microsoft Assembler',
+CompilerAddCmd='Default Compiler Settings','',1073741840,'',16,'',16,'',16,'',0,'',0,'','','','',''
+CompilerAddResponse='Default Compiler Settings',
+CompilerAddCmd='Borland C++ (16-bit)','${FTEE} bcc -c -ml -w %b%e',1073741936,'${FTEE} bcc -c -ml -w %b%e',112,'',144,'',144,'',0,'',0,'_BorlandCppErrorInfo','','','',''
+CompilerAddResponse='Borland C++ (16-bit)',
+CompilerAddCmd='Keil C51','${FTEE} c:\c51\bin\c51 %b%e',1073741840,'',16,'',16,'',16,'',0,'',0,'','','','',''
+CompilerAddResponse='Keil C51',
+CompilerAddCmd='$_cw_proj_hash_$','',1073741904,'',80,'${FTEE} make',176,'${FTEE} nmake',176,'',0,'',0,'_KeilC51ErrorInfo','','','proj.err','C:\C51\Net'
+CompilerAddResponse='$_cw_proj_hash_$',
+CompilerAddCmd='Keil A51','${FTEE} c:\c51\bin\A51 %b%e',1073741840,'',16,'',16,'',16,'',0,'',0,'','','','',''
+CompilerAddResponse='Keil A51',
+CompilerAddCmd='Microsoft C(NT-i386)','${FTEE} cl -DSTRICT -c -W3 -G3 -D_X86_=1 -DWIN32 %r%e',1073741936,'${FTEE} cl -DSTRICT -c -W3 -G3 -D_X86_=1 -DWIN32 %r%e',112,'',144,'',144,'',0,'',0,'_MicrosoftErrorInfo','','','',''
+CompilerAddResponse='Microsoft C(NT-i386)',
+CompilerNewExt=.htm
+CompilerAssign='Keil C51','.c'
+CompilerNewExt=.pas
+CompilerAssign='Microsoft C(NT-i386)','.h'
+CompilerAssign='Keil A51','.a51'
+CompilerNewExt=.ini
+CompilerNewExt=.html
+CompilerAssign='Microsoft C(NT-i386)','.cpp'
+CompilerAssign='Keil C51','.*'
+CompilerAssign='Microsoft C(NT-i386)','.cxx'
+CompilerNewExt=.txt
+CompilerAssign='Microsoft Assembler','.asm'
+CompilerAssign='Microsoft C(NT-i386)','.hpp'
+
+[VersionControl:PVCS]
+VCSSetCmd=VCS_CHECKIN_ID,'put -n -T@%Q -M@%Q %b%e',0x8000040
+VCSSetCmd=VCS_CHECKINLOCK_ID,'put -n -T@%Q -M@%Q -l %b%e',0x8000040
+VCSSetCmd=VCS_CHECKOUT_ID,'get -y %b%e',0x8000040
+VCSSetCmd=VCS_CHECKOUTLOCK_ID,'get -y -l %b%e',0x8000040
+VCSSetCmd=VCS_CHECKLOCK_ID,'vcs -y -l %b%e',0x8000040
+VCSSetCmd=VCS_CHECKUNLOCK_ID,'vcs -y -u %b%e',0x8000040
+VCSSetCmd=VCS_CHECKLABEL_ID,'vcs -y -v"${VCSLABEL}" %b%e',0x8000040
+VCSSetCmd=VCS_CHECKLOG_ID,'vlog %b%e',0x8000040
+VCSSetCmd=VCS_CHECKPROP_ID,'vlog -b %b%e',0x8000040
+VCSSetCmd=VCS_CHECKDIFF_ID,'vdiff -r %b%e',0x8000040
+VCSSetCmd=VCS_CHECKMENU_ID,'pvcsvmwn',0x8000000
+VCSSetCmd=VCS_ADD_ID,'vcs -i -t@%Q %b%e',0x8000040
+VCSSetCmd=VCS_REMOVE_ID,'del /f %b%{??v|___}e',0x8000040
+
+[Project]
+ConfigSetLinkDBFilename='C:\CW32\cwright.ldb'
+ConfigSetMarkDBFilename='C:\CW32\cwright.mrk'
+ConfigSetSymbolDBFilename='C:\CW32\cwright.sbl'
+EditSetPath=''

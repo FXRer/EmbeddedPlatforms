@@ -1,0 +1,70 @@
+#------------------------------------------------------------------------
+# Makefile for 8051 Web Server
+# Jim Brady - August 2002
+#
+# Compiler is Keil C51 version 5.1
+# Assembler is Keil A51 version 5.1
+# Target is Cygnal Target Board P/N C8051F005TB which is part
+# of the C8051F005DK development kit. It uses the C8051F005 CPU. 
+#------------------------------------------------------------------------
+
+
+HEADERS = net.h tcp.h http.h udp.h ip.h icmp.h arp.h eth.h \
+  cirrus.h serial.h timer.h analog.h cksum.h cs8900.h
+
+
+net.hex: main.obj tcp.obj http.obj webdoc.obj udp.obj ip.obj \
+  icmp.obj arp.obj eth.obj cirrus.obj serial.obj timer.obj \
+  analog.obj cksum.obj cs8900.obj start.obj
+  BL51 @ link.cmd
+
+main.obj: main.c $(HEADERS)
+  C51 main.c
+
+tcp.obj: tcp.c $(HEADERS)
+  C51 tcp.c
+
+http.obj: http.c $(HEADERS)
+  C51 http.c
+
+webdoc.obj: webdoc.c $(HEADERS)
+  C51 webdoc.c
+
+udp.obj: udp.c $(HEADERS)
+  C51 udp.c
+
+ip.obj: ip.c $(HEADERS)
+  C51 ip.c
+
+icmp.obj: icmp.c $(HEADERS)
+  C51 icmp.c
+
+arp.obj: arp.c $(HEADERS)
+   C51 arp.c
+
+eth.obj: eth.c $(HEADERS)
+  C51 eth.c
+
+cirrus.obj: cirrus.c $(HEADERS)
+  C51 cirrus.c
+
+serial.obj: serial.c $(HEADERS)
+  C51 serial.c
+
+timer.obj: timer.c $(HEADERS)
+  C51 timer.c
+
+analog.obj: analog.c $(HEADERS)
+  C51 analog.c
+
+cksum.obj: cksum.a51 $(HEADERS)
+  A51 cksum.a51
+
+cs8900.obj: cs8900.a51 $(HEADERS)
+  A51 cs8900.a51
+
+start.obj: start.a51 $(HEADERS)
+  A51 start.a51
+
+
+

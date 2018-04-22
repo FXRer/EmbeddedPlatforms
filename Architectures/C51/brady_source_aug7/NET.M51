@@ -1,0 +1,577 @@
+BL51 BANKED LINKER/LOCATER V3.52                                                          08/06/02  22:25:24  PAGE 1
+
+
+MS-DOS BL51 BANKED LINKER/LOCATER V3.52, INVOKED BY:
+C:\C51\BIN\BL51.EXE MAIN.OBJ, TCP.OBJ, HTTP.OBJ, WEBDOC.OBJ, UDP.OBJ, IP.OBJ, ICMP.OBJ, ARP.OBJ, ETH.OBJ, CIRRUS.OBJ, SE
+>> RIAL.OBJ, TIMER.OBJ, ANALOG.OBJ, CKSUM.OBJ, CS8900.OBJ, START.OBJ TO NET.HEX RAMSIZE (256) CODE (48)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  MAIN.OBJ (MAIN)
+  TCP.OBJ (TCP)
+  HTTP.OBJ (HTTP)
+  WEBDOC.OBJ (WEBDOC)
+  UDP.OBJ (UDP)
+  IP.OBJ (IP)
+  ICMP.OBJ (ICMP)
+  ARP.OBJ (ARP)
+  ETH.OBJ (ETH)
+  CIRRUS.OBJ (CIRRUS)
+  SERIAL.OBJ (SERIAL)
+  TIMER.OBJ (TIMER)
+  ANALOG.OBJ (ANALOG)
+  CKSUM.OBJ (CKSUM)
+  CS8900.OBJ (CS8900)
+  START.OBJ (?C_STARTUP)
+  C:\C51\LIB\C51S.LIB (?C_INIT)
+  C:\C51\LIB\C51S.LIB (?C?COPY)
+  C:\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  C:\C51\LIB\C51S.LIB (?C?CSTPTR)
+  C:\C51\LIB\C51S.LIB (?C?IMUL)
+  C:\C51\LIB\C51S.LIB (?C?UIDIV)
+  C:\C51\LIB\C51S.LIB (?C?LMUL)
+  C:\C51\LIB\C51S.LIB (?C?ULDIV)
+  C:\C51\LIB\C51S.LIB (?C?ULCMP)
+  C:\C51\LIB\C51S.LIB (?C?ULSHR)
+  C:\C51\LIB\C51S.LIB (?C?LLDOPTR)
+  C:\C51\LIB\C51S.LIB (?C?LLDIDATA)
+  C:\C51\LIB\C51S.LIB (?C?LLDCODE)
+  C:\C51\LIB\C51S.LIB (?C?LLDIDATA0)
+  C:\C51\LIB\C51S.LIB (?C?LLDCODE0)
+  C:\C51\LIB\C51S.LIB (?C?LSTIDATA)
+  C:\C51\LIB\C51S.LIB (?C?LSTXDATA)
+  C:\C51\LIB\C51S.LIB (?C?LSTKIDATA)
+  C:\C51\LIB\C51S.LIB (?C?LSTKXDATA)
+  C:\C51\LIB\C51S.LIB (?C?CCASE)
+  C:\C51\LIB\C51S.LIB (?C?ICASE)
+  C:\C51\LIB\C51S.LIB (?C_IBP)
+  C:\C51\LIB\C51S.LIB (STRCAT)
+  C:\C51\LIB\C51S.LIB (?C?STRCPY)
+  C:\C51\LIB\C51S.LIB (STRLEN)
+  C:\C51\LIB\C51S.LIB (?C?MEMSET)
+  C:\C51\LIB\C51S.LIB (?C?MEMMOVE)
+  C:\C51\LIB\C51S.LIB (MALLOC)
+  C:\C51\LIB\C51S.LIB (INIT_MEM)
+  C:\C51\LIB\C51S.LIB (FREE)
+  C:\C51\LIB\C51S.LIB (?C?LLDXDATA)
+  C:\C51\LIB\C51S.LIB (?C?LLDPDATA)
+BL51 BANKED LINKER/LOCATER V3.52                                                        08/06/02  22:25:24  PAGE 2
+
+
+
+
+LINK MAP OF MODULE:  NET.HEX (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?MAIN
+            DATA    000AH     0002H     UNIT         ?DT?IP
+            DATA    000CH     0001H     UNIT         ?DT?ARP
+            DATA    000DH     0001H     UNIT         ?DT?SERIAL
+            DATA    000EH     0004H     UNIT         ?DT?TIMER
+            DATA    0012H     0002H     UNIT         ?DT?ANALOG
+            DATA    0014H     0001H     UNIT         ?C?LIB_DATA
+            DATA    0015H     0002H     UNIT         ?DT?INIT_MEM
+            DATA    0017H     0061H     UNIT         _DATA_GROUP_
+            IDATA   0078H     0002H     UNIT         ?ID?MAIN
+            IDATA   007AH     0006H     UNIT         ?ID?TCP
+            IDATA   0080H     0001H     UNIT         ?ID?HTTP
+            IDATA   0081H     0001H     UNIT         ?ID?ARP
+            IDATA   0082H     0007H     UNIT         ?ID?ANALOG
+            IDATA   0089H     0028H     UNIT         _IDATA_GROUP_
+            IDATA   00B1H     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+            XDATA   0000H     0014H     UNIT         ?XD?MAIN
+            XDATA   0014H     00E7H     UNIT         ?XD?TCP
+            XDATA   00FBH     0006H     UNIT         ?XD?UDP
+            XDATA   0101H     000AH     UNIT         ?XD?IP
+            XDATA   010BH     006EH     UNIT         ?XD?ARP
+            XDATA   0179H     0028H     UNIT         ?XD?SERIAL
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0020H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+                    0026H     0005H                  *** GAP ***
+            CODE    002BH     0003H     ABSOLUTE     
+                    002EH     0002H                  *** GAP ***
+            CODE    0030H     0041H     UNIT         ?PR?SWITCH_TO_XTAL?MAIN
+            CODE    0071H     0029H     UNIT         ?PR?INIT_MAIN?MAIN
+            CODE    009AH     00F8H     UNIT         ?PR?MAIN?MAIN
+            CODE    0192H     0018H     UNIT         ?CO?MAIN
+            CODE    01AAH     001DH     UNIT         ?PR?INIT_TCP?TCP
+            CODE    01C7H     036BH     UNIT         ?PR?_TCP_SEND?TCP
+            CODE    0532H     022DH     UNIT         ?PR?TCP_RETRANSMIT?TCP
+            CODE    075FH     0125H     UNIT         ?PR?TCP_INACTIVITY?TCP
+            CODE    0884H     108BH     UNIT         ?PR?_TCP_RCVE?TCP
+            CODE    190FH     0346H     UNIT         ?CO?TCP
+            CODE    1C55H     0016H     UNIT         ?C_INITSEG
+            CODE    1C6BH     0003H     UNIT         ?PR?INIT_HTTP?HTTP
+            CODE    1C6EH     00A8H     UNIT         ?PR?_STRSTR?HTTP
+            CODE    1D16H     026DH     UNIT         ?PR?_HTTP_SEND?HTTP
+            CODE    1F83H     00BFH     UNIT         ?PR?_REPLACE_TAG?HTTP
+BL51 BANKED LINKER/LOCATER V3.52                                                        08/06/02  22:25:24  PAGE 3
+
+
+            CODE    2042H     09A2H     UNIT         ?PR?_HTTP_SERVER?HTTP
+            CODE    29E4H     00BEH     UNIT         ?CO?HTTP
+            CODE    2AA2H     1C24H     UNIT         ?CO?WEBDOC
+            CODE    46C6H     0059H     UNIT         ?PR?_UDP_ECHO_SERVICE?UDP
+            CODE    471FH     0264H     UNIT         ?PR?_UDP_SEND?UDP
+            CODE    4983H     021CH     UNIT         ?PR?_UDP_RCVE?UDP
+            CODE    4B9FH     00A5H     UNIT         ?CO?UDP
+            CODE    4C44H     01C6H     UNIT         ?PR?_IP_SEND?IP
+            CODE    4E0AH     0254H     UNIT         ?PR?_IP_RCVE?IP
+            CODE    505EH     00DEH     UNIT         ?CO?IP
+            CODE    513CH     0171H     UNIT         ?PR?_PING_SEND?ICMP
+            CODE    52ADH     0112H     UNIT         ?PR?_DEST_UNREACH_SEND?ICMP
+            CODE    53BFH     00E6H     UNIT         ?PR?_ICMP_RCVE?ICMP
+            CODE    54A5H     00E7H     UNIT         ?CO?ICMP
+            CODE    558CH     0022H     UNIT         ?PR?INIT_ARP?ARP
+            CODE    55AEH     00A0H     UNIT         ?PR?AGE_ARP_CACHE?ARP
+            CODE    564EH     019DH     UNIT         ?PR?_ARP_SEND?ARP
+            CODE    57EBH     007FH     UNIT         ?PR?ARP_RETRANSMIT?ARP
+            CODE    586AH     00F5H     UNIT         ?PR?_ARP_RESOLVE?ARP
+            CODE    595FH     0468H     UNIT         ?PR?_ARP_RCVE?ARP
+            CODE    5DC7H     0174H     UNIT         ?CO?ARP
+            CODE    5F3BH     0095H     UNIT         ?PR?_ETH_SEND?ETH
+            CODE    5FD0H     0089H     UNIT         ?PR?_ETH_RCVE?ETH
+            CODE    6059H     0035H     UNIT         ?CO?ETH
+            CODE    608EH     0013H     UNIT         ?PR?_READ_PACKETPAGE?CIRRUS
+            CODE    60A1H     001BH     UNIT         ?PR?_WRITE_PACKETPAGE?CIRRUS
+            CODE    60BCH     015FH     UNIT         ?PR?INIT_CS8900?CIRRUS
+            CODE    621BH     0056H     UNIT         ?PR?_SEND_FRAME?CIRRUS
+            CODE    6271H     002FH     UNIT         ?PR?QUERY_CS8900?CIRRUS
+            CODE    62A0H     0068H     UNIT         ?PR?RCVE_FRAME?CIRRUS
+            CODE    6308H     00C1H     UNIT         ?CO?CIRRUS
+            CODE    63C9H     0054H     UNIT         ?PR?UART_INTERRUPT?SERIAL
+            CODE    641DH     0021H     UNIT         ?PR?INIT_SERIAL?SERIAL
+            CODE    643EH     0035H     UNIT         ?PR?_WAIT_MSEC?SERIAL
+            CODE    6473H     0059H     UNIT         ?PR?_SERIAL_SEND?SERIAL
+            CODE    64CCH     0054H     UNIT         ?PR?_BYTE2TEXT?SERIAL
+            CODE    6520H     00C1H     UNIT         ?PR?_ITOA?SERIAL
+            CODE    65E1H     00BEH     UNIT         ?PR?TIMER2_INTERRUPT?TIMER
+            CODE    669FH     0012H     UNIT         ?PR?INIT_TIMER2?TIMER
+            CODE    66B1H     0016H     UNIT         ?PR?INIT_ADC?ANALOG
+            CODE    66C7H     0114H     UNIT         ?PR?READ_ANALOG_INPUTS?ANALOG
+            CODE    67DBH     003EH     UNIT         ?PR?_CKSUM?CKSUM
+            CODE    6819H     0029H     UNIT         ?PR?_WRITE_PORT?CS8900
+            CODE    6842H     0025H     UNIT         ?PR?_READ_PORT?CS8900
+            CODE    6867H     0040H     UNIT         ?PR?_WRITE_FRAME?CS8900
+            CODE    68A7H     003AH     UNIT         ?PR?_READ_FRAME?CS8900
+            CODE    68E1H     009DH     UNIT         ?C_C51STARTUP
+            CODE    697EH     06EBH     UNIT         ?C?LIB_CODE
+            CODE    7069H     0058H     UNIT         ?PR?_STRCAT?STRCAT
+            CODE    70C1H     0015H     UNIT         ?PR?_STRLEN?STRLEN
+            CODE    70D6H     00F9H     UNIT         ?PR?_MALLOC?MALLOC
+            CODE    71CFH     0052H     UNIT         ?PR?_INIT_MEMPOOL?INIT_MEM
+            CODE    7221H     0051H     UNIT         ?PR?_FREE?FREE
+
+
+
+OVERLAY MAP OF MODULE:   NET.HEX (MAIN)
+BL51 BANKED LINKER/LOCATER V3.52                                                        08/06/02  22:25:24  PAGE 4
+
+
+
+
+SEGMENT                                 DATA_GROUP          IDATA_GROUP
+  +--> CALLED SEGMENT                 START    LENGTH     START    LENGTH
+-------------------------------------------------------------------------
+?PR?UART_INTERRUPT?SERIAL             -----    -----      0089H    0001H
+
+?C_C51STARTUP                         -----    -----      -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                         0017H    0006H      -----    -----
+  +--> ?PR?SWITCH_TO_XTAL?MAIN
+  +--> ?PR?INIT_MAIN?MAIN
+  +--> ?PR?INIT_SERIAL?SERIAL
+  +--> ?PR?INIT_TCP?TCP
+  +--> ?PR?INIT_HTTP?HTTP
+  +--> ?PR?INIT_ADC?ANALOG
+  +--> ?PR?INIT_TIMER2?TIMER
+  +--> ?PR?INIT_ARP?ARP
+  +--> ?PR?INIT_CS8900?CIRRUS
+  +--> ?PR?_BYTE2TEXT?SERIAL
+  +--> ?PR?QUERY_CS8900?CIRRUS
+  +--> ?PR?RCVE_FRAME?CIRRUS
+  +--> ?PR?_ETH_RCVE?ETH
+  +--> ?PR?_FREE?FREE
+  +--> ?PR?TCP_RETRANSMIT?TCP
+  +--> ?PR?TCP_INACTIVITY?TCP
+  +--> ?PR?ARP_RETRANSMIT?ARP
+  +--> ?PR?AGE_ARP_CACHE?ARP
+  +--> ?PR?READ_ANALOG_INPUTS?ANALOG
+
+?PR?SWITCH_TO_XTAL?MAIN               001DH    0002H      -----    -----
+
+?PR?INIT_MAIN?MAIN                    -----    -----      -----    -----
+  +--> ?PR?_INIT_MEMPOOL?INIT_MEM
+
+?PR?INIT_CS8900?CIRRUS                001DH    0002H      -----    -----
+  +--> ?CO?CIRRUS
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_WRITE_PACKETPAGE?CIRRUS
+  +--> ?PR?_WAIT_MSEC?SERIAL
+  +--> ?PR?_READ_PACKETPAGE?CIRRUS
+  +--> ?CO?MAIN
+
+?PR?_SERIAL_SEND?SERIAL               006FH    0003H      00B0H    0001H
+  +--> ?PR?_STRLEN?STRLEN
+  +--> ?PR?_WAIT_MSEC?SERIAL
+
+?PR?_WAIT_MSEC?SERIAL                 0072H    0006H      -----    -----
+
+?PR?_WRITE_PACKETPAGE?CIRRUS          0023H    0004H      -----    -----
+  +--> ?PR?_WRITE_PORT?CS8900
+
+?PR?_READ_PACKETPAGE?CIRRUS           006FH    0002H      -----    -----
+  +--> ?PR?_WRITE_PORT?CS8900
+  +--> ?PR?_READ_PORT?CS8900
+BL51 BANKED LINKER/LOCATER V3.52                                                        08/06/02  22:25:24  PAGE 5
+
+
+
+?PR?_BYTE2TEXT?SERIAL                 001DH    0002H      -----    -----
+
+?PR?QUERY_CS8900?CIRRUS               001DH    0002H      -----    -----
+  +--> ?PR?_READ_PACKETPAGE?CIRRUS
+  +--> ?PR?_WRITE_PACKETPAGE?CIRRUS
+
+?PR?RCVE_FRAME?CIRRUS                 001DH    0006H      -----    -----
+  +--> ?PR?_READ_PORT?CS8900
+  +--> ?PR?_MALLOC?MALLOC
+  +--> ?CO?CIRRUS
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_WRITE_PACKETPAGE?CIRRUS
+  +--> ?PR?_READ_FRAME?CS8900
+
+?PR?_MALLOC?MALLOC                    0060H    0004H      -----    -----
+
+?PR?_ETH_RCVE?ETH                     001DH    0004H      -----    -----
+  +--> ?CO?ETH
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_ARP_RCVE?ARP
+  +--> ?PR?_IP_RCVE?IP
+
+?PR?_ARP_RCVE?ARP                     0021H    0004H      008AH    0005H
+  +--> ?CO?ARP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?CO?MAIN
+  +--> ?PR?_IP_SEND?IP
+  +--> ?PR?_ARP_SEND?ARP
+
+?PR?_IP_SEND?IP                       0042H    000DH      -----    -----
+  +--> ?CO?MAIN
+  +--> ?PR?_CKSUM?CKSUM
+  +--> ?PR?_ARP_RESOLVE?ARP
+  +--> ?PR?_ETH_SEND?ETH
+
+?PR?_ARP_RESOLVE?ARP                  004FH    0005H      -----    -----
+  +--> ?CO?MAIN
+  +--> ?CO?ARP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_ARP_SEND?ARP
+
+?PR?_ARP_SEND?ARP                     0054H    000CH      -----    -----
+  +--> ?PR?_MALLOC?MALLOC
+  +--> ?CO?ARP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?CO?MAIN
+  +--> ?PR?_ETH_SEND?ETH
+
+?PR?_ETH_SEND?ETH                     0060H    000BH      -----    -----
+  +--> ?CO?MAIN
+  +--> ?PR?_SEND_FRAME?CIRRUS
+
+?PR?_SEND_FRAME?CIRRUS                006BH    0004H      -----    -----
+  +--> ?PR?_WRITE_PORT?CS8900
+  +--> ?PR?_READ_PACKETPAGE?CIRRUS
+  +--> ?CO?CIRRUS
+BL51 BANKED LINKER/LOCATER V3.52                                                        08/06/02  22:25:24  PAGE 6
+
+
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_WRITE_FRAME?CS8900
+  +--> ?PR?_FREE?FREE
+
+?PR?_IP_RCVE?IP                       0021H    0004H      008AH    0004H
+  +--> ?CO?MAIN
+  +--> ?PR?_CKSUM?CKSUM
+  +--> ?CO?IP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_ICMP_RCVE?ICMP
+  +--> ?PR?_UDP_RCVE?UDP
+  +--> ?PR?_TCP_RCVE?TCP
+
+?PR?_ICMP_RCVE?ICMP                   0025H    0007H      008EH    0003H
+  +--> ?PR?_CKSUM?CKSUM
+  +--> ?CO?ICMP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_PING_SEND?ICMP
+
+?PR?_PING_SEND?ICMP                   002CH    000EH      -----    -----
+  +--> ?PR?_MALLOC?MALLOC
+  +--> ?CO?ICMP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_CKSUM?CKSUM
+  +--> ?PR?_IP_SEND?IP
+
+?PR?_UDP_RCVE?UDP                     0025H    0008H      008EH    0006H
+  +--> ?CO?UDP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_CKSUM?CKSUM
+  +--> ?PR?_UDP_ECHO_SERVICE?UDP
+  +--> ?PR?_DEST_UNREACH_SEND?ICMP
+
+?PR?_UDP_ECHO_SERVICE?UDP             002DH    0004H      -----    -----
+  +--> ?CO?UDP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_ITOA?SERIAL
+  +--> ?PR?_UDP_SEND?UDP
+
+?PR?_ITOA?SERIAL                      0039H    000EH      -----    -----
+
+?PR?_UDP_SEND?UDP                     0031H    000CH      0094H    0006H
+  +--> ?PR?_MALLOC?MALLOC
+  +--> ?CO?UDP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?CO?MAIN
+  +--> ?PR?_CKSUM?CKSUM
+  +--> ?PR?_IP_SEND?IP
+
+?PR?_DEST_UNREACH_SEND?ICMP           002DH    000AH      -----    -----
+  +--> ?PR?_MALLOC?MALLOC
+  +--> ?CO?ICMP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_CKSUM?CKSUM
+  +--> ?PR?_IP_SEND?IP
+
+?PR?_TCP_RCVE?TCP                     0025H    0008H      008EH    000DH
+BL51 BANKED LINKER/LOCATER V3.52                                                        08/06/02  22:25:24  PAGE 7
+
+
+  +--> ?PR?_CKSUM?CKSUM
+  +--> ?CO?TCP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_ITOA?SERIAL
+  +--> ?PR?_TCP_SEND?TCP
+  +--> ?PR?_HTTP_SERVER?HTTP
+
+?PR?_TCP_SEND?TCP                     002DH    000BH      009BH    000AH
+  +--> ?PR?_MALLOC?MALLOC
+  +--> ?CO?TCP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_FREE?FREE
+  +--> ?CO?MAIN
+  +--> ?PR?_CKSUM?CKSUM
+  +--> ?PR?_IP_SEND?IP
+
+?PR?_HTTP_SERVER?HTTP                 002DH    000CH      009BH    000FH
+  +--> ?CO?HTTP
+  +--> ?PR?_STRSTR?HTTP
+  +--> ?CO?WEBDOC
+  +--> ?PR?_STRLEN?STRLEN
+  +--> ?PR?_FREE?FREE
+  +--> ?PR?_MALLOC?MALLOC
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_ITOA?SERIAL
+  +--> ?PR?_REPLACE_TAG?HTTP
+  +--> ?PR?_STRCAT?STRCAT
+  +--> ?PR?_HTTP_SEND?HTTP
+
+?PR?_STRSTR?HTTP                      0043H    000CH      -----    -----
+
+?PR?_REPLACE_TAG?HTTP                 0039H    000AH      00AAH    0002H
+  +--> ?PR?_STRSTR?HTTP
+
+?PR?_STRCAT?STRCAT                    0039H    0009H      -----    -----
+
+?PR?_HTTP_SEND?HTTP                   0039H    0009H      00AAH    0006H
+  +--> ?CO?MAIN
+  +--> ?PR?_CKSUM?CKSUM
+  +--> ?CO?HTTP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_IP_SEND?IP
+
+?PR?TCP_RETRANSMIT?TCP                -----    -----      008AH    0001H
+  +--> ?CO?TCP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+  +--> ?PR?_TCP_SEND?TCP
+  +--> ?PR?_HTTP_SERVER?HTTP
+
+?PR?TCP_INACTIVITY?TCP                -----    -----      008AH    0001H
+  +--> ?PR?_TCP_SEND?TCP
+  +--> ?CO?TCP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+
+?PR?ARP_RETRANSMIT?ARP                -----    -----      -----    -----
+  +--> ?CO?ARP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+BL51 BANKED LINKER/LOCATER V3.52                                                        08/06/02  22:25:24  PAGE 8
+
+
+  +--> ?PR?_ARP_SEND?ARP
+  +--> ?PR?_FREE?FREE
+
+?PR?AGE_ARP_CACHE?ARP                 001DH    0001H      -----    -----
+  +--> ?CO?ARP
+  +--> ?PR?_SERIAL_SEND?SERIAL
+
+?PR?READ_ANALOG_INPUTS?ANALOG         001DH    0002H      008AH    0006H
+
+
+
+SYMBOL TABLE OF MODULE:  NET.HEX (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C?COPY
+  C:6A4EH         PUBLIC        ?C?COPY
+  -------         ENDMOD        ?C?COPY
+
+  -------         MODULE        ?C?CLDPTR
+  C:6A77H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CLDOPTR
+  C:6A90H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:6ABDH         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?IMUL
+  C:6ACFH         PUBLIC        ?C?IMUL
+  -------         ENDMOD        ?C?IMUL
+
+  -------         MODULE        ?C?UIDIV
+  C:6AE3H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+  -------         MODULE        ?C?LMUL
+  C:6B38H         PUBLIC        ?C?LMUL
+  -------         ENDMOD        ?C?LMUL
+
+  -------         MODULE        ?C?ULDIV
+  C:6BC3H         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+  -------         MODULE        ?C?ULCMP
+  C:6C55H         PUBLIC        ?C?ULCMP
+  -------         ENDMOD        ?C?ULCMP
+
+  -------         MODULE        ?C?ULSHR
+  C:6C66H         PUBLIC        ?C?ULSHR
+  -------         ENDMOD        ?C?ULSHR
+
+  -------         MODULE        ?C?LLDOPTR
+BL51 BANKED LINKER/LOCATER V3.52                                                        08/06/02  22:25:24  PAGE 9
+
+
+  C:6C79H         PUBLIC        ?C?LLDOPTR
+  -------         ENDMOD        ?C?LLDOPTR
+
+  -------         MODULE        ?C?LLDIDATA
+  C:6CA9H         PUBLIC        ?C?LLDIDATA
+  -------         ENDMOD        ?C?LLDIDATA
+
+  -------         MODULE        ?C?LLDCODE
+  C:6CB5H         PUBLIC        ?C?LLDCODE
+  -------         ENDMOD        ?C?LLDCODE
+
+  -------         MODULE        ?C?LLDIDATA0
+  C:6CC5H         PUBLIC        ?C?LLDIDATA0
+  -------         ENDMOD        ?C?LLDIDATA0
+
+  -------         MODULE        ?C?LLDCODE0
+  C:6CD2H         PUBLIC        ?C?LLDCODE0
+  -------         ENDMOD        ?C?LLDCODE0
+
+  -------         MODULE        ?C?LSTIDATA
+  C:6CE2H         PUBLIC        ?C?LSTIDATA
+  -------         ENDMOD        ?C?LSTIDATA
+
+  -------         MODULE        ?C?LSTXDATA
+  C:6CEEH         PUBLIC        ?C?LSTXDATA
+  -------         ENDMOD        ?C?LSTXDATA
+
+  -------         MODULE        ?C?LSTKIDATA
+  C:6CFAH         PUBLIC        ?C?LSTKIDATA
+  -------         ENDMOD        ?C?LSTKIDATA
+
+  -------         MODULE        ?C?LSTKXDATA
+  C:6D13H         PUBLIC        ?C?LSTKXDATA
+  -------         ENDMOD        ?C?LSTKXDATA
+
+  -------         MODULE        ?C?CCASE
+  C:6D44H         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+  -------         MODULE        ?C?ICASE
+  C:6D6AH         PUBLIC        ?C?ICASE
+  -------         ENDMOD        ?C?ICASE
+
+  -------         MODULE        ?C_IBP
+  D:0014H         PUBLIC        ?C_IBP
+  -------         ENDMOD        ?C_IBP
+
+  -------         MODULE        STRCAT
+  D:0039H         PUBLIC        ?_STRCAT?BYTE
+  C:7069H         PUBLIC        _STRCAT
+  -------         ENDMOD        STRCAT
+
+  -------         MODULE        ?C?STRCPY
+  C:6E63H         PUBLIC        ?C?STRCPY
+  -------         ENDMOD        ?C?STRCPY
+
+  -------         MODULE        STRLEN
+BL51 BANKED LINKER/LOCATER V3.52                                                        08/06/02  22:25:24  PAGE 10
+
+
+  C:70C1H         PUBLIC        _STRLEN
+  -------         ENDMOD        STRLEN
+
+  -------         MODULE        ?C?MEMSET
+  C:6E80H         PUBLIC        ?C?MEMSET
+  -------         ENDMOD        ?C?MEMSET
+
+  -------         MODULE        ?C?MEMMOVE
+  C:7027H         PUBLIC        ?C?MEMMOVE
+  -------         ENDMOD        ?C?MEMMOVE
+
+  -------         MODULE        MALLOC
+  C:70D6H         PUBLIC        _MALLOC
+  -------         ENDMOD        MALLOC
+
+  -------         MODULE        INIT_MEM
+  D:0015H         PUBLIC        __MP__
+  C:71CFH         PUBLIC        _INIT_MEMPOOL
+  -------         ENDMOD        INIT_MEM
+
+  -------         MODULE        FREE
+  C:7221H         PUBLIC        _FREE
+  -------         ENDMOD        FREE
+
+  -------         MODULE        ?C?LLDXDATA
+  C:7051H         PUBLIC        ?C?LLDXDATA
+  -------         ENDMOD        ?C?LLDXDATA
+
+  -------         MODULE        ?C?LLDPDATA
+  C:705DH         PUBLIC        ?C?LLDPDATA
+  -------         ENDMOD        ?C?LLDPDATA
+
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

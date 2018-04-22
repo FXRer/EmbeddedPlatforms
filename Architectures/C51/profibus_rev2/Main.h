@@ -1,0 +1,138 @@
+//-----------------------------------------------------------------------------
+// MAIN.H
+// Include this in all modules
+//-----------------------------------------------------------------------------
+
+
+// Type definitions
+typedef unsigned char UCHAR;
+typedef unsigned int  UINT;
+typedef unsigned long int ULONG;
+
+
+
+// General constants
+#define 	TRUE      			      1
+#define 	FALSE     			      0
+#define 	MATCH					      0
+#define 	RETURN    			      0x0D
+#define 	SPACE		 			      0x20
+
+
+// Buffer sizes
+#define SPC3BUFSIZE				   16
+#define RS232BUFSIZE             80
+
+// Events
+#define EVENT_RS232_MSG          0x01
+#define EVENT_HALF_SECOND        0x02
+#define EVENT_PROF_RST_REQUEST   0x04
+#define EVENT_PROF_DATA_MSG      0x08
+#define EVENT_SEND_BANNER        0x10
+
+
+// Macros 
+#define LOBYTE(w)			((UCHAR)(w))
+#define HIBYTE(w)			((UCHAR)(0x00FF & ((UINT)(w) >> 8)))
+
+
+// Timers
+typedef struct
+{
+   UCHAR half_second;
+   UCHAR send_banner;
+} TIMER;
+
+
+// SPC3 read registers 
+typedef struct
+{
+	UCHAR INTREQ_LO;
+	UCHAR INTREQ_HI;
+	UCHAR INT_LO;
+	UCHAR INT_HI;
+	UCHAR STATUS_LO;
+	UCHAR STATUS_HI;
+	UCHAR RESERVED1;
+	UCHAR RESERVED2;
+	UCHAR DINBUF_STATE;
+	UCHAR NEWDIN_CMD;
+	UCHAR DOUTBUF_STATE;
+	UCHAR NEXTDOUT_CMD;
+	UCHAR DIAGBUF_STATE;
+	UCHAR NEWDIAG_CMD;
+	UCHAR PARAMDATA_OK;
+	UCHAR PARAMDATA_NOTOK;
+	UCHAR CONFIGDATA_OK;
+	UCHAR CONFIGDATA_NOTOK;
+	UCHAR RESERVED3;
+	UCHAR RESERVED4;
+	UCHAR SSA_BUF_FREE;
+} PROFREADTYPE;
+
+
+// SPC3 write registers
+typedef struct
+{
+	UCHAR INTREQ_LO;
+	UCHAR INTREQ_HI;
+	UCHAR INTACK_LO;
+	UCHAR INTACK_HI;
+	UCHAR INTMASK_LO;
+	UCHAR INTMASK_HI;
+	UCHAR MODE0_LO;
+	UCHAR MODE0_HI;
+	UCHAR MODE1_S;
+	UCHAR MODE1_R;
+	UCHAR BAUD_CONTROL;
+	UCHAR MIN_TSDR;
+} PROFWRITETYPE;
+
+// SPC3 orginazational paramamater area
+typedef struct
+{
+	UCHAR BASE[22];					
+	UCHAR ADDRESS;						// addr = 0x16
+	UCHAR PTR_SAPLIST;
+	UCHAR WDOG_LO;
+	UCHAR WDOG_HI;
+	UCHAR LEN_DOUTBUFS;				// addr = 0x1A
+	UCHAR PTR_DOUTBUF1;				// addr = 0x1B
+	UCHAR PTR_DOUTBUF2;
+	UCHAR PTR_DOUTBUF3;
+	UCHAR LEN_DINBUFS;
+	UCHAR PTR_DINBUF1;				// addr = 0x1F
+	UCHAR PTR_DINBUF2;
+	UCHAR PTR_DINBUF3;
+	UCHAR LEN_DDBOUTBUF;				// addr = 0x22
+	UCHAR PTR_DDBOUTBUF;
+	UCHAR LEN_DIAGBUF1;
+	UCHAR LEN_DIAGBUF2;				// addr = 0x25
+	UCHAR PTR_DIAGBUF1;
+	UCHAR PTR_DIAGBUF2;
+	UCHAR LEN_CTRLBUF1;
+	UCHAR LEN_CTRLBUF2;
+	UCHAR AUXBUF_SEL;					// addr = 0x2A
+	UCHAR PTR_AUXBUF1;
+	UCHAR PTR_AUXBUF2;
+	UCHAR LEN_SSADATA;
+	UCHAR PTR_SSADATA;
+	UCHAR LEN_PARAMBUF;
+	UCHAR PTR_PARAMBUF;				// addr = 0x30
+	UCHAR LEN_CONFIGBUF;
+	UCHAR PTR_CONFIGBUF;
+	UCHAR LEN_RDCONFIGBUF;
+	UCHAR PTR_RDCONFIGBUF;
+	UCHAR LEN_DDBPARAMBUF;			// addr = 0x35
+	UCHAR PTR_DDBPARAMBUF;
+	UCHAR SCORE_EXPBYTE;
+	UCHAR SCORE_ERRORBYTE;
+	UCHAR ADDRESS_CHANGE;
+	UCHAR IDENT_LO;					// addr = 0x3A
+	UCHAR IDENT_HI;
+	UCHAR GC_COMMAND;
+	UCHAR LEN_SPECPARAMBUF;
+} PROFORGTYPE;
+
+
+ 

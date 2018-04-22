@@ -1,0 +1,46 @@
+;PALASM Design Description
+
+;---------------------------------- Declaration Segment ------------
+TITLE    Profibus I/O decoder
+PATTERN  A
+REVISION 2
+AUTHOR   Jim Brady
+DATE     12/4/2005
+CHIP  profibus  PAL22V10
+
+;---------------------------------- PIN Declarations ---------------
+PIN  1          A15           COMBINATORIAL        
+PIN  2          A14           COMBINATORIAL        
+PIN  3          A13           COMBINATORIAL        
+PIN  4          A12           COMBINATORIAL        
+PIN  5          A11           COMBINATORIAL        
+PIN  6          A10           COMBINATORIAL        
+PIN  7          A9            COMBINATORIAL        
+PIN  8          A8            COMBINATORIAL        
+PIN  9          A7            COMBINATORIAL        
+PIN  10         A6            COMBINATORIAL        
+PIN  11         GND        
+PIN  12         GND
+PIN  13         GND 
+PIN  14         NC  
+PIN  15         NC       
+PIN  16         NC        
+PIN  17         NC        
+PIN  18         NC        
+PIN  19         NC        
+PIN  20         NC        
+PIN  21         NC     
+PIN  22         /CS2          COMBINATORIAL   ;82C55A I/O CHIP     
+PIN  23         /CS1          COMBINATORIAL   ;SIEMENS SPC3 CHIP    
+PIN 24          VCC      
+
+;---------------------------- Boolean Equation Segment ------
+EQUATIONS
+
+CS1 = A15 * A14 * A13 * A12 *  A11;
+CS2 = A15 * A14 * A13 * A12 * /A11 * A10 * A9 * /A8 * /A7;
+
+;---------------------------- Simulation Segment ------------
+SIMULATION
+
+;-------------------------------------------------------------------

@@ -1,0 +1,33 @@
+TCP Features implemented by 8051 Web Server
+for Circuit Cellar Article
+August 2002  Jim Brady
+
+
+    Feature                                          Implemented
+--------------------------------------------------------------------
+ 1. Handle multiple simultaneous connections         yes
+ 2. Hold sent segments until ack is rcvd             web page only
+ 3. Resend segments if no ack is rcvd                web page only
+ 4. Handle TCP options                               MSS only
+ 5. Handle passive open (act as server)              yes
+ 6. Handle active open (act as client)               no
+ 7. Assemble multiple segments                       no
+ 8. Assemble out-of-order segments                   no
+ 9. Discard duplicate rcvd segments                  no
+10. Nagle algorithm                                  no
+12. Van Jacobsen's algorithm                         no
+13. Respect other end's max segment size             no
+14. Slow start on new connection                     no
+15. Estimate round trip time                         no   
+16. Karn's algorithm                                 no
+17. Congestion avoidance algorithm                   no 
+18. Fast retransmit algorithm                        no
+19. Fast recovery algorithm                          no
+20. TCP persist timer                                no
+21. TCP keepalive timer                              no
+22. Delay acks when no data to send                  no 
+23. Handle sequence number wrap-around               no
+24. Handle urgent mode                               no
+
+
+

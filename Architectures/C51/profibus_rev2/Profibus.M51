@@ -1,0 +1,271 @@
+BL51 BANKED LINKER/LOCATER V5.03                                                        12/04/2005  10:09:51  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V5.03, INVOKED BY:
+C:\PROGRAM FILES\KEIL\C51\BIN\BL51.EXE Main.obj, Spc3.obj, Util.obj, Intr.obj TO Profibus RAMSIZE (256)
+
+
+MEMORY MODEL: LARGE
+
+
+INPUT MODULES INCLUDED:
+  Main.obj (MAIN)
+  Spc3.obj (SPC3)
+  Util.obj (UTIL)
+  Intr.obj (INTR)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C_STARTUP)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?CLDOPTR)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?CSTOPTR)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (PRINTF)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (STRCAT)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?STRCPY)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (STRTOL)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?MEMSET)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C_INIT)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?CLDPTR)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?CSTPTR)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?IILDX)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?ILDIX)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?LMUL)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?LNEG)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?LSTXDATA)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?LSTKXDATA)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?PLDIXDATA)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?PSTXDATA)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?PSTPTR)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?CCASE)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (PUTCHAR)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?PSTIDATA)
+  C:\PROGRAM FILES\KEIL\C51\LIB\C51L.LIB (?C?PSTPDATA)
+
+
+LINK MAP OF MODULE:  Profibus (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0005H     UNIT         _DATA_GROUP_
+                    000DH     0013H                  *** GAP ***
+            BIT     0020H.0   0001H.1   UNIT         _BIT_GROUP_
+                    0021H.1   0000H.7                *** GAP ***
+            IDATA   0022H     0001H     UNIT         ?STACK
+
+            * * * * * * *  X D A T A   M E M O R Y  * * * * * * *
+            XDATA   0000H     00C5H     UNIT         ?XD?MAIN
+            XDATA   00C5H     002DH     UNIT         _XDATA_GROUP_
+            XDATA   00F2H     0004H     UNIT         ?XD?SPC3
+            XDATA   00F6H     0001H     UNIT         ?XD?UTIL
+                    00F7H     F509H                  *** GAP ***
+BL51 BANKED LINKER/LOCATER V5.03                                                      12/04/2005  10:09:51  PAGE 2
+
+
+            XDATA   F600H     0001H     ABSOLUTE     
+            XDATA   F601H     0001H     ABSOLUTE     
+            XDATA   F602H     0001H     ABSOLUTE     
+            XDATA   F603H     0001H     ABSOLUTE     
+                    F604H     01FCH                  *** GAP ***
+            XDATA   F800H     003EH     ABSOLUTE     
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     ABSOLUTE     
+            CODE    0006H     0005H     UNIT         ?C_INITSEG
+            CODE    000BH     0003H     ABSOLUTE     
+            CODE    000EH     0008H     UNIT         ?CO?MAIN
+                    0016H     000DH                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+            CODE    0026H     0365H     UNIT         ?PR?PRINTF?PRINTF
+            CODE    038BH     02FCH     UNIT         ?C?LIB_CODE
+            CODE    0687H     0235H     UNIT         ?PR?_STRTOL?STRTOL
+            CODE    08BCH     0202H     UNIT         ?PR?MAIN?MAIN
+            CODE    0ABEH     018DH     UNIT         ?PR?SPC3_INIT?SPC3
+            CODE    0C4BH     00F0H     UNIT         ?CO?UTIL
+            CODE    0D3BH     00E4H     UNIT         ?PR?EXTERNAL_INTERRUPT0?INTR
+            CODE    0E1FH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0EABH     006EH     UNIT         ?PR?UART_INTERRUPT?INTR
+            CODE    0F19H     006BH     UNIT         ?PR?_STRCAT?STRCAT
+            CODE    0F84H     0065H     UNIT         ?PR?_SPC3_READ_DATA?SPC3
+            CODE    0FE9H     005DH     UNIT         ?PR?_SPC3_WRITE_DATA?SPC3
+            CODE    1046H     005AH     UNIT         ?PR?SPC3_GET_FIRST_WRITE_PTR?SPC3
+            CODE    10A0H     0059H     UNIT         ?PR?SPC3_CHECK_CONFIG?INTR
+            CODE    10F9H     0058H     UNIT         ?PR?SPC3_EXCHANGE_READ_BUFS?SPC3
+            CODE    1151H     0058H     UNIT         ?PR?SPC3_EXCHANGE_WRITE_BUFS?SPC3
+            CODE    11A9H     0049H     UNIT         ?PR?_WAIT_MILLISECOND?UTIL
+            CODE    11F2H     0045H     UNIT         ?PR?SPC3_CHECK_PARAMS?INTR
+            CODE    1237H     003EH     UNIT         ?PR?DISPLAY_BANNER?UTIL
+            CODE    1275H     003BH     UNIT         ?PR?TIMER0?INTR
+            CODE    12B0H     0030H     UNIT         ?PR?SPC3_LOAD_CONFIG?SPC3
+            CODE    12E0H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
+            CODE    1307H     0024H     UNIT         ?PR?_BIT_REVERSE?UTIL
+
+
+
+OVERLAY MAP OF MODULE:   Profibus (MAIN)
+
+
+SEGMENT                                      BIT_GROUP          DATA_GROUP          XDATA_GROUP
+  +--> CALLED SEGMENT                     START    LENGTH     START    LENGTH     START    LENGTH
+-------------------------------------------------------------------------------------------------
+?PR?EXTERNAL_INTERRUPT0?INTR              -----    -----      -----    -----      00C5H    0002H
+  +--> ?PR?SPC3_CHECK_CONFIG?INTR
+  +--> ?PR?SPC3_CHECK_PARAMS?INTR
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP                             -----    -----      -----    -----      -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+BL51 BANKED LINKER/LOCATER V5.03                                                      12/04/2005  10:09:51  PAGE 3
+
+
+?PR?MAIN?MAIN                             -----    -----      -----    -----      00C7H    0003H
+  +--> ?PR?SPC3_INIT?SPC3
+  +--> ?PR?_SPC3_WRITE_DATA?SPC3
+  +--> ?PR?_SPC3_READ_DATA?SPC3
+  +--> ?PR?_WAIT_MILLISECOND?UTIL
+  +--> ?PR?_STRTOL?STRTOL
+  +--> ?CO?MAIN
+  +--> ?PR?PRINTF?PRINTF
+  +--> ?PR?_STRCAT?STRCAT
+  +--> ?PR?DISPLAY_BANNER?UTIL
+
+?PR?SPC3_INIT?SPC3                        -----    -----      -----    -----      00CAH    0004H
+  +--> ?PR?_WAIT_MILLISECOND?UTIL
+  +--> ?PR?_BIT_REVERSE?UTIL
+  +--> ?PR?SPC3_LOAD_CONFIG?SPC3
+  +--> ?PR?SPC3_GET_FIRST_WRITE_PTR?SPC3
+
+?PR?_WAIT_MILLISECOND?UTIL                -----    -----      -----    -----      00CEH    0004H
+
+?PR?_SPC3_WRITE_DATA?SPC3                 -----    -----      -----    -----      00CAH    0003H
+  +--> ?PR?SPC3_EXCHANGE_WRITE_BUFS?SPC3
+
+?PR?_SPC3_READ_DATA?SPC3                  -----    -----      -----    -----      00CAH    0003H
+  +--> ?PR?SPC3_EXCHANGE_READ_BUFS?SPC3
+
+?PR?_STRTOL?STRTOL                        -----    -----      -----    -----      00CAH    000EH
+
+?PR?PRINTF?PRINTF                         0020H.0  0001H.1    0008H    0005H      00CAH    0028H
+  +--> ?PR?PUTCHAR?PUTCHAR
+
+?PR?_STRCAT?STRCAT                        -----    -----      -----    -----      00CAH    0009H
+
+?PR?DISPLAY_BANNER?UTIL                   -----    -----      -----    -----      -----    -----
+  +--> ?CO?UTIL
+
+
+
+SYMBOL TABLE OF MODULE:  Profibus (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C?CLDOPTR
+  C:038BH         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTOPTR
+  C:03B8H         PUBLIC        ?C?CSTOPTR
+  -------         ENDMOD        ?C?CSTOPTR
+
+  -------         MODULE        PRINTF
+  X:00CAH         PUBLIC        ?_PRINTF517?BYTE
+  X:00CAH         PUBLIC        ?_PRINTF?BYTE
+  X:00CAH         PUBLIC        ?_SPRINTF517?BYTE
+  X:00CAH         PUBLIC        ?_SPRINTF?BYTE
+  C:0091H         PUBLIC        _PRINTF
+  C:0091H         PUBLIC        _PRINTF517
+BL51 BANKED LINKER/LOCATER V5.03                                                      12/04/2005  10:09:51  PAGE 4
+
+
+  C:008BH         PUBLIC        _SPRINTF
+  C:008BH         PUBLIC        _SPRINTF517
+  -------         ENDMOD        PRINTF
+
+  -------         MODULE        STRCAT
+  X:00CAH         PUBLIC        ?_strcat?BYTE
+  C:0F19H         PUBLIC        _strcat
+  -------         ENDMOD        STRCAT
+
+  -------         MODULE        ?C?STRCPY
+  C:04A6H         PUBLIC        ?C?STRCPY
+  -------         ENDMOD        ?C?STRCPY
+
+  -------         MODULE        STRTOL
+  X:00CAH         PUBLIC        ?_strtol?BYTE
+  C:0687H         PUBLIC        _strtol
+  -------         ENDMOD        STRTOL
+
+  -------         MODULE        ?C?MEMSET
+  C:04C3H         PUBLIC        ?C?MEMSET
+  -------         ENDMOD        ?C?MEMSET
+
+  -------         MODULE        ?C?CLDPTR
+  C:04EFH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:0508H         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?IILDX
+  C:051AH         PUBLIC        ?C?IILDX
+  -------         ENDMOD        ?C?IILDX
+
+  -------         MODULE        ?C?ILDIX
+  C:0530H         PUBLIC        ?C?ILDIX
+  -------         ENDMOD        ?C?ILDIX
+
+  -------         MODULE        ?C?LMUL
+  C:0546H         PUBLIC        ?C?LMUL
+  -------         ENDMOD        ?C?LMUL
+
+  -------         MODULE        ?C?LNEG
+  C:0595H         PUBLIC        ?C?LNEG
+  -------         ENDMOD        ?C?LNEG
+
+  -------         MODULE        ?C?LSTXDATA
+  C:05A3H         PUBLIC        ?C?LSTXDATA
+  -------         ENDMOD        ?C?LSTXDATA
+
+  -------         MODULE        ?C?LSTKXDATA
+  C:05AFH         PUBLIC        ?C?LSTKXDATA
+  -------         ENDMOD        ?C?LSTKXDATA
+
+  -------         MODULE        ?C?PLDIXDATA
+  C:05E0H         PUBLIC        ?C?PLDIXDATA
+  -------         ENDMOD        ?C?PLDIXDATA
+BL51 BANKED LINKER/LOCATER V5.03                                                      12/04/2005  10:09:51  PAGE 5
+
+
+
+  -------         MODULE        ?C?PSTXDATA
+  C:05F7H         PUBLIC        ?C?PSTXDATA
+  -------         ENDMOD        ?C?PSTXDATA
+
+  -------         MODULE        ?C?PSTPTR
+  C:0600H         PUBLIC        ?C?PSTPTR
+  -------         ENDMOD        ?C?PSTPTR
+
+  -------         MODULE        ?C?CCASE
+  C:064FH         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+  -------         MODULE        PUTCHAR
+  C:12E0H         PUBLIC        _PUTCHAR
+  -------         ENDMOD        PUTCHAR
+
+  -------         MODULE        ?C?PSTIDATA
+  C:0675H         PUBLIC        ?C?PSTIDATA
+  -------         ENDMOD        ?C?PSTIDATA
+
+  -------         MODULE        ?C?PSTPDATA
+  C:067EH         PUBLIC        ?C?PSTPDATA
+  -------         ENDMOD        ?C?PSTPDATA
+
+Program Size: data=15.1 xdata=313 code=4894
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

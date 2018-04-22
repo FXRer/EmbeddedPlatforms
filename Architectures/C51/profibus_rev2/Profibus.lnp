@@ -1,0 +1,6 @@
+"Main.obj",
+"Spc3.obj",
+"Util.obj",
+"Intr.obj" 
+TO "Profibus" 
+RAMSIZE(256) 
