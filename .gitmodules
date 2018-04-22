@@ -1,0 +1,18 @@
+[submodule "Boards/STM32F4-Disco"]
+	path = Boards/STM32F4-Disco
+	url = https://github.com/FXRer/STM32F4-Disco.git
+[submodule "Boards/Raspberry-Pi"]
+	path = Boards/Raspberry-Pi
+	url = https://github.com/FXRer/Raspberry-Pi.git
+[submodule "Boards/Arduino-Mega2560"]
+	path = Boards/Arduino-Mega2560
+	url = https://github.com/FXRer/Arduino-Mega2560.git
+[submodule "Boards/Arduino-Trinket"]
+	path = Boards/Arduino-Trinket
+	url = https://github.com/FXRer/Arduino-Trinket.git
+[submodule "Boards/STM32F7-Disco"]
+	path = Boards/STM32F7-Disco
+	url = https://github.com/FXRer/STM32F7-Disco.git
+[submodule "Boards/Olimexino-STM32"]
+	path = Boards/Olimexino-STM32
+	url = https://github.com/FXRer/Olimexino-STM32.git
