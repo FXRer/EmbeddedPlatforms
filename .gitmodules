@@ -79,3 +79,9 @@
 [submodule "Architectures/COMMON/C_Communications_Ethernet_TCP_IP_Driver"]
 	path = Architectures/COMMON/C_Communications_Ethernet_TCP_IP_Driver
 	url = https://github.com/ibexuk/C_Communications_Ethernet_TCP_IP_Driver.git
+[submodule "Architectures/ARM/CORTEX-M/LPC/LPC11U24-GPSTracker"]
+	path = Architectures/ARM/CORTEX-M/LPC/LPC11U24-GPSTracker
+	url = https://github.com/jenswilly/LPC11U24-GPSTracker.git
+[submodule "Architectures/ARM/CORTEX-M/LPC/FreeOSEK_LPC1769"]
+	path = Architectures/ARM/CORTEX-M/LPC/FreeOSEK_LPC1769
+	url = https://github.com/ciaa/FreeOSEK_LPC1769.git
