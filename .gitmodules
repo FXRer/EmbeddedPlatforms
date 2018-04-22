@@ -16,3 +16,51 @@
 [submodule "Boards/Olimexino-STM32"]
 	path = Boards/Olimexino-STM32
 	url = https://github.com/FXRer/Olimexino-STM32.git
+[submodule "Architectures/AVR/avrfreertos"]
+	path = Architectures/AVR/avrfreertos
+	url = https://github.com/feilipu/avrfreertos.git
+[submodule "Architectures/AVR/cand"]
+	path = Architectures/AVR/cand
+	url = https://github.com/das-labor/cand.git
+[submodule "Architectures/AVR/miniAVRfreeRTOS"]
+	path = Architectures/AVR/miniAVRfreeRTOS
+	url = https://github.com/feilipu/miniAVRfreeRTOS.git
+[submodule "Architectures/AVR/uhttpd-avr"]
+	path = Architectures/AVR/uhttpd-avr
+	url = https://github.com/vfonov/uhttpd-avr.git
+[submodule "Architectures/AVR/avr-uip"]
+	path = Architectures/AVR/avr-uip
+	url = https://github.com/avr-uip/avr-uip.git
+[submodule "Architectures/AVR/CONTROLLINO_Library"]
+	path = Architectures/AVR/CONTROLLINO_Library
+	url = https://github.com/CONTROLLINO-PLC/CONTROLLINO_Library.git
+[submodule "Architectures/AVR/libmicro"]
+	path = Architectures/AVR/libmicro
+	url = https://github.com/das-labor/libmicro.git
+[submodule "Architectures/AVR/google-code-protothread"]
+	path = Architectures/AVR/google-code-protothread
+	url = https://github.com/avr-uip/google-code-protothread.git
+[submodule "Architectures/AVR/5p-switch"]
+	path = Architectures/AVR/5p-switch
+	url = https://github.com/fabiobaltieri/5p-switch.git
+[submodule "Architectures/AVR/avr-can-lib"]
+	path = Architectures/AVR/avr-can-lib
+	url = https://github.com/dergraaf/avr-can-lib.git
+[submodule "Architectures/AVR/avr-micro-usb"]
+	path = Architectures/AVR/avr-micro-usb
+	url = https://github.com/fabiobaltieri/avr-micro-usb.git
+[submodule "Architectures/AVR/can"]
+	path = Architectures/AVR/can
+	url = https://github.com/mkleemann/can.git
+[submodule "Architectures/AVR/open-usb-can"]
+	path = Architectures/AVR/open-usb-can
+	url = https://github.com/fabiobaltieri/open-usb-can.git
+[submodule "Architectures/AVR/toyothack"]
+	path = Architectures/AVR/toyothack
+	url = https://github.com/fabiobaltieri/toyothack.git
+[submodule "Architectures/AVR/usb2can"]
+	path = Architectures/AVR/usb2can
+	url = https://github.com/krumboeck/usb2can.git
+[submodule "Architectures/AVR/usb2can_firmware"]
+	path = Architectures/AVR/usb2can_firmware
+	url = https://github.com/krumboeck/usb2can_firmware.git
