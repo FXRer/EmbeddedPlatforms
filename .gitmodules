@@ -73,3 +73,6 @@
 [submodule "Architectures/PIC18/USBtin"]
 	path = Architectures/PIC18/USBtin
 	url = https://github.com/KentuckySolarCar/USBtin.git
+[submodule "Architectures/MIPS/PIC32/retrobsd"]
+	path = Architectures/MIPS/PIC32/retrobsd
+	url = https://github.com/RetroBSD/retrobsd.git
