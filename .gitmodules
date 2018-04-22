@@ -64,3 +64,6 @@
 [submodule "Architectures/AVR/usb2can_firmware"]
 	path = Architectures/AVR/usb2can_firmware
 	url = https://github.com/krumboeck/usb2can_firmware.git
+[submodule "Architectures/AVR/OpenPLC"]
+	path = Architectures/AVR/OpenPLC
+	url = https://github.com/nwertzberger/OpenPLC.git
