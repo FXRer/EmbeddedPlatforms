@@ -1,0 +1,287 @@
+VERSION 5.00
+Begin {C0E45035-5775-11D0-B388-00A0C9055D8E} DataEnvironment1 
+   ClientHeight    =   3096
+   ClientLeft      =   0
+   ClientTop       =   0
+   ClientWidth     =   7044
+   _ExtentX        =   12425
+   _ExtentY        =   5461
+   FolderFlags     =   7
+   TypeLibGuid     =   "{F1240D1F-90E1-11D4-81C9-006097884A79}"
+   TypeInfoGuid    =   "{F1240D20-90E1-11D4-81C9-006097884A79}"
+   TypeInfoCookie  =   0
+   Version         =   4
+   NumConnections  =   1
+   BeginProperty Connection1 
+      ConnectionName  =   "Connection1"
+      ConnDispId      =   1001
+      SourceOfData    =   3
+      ConnectionSource=   $"caraca.dsx":0000
+      Expanded        =   -1  'True
+      QuoteChar       =   96
+      SeparatorChar   =   46
+   EndProperty
+   NumRecordsets   =   2
+   BeginProperty Recordset1 
+      CommandName     =   "Command1"
+      CommDispId      =   1002
+      RsDispId        =   1003
+      CommandText     =   "AssTable"
+      ActiveConnectionName=   "Connection1"
+      CommandType     =   2
+      dbObjectType    =   1
+      Locktype        =   3
+      IsRSReturning   =   -1  'True
+      NumFields       =   22
+      BeginProperty Field1 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "ID"
+         Caption         =   "ID"
+      EndProperty
+      BeginProperty Field2 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "STAR_ADDRESS"
+         Caption         =   "STAR_ADDRESS"
+      EndProperty
+      BeginProperty Field3 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "EMASK_FUNC"
+         Caption         =   "EMASK_FUNC"
+      EndProperty
+      BeginProperty Field4 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "EMASK_ADDR"
+         Caption         =   "EMASK_ADDR"
+      EndProperty
+      BeginProperty Field5 
+         Precision       =   3
+         Size            =   1
+         Scale           =   0
+         Type            =   17
+         Name            =   "EMASK_RTR"
+         Caption         =   "EMASK_RTR"
+      EndProperty
+      BeginProperty Field6 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "EMASK_LEN"
+         Caption         =   "EMASK_LEN"
+      EndProperty
+      BeginProperty Field7 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "EMASK_COUNT"
+         Caption         =   "EMASK_COUNT"
+      EndProperty
+      BeginProperty Field8 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "EMATCH_FUNC"
+         Caption         =   "EMATCH_FUNC"
+      EndProperty
+      BeginProperty Field9 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "EMATCH_ADDR"
+         Caption         =   "EMATCH_ADDR"
+      EndProperty
+      BeginProperty Field10 
+         Precision       =   3
+         Size            =   1
+         Scale           =   0
+         Type            =   17
+         Name            =   "EMATCH_RTR"
+         Caption         =   "EMATCH_RTR"
+      EndProperty
+      BeginProperty Field11 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "EMATCH_LEN"
+         Caption         =   "EMATCH_LEN"
+      EndProperty
+      BeginProperty Field12 
+         Precision       =   3
+         Size            =   1
+         Scale           =   0
+         Type            =   17
+         Name            =   "EDATA1"
+         Caption         =   "EDATA1"
+      EndProperty
+      BeginProperty Field13 
+         Precision       =   3
+         Size            =   1
+         Scale           =   0
+         Type            =   17
+         Name            =   "EDATA2"
+         Caption         =   "EDATA2"
+      EndProperty
+      BeginProperty Field14 
+         Precision       =   3
+         Size            =   1
+         Scale           =   0
+         Type            =   17
+         Name            =   "EDATA3"
+         Caption         =   "EDATA3"
+      EndProperty
+      BeginProperty Field15 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "DELAY"
+         Caption         =   "DELAY"
+      EndProperty
+      BeginProperty Field16 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "A_FUNC"
+         Caption         =   "A_FUNC"
+      EndProperty
+      BeginProperty Field17 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "A_ADDR"
+         Caption         =   "A_ADDR"
+      EndProperty
+      BeginProperty Field18 
+         Precision       =   3
+         Size            =   1
+         Scale           =   0
+         Type            =   17
+         Name            =   "A_RTR"
+         Caption         =   "A_RTR"
+      EndProperty
+      BeginProperty Field19 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "A_LEN"
+         Caption         =   "A_LEN"
+      EndProperty
+      BeginProperty Field20 
+         Precision       =   3
+         Size            =   1
+         Scale           =   0
+         Type            =   17
+         Name            =   "ADATA1"
+         Caption         =   "ADATA1"
+      EndProperty
+      BeginProperty Field21 
+         Precision       =   3
+         Size            =   1
+         Scale           =   0
+         Type            =   17
+         Name            =   "ADATA2"
+         Caption         =   "ADATA2"
+      EndProperty
+      BeginProperty Field22 
+         Precision       =   3
+         Size            =   1
+         Scale           =   0
+         Type            =   17
+         Name            =   "ADATA3"
+         Caption         =   "ADATA3"
+      EndProperty
+      NumGroups       =   0
+      ParamCount      =   0
+      RelationCount   =   0
+      AggregateCount  =   0
+   EndProperty
+   BeginProperty Recordset2 
+      CommandName     =   "Command2"
+      CommDispId      =   1005
+      RsDispId        =   1006
+      CommandText     =   "Alias"
+      ActiveConnectionName=   "Connection1"
+      CommandType     =   2
+      dbObjectType    =   1
+      Locktype        =   3
+      Expanded        =   -1  'True
+      IsRSReturning   =   -1  'True
+      NumFields       =   6
+      BeginProperty Field1 
+         Precision       =   10
+         Size            =   4
+         Scale           =   0
+         Type            =   3
+         Name            =   "SERIALNUMBER"
+         Caption         =   "SERIALNUMBER"
+      EndProperty
+      BeginProperty Field2 
+         Precision       =   5
+         Size            =   2
+         Scale           =   0
+         Type            =   2
+         Name            =   "ADDRESS"
+         Caption         =   "ADDRESS"
+      EndProperty
+      BeginProperty Field3 
+         Precision       =   5
+         Size            =   2
+         Scale           =   0
+         Type            =   2
+         Name            =   "MULTICAST"
+         Caption         =   "MULTICAST"
+      EndProperty
+      BeginProperty Field4 
+         Precision       =   5
+         Size            =   2
+         Scale           =   0
+         Type            =   2
+         Name            =   "NTYPE"
+         Caption         =   "NTYPE"
+      EndProperty
+      BeginProperty Field5 
+         Precision       =   0
+         Size            =   200
+         Scale           =   0
+         Type            =   202
+         Name            =   "NALIAS"
+         Caption         =   "NALIAS"
+      EndProperty
+      BeginProperty Field6 
+         Precision       =   0
+         Size            =   2
+         Scale           =   0
+         Type            =   11
+         Name            =   "FLAG"
+         Caption         =   "FLAG"
+      EndProperty
+      NumGroups       =   0
+      ParamCount      =   0
+      RelationCount   =   0
+      AggregateCount  =   0
+   EndProperty
+End
+Attribute VB_Name = "DataEnvironment1"
+Attribute VB_GlobalNameSpace = False
+Attribute VB_Creatable = True
+Attribute VB_PredeclaredId = True
+Attribute VB_Exposed = False

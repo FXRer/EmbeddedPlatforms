@@ -1,0 +1,35 @@
+ALL:
+-CANBus thread need more test for arbitration, syncronization and
+ error frames [Claudio]
+
+-Makefile needs automatic dependancies [Claudio]
+
+-Consider to port CARACA to avr-as (gnu binutils), since AVA seems
+ to be no more supported [Claudio]
+
+NODE:
+-event for long keypress and keyrepeat [Claudio]
+
+STAR:
+-Write timer events handling + RTC code [Claudio]
+
+NODE_SKR
+-implement "dimming for heating": x waves on, then y waves off [Konrad]
+-use analog inputs inputs [Konrad]
+    Msg to initialize analog input (no pullup etc)
+    Msg to read analog input
+    Msg to transmit analog input every n seconds?
+
+
+CANDONGLE:
+-hangs, when CAN-Msg arriving during startup. Maybe problem with node,
+ because nobody ack's
+-I suggest to add framing to CANBus messages over the serial line.
+ There is two state: FRAMEMODE, COMMANDMODE
+ We use three special chars: FRAMEINIT, FRAMEEND, ESCAPE. Within a frame
+ every special char is replaced by ESCAPE+Char.
+ Every frame encapsulate a CANBus message, while commands configure candongle,
+ report error messages, etc. [Claudio]
+ [Konrad]: Message has a fixed design, dont need escape
+IDEAS:
+

@@ -1,0 +1,5 @@
+2000-12-21  Stefan Konrad Riedel  <skr@ehrlich-pirna.de>
+
+	* now using inet sockets, argument scanning improved
+	 
+

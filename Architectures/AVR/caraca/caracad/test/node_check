@@ -1,0 +1,77 @@
+#! /usr/bin/perl
+
+use strict vars;
+use Caraca;
+
+my $c = Caraca->new();
+my $command = shift;
+my $node = shift || 63;    #unconfigured (new) node
+my $param = shift;
+
+eval {
+        &{$command};
+};
+
+if ($@) {
+        print "$@\n" ;
+        print <<"USAGE";
+usage: $0 output [node] - flashes leds on node (63 default)
+	  stress [node] [bitmask] - toggles outputs at full speed     
+	  dimmer [node] - toggles outputs at full speed     
+USAGE
+}
+
+sub dimmer{
+	for (0..66) {
+		$c->send($node,2,$_);
+		select(undef, undef, undef, 0.1);
+	}
+		$c->send($node,2,100);
+		sleep(1);	
+	for (my $bright=66;$bright--;$bright>0) {
+		$c->send($node,2,$bright);
+		select(undef, undef, undef, 0.1);
+	}
+}
+
+
+sub stress{
+	while (1) {
+		$c->send($node,1,2,$param);
+		select(undef, undef, undef, 0.1);
+		#0.01 - a sleep of 10 milliseconds 
+		#0.1 - a sleep of 100 milliseconds 
+	}
+}
+
+sub stress1{
+
+	for (0..300000) {
+		my $bit = 1<<$_;
+		$c->send($node,1,0,$bit);
+		$c->send($node,1,1,$bit);
+	}
+	while (1) {
+		$c->send($node,1,3,255);
+		$c->send($node,1,3,0);
+	}
+}
+
+sub output {
+	$c->send($node,1,3,255);
+	sleep(1);
+	$c->send($node,1,3,0);
+	sleep(1);
+	$c->send($node,1,3,255);
+	sleep(1);
+
+	for (0..4) {
+		my $bit = 1<<$_;
+		print "switching LED $_($bit) on...\n";
+		$c->send($node,1,0,$bit);
+		sleep(1);
+		print "switching LED $_($bit) off...\n";
+		$c->send($node,1,1,$bit);
+		sleep(1);
+	}
+}

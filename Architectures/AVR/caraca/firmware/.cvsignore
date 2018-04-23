@@ -1,0 +1,11 @@
+*.o
+*.lst
+*.log
+*.avd
+*.sti
+*.flash
+*.eeprom
+*.out
+serial.h
+config.h
+

@@ -1,0 +1,14 @@
+Source: caraca
+Section: main
+Priority: optional
+Maintainer: Konrad Riedel <k.riedel@gmx.de> 
+Standards-Version: 3.1.1
+
+Package: caraca
+Architecture: any
+Depends: ${shlibs:Depends}
+Conflicts: caraca
+Provides: caraca
+Replaces: caraca
+Description: Control CARACA home automation modules 
+ Daemon, Client-Libraries, Perl-module, CAN-Monitor

@@ -1,0 +1,88 @@
+#!/usr/bin/perl -w
+
+# TITLE: - Gtk CARACA Terminal
+# REQUIRES: Gtk
+
+# Changes:
+use Caraca;
+use src::Gcanterm; 
+use strict 'vars';
+use POSIX(qw (F_GETFL F_SETFL O_NONBLOCK EAGAIN));
+
+init Gtk;
+
+my $c;                                    # Connection to caracad
+# Widgets
+my $w_top;                                # top level widget
+my $entry_window;
+
+my $timer;
+my (@msg,$Id,$Node);
+
+#Event procedure (Buttons)
+sub wmain::on_bclose_clicked {
+	die;
+}
+
+use Data::Dumper;
+sub wmain::on_bsend_clicked {
+	my ($class, $data, $object, $instance, $event) = @_;
+	my $me = __PACKAGE__."->on_bsend_clicked";
+	my $form = $__PACKAGE__::all_forms->{$instance};
+	# Get ref to hash of all widgets on our form
+	$c->send($form->{'node'}->get_text(),$form->{'function'}->get_text(),
+			$form->{'b1'}->get_text(),$form->{'b2'}->get_text(),
+			$form->{'b3'}->get_text(),$form->{'b4'}->get_text());
+#	print Dumper($form->{'node'}->get_text());
+}
+
+sub wmain::on_bclear_clicked {
+	$w_top->FORM->{'text1'}->backward_delete(10000);
+	$w_top->FORM->{'text1'}->forward_delete(10000);
+	#doesn't work
+}
+
+
+sub wmain::on_bfilter_clicked {
+my $self = shift;
+
+	if ($timer) {
+		Gtk->timeout_remove($timer);
+		$timer =0 ;
+		$self->set_name('Capture1');
+		$self->show;
+	} else {
+		#SOCK shouldn't block
+		my $flags = fcntl ($c->{SOCK}, F_GETFL(), 0);
+		fcntl ($c->{SOCK}, F_SETFL(), $flags | O_NONBLOCK());
+
+		$timer = Gtk->timeout_add(10, \&timeout_test, $w_top->FORM->{'text1'});
+		#$self->caption('Capture');
+		$c->filter(0,0);
+	}
+}
+
+my $timeout_count = 0;
+sub timeout_test {
+	my($label)=@_;
+	my $answer;
+	#print "$label\n";
+	#$label->set( "count: " . ++$timeout_count );
+	++$timeout_count;
+	$c->{SOCK}->recv($answer,100,0);
+	$label->insert(undef,$label->style->black,undef, "$answer\n") if $answer;
+	return 1;
+}
+
+sub send {
+	my $func = substr($Id,0,2);
+	my $node = substr($Node,0,2);
+	$c->send($node,$func,@msg);
+}
+Gtk->init;
+$w_top = wmain->new();
+$w_top->TOPLEVEL->show;
+$c = Caraca->new();
+
+Gtk->main;
+

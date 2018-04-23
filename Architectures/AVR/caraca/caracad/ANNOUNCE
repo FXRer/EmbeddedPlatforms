@@ -1,0 +1,15 @@
+CARACA - CAn Remote Automation and Control with the AVR, Version: 0.5.0
+
+Copyright (c) 1998-2000 by Konrad Riedel <k.riedel@gmx.de>
+(according to GNU General Public Licence 2.0 or later)
+
+CARACA is a home automation project based on a net of connected programmable 
+circuits suited to perform different tasks like switch on/off appliances, 
+decode commands from Ir remote control units, control thermostats, measure 
+temperature and more. Every node of the net communicate each other through 
+a robust protocol (CANBus), and the status can be monitored by a PC possibly 
+connected to the Internet.
+
+Don't expect much documentation. This is only a pre-release version
+and there is still much to be done before CARACA becomes easily
+configurable and usable.

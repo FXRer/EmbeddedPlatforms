@@ -1,0 +1,174 @@
+/* include/config.h.in.  Generated automatically from configure.in by autoheader.  */
+/*      $Id: config.h.in,v 1.5 2001/01/04 13:36:14 skr Exp $      */
+
+/*
+ *  are you editing the correct file?
+ *  
+ *  acconfig.h  - changes for distribution
+ *                you must run autoheader / configure
+ *  config.h.in - changes specific to your installation
+ *                these will be lost if you run autoheader
+ *  config.h    - changes to this configuration
+ *                these will be lost if you run configure
+ */
+
+/* config file names - beneath $HOME */
+#define CFG_USER	".caracarc"
+
+/* log files */
+#define LOGDIR		"/var/log"
+#define LOG_LIRCD	"caracad"
+
+/* pid file */
+#define PIDDIR          "/var/run"
+#define PID_CARACAD     "caracad.pid"
+
+/*
+ * SHARED DEFINITIONS - things you should change
+ */
+
+#define CAN_SYSLOG
+#define DEBUG
+#define OPENLOG_OPTIONS LOG_PID
+
+/*********************************************************************
+ *                                                                   *
+ * You probably do not need to edit anything below this point        *
+ *                                                                   *
+ *********************************************************************/
+
+#define MAX_ARGC      100
+#define MAX_ZEICHEN   100
+#define REALLOC_CNT   10
+#define DEFAULT_CAN_DEV "/dev/can"
+
+/*
+ * below here are defines managed by autoheader / autoconf
+ */
+
+
+/* Define to empty if the keyword does not work.  */
+#undef const
+
+/* Define if you don't have vprintf but do have _doprnt.  */
+#undef HAVE_DOPRNT
+
+/* Define if you have the vprintf function.  */
+#undef HAVE_VPRINTF
+
+/* Define as __inline if that's what the C compiler calls it.  */
+#undef inline
+
+/* Define to `long' if <sys/types.h> doesn't define.  */
+#undef off_t
+
+/* Define to `int' if <sys/types.h> doesn't define.  */
+#undef pid_t
+
+/* Define as the return type of signal handlers (int or void).  */
+#undef RETSIGTYPE
+
+/* Define to `unsigned' if <sys/types.h> doesn't define.  */
+#undef size_t
+
+/* Define if you have the ANSI C header files.  */
+#undef STDC_HEADERS
+
+/* Define if you can safely include both <sys/time.h> and <time.h>.  */
+#undef TIME_WITH_SYS_TIME
+
+/* Define if your <sys/time.h> declares struct tm.  */
+#undef TM_IN_SYS_TIME
+
+/* Define to enable debugging output */
+#undef DEBUG
+
+/* Define to run daemons as daemons */
+#undef DAEMONIZE
+
+/* define if you want to log to syslog instead of logfile */
+#undef USE_SYSLOG
+
+/* syslog facility to use */
+#define LIRC_SYSLOG  LOG_DAEMON
+
+/* system configuration directory */
+#define SYSCONFDIR  "/etc"
+
+/* device files directory */
+#define DEVDIR   "/dev"
+
+/* This should only be set by configure */
+#define PACKAGE   "unset"
+
+/* This should only be set by configure */
+#define VERSION   "0.0.0"
+
+/* Define if you have the daemon function.  */
+#undef HAVE_DAEMON
+
+/* Define if you have the gethostname function.  */
+#undef HAVE_GETHOSTNAME
+
+/* Define if you have the gettimeofday function.  */
+#undef HAVE_GETTIMEOFDAY
+
+/* Define if you have the mkfifo function.  */
+#undef HAVE_MKFIFO
+
+/* Define if you have the select function.  */
+#undef HAVE_SELECT
+
+/* Define if you have the snprintf function.  */
+#undef HAVE_SNPRINTF
+
+/* Define if you have the socket function.  */
+#undef HAVE_SOCKET
+
+/* Define if you have the strdup function.  */
+#undef HAVE_STRDUP
+
+/* Define if you have the strerror function.  */
+#undef HAVE_STRERROR
+
+/* Define if you have the strsep function.  */
+#undef HAVE_STRSEP
+
+/* Define if you have the strtoul function.  */
+#undef HAVE_STRTOUL
+
+/* Define if you have the vsyslog function.  */
+#undef HAVE_VSYSLOG
+
+/* Define if you have the <fcntl.h> header file.  */
+#undef HAVE_FCNTL_H
+
+/* Define if you have the <limits.h> header file.  */
+#undef HAVE_LIMITS_H
+
+/* Define if you have the <sys/ioctl.h> header file.  */
+#undef HAVE_SYS_IOCTL_H
+
+/* Define if you have the <sys/time.h> header file.  */
+#undef HAVE_SYS_TIME_H
+
+/* Define if you have the <syslog.h> header file.  */
+#undef HAVE_SYSLOG_H
+
+/* Define if you have the <unistd.h> header file.  */
+#undef HAVE_UNISTD_H
+
+/* Name of package */
+#undef PACKAGE
+
+/* Version number of package */
+#undef VERSION
+
+
+/*
+ * compatibility and useability defines
+ */
+
+#define PIDFILE                 PIDDIR "/" PID_CARACAD
+
+/* end of acconfig.h */

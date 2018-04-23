@@ -1,0 +1,38 @@
+Support for automake added:
+(Ready made packages will have configure, so first 4 steps aren't necessary)
+aclocal
+autoconf
+automake -a
+./configure
+
+make
+
+caracad should be run via init-script. The socket it is listening is:
+
+srwxr-xr-x    1 skr      users           0 Aug 30 13:49 /tmp/caracad=
+
+Permissions will be preserved, so you can adjust them to your needs.
+
+
+
+
+REQUIREMENTS for gcanterm:(what I use but older versions may well work)
+
+
+Package     my version	available from
+-------     ----------  --------------
+Glade       0.5.5       http://glade.pn.org/
+Glib/Gtk+   1.2.7       ftp://ftp.gimp.org/pub/gtk/
+gnome-libs  1.0.58      Gnome mirrors or Gnome.org CVS 
+Perl-Gtk    0.7002      CPAN 
+Perl        5.005_03    CPAN
+XML::Parser 2.27        CPAN
+
+all of the above are part of Debian 2.2
+Glade::PerlGenerate     Gtk-Perl-Glade UI builder and source generator
+http://freespace.virgin.net/dermot.musgrove/computers/perl/
+or http://www.glade.perl.connectfree.co.uk/index.html
+or on CPAN under the Glade module,
+e.g. ftp://sunsite.doc.ic.ac.uk/packages/CPAN/modules/by-module/Glade/
+
+

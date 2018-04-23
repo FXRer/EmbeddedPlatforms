@@ -1,0 +1,5 @@
+These are the Perl bindings for Caraca. To compile do the following:
+
+perl Makefile.PL
+make test
+

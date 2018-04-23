@@ -1,0 +1,12 @@
+#! /usr/bin/perl
+
+use strict vars;
+use Caraca;
+
+#my $c = Caraca->new(PeerAddr => 'idefix');
+
+my $c = Caraca->new();
+my $node = shift;
+my $function = shift;
+
+$c->send($node,$function,@ARGV);

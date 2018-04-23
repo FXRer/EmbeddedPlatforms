@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# Start or stop caracad
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+CARACAD=/sbin/caracad
+PIDFILE=/var/run/caracad.pid
+
+ARGS=""
+
+
+test -x "$CARACAD" || exit 0
+
+
+case "$1" in
+    start)
+    
+	    echo -n "Starting CARACA Server: caracad"
+	    start-stop-daemon --start --quiet --exec $CARACAD -- $ARGS 
+            start-stop-daemon --start --quiet --exec /usr/local/bin/simple_mapping.pl
+	    echo "."	
+
+    ;;
+
+    stop)
+	    echo -n "Stopping CARACA Server: caracad"
+	    start-stop-daemon --stop --quiet --pidfile $PIDFILE --exec $CARACAD ||  echo -n " not running" 
+            start-stop-daemon --stop --quiet --exec /usr/local/bin/simple_mapping.pl ||  echo -n " not running"
+	    echo "."	
+
+    ;;
+
+    force-reload|restart)
+	    echo -n "Reloading CARACA Server configuration..."
+	    $0 stop
+	    $CARACAD --sync
+	    $0 start
+    ;;
+
+    *)
+	echo "Usage: /etc/init.d/caracad {start|stop|force-reload|restart}" >&2
+	exit 1
+    ;;
+esac
+
+exit 0

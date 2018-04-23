@@ -1,0 +1,55 @@
+caracad - 
+--------------------------------------------------------------------
+Copyright (c) 2000 - Konrad Riedel <k.riedel@gmx.de>
+(according to GNU General Public Licence 2.0 or later)
+#
+# If you use this library in a commercial enterprise, you are invited,
+# but not required, to pay what you feel is a reasonable fee to the
+# author  Konrad Riedel <k.riedel@gmx.de>
+#
+SEE ALSO
+--------
+COPYING            # How we encourage copying
+Changelog          # History of the changes made
+FAQ                # Frequently asked questions
+INSTALL            # How to install the module
+NEWS               # What is new in each version
+TODO               # What still must be done <sigh>
+
+http://caraca.sourceforge.net/
+
+This is still an alpha release.
+
+
+Concept:
+    To allow different applications read/write access to the CAN-Bus, a
+    daemon (caracad) is used. A client can connect to it via a socket
+    and tell caracad, which messages it wants to receive. (it installs a
+    filter - 'I want to have all key messages, all messages of one room,..'
+    caracad then sends a message to each listener.
+    All clients send their messages to caracad, which transmits them over
+    the serial line.
+     
+    So the following is possible:
+    - cron-scripts collecting environmental data (via RTR) or by filtering
+      messages from periodically transmitting sensors
+    - control programs with your IR remote via LIRC from every room
+    - cgi-scripts for ...
+    - inserting/debugging/removing modules without affecting other modules
+
+This release includes the following components:
+    A Daemon (caracad) to 
+    Dimmer support (caracadim)
+    A client library for easy interfacing with caracad.
+    Perl support modules and examples.
+     
+    Graphical CAN-Terminal (gcanterm) for bus monitoring and  to send messages 
+
+
+Future Plans
+   
+   We need people to help with this project. If you are interested in
+   working on it, please join the caraca-dev list.
+   
+
+Errors, omissions and general stupidity are all my fault - sorry.

@@ -1,0 +1,14 @@
+NAME	     	CaracaLib.dll
+DESCRIPTION  	'Caraca Serial Library v1.07'
+
+HEAPSIZE     16000
+STACKSIZE    8192
+
+EXPORTS
+	CAN_Init
+	CAN_End
+	CAN_Timeout
+	CAN_RxMsg
+	CAN_TxMsg
+	CAN_Address2ID
+	CAN_ID2Address

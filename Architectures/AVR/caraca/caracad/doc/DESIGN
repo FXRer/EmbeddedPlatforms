@@ -1,0 +1,20 @@
+This document helps you (and me) understand the architecture of the 
+caraca daemon.
+Hopefully it will help you get jump-started when you want to make
+modifications.
+
+caracad
+-------
+
+Server-process, accepts connections via unix-sockets and reads can-messages.
+See caracad_test.pl for an example of the used protocol.
+
+See candim.c if you prefer to write handlers in plain c. NOT DONE YET
+
+Every client can install filters and will receive only matching messages from
+the server.
+Client can send messages directly to the can-bus.
+
+
+
+

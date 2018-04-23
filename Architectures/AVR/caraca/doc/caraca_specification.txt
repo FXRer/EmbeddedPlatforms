@@ -1,0 +1,341 @@
+Author: Claudio Lanconelli
+
+===============================
+ SYSTEM SPECIFICATION
+===============================
+
+The CARACA network is build up mainly by three items:
+
+1) NODE
+2) STAR
+3) DESKTOP or HANDHELD computer + CANDONGLE interface
+
+The NODE purpose is:
+- provide 4 digital ouputs, usually 4 5A relays
+  the output status is preserved in case of blackout
+- provide 4 digital inputs (logic levels), usually keys
+- provide 1 thermometer/thermostat
+- provide 1 RC5 receiver/decoder unit
+- reply to request messages from the bus
+- send event messages to the bus
+- react to action messages from the bus
+
+The STAR purpose is:
+- provide power to NODEs (+12V DC)
+- provide 7 outputs, 16A relays
+  the output status is preserved in case of blackout
+- provide 1 RealtTimeClock (not yet implemented)
+- provide 200 bytes of battery tamped RAM. (not yet implemented)
+- provide some programmable alarms (not yet implemented)
+- provide an association table between NODE actions and events with
+  a programmable delay from 0 to 65535 units of 200msec (0 to 218 minutes).
+
+The DESKTOP or HANDHELD computer purpose is:
+- provide association table between NODE actions and events in case of
+  STAR is not used
+- provide log events facility
+- provide internet/intranet gateway service
+- provide configuration and Plug&Play service to NODE and STAR
+
+All NODE, STAR and CANDONGLE are connected by a network cat.5 bus cable
+(four twisted pairs).
+
+Note that basic functions are achieved even without the DESKTOP or HANDHELD
+computer. There are plans to develop the application for the PalmPilot.
+You can develop a lot of applications with this basic system like intrusion-alarm
+systems, programmable timed switch of appliances, and more.
+
+
+===============================
+ PROTOCOL SPECIFICATION
+===============================
+
+Physical layer
+--------------
+The physical layer is the same of CANBus
+
+Data-link layer
+---------------
+CARACA use a customized version of the CANBus protocol.
+
+The main difference between CANBus and CARACA is:
+1) fixed 11 bits ID (extended IDs not supported)
+2) overload frame not supported
+3) slow bit rate (in the range 10Kbps - 20Kbps with a
+   8MHz xtal oscillator).
+
+For detailed protocol characteristics refer to CANBus papers.
+
+Transport layer
+---------------
+
+Transport layer assign the following meaning to the 11 bit ID of
+every message:
+- 5 bit FUNCTION CODE
+- 6 bit NODE ADDRESS
+
+ *
+ * message ID format (11 bits):
+ *  X X X X X              function code
+ *            X X X X X X  node address
+ * 10 9 8 7 6 5 4 3 2 1 0  bits
+ *
+ * Node address: 1 - 62 (0 reserved, 63 used by PNP protocol)
+ *
+
+The function code identify the action or event, while the node
+address may be the destination node that should process it, or
+the sender node.
+CARACA supports broadcast and multicast, a command may be sent to
+multiple NODEs at the same time. You can assign how many address
+for multicast as you want.
+The total number of addresses is 62 (0 is reserved for broadcast,
+while 63 for PNP protocol).
+There are basically two type of message (and function code):
+- Action message: it command a NODE to perform an action like
+  change its output status or send a message (the node address
+  represent the destination node)
+- Event message: it informs the system about a NODE event (the
+  node address represent the sender node) like a key press
+
+Here is the detailed table of function codes
+
+ * Function codes:
+ *
+ * High priority
+ *  0 :  Reserved (Not used)
+ *  1 :A Set Outputs
+ *  2 :A Set dimmer brightness
+ *  3 :A Set input mask
+ *  4 :A Set thermostat thresholds
+ *
+ *  7 :A Request output
+ *  8 :A Request dimmer
+ *  9 :A Request input
+ * 10 :A Request thermometer
+ *
+ * 14 :E Input change
+ * 15 :E RC5 key code
+ * 16 :E Thermostat change
+ * 17 :E Send output
+ * 18 :E Send dimmer
+ * 19 :E Send input
+ * 20 :E Send thermometer
+ *
+ * 25 :A Write eeprom data
+ * 26 :A Request eeprom data
+ * 27 :E Send eeprom data
+ *
+ * 29 :A Set node address
+ * 30 :E Send Hello message (serial number)
+ * 31 :A Request Hello message (serial number)
+ * Low priority
+
+The A stand for ACTION message
+The E stand for EVENT message
+
+Note that there are some event on request.
+For example there is a message to request the
+input status (Action: Request input).
+After a NODE receive this message it send
+related event on request message (Event: Send
+input).
+
+
+You can chain event to action, action to action and action to event
+by programming the association table.
+Every STAR can store up to 14 entries.
+
+ Example: a system with one NODE callled NodeA, and a STAR called
+          StarB. If you want to switch Relay1 on when you press
+          Key1 of NodeA you have to program the association table
+          of StarB in the following way:
+          Event=NodeA:Key1 --> Action=NodeA:Relay1 *** Delay=0
+
+By program multiple entries of Association table you obtain
+complex chains of Events and Actions.
+
+Note that NODE and STAR don't "listen" for the message sent, so
+you can't program the association table to send an action for
+itself. To solve this problem you need at least two STARs
+combining both association tables
+
+
+Association table format
+------------------------
+- 2 Byte filter mask: FCode, Address, RTR, Len
+
+- 2 Byte event msg:   FCode, Address, RTR, Len
+- 1 Byte data counter to test
+- 3 Byte data bytes for Event msg
+
+- 2 Byte delay between event and action (units of 200msec)
+
+- 2 Byte action msg:  FCode, Address, RTR, Len
+- 4 Byte data bytes for Action msg
+
+
+
+Message format summary
+----------------------
+ *
+ * -- Format of the "set ouput" message:
+ * ID
+ * RTR = 0
+ * Length = 2 bytes
+ * DataByte1 = operation code (0 = clear mask, 1 = set mask, 2 = toggle mask, 3 = assign)
+ * DataByte2 = value or mask
+ *
+ * -- Format of the "set dimmer brightness" message:
+ * ID
+ * RTR = 0
+ * Length = 1 bytes
+ * DataByte1 = value for brightnes (0 .. 0x8c)
+ *
+ * -- Format of the "set input mask" message:
+ * ID
+ * RTR = 0
+ * Length = 1 bytes
+ * DataByte1 = mask
+ *
+ * -- Format of the "set thermostat thresholds" message:
+ * ID
+ * RTR = 0
+ * Length = 3 bytes
+ * DataByte1 = 4 LSB select sensor; 4 MSB value is fixed to 2
+ * DataByte2 = low threshold
+ * DataByte3 = high threshold
+ *
+ * -- Format of the "request output" message:
+ * ID
+ * RTR = 0
+ * Length = 0 bytes
+ *
+ * -- Format of the "request input" message:
+ * ID
+ * RTR = 0
+ * Length = 1 bytes
+ * DataByte1 = input status if 0, input mask if 1
+ *
+ * -- Format of the "request thermometer" message:
+ * ID
+ * RTR = 0
+ * Length = 1 bytes
+ * DataByte1 = 4 LSB select sensor; 4 MSB is 0 for temperature read, 1 for thermostat thresholds
+ * (example: request temperature from default NODE2 sensor (code 7):
+ * DataByte = 0x07
+ *
+ * -- Format of the "save status" message:
+ * ID
+ * RTR = 0
+ * Length = 0 bytes
+ *
+ * -- Format of the "key change" message:
+ * ID
+ * RTR = 0
+ * Length = 2 bytes
+ * DataByte1 = type of event (press = 1, release = 2, repeat = 3, click = 4)
+ * DataByte2 = key value
+ *
+ * -- Format of the "RC5 key" message:
+ * ID
+ * RTR = 0
+ * Length = 2 bytes
+ * DataByte1 = repeated key
+ * DataByte2 = key code
+ *
+ * -- Format of the "thermostat change" message:
+ * ID
+ * RTR = 0
+ * Length = 2 bytes
+ * DataByte1 = sensor selection
+ * DataByte2 = val
+ *
+ * -- Format of the "send output" message:
+ * ID
+ * RTR = 0
+ * Length = 1 byte
+ * DataByte1 = value
+ *
+ * -- Format of the "send input" message:
+ * ID
+ * RTR = 0
+ * Length = 2 bytes
+ * DataByte1 = input status if 0, input mask if 1
+ * DataByte2 = value
+ *
+ * -- Format of the "send thermometer" message:
+ * ID
+ * RTR = 0
+ * Length = 3 bytes
+ * DataByte1 = 4 LSB select sensor; 4 MSB is 0 for temperature read, 1 for thermostat thresholds
+ * DataByte2 = low threshold  or temperature MSB
+ * DataByte3 = high threshold or temperature LSB
+ *
+ * -- Format of the "request eeprom word" message:
+ * ID
+ * RTR = 0
+ * Length = 1 bytes
+ * DataByte1 = eeprom address
+ *
+ * -- Format of the "send eeprom word" message:
+ * ID
+ * RTR = 0
+ * Length = 3 bytes
+ * DataByte1 = eeprom address
+ * DataByte2 = eeprom first byte    (byte at address)
+ * DataByte3 = eeprom second byte   (byte at address+1)
+ *
+ * -- Format of the "write eeprom data" message:
+ * ID
+ * RTR = 0
+ * Length = 2,3 or 4 bytes (depend on the number of bytes to write)
+ * DataByte1 = eeprom address
+ * DataByte2 = eeprom data (first byte)
+ * DataByte3 = eeprom data
+ * DataByte4 = eeprom data (last byte)
+ *
+ * -- Format of the "Hello" message:
+ * ID
+ * RTR = 0
+ * Length = 3 bytes
+ * DataByte1 = high Serial number
+ * DataByte2 = low Serial number
+ * DataByte3 = device type (0 --> NODE, 1 --> STAR)
+ *
+ * -- Format of the "Set address" message:
+ * ID (current address)
+ * RTR = 0
+ * Length = 4 bytes
+ * DataByte1 = high Serial number
+ * DataByte2 = low Serial number
+ * DataByte3 = primary address (1 - 62)
+ * DataByte4 = secondary address (1 - 62)
+ *
+ * -- Format of the "Request Hello" message:
+ * ID (current address) (Don't use broadcast/multicast address here!!)
+ * RTR = 0
+ * Length = 0 bytes
+ *
+
+
+Plug&Play and configuration protocol
+------------------------------------
+
+All devices (both NODE and STAR) store a unique serial number in Flash memory.
+When a device is unconfigured has the highest node address (63), and it send
+the "Hello" message on power-up. Since all unconfigured devices send this msg
+on power-up there will be a lot of conflicts on the bus. To avoid this
+situation every unconfigured device send the "Hello" msg with a delay from
+power-up that depend on its serial number:
+delay = 50msec * SN-0 + (2 * BitTime) * SN-1
+SN-0 --> Serial Number, least significant byte
+SN-1 --> Serial Number, most significant byte
+BitTime --> 1 / BitRate
+
+With the "Hello" message the device transmit to the master its SerialNumber,
+so the master just listen for the any "Hello" message to know every device
+connected to the bus. Note that the "Hello" message is sent either by
+unconfigured and configured devices.
+The master then send the "Set address" message to the device with the indicated
+serial number.

@@ -1,0 +1,28 @@
+
+
+proto:
+- Protocol to signal CAN-Errors via CANdongle and to set BusState (on, off, listen only)
+- CAN-Errors to  Syslog 
+- timestamping is incompatible to can4linux (we have struct timeval to get a
+  better resolution, but perhaps they use jiffies? How to convert to a real time?)
+- 
+
+caracad:
+-socket permissions via parameter
+-document protocol
+-avoid blocking, if listeners are too slow
+
+-after killing lircd:
+Aug 25 10:01:21 obelix caracad[177]: select error
+Aug 25 10:01:52 obelix last message repeated 95456 times
+Aug 25 10:02:53 obelix last message repeated 186391 times
+
+Caraca.pm:
+
+caracadim:
+-Key handling is missing
+
+gcanterm:
+-Set Filter
+
+choose config format

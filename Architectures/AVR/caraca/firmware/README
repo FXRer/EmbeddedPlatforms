@@ -1,0 +1,47 @@
+
+NEW:
+
+====
+Reduced to 4 bytes the max length of every message. The event queue is only 3
+bytes data (no more register), however it's enaugh for current event messages.
+There are two routines to call if you need to send a message:
+- CanTxFrame3Queue()	use the Event Queue
+- CanTxFrame4()		don't use the Event Queue
+
+CanTxFrame3Queue() read the ID for the message to send from the eeprom address
+stored in Arg1; Arg3,Arg4,Reg1 store the three data bytes for the message. It
+uses the Event queue in case of the current TxBuffer is locked. It's completely
+transparent to the calling thread.
+CanTxFrame4() look for the ID in Arg1:Arg2, and the data bytes for the message
+in Arg3,Arg4,Reg1,Reg2.
+Both routines return in Res1 0 if success, FF otherwise
+Use CanTxFrame3Queue() where possible.
+
+===
+Implemented a double buffer for Rx messages. While we're receiving a message
+we can work on the second buffer.
+A bit in the RxBufIdx register saves the buffer index on which we're working.
+RxLockBit1 and RxLockBit2 tell what buffer is available.
+
+===
+The loop duration after reset now depend on the SerialNumber stored in flash.
+After initialization the EDISPATCHER thread send the "Hello message" to permit
+the master configure all the nodes. The loop after reset avoid all the nodes
+send the "Hello message" at the same time. All nodes and stars should have a
+different serial number of course.
+The serial number is located in flash just after interrupt vectors, 2 byte size
+with big endian format (least significant byte determine loop duration).
+
+**********************
+
+Modified Makefile.
+'make all' builds both node1.out and dongle.out
+There are three different config file named config_node2.h and config_dongle.h
+config_star2.h where there are all target dependent definitions.
+I tested the Makefile under Linux.
+We still need a config command that help to fill the config_xxxx.h file
+i.e. 'config node1' should create config_node1.h.
+
+renamed main.s --> node.s, added trhead4 to ds1621.s. All 128 bytes RAM are used!
+Renamed Thr1, Thr2, etc with priority order, but at the moment I leave priority
+schedule off.
