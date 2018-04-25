@@ -1,0 +1,84 @@
+pydude - A python wrapper for AVRDUDE
+=====================================
+
+Axel Wachtler, 2009-03-05
+
+Abstract
+--------
+
+AVRDUDE is a well known programming tool for AVR Microcontrollers.
+In the build process of avrdude, a static library libavrdude is 
+created, which contains all functions for reading and writing of 
+fuses, flash and eeprom memory of an AVR MCU.
+
+The pydude project creates with the help of swig a module that 
+can be used from the python library.
+
+License
+-------
+    See file LICENSE.
+
+History
+-------
+    V 0.1 alpha version, proof of concept
+
+Building PyDude
+---------------
+
+ - load AVRDUDE from http://avrdude.nongnu.org/
+ - unpack avrdude, rename, configure and compile it.
+   * tar xvzf avrdude-5.5.tar.gz 
+   * mv avrdude-5.5 avrdude
+   * cd avrdude
+   * ./configure
+   * make 
+   * cd ..
+ - unpack pydude package and compile it
+   * tar xvzf  pydude-0.1.tar.gz
+   * cd pydude-0.1
+   * python setup.py install [--prefix="some/dir"]
+   
+    
+Example Session
+---------------
+
+======================================================
+ import pydude
+ pydude.read_config("/some/path/to/avrdude.conf")
+
+ # init an AvrDude object
+ ad = pydude.AvrDude()
+ ad.set_programmer("jtag2")
+ ad.set_part("ATMEGA1281")
+ ad.open('usb')
+
+ # read flash to hex file
+ ad.part_update("fl:r:foo.hex:i")
+
+ # read flash and eeprom to python lists
+ ee = ad.part_read("ee",0,8)
+ fl = ad.part_read('fl',0,100)
+
+ # start writing 4 bytes into eeprom from offset 256 
+ ad.part_write("ee",256,[1,2,3,4])
+
+=======================================================
+
+It may be usefull to register an exit function in python,
+which closes the AvrDude instance at the end of the python 
+script (otherwise the JTAG Ice needs a manual reset).
+
+=======================================================
+ import atexit, os, pydude
+
+ def do_exit(*argv,**argd):
+     global ad
+     ad.close()
+     if os.name != 'posix':
+         raw_input("Type Enter to Exit...")
+
+ atexit.register(do_exit)
+
+ ad = pydude.AvrDude()
+ ...
+=======================================================

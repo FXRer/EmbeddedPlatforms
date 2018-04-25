@@ -1,0 +1,465 @@
+/* Copyright (c) 2007 - 2012 Axel Wachtler
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   * Neither the name of the authors nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   POSSIBILITY OF SUCH DAMAGE. */
+
+/* $Id$ */
+
+/**
+ @page pgsniffer 802.15.4 Packet Sniffer
+
+ @section secSnifferOverview Overview
+
+ The traffic in a IEEE 802.15.4 network can be monitored with a common
+ transceiver board and the @uracoli sniffer firmware. The setup of a sniffer
+ requires the following components:
+
+ - A <b>transceiver board</b> running the sniffer firmware. It is connected to
+   the PC via UART or USB.
+ - The Python script  @b sniffer.py. It realizes the bridging of the data
+   between the transceiver board and wireshark and it enables the user to select
+   channels and modulations.
+ - <b>Wireshark/tshark</b> as frontend for display and analysis the captured
+   frames.
+
+*/
+/**
+@page pgsniffer
+
+@section pgSnifferPrereq Prerequisites
+
+@par Additional Software
+
+- Python 2.x with pyserial
+- Wireshark
+
+Python and pyserial are used by the script @c Tools/sniffer.py which provides
+the interface between the serial port (UART or USB) and @c Wireshark or the
+other tools that process libpcap data, like @c tcpdump or @c tshark.
+
+Wireshark is a comprehensive and sophisticated network analysis tool that
+is hosted at http://www.wireshark.org
+
+Python with a version @b below 3.x can be downloaded from http://www.python.org
+
+The pyserial package can be installed with
+
+    pip install python-serial
+
+
+@par Compiling and Flashing
+
+The source code for the sniffer firmware is located in @c uracoli-<version>/src/sniffer.
+
+In the first step, check out if your board supports sniffer functionality
+
+@code
+    make -C src/sniffer list | grep myboard
+    @endcode
+    @endcode
+    $ make -C  test/uracoli-x/src/sniffer list | grep rdk230
+    rdk230           : baudrate= 38400, Radio Controller Board by Atmel and Dresden Elektronik
+    rdk230b          : baudrate= 38400, Radio Controller Board by Atmel and Dresden Elektronik
+@endcode
+
+The makefile provides the following targets
+
+@code
+    make -C src/sniffer [help|list|clean|<board>]
+@endcode
+
+The firmware for <myboard> is build with the command
+
+@code
+    make -C src/sniffer <myboard>
+@endcode
+and can be found in @c uracoli-<version>/src/bin/sniffer_<myboardh>.hex
+
+Section @ref pgDevProgDebug describes how the file <tt>sniffer_<board>.hex</tt>
+is flashed to the target board.
+
+@par Serial Baudrate
+
+The application is operated with the script @c Tools/sniffer.py.
+The required serial baudrate is defined per board and can be found either with
+ - <tt>make -C src/rdiag/ list | grep <myboard></tt>
+    @code
+    $ make -C  test/uracoli-x/src/sniffer list | grep radiofaro
+    radiofaro        : baudrate= 57600, RadioFaro, Arduino like board with deRFmega128-22A001
+    radiofaro2       : baudrate= 57600, RadioFaro, Arduino like board with deRFmega256-23M00
+    @endcode
+ - at the end of the build
+    @code
+    $make -C  test/uracoli-x/src/sniffer rdk230
+    ....
+    make[1]: Leaving directory `/home/axel/Work/uracoli-aw/test/uracoli-x/src/sniffer'
+
+    rdk230 : baudrate=38400-8-N-1
+    @endcode
+ - or in @ref pgBoards.
+
+*/
+
+/*--------------- old doc fragment -------------------------------------------*/
+/*
+ @section pgSnfSW Software Installation
+
+ The following software packages are required to run the sniffer:
+ - @ref swsnfpkg
+ - @ref swsnfavr
+ - @ref swpy
+ - @ref swws
+
+ @section swsnfpkg @uracoli Sniffer Package
+
+ Download the package <tt>uracoli-sniffer-&lt;version&gt;.zip</tt>
+ from http://uracoli.nongnu.org/download.html and
+ unzip it into a local directory. In the package the following files
+ and folders are contained:
+ <pre>
+    uracoli-sniffer-<version>/
+    |-- LICENSE
+    |-- README.html
+    |-- doc ....................... doxygen html documentation
+    |   |-- index.html
+    |   `-- ...
+    |-- firmware .................. sniffer firmware binaries
+    |   |-- sniffer_any2400st.hex
+    |   |-- sniffer_psk212.hex
+    |   `-- ...
+    `-- script
+        |-- sniffer.py ............ Python interface script
+        |-- p2p.lua ............... example LUA dissector for Wireshark
+        `-- ...
+ </pre>
+
+ @section swsnfavr AVR Programming Software
+
+ In order to flash the sniffer firmware in the transceiver board, you need
+ either a preinstalled bootloader in the MCU or a hardware programmer, e.g. like
+ AVR-Dragon, JTAG-ICE, AVR ISP, USB-ASP, .... The preferred programming tool
+ under Linux is @b avrdude. On Windows mostly <b>Atmel AVR Studio</b> is used.
+
+ @par Linux:
+  Install the package @c avrdude with the package manager of your distribution.
+  - Debian: <tt>dpkg -i avrdude</tt>
+  - Ubuntu: <tt>sudo apt-get install avrdude</tt>
+  - Suse and Centos/Redhat: install the RPMs.
+
+ @par Windows:
+  On Windows very often Atmel AVR Studio is used for flashing AVR controllers.
+  Alternatively you can also use @c avrdude on Windows, it comes either with
+  @em WinAVR or it can be downloaded also as a seperate package.
+  - Atmel AVR Studio
+    * http://www.atmel.com/microsite/avr_studio_5/
+  - WinAVR
+    http://winavr.sourceforge.net/download.html
+  - @c avrdude for Windows:
+    http://tomeko.net/other/avrdude/building_avrdude.php \n
+    <em>Below the compile description, there is a link to the
+    file</em> @c avrdude.zip.
+
+ @section swpy Python / pyserial
+
+ The <a href="http://www.python.org">Python</a> interpreter with version 2.6. or
+ 2.7 (but version must be below 3.0) is required to execute the script
+ @c sniffer.py.
+ Additionaly the module <a href="http://pyserial.sourceforge.net/">pyserial</a>
+ is required for access to the serial port.
+
+ @par Linux:
+ Install the Python packages with the preferred package manager of your
+ distribution, e.g.
+  - Debian: <tt>dpkg -i python python-serial</tt>
+  - Ubuntu: <tt>sudo apt-get install python python-serial</tt>
+  - Suse and Centos/Redhat: install the RPMs @c python and @c python-serial.
+
+  @par Windows:
+  Download and install the following packages:
+  - Python: http://www.python.org/download/
+  - The easiest way to install +pyserial+ on Windows is using the tool +pip+ as
+    described here:
+    <a href="http://uracoli.nongnu.org/gettingstarted.html#_installing_and_upgrading_python">Installing and Upgrading Python</a>
+
+ @section swws Wireshark
+
+ <a href="http://www.wireshark.org/">Wireshark</a> is powerful tool for network
+ traffic monitoring. It is used to display, inspect and analyze the
+ IEEE-802.15.4 frames captured from the transceiver board.
+ Beside the main application @c wireshark, the package comes with some other handy
+ command line tools like @c tshark or @c dumpcap. If you are a new wireshark user,
+ you should not miss a look into the
+ <a href="http://www.wireshark.org/docs/wsug_html_chunked/">Wireshark User Manual</a>.
+
+ @note Since the script @c sniffer.py saves the monitored data in PCAP format
+ (see http://en.wikipedia.org/wiki/Pcap), wireshark needs not mandatory to be
+ installed on the PC running the sniffer application. The captured PCAP files
+ can be analyzed also offline on a seperate PC. However for a data life display,
+ a wireshark installation is required.
+
+ @par Linux:
+  Install the wireshark package with the preferred package manager of your
+  distribution.
+  - Debian: <tt>dpkg -i wireshark</tt>
+  - Ubuntu: <tt>sudo apt-get install wireshark</tt>
+  - Suse and Centos/Redhat: install the RPMs.
+
+ @par Windows:
+  Download the Windows Installer from http://www.wireshark.org/download.html
+
+*/
+
+/**
+ @page pgsniffer
+ @section pgSnfRun Usage
+ @par Command Line Usage
+
+ The sniffer application is launched with the following command
+ in @b Linux
+ @code
+ $ python script/sniffer.py -p /dev/ttyUSB0 | wireshark -ki -
+ @endcode
+ or with this command in @b Windows:
+ @code
+ $ python script/sniffer.py -p COM1 | wireshark -ki -
+ @endcode
+
+ All command line options of script are displayed with the command
+ <code>python script/sniffer.py -h</code>. The following options are supported
+
+ @code
+    -p PORT:
+        Serial port, the data rate is optionally seperated by ":", e.g. -p COM1:38400
+    -c CHANNEL:
+        Initial channel to be used.
+    -r RATE:
+        Initial data rate to be used.
+    -h:
+        Show help and exit.
+    -V:
+        Show version and exit.
+ @endcode
+
+ After running this command from the command line, the sniffer control window
+ and the wireshark window will appear on the screen.
+
+ Another method of running the sniffer tool is simply to collect the captured
+ data in a logfile:
+ @code
+ $ python script/sniffer.py -p /dev/ttyUSB0 -c 26 > log.pcap
+ @endcode
+
+ An option of storing the data in the background is using the Linux/Unix command
+ <code>tee</code>:
+ @code
+ $ python script/sniffer.py -p /dev/ttyUSB0 -c 26 | tee log.pcap | wireshark -ki -
+ @endcode
+
+ If just a terminal without an X-Windows is available, the tool @c tshark can be
+ used as backend:
+ @code
+ $ python script/sniffer.py -p /dev/ttyUSB0 -c 26 | tshark -i -
+ @endcode
+
+ The Lua dissector for the P2P protocoll, that is used, e.g. for the wireless
+ UART, can be enabled with the following command line:
+ @code
+ $ python script/sniffer.py -p /dev/ttyUSB0 -c 26 | wireshark -Xlua_script:script/p2p.lua -ki -
+ @endcode
+
+ @par GUI Usage
+
+ In the sniffer control window there are two the scroll lists: @b Channel
+ (see option @c -c) and  @b Rate  (see option @c -r) this transceiver parameters
+ can be canged interactively during a session. With the button @b Quit the GUI
+ and the tool @c sniffer.py is closed, but wireshark remains open. A quick method
+ to exit @c sniffer.py and @c wireshark is pressing "Ctrl-C" at the command line.
+
+ @image html "uracoli_sniffer.png" "Wireshark and sniffer.py" width="40%"
+
+*/
+
+/**
+ @page pgsniffer
+
+ @section pgSnifferFirmware Terminal Interface
+
+ This section describes the UART interface of the sniffer firmware.
+ The interfacing with wireshark is described in section @ref pgsniffer.
+
+ The application provides two modes:
+  - The @ref secScanMode "Scan Mode" scans over the selected channels and displays statistics
+     of the received frames. The channel is switched after the time @ref SCAN_PERIOD_MS.
+  - The @ref secSniffMode "Sniff Mode" receives on one selected channel and dumps the frames on the host
+    interface. This mode can used for live capturing WPAN data with wireshark
+    (see contibution guide for more details).
+
+ @par Usage
+
+ The following commands are available in the terminal:
+
+ Mode Commands:
+
+  - @opt{idle}, Keys: @c I, @c &lt;SPACE&gt; \n
+     Set application to idle mode and transceiver to state TRX_OFF.
+  - @opt{scan}\n
+     Scan for frames on the enabled channels
+     (see also commands @c cmask, @c cmset and @c cmclr)
+  - @opt{sniff}\n
+     Start sniffing frames on the current channel and dump the
+     received packets of the hostinterface (see command @c parms).
+
+ Parameter Commands:
+
+  - @opt{parms}\n
+     Display current parameter settings.
+  - @opt2{chan,CHAN}, Keys: @c + ,  @c - \n
+     Set current channel (for sniffing). "+" increments the current
+     channel by one, "-" decrements by one.
+  - @opt2{cmclr,chan}\n
+     Erase the channel bit in @c cmask.
+  - @opt2{cmset,chan}\n
+     Set the channel bit in @c cmask.
+  - @opt2{cmask,mask}\n
+     Set the 32 bit channel mask. @c mask can be a
+     hexadecimal value, e.g. 0x07fff800
+  - @opt2{cpage,page} \n
+     Set current channel page (@b{not yet supported})
+  - @opt2{drate,ratestr} \n
+     Set current data rate of transceiver.
+     ratestr = {BPSK{20,40}, OQPSK{100,200,250,400,500,1000,2000}}
+  - @opt2{chkcrc,[0|1]} \n
+     if 0, discard frames with invalid CRC, if 1, report also frames
+     with invalid CRC.
+
+@par Scan Mode
+
+The Scan Mode is started with the command @c scan.
+The scanned channels can be configured with the channel mask
+and the commands @c cmset, @c cmclr and @c cmask.
+
+@par IEEE Channels, Channel Mask and Channel Page in Scan Mode
+
+IEEE 802.15.4 uses a 32 bit channel mask. Since the standard
+uses just 26 channels (0 for 868 MHz, 1-10 for 915 MHz and 11-26 for
+2.4 GHz) the upper 5 bits of the channel mask are currently used by
+the value channel page. The channel page identifies the modulation
+method used.
+
+In order to enable channel 15 in the channel mask for scanning, you
+can use the command <tt>cmask 0x00008000</tt> or <tt>cmset 15</tt>.
+
+<pre>
+> parms
+SUPP_CMSK: 0x07fff800 ....... shows the supported channels of the radio
+CURR_CMSK: 0x04008800 ....... channel mask used for scanning (11,15,26)
+CURR_CHAN: 11 ............... channel used for sniffing
+CURR_PAGE: 0  ............... unsupported yet
+</pre>
+
+@par Display of the Scan Results
+
+In scan mode the application switches from channel to channel and
+collects the statistics of the received frames. The information
+can be displayed in a terminal as table (see example below, which
+scans only channels 11 and 15, cmask = 0x00008800).
+
+<pre class="fragment">
+> scan
+Scanning channels, scan period 2000ms
+             bad    Avg.         802.15.4 frames
+chan   frm   crc   ed lqi      B     D     A     C  PER
+*11      0     0    0   0      0     0     0     0    0
+ 12  n/a
+ 13  n/a
+ 14  n/a
+ 15     62     0   71 255      0    62     0     0    0
+ 16  n/a
+ 17  n/a
+ 18  n/a
+ 19  n/a
+ 20  n/a
+ 21  n/a
+ 22  n/a
+ 23  n/a
+ 24  n/a
+ 25  n/a
+ 26      1     1    0   0      0     0     0     0  100
+=== ur 0 err 0 frames: 63 ===
+</pre>
+
+The columns of the table have the following meaning:
+
+<pre class="fragment">
+             bad    Avg.         802.15.4 frames
+chan   frm   crc   ed lqi      B     D     A     C  PER
+ |      |     |    |   |       |     |     |     |   +... Estimated packet error rate
+ |      |     |    |   |       |     |     |     +....... number of rx'd command frames
+ |      |     |    |   |       |     |     +............. number of rx'd ACK frames
+ |      |     |    |   |       |     +................... number of rx'd data frames
+ |      |     |    |   |       +......................... number of rx'd beacon frames
+ |      |     |    |   +................................. average LQI of frames on this channel
+ |      |     |    +..................................... average energy value frames on this channel
+ |      |     +.......................................... number of frames with bad CRC
+ |      +................................................ number of received frames
+ +....................................................... channel number
+</pre>
+
+@par Sniffer Mode
+
+The Sniff Mode is started with the command @c sniff. The channel
+which should be monitored is set with the command @c chan.
+In the sniff mode, each received frame is transfered over the host
+interface to the PC application.
+
+@par Data Transfer in Sniffer Mode
+
+ The binary protocoll used for transfer the received frames
+ over the host interface in sniff-mode has the following format:
+
+ <pre class="fragment">
+ +-------+--------+--------+------------+--------+
+ | SOF   |  LEN   | TSTAMP | FRAMEDATA  | EOF    |
+ +-------+--------+--------+------------+--------+
+ | 1Byte | 1 Byte | 8 Byte | 1-127 Byte | 1 Byte |
+ +-------+--------+--------+------------+--------+
+ </pre>
+
+  @param SOF       Start of frame field (0x01)
+  @param LEN       Length of packet (size of time stamp and frame size) (8 ... 133)
+  @param TSTAMP    Time structure (4 Byte seconds, 4 byte micro seconds)
+  @param FRAMEDATA Octets of the frame (the data does not contain the IEEE
+                   802.15.4 PHR with the reserved bit value).
+  @param EOF       End of frame field.
+
+
+@todo
+  - Active Scan Mode per channel, to detect WPANs.
+  - Fast Energy Scan over channels.
+  - Parametric frame filter.
+  - command for setting scan period
+
+*/

@@ -1,0 +1,72 @@
+// ca. 4-5 slides
+
+Datenauswertung auf dem PC I
+-----------------------------
+
+image::rrd_db.png[alt="System",align="center"]
+
+- Speicherung in Round Robin Datenbank (rrdtool Projekt)
+  * Aktuelle Messwerte am interessantesten
+  * pro Sensor (`'addr'`) eine Datenbank (`.rrd`-File)
+  * je Meßgröße (`'vmcu'`, `'sht_t'`) eine oder mehrere Round Robin Archive möglich
+
+.Sensorlogger
+// [role="incremental"]
+- Gateway -> USB -> ser. Interface
+- Python-Daemon zur Erfassung einlaufender Daten
+- Lesen der Daten vom ser. Interface (`/dev/ttyUSB0`): +
+  `"addr:4, acc: [27, 13, 80], sht_rh: 26902, vmcu: 2744, sht_t: 25800"`
+
+
+Datenauswertung auf dem PC II
+------------------------------
+
+image::tableserver.png[alt="Table-Webserver",align="left"]
+
+.Sensorserver
+// [role="incremental"]
+- Applikationen zur Auswertung (Visualisierung)
+- Zugriff auf RRD-Datenbank-Daten
+- Einfacher Mini-HTTP-Server in Python
+- Erzeugen von Tabellen mit aktuellen Werten (`tableserver`)
+- Grafiken aus RRD-Datenbanken (Visualisierung) (`sensorserver`)
+
+Datenlogger (Prinzip) - `sensorlogger.py`
+------------------------------------------
+
+[source,python]
+----------------------------------------------
+import rrdtool
+import serial
+def rrd_create(tstamp, addr, **kwargs):
+  # ... prep to create new .rrd file
+  rrdtool.create(r.dbname, *args)
+
+def rrd_update(tstamp, addr, **kwargs):
+  # ... prep to update .rrd file with new data
+  rrdtool.update(r.dbname, arg)
+
+sport = serial.Serial(SPORT, BAUD)
+sport.open()
+  while 1:
+    try:
+      x = sport.readline().strip()
+      y = eval("dict(%s)" % x)  # well, it's a demo!
+      y["tstamp"] = int(time.time())
+      if not SENSORS.has_key(y["addr"]):
+        rrd_create(**y)
+      rrd_update(**y)
+    except:
+      print "ERROR:", sys.exc_info()
+----------------------------------------------
+
+
+Web-Server
+-----------
+
+image::sensorserver_graph.png[alt="Webserver",align="left"]
+
+  python sensorlogger.py -p /dev/ttyUSB0 -D
+  python sensorserver.py -v
+  python tableserver.py -v
+

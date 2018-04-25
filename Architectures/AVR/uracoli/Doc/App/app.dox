@@ -1,0 +1,135 @@
+/* Copyright (c) 2007 Axel Wachtler
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   * Neither the name of the authors nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   POSSIBILITY OF SUCH DAMAGE. */
+
+/* $Id$ */
+/**
+  @page pgLibMain Library
+
+  @section secLibOverview Overview
+
+  The @uracoli-library consists of several modules and drivers for hardware
+  components.
+  For each of the supported boards in section @ref pgBoards,
+  a seperate library is build.
+
+  The modules are isolated and can be used sperately, that means
+  if an application just requires the radio functionality, none
+  of the other modules, like sensors or RTC is linked.
+  In the <a class="el" href="modules.html">Library Reference</a>
+  all functions of the modules are documented seperately with usage examples.
+
+  The @uracoli-library is used by the
+   @ref pgXmplMain "examples" and
+   @ref pgAppMain "applications" or it can be used in
+   own applications (refer to sections @ref secLibUsage and @ref md_as6).
+
+  @image html uracoli_modules_library.png "Library Overview" width=40%
+  @image latex uracoli_modules_library.png "Library Overview" width=.6\textwidth
+
+ @section secLibCompile Compiling the Library
+
+  In order to compile the library, a toolchain is required:
+  see also @ref pgToolChain.
+
+  In order to build the library, run the @c make command in
+  <tt>uracoli-<version>/src/uracoli</tt>
+
+  @code
+  cd uracoli-<version>/src/uracoli
+  make [help|list|all|<board>]
+  @endcode
+
+  - @c "make help" :
+    display the usage message
+  - @c "make list" :
+    display all supported boards.
+  - @c "make all" :
+    compile all libraries @c `lib/liburacoli_*.a`
+  - @c "make <board>" :
+    compile the library @c `lib/liburacoli_<board>.a`
+
+ */
+
+/**
+  @page pgAppMain Applications
+
+  @section secAppOverview Overview
+
+  This sections shows various applications, that uses the functions of the
+  @uracoli library. The applications are consists of firmware images for various
+  supported @ref pgBoards "Boards" and Python scripts @ref link "[4]".
+
+  @image html uracoli_modules_applications.png "Applications Overview" width=40%
+  @image latex uracoli_modules_applications.png "Applications Overview" width=.6\textwidth
+
+  The package consists of the following applications:
+
+   - @subpage pgwuart @n
+		The @c wuart can be used for basic wireless PC to PC
+        connections or as as frontend/gateway for other applications.
+		The @ref md_sterm "sterm.py" script can be used as terminal to display
+		@c wuart data.
+   - @subpage pgrdiag @n
+		The @c rdiag application is used to test basic transceiver
+		functions, for instance: selecting states, transmitting continouos wave
+		signals, sending seperate frames, etc.\n
+		Todo: needs rework and concept alignment
+   - @subpage pgrsensor @n
+		The @c rsensor application sends and receives sensor values
+		that are defined in the board configuration. It can be used either as
+		end node that transmits sensor values or as gateway, that receives
+		sensor values from other nodes and prints them on the serial interface.
+   - @subpage pgsniffer @n
+		The @c sniffer application receives frames on a selected channel
+		and dumps it over the terminal. The Python script "sniffer.py"
+		converts this information into the pcap format @ref link "[1]",
+		@ref link "[2]". The pcap format is supported for instance from the
+		network analysis tool wireshark @ref link "[3]".
+   - @subpage pgwibo @n
+		The @c wibo application allows over the air firmware updates of
+		embedded nodes.\n
+   - @subpage md_sterm @n
+      A scritpable terminal written in Python @ref link "[4]".
+   - @subpage pgHBM251 @n
+      A generic programming and test script
+
+ @anchor link
+ @par Literature
+
+[1] https://en.wikipedia.org/wiki/Pcap
+
+[2] https://wiki.wireshark.org/Development/LibpcapFileFormat
+
+[3] http://www.wireshark,org
+
+[4] http://www.python.org
+
+*/
+
+
+

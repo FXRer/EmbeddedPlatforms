@@ -1,0 +1,83 @@
+#=== RadioFaro ========================================
+
+radiofaro.name=Radiofaro w/ ATmega128rfa1
+
+radiofaro.upload.protocol=arduino
+radiofaro.upload.maximum_size=126976
+radiofaro.upload.speed=57600
+
+radiofaro.bootloader.low_fuses=0xe6
+radiofaro.bootloader.high_fuses=0x9a
+radiofaro.bootloader.extended_fuses=0xfe
+radiofaro.bootloader.path=radiofaro
+radiofaro.bootloader.file=ATmegaBOOT_radiofaro.hex
+radiofaro.bootloader.unlock_bits=0x3F
+radiofaro.bootloader.lock_bits=0x0F
+
+radiofaro.build.mcu=atmega128rfa1
+radiofaro.build.f_cpu=16000000L
+radiofaro.build.core=arduino:arduino
+radiofaro.build.variant=radiofaro
+
+#=== Radiofaro2 module =========================================
+radiofaro2.name=Radiofaro2 w/ ATmega256rfr2
+
+radiofaro2.upload.protocol=arduino
+radiofaro2.upload.maximum_size=126976
+radiofaro2.upload.speed=57600
+
+radiofaro2.bootloader.low_fuses=0xe6
+radiofaro2.bootloader.high_fuses=0x9a
+radiofaro2.bootloader.extended_fuses=0xfe
+radiofaro2.bootloader.path=radiofaro2
+radiofaro2.bootloader.file=ATmegaBOOT_radiofaro.hex
+radiofaro2.bootloader.unlock_bits=0x3F
+radiofaro2.bootloader.lock_bits=0x0F
+
+radiofaro2.build.mcu=atmega256rfr2
+radiofaro2.build.f_cpu=16000000L
+radiofaro2.build.core=arduino:arduino
+radiofaro2.build.variant=radiofaro2
+
+#=== ZigBit 2.4GHz module =========================================
+# see http://uracoli.nongnu.org/hwlist.html#MB230
+zigbit24.name=Zigbit 2400MHz, w/ ATmega1281
+
+zigbit24.upload.protocol=stk500v1
+zigbit24.upload.maximum_size=126976
+zigbit24.upload.speed=9600
+
+zigbit24.bootloader.low_fuses=0xe2
+zigbit24.bootloader.high_fuses=0x10
+zigbit24.bootloader.extended_fuses=0xff
+zigbit24.bootloader.path=atmega
+zigbit24.bootloader.file=ATmegaBOOT_168_zigbit24.hex
+zigbit24.bootloader.unlock_bits=0x3F
+zigbit24.bootloader.lock_bits=0xeF
+
+zigbit24.build.mcu=atmega1281
+zigbit24.build.f_cpu=8000000L
+
+zigbit24.build.core=arduino:arduino
+zigbit24.build.variant=zigbit2400
+
+
+#=== ZigBit 900 MHz module =========================================
+# see http://uracoli.nongnu.org/hwlist.html#MB230
+zigbit09.name=Zigbit 900MHz, w/ ATmega1281
+
+zigbit09.upload.protocol=stk500v1
+zigbit09.upload.maximum_size=126976
+zigbit09.upload.speed=9600
+
+zigbit09.bootloader.low_fuses=0xe2
+zigbit09.bootloader.high_fuses=0x10
+zigbit09.bootloader.extended_fuses=0xff
+zigbit09.bootloader.path=atmega
+zigbit09.bootloader.file=ATmegaBOOT_168_zigbit09.hex
+zigbit09.bootloader.unlock_bits=0x3F
+zigbit09.bootloader.lock_bits=0xeF
+zigbit09.build.mcu=atmega1281
+zigbit09.build.f_cpu=8000000L
+zigbit09.build.core=arduino:arduino
+zigbit09.build.variant=zigbit900

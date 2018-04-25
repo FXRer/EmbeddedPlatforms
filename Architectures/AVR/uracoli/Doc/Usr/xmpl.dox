@@ -1,0 +1,143 @@
+/* Copyright (c) 2008 Axel Wachtler
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   * Neither the name of the authors nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   POSSIBILITY OF SUCH DAMAGE. */
+
+/* $Id$ */
+
+/**
+ @page pgXmplMain Examples
+
+ @section secXmplOverview Overview
+
+ The @uracoli examples illustrate the use of the various library functions.
+
+ @image html uracoli_modules_examples.png "Examples Overview" width=40%
+ @image latex uracoli_modules_examples.png "Examples Overview" width=.6\textwidth
+
+ This simple programms operate the LEDs, the HIF or the radio transceiver.
+ They can be used either for testing the hardware or as starting point for
+ own applications.
+
+
+
+
+*/
+
+/**
+ @page pgXmplMain
+ @section secXmplCompile Compiling the Examples
+
+ The examples are located in the directory `uracoli-<version>/src/examples/`
+
+ Each example consists of a C source file, a GNUMakefile that is used
+ for command line builds and an aps-file for Atmel AvrStudio .
+ Here are the files, that belong to the example @ref pgXmplHif.
+ <pre>
+     xmpl.h .................... common defines for all examples
+     xmpl_hif.c ................ example source file
+     xmpl_hif.aps .............. AVR Studio file
+     xmpl_hif.mk ............... GNU Makefile
+ </pre>
+
+
+ @par Command Line Build (Linux, Windows)
+
+ The example can be build with command <tt>make -f xmpl_hif.mk TARGET</tt>.
+ TARGET is either <b>all</b> (building this example for supported boards)
+ or the name of the board to build for (see @ref pgBoards).
+
+ Here is the log for building xmpl_hif.c for the board @ref secBoardrdk230 "rdk230".
+ <pre>
+ make -C install/xmpl/ -f xmpl_hif.mk rdk230
+    make: Entering directory `[...]/install/xmpl'
+    make -f xmpl_hif.mk BOARD=rdk230 MCU=atmega1281 F_CPU=8000000UL ./obj ./bin __xmpl_hif__
+    make[1]: Entering directory `[...]/install/xmpl'
+    avr-gcc -Wall -Wundef -Os -g -mmcu=atmega1281 -Wa,-adhlns=./obj/xmpl_hif_rdk230.lst -Drdk230 -DF_CPU=8000000UL -I../inc -I. -c -o obj/xmpl_hif_rdk230.o xmpl_hif.c
+    avr-gcc -o bin/xmpl_hif_rdk230.elf -Wall -Wundef -Os -g -mmcu=atmega1281 -Wa,-adhlns=obj/xmpl_hif_rdk230.o -Drdk230 -DF_CPU=8000000UL -I../inc -I. obj/xmpl_hif_rdk230.o -L../lib -lradio_rdk230 -lio_rdk230
+    avr-objcopy -O ihex bin/xmpl_hif_rdk230.elf bin/xmpl_hif_rdk230.hex
+    make[1]: Leaving directory `[...]/install/xmpl'
+    make: Leaving directory `[...]/install/xmpl'
+ </pre>
+
+ After make did run, the files <tt>bin/xmpl_hif_rdk230.elf</tt> and
+ <tt>bin/xmpl_hif_rdk230.hex</tt> are created. The directory
+ <tt>./obj</tt> stores temporary files that are created during the
+ build.
+
+ @par AVR-Studio V4.x. Build
+
+ Double click on the xmpl_hif.aps and AvrStudio starts with the project
+ file. In the next step select "Project/Configuration Options", this opens
+ the "Project Options" dialogue. In the section "General" there is a drop down
+ list named "Active Configuration". Here you can select your board (see @ref pgBoards).
+
+ Now click "Build" / "Build and Run" or type "Strg+F7" to build and flash the
+ example.
+
+ The result files for the AvrStudio build are stored in the directory with the
+ name of the selected configuration, e.g. in this case "rdk230".
+
+ @note Not every example is available for every board, e.g. since the board
+ @ref secBoardtiny230 "tiny23x" has no UART interface, the examples that requires
+ a HIF are not available.
+
+*/
+
+/**
+ @page pgXmplMain
+ @section secXmplList List of Examples
+
+    - Transceiver API
+      - @ref xmpl_trx_base.c
+      - @ref xmpl_trx_txrx.c
+      - @ref xmpl_trx_txrx_auto.c
+    - Radio API
+      - @ref xmpl_radio_range.c
+      - @ref xmpl_radio_stream.c
+    - HIF API
+      - @ref xmpl_hif.c
+    - Sensor API
+      - @ref xmpl_sensor.c
+      - @ref xmpl_lm73.c
+      - @ref xmpl_isl29020.c
+      - @ref xmpl_tsl2550.c
+      - @ref xmpl_i2c.c
+      - @ref xmpl_ow.c
+      - @ref xmpl_lgee_acc_simple.c
+    - GPIO API
+      - @ref xmpl_dbg.c
+      - @ref xmpl_key_events.c
+      - @ref xmpl_keys.c
+      - @ref xmpl_leds.c
+    - Uilities API
+      - @ref xmpl_linbuf_rx.c
+      - @ref xmpl_linbuf_tx.c
+    - Timer/RTC API
+      - @ref xmpl_rtc.c
+      - @ref xmpl_timer.c
+      - @ref xmpl_timer_callback.c
+*/

@@ -1,0 +1,35 @@
+
+2016/05/11 dthiele
+- ELF-files cannot be debugged properly via Atmel Studio 7.0:
+  - paths are not correct: strip /install/bin/
+  - check which debbuging format is required (dwarf, ...)
+
+2016/05/10 awachtle
+- doc: install/doc/maindoc/index.html mainpage contains garbage
+- doc: relocate sterm.py in TOC of main doc under applications.
+- doc: each example should be a section in doxygen.
+
+2015/10/18 dath
+- radio() Funktion _txcw(prbs/cw) einführen
+- timer_tstamp.c "timer_get_tstamp" never used
+
+2015/10/18 dath
+- Constants MOD_BPSK_*, MOD_OQPSK_* never used, instead BPSK_* and OQPSK_* in transceiver.h are used
+  TODO: decide for one of them
+
+2015/12/13 dath
+- Wuart boot printout ends with \n\r\x00, detect where 0x00 after EOL is printed and remove
+
+## Resolved
+
+2016/05/18 awachtle
+- find what is causing -DNone [resolved 3572:59e1a99dce0b]
+
+2016/05/10 awachtle
+- xmpl/app: align ms/us in examples / applications [resolved 3545:4c8bf5fbf090]
+- xmpl/app/lib: verify if delay_ms/us can han handle values > 255. [resolved in 3543:0d56da6be5db]
+- xmpl: make combined examples xmpl_trx_txrx and xmpl_trx_txrx_auto [resolved 3569:ac2424a9199a]
+
+2015/10/18 dath
+- rdiag.c: RFA wirft RADIO_ERROR beim Txpwr setzen (Kommando "p") [resolved in 3438:fa1fc35e31a1]
+

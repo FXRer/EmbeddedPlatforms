@@ -1,0 +1,158 @@
+menu.wlupl=Upload Method
+
+#=== RadioFaro ========================================
+
+radiofaro.name=Radiofaro w/ ATmega128rfa1
+radiofaro.cpu=atmega128rfa1
+
+radiofaro.menu.wlupl.arduino=Arduino (avrdude)
+radiofaro.menu.wlupl.arduino.upload.tool=avrdude
+
+radiofaro.menu.wlupl.wibo=Wireless (wibo)
+radiofaro.menu.wlupl.wibo.upload.tool=wibohost
+radiofaro.menu.wlupl.wibo.upload.params.verbose=1
+
+radiofaro.upload.tool=avrdude
+radiofaro.upload.protocol=arduino
+radiofaro.upload.maximum_size=126976
+radiofaro.upload.speed=57600
+
+radiofaro.bootloader.tool=avrdude
+radiofaro.bootloader.low_fuses=0xe6
+radiofaro.bootloader.high_fuses=0x9a
+radiofaro.bootloader.extended_fuses=0xfe
+radiofaro.bootloader.path=radiofaro
+radiofaro.bootloader.file=radiofaro/ATmegaBOOT_radiofaro.hex
+radiofaro.bootloader.unlock_bits=0x3F
+radiofaro.bootloader.lock_bits=0x0F
+
+radiofaro.build.mcu=atmega128rfa1
+radiofaro.build.f_cpu=16000000L
+radiofaro.build.core=uracoli:uracoli
+radiofaro.build.variant=radiofaro
+radiofaro.build.board=AVR_RADIOFARO
+
+# radiofaro2
+radiofaro2.name=Radiofaro2 w/ ATmega256rfr2
+radiofaro2.cpu=atmega256rfr2
+
+radiofaro2.menu.wlupl.arduino=Arduino (avrdude)
+radiofaro2.menu.wlupl.arduino.upload.tool=avrdude
+
+radiofaro2.menu.wlupl.wibo=Wireless (wibo)
+radiofaro2.menu.wlupl.wibo.upload.tool=wibohost
+radiofaro2.menu.wlupl.wibo.upload.params.verbose=1
+
+radiofaro2.upload.tool=avrdude
+radiofaro2.upload.protocol=arduino
+radiofaro2.upload.maximum_size=126976
+radiofaro2.upload.speed=57600
+
+radiofaro2.bootloader.tool=avrdude
+radiofaro2.bootloader.low_fuses=0xe6
+radiofaro2.bootloader.high_fuses=0x9a
+radiofaro2.bootloader.extended_fuses=0xfe
+radiofaro2.bootloader.path=radiofaro
+radiofaro2.bootloader.file=radiofaro/ATmegaBOOT_radiofaro2.hex
+radiofaro2.bootloader.unlock_bits=0x3F
+radiofaro2.bootloader.lock_bits=0x0F
+
+radiofaro2.build.mcu=atmega256rfr2
+radiofaro2.build.f_cpu=16000000L
+radiofaro2.build.core=uracoli:uracoli
+radiofaro2.build.variant=radiofaro2
+radiofaro2.build.board=AVR_RADIOFARO2
+
+
+#=== Pinoccio with ATmega256RFR2 ===============================================
+
+pinoccio.name=Pinoccio Scout
+pinoccio.cpu=atmega256rfr2
+
+pinoccio.upload.tool=avrdude
+pinoccio.upload.protocol=wiring
+pinoccio.upload.maximum_size=126976
+pinoccio.upload.speed=115200
+
+pinoccio.bootloader.tool=avrdude
+pinoccio.bootloader.low_fuses=0xe6
+pinoccio.bootloader.high_fuses=0x9a
+pinoccio.bootloader.extended_fuses=0xfe
+pinoccio.bootloader.path=radiofaro
+pinoccio.bootloader.file=ATmegaBOOT_radiofaro.hex
+pinoccio.bootloader.unlock_bits=0x3F
+pinoccio.bootloader.lock_bits=0x0F
+
+pinoccio.build.mcu=atmega256rfr2
+pinoccio.build.f_cpu=16000000L
+pinoccio.build.core=uracoli:uracoli
+pinoccio.build.variant=pinoccio
+pinoccio.build.board=pinoccio
+
+#=== ATmega256RFR2 XPRO ========================================
+
+atzb256rfr2xpro.name=Atmel ATmega256RFR2 Xplained Pro Evaluation Kit
+
+atzb256rfr2xpro.upload.tool=avrdude
+atzb256rfr2xpro.upload.protocol=arduino
+atzb256rfr2xpro.upload.maximum_size=253952
+atzb256rfr2xpro.upload.speed=57600
+
+atzb256rfr2xpro.bootloader.tool=avrdude
+atzb256rfr2xpro.bootloader.low_fuses=0xe6
+atzb256rfr2xpro.bootloader.high_fuses=0x9a
+atzb256rfr2xpro.bootloader.extended_fuses=0xfe
+atzb256rfr2xpro.bootloader.path=radiofaro
+atzb256rfr2xpro.bootloader.file=ATmegaBOOT_atzb256rfr2xpro.hex
+atzb256rfr2xpro.bootloader.unlock_bits=0x3F
+atzb256rfr2xpro.bootloader.lock_bits=0x0F
+
+atzb256rfr2xpro.build.mcu=atmega256rfr2
+atzb256rfr2xpro.build.f_cpu=16000000L
+atzb256rfr2xpro.build.core=uracoli:uracoli
+atzb256rfr2xpro.build.variant=atzb256rfr2xpro
+atzb256rfr2xpro.build.board=atzb256rfr2xpro
+
+#=== ZigBit 2.4GHz module =========================================
+# see http://uracoli.nongnu.org/hwlist.html#MB230
+zigbit24.name=Zigbit 2400MHz, w/ ATmega1281
+
+zigbit24.upload.protocol=stk500v1
+zigbit24.upload.maximum_size=126976
+zigbit24.upload.speed=9600
+
+zigbit24.bootloader.low_fuses=0xe2
+zigbit24.bootloader.high_fuses=0x10
+zigbit24.bootloader.extended_fuses=0xff
+zigbit24.bootloader.path=atmega
+zigbit24.bootloader.file=ATmegaBOOT_168_zigbit24.hex
+zigbit24.bootloader.unlock_bits=0x3F
+zigbit24.bootloader.lock_bits=0xeF
+
+zigbit24.build.mcu=atmega1281
+zigbit24.build.f_cpu=8000000L
+
+zigbit24.build.core=uracoli:uracoli
+zigbit24.build.variant=zigbit2400
+zigbit24.build.board=wdba1281
+
+#=== ZigBit 900 MHz module =========================================
+# see http://uracoli.nongnu.org/hwlist.html#MB230
+zigbit09.name=Zigbit 900MHz, w/ ATmega1281
+
+zigbit09.upload.protocol=stk500v1
+zigbit09.upload.maximum_size=126976
+zigbit09.upload.speed=9600
+
+zigbit09.bootloader.low_fuses=0xe2
+zigbit09.bootloader.high_fuses=0x10
+zigbit09.bootloader.extended_fuses=0xff
+zigbit09.bootloader.path=atmega
+zigbit09.bootloader.file=ATmegaBOOT_168_zigbit09.hex
+zigbit09.bootloader.unlock_bits=0x3F
+zigbit09.bootloader.lock_bits=0xeF
+zigbit09.build.mcu=atmega1281
+zigbit09.build.f_cpu=8000000L
+zigbit09.build.core=uracoli:uracoli
+zigbit09.build.variant=zigbit900
+zigbit09.build.board=AVR_ZIGBIT09

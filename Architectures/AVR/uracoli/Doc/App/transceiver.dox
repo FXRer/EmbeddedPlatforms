@@ -1,0 +1,61 @@
+/* Copyright (c) 2007 - 2012 Axel Wachtler
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   * Neither the name of the authors nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   POSSIBILITY OF SUCH DAMAGE. */
+
+/* $Id$ */
+
+/*===Transceiver Applications ===============================================*/
+
+
+/*
+
+ @page pgWgpio Wireless GPIO Application
+
+ @brief <div style="background-color:#ccccff;">
+        This application implements a simple configurable wirless digirtal IO module.</div>
+
+ @par Overview
+
+ The application uses 1 key for input and two LEDs for signalling the output,
+ where LED0 represents the actor and LED1 gives status information, e.g. if a key press
+ is received by another node.
+
+ After power up, the application is in state @ref APP_RUNNING and is waiting for
+ input events. When the key is pressed shortly, the local actor (if enabled) is processed
+ and frame indicating a @ref CMD_SWITCH is sent. If this frame is received by another
+ node, the actor of this node is updated and a @ref CMD_STATUS frame is sent.
+
+ Each node can enter the configuration mode, when long pressing of the key is detected.
+ In the configuration the node can be adjusted to be STANDBY (0), SWITCH (1), ACTOR (2) or
+ SWACTOR (switch and actor, 3).
+
+ @par Protocoll
+
+ @section secAppWgpioUse Usage
+ @underconstruction
+
+*/

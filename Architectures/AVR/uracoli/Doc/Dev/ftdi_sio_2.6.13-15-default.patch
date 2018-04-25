@@ -1,0 +1,34 @@
+diff -ur drivers/usb/serial-orig/ftdi_sio.c drivers/usb/serial/ftdi_sio.c
+--- drivers/usb/serial-orig/ftdi_sio.c	2006-11-12 17:33:45.000000000 +0100
++++ drivers/usb/serial/ftdi_sio.c	2008-09-06 17:26:34.000000000 +0200
+@@ -471,6 +471,8 @@
+ 	{ USB_DEVICE(FTDI_VID, FTDI_MHAM_Y6_PID) },
+ 	{ USB_DEVICE(FTDI_VID, FTDI_MHAM_Y8_PID) },
+ 	{ USB_DEVICE(EVOLUTION_VID, EVOLUTION_ER1_PID) },
++	{ USB_DEVICE(ATMEL_VID, STK541_PID) },
++	{ USB_DEVICE(DE_VID, STB_PID) },
+ 	{ },					/* Optional parameter entry */
+ 	{ }					/* Terminating entry */
+ };
+diff -ur drivers/usb/serial-orig/ftdi_sio.h drivers/usb/serial/ftdi_sio.h
+--- drivers/usb/serial-orig/ftdi_sio.h	2006-11-12 17:33:45.000000000 +0100
++++ drivers/usb/serial/ftdi_sio.h	2008-09-06 17:36:30.000000000 +0200
+@@ -329,6 +329,18 @@
+ #define EVOLUTION_VID		0xDEEE	/* Vendor ID */
+ #define EVOLUTION_ER1_PID	0x0300	/* ER1 Control Module */
+ 
++/*
++ * Atmel STK541 
++ */ 
++#define ATMEL_VID		0x03eb	/* Vendor ID */
++#define STK541_PID	        0x2109	/* Zigbee Controller */
++
++/*
++ * Dresden Elektronic Sensor Terminal Board
++ */ 
++#define DE_VID			0x1cf1	/* Vendor ID */
++#define STB_PID		        0x0001	/* Sensor Terminal Board */
++
+ /* Commands */
+ #define FTDI_SIO_RESET 		0 /* Reset the port */
+ #define FTDI_SIO_MODEM_CTRL 	1 /* Set the modem control register */

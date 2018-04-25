@@ -1,0 +1,53 @@
+Compile the application
+-----------------------
+
+* check Makefile, you may add your specific URACOLIDIR, BOARD, PART
+  otherwise use make options (see below)
+
+* build the elf, hex files:
+
+make help
+make URACOLIDIR=<uracoli_src_dir>/install stb230
+
+ -- or if install is located at ../../../../uracoli/install --
+
+make stb230
+
+* connect the programmer to the USB port and the sensor to the
+  programmer
+
+* if you have an ATmega1281 AVR and a STB 230 board + RCB as well
+* as a Dragon AVR programmer then flash the device using the following command:
+
+avrdude -P usb -p m1281 -c dragon_jtag  -U flash:w:bin/sensorapp_stb230.hex
+
+* Done. The application should start now
+
+
+Flashing and Setting Config Parameters
+--------------------------------------
+
+.EEPROM Configuration
+
+python wibo_muse231.py -a 22 -c 12 -p 0x2222 -O 0 |\
+        avrdude -B 10 -P usb -p m88 -c avrisp2 -F -U eeprom:w:-:i
+
+
+.FLASHEND Configuration with Programm
+
+python wibo_muse231.py -a 2 -c 12 -p 0x2222 -f bin/sensorapp_muse231.hex |\
+        avrdude -B 10 -P usb -p m88 -c avrisp2 -F -U fl:w:-:i
+
+
+PC Test Application
+--------------------
+
+In order ro read the data the sensors transmit over the air to a WUART, which is
+an AVR application which runs on a gateway HW port connected  via USB to a PC.
+
+The python script `webserver.py` connects to a COM port ( `-p` parameter, e.g.
+`-p /dev/ttyUSB0` ) and read the incoming data from the serial wuart interface
+and implements a webserver which serves the local port 8080 showing a table with
+actually measured values.
+
+

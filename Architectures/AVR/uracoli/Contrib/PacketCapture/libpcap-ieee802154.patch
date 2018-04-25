@@ -1,0 +1,430 @@
+diff -Nur ../libpcap-0.9.7/config.h.in ./config.h.in
+--- ../libpcap-0.9.7/config.h.in	2007-07-05 15:55:59.000000000 +0200
++++ ./config.h.in	2008-05-01 09:15:21.000000000 +0200
+@@ -41,6 +41,9 @@
+ /* if ppa_info_t_dl_module_id exists */
+ #undef HAVE_HP_PPA_INFO_T_DL_MODULE_ID_1
+ 
++/* define if you have the DAG API */
++#undef HAVE_IEEE802154_API
++
+ /* Define to 1 if you have the <inttypes.h> header file. */
+ #undef HAVE_INTTYPES_H
+ 
+diff -Nur ../libpcap-0.9.7/configure ./configure
+--- ../libpcap-0.9.7/configure	2007-07-05 15:56:00.000000000 +0200
++++ ./configure	2008-05-01 09:15:21.000000000 +0200
+@@ -859,6 +859,7 @@
+   --with-dag[=DIR]        include Endace DAG support ("yes", "no" or DIR; default="yes" on BSD and Linux if present)
+   --with-dag-includes=DIR   Endace DAG include directory
+   --with-dag-libraries=DIR  Endace DAG library directory
++  --with-ieee802154[=DIR]        include IEEE802.15.4 sniffer support ("yes", "no" or DIR; default="yes" on BSD and Linux if present)
+   --with-septel[=DIR]     include Septel support (located in directory DIR, if supplied).  default=yes, on Linux, if present
+   --without-flex          don't use flex
+   --without-bison         don't use bison
+@@ -6012,6 +6013,7 @@
+ fi;
+ 
+ 
++
+ # Check whether --with-dag-includes or --without-dag-includes was given.
+ if test "${with_dag_includes+set}" = set; then
+   withval="$with_dag_includes"
+@@ -6388,6 +6390,54 @@
+ fi
+ 
+ 
++ac_cv_lbl_ieee802154_api=no
++
++# Check whether --with-ieee802154 or --without-ieee802154 was given.
++if test "${with_ieee802154+set}" = set; then
++  withval="$with_ieee802154"
++
++    echo "$as_me:$LINENO: result: \"checking 802.15.4\"" >&5
++echo "${ECHO_T}\"checking 802.15.4\"" >&6
++
++	if test "$withval" = no
++	then
++		# User doesn't want 802.15.4 support.
++		want_ieee802154=no
++	elif test "$withval" = yes
++	then
++		# User wants 802.15.4 support but hasn't specified a directory.
++		want_ieee802154=yes
++	else
++		# User wants 802.15.4 support and has specified a directory, so use the provided value.
++		want_ieee802154=yes
++		ieee802154_root=$withval
++	fi
++
++    if test $want_ieee802154 = yes
++    then
++        ac_cv_lbl_ieee802154_api=yes
++    else
++        ac_cv_lbl_ieee802154_api=no
++    fi
++    SSRC="pcap-ieee802154.c"
++    echo "$as_me:$LINENO: result: \"checking 802.15.4\" $want_ieee802154" >&5
++echo "${ECHO_T}\"checking 802.15.4\" $want_ieee802154" >&6
++
++fi;
++
++if test $ac_cv_lbl_ieee802154_api = yes; then
++
++cat >>confdefs.h <<\_ACEOF
++#define HAVE_IEEE802154_API 1
++_ACEOF
++
++    echo "$as_me:$LINENO: result: \"802.15.4 define ok\"" >&5
++echo "${ECHO_T}\"802.15.4 define ok\"" >&6
++fi
++
++
++
++
+ # Check whether --with-septel or --without-septel was given.
+ if test "${with_septel+set}" = set; then
+   withval="$with_septel"
+diff -Nur ../libpcap-0.9.7/configure.in ./configure.in
+--- ../libpcap-0.9.7/configure.in	2007-07-05 15:56:00.000000000 +0200
++++ ./configure.in	2008-05-01 09:15:21.000000000 +0200
+@@ -419,6 +419,7 @@
+ 	want_dag=ifpresent
+ ])
+ 
++
+ AC_ARG_WITH([dag-includes], [  --with-dag-includes=DIR   Endace DAG include directory],
+ [
+ 	# User wants DAG support and has specified a header directory, so use the provided value.
+@@ -620,6 +621,46 @@
+ 	fi
+ fi
+ 
++dnl ======================================================================================================
++dnl checking for 802.15.4 support
++
++ac_cv_lbl_ieee802154_api=no
++AC_ARG_WITH([ieee802154], [  --with-ieee802154[[=DIR]]        include IEEE802.15.4 sniffer support ("yes", "no" or DIR; default="yes" on BSD and Linux if present)],
++[
++    AC_MSG_RESULT("checking 802.15.4")
++
++	if test "$withval" = no
++	then
++		# User doesn't want 802.15.4 support.
++		want_ieee802154=no
++	elif test "$withval" = yes
++	then
++		# User wants 802.15.4 support but hasn't specified a directory.
++		want_ieee802154=yes
++	else
++		# User wants 802.15.4 support and has specified a directory, so use the provided value.
++		want_ieee802154=yes
++		ieee802154_root=$withval
++	fi
++    
++    if test $want_ieee802154 = yes
++    then 
++        ac_cv_lbl_ieee802154_api=yes
++    else
++        ac_cv_lbl_ieee802154_api=no
++    fi
++    SSRC="pcap-ieee802154.c"
++    AC_MSG_RESULT("checking 802.15.4" $want_ieee802154)
++])
++
++if test $ac_cv_lbl_ieee802154_api = yes; then
++	AC_DEFINE(HAVE_IEEE802154_API, 1, [define if you have the DAG API])
++    AC_MSG_RESULT("802.15.4 define ok")
++fi
++
++
++dnl ======================================================================================================
++
+ AC_ARG_WITH(septel, [  --with-septel[[=DIR]]     include Septel support (located in directory DIR, if supplied).  [default=yes, on Linux, if present]],
+ [
+ 	if test "$withval" = no
+diff -Nur ../libpcap-0.9.7/gencode.c ./gencode.c
+--- ../libpcap-0.9.7/gencode.c	2007-07-10 21:38:15.000000000 +0200
++++ ./gencode.c	2008-05-07 23:21:05.000000000 +0200
+@@ -1306,6 +1306,17 @@
+ 		off_nl = -1;
+ 		off_nl_nosnap = -1;
+ 		return;
++        
++    case DLT_IEEE802_15_4:
++		/* Not sure, what to do here, just copy and try "nothing"
++		 * Currently, only raw "link[N:M]" filtering is supported.
++		 */
++		off_linktype = -1;
++		off_nl = -1;
++		off_nl_nosnap = -1;
++		return;
++        
++        
+ 	}
+ 	bpf_error("unknown data link type %d", linktype);
+ 	/* NOTREACHED */
+@@ -2183,6 +2194,7 @@
+ 	case DLT_ATM_RFC1483:
+ 	case DLT_ATM_CLIP:
+ 	case DLT_IP_OVER_FC:
++	case DLT_IEEE802_15_4:
+ 		return gen_llc_linktype(proto);
+ 		/*NOTREACHED*/
+ 		break;
+diff -Nur ../libpcap-0.9.7/inet.c ./inet.c
+--- ../libpcap-0.9.7/inet.c	2007-06-11 21:34:27.000000000 +0200
++++ ./inet.c	2008-05-01 09:15:21.000000000 +0200
+@@ -608,6 +608,9 @@
+ #ifdef HAVE_SEPTEL_API
+ 	    || strstr(device, "septel") != NULL
+ #endif
++#ifdef HAVE_IEEE802154_API
++	    || strstr(device, "ieee802154") != NULL
++#endif
+ 	    ) {
+ 		*netp = *maskp = 0;
+ 		return 0;
+diff -Nur ../libpcap-0.9.7/pcap-ieee802154.c ./pcap-ieee802154.c
+--- ../libpcap-0.9.7/pcap-ieee802154.c	1970-01-01 01:00:00.000000000 +0100
++++ ./pcap-ieee802154.c	2008-05-07 23:23:27.000000000 +0200
+@@ -0,0 +1,212 @@
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++#include "pcap-int.h"
++#include <string.h>
++#include <errno.h>
++#include <stdio.h>
++#include <sys/types.h>
++#include <sys/stat.h>
++#include <sys/socket.h>
++#include <sys/un.h>
++#include <fcntl.h>
++
++static unsigned long pcnt=0;
++
++#if HAVE_IEEE802154_API == 1
++
++int
++ieee802154_open(char * device)
++{
++int sd, ret;
++struct sockaddr_un name;
++    name.sun_family = AF_UNIX;
++    strcpy( name.sun_path, device );
++    sd = socket(PF_UNIX,SOCK_STREAM,0);
++    ret = connect (sd, &name, sizeof name.sun_family 
++                  + strlen (name.sun_path));
++    if (ret < 0){
++        sd = -1;
++    }
++    
++    return sd;
++}
++
++static void
++ieee802154_close(pcap_t *p)
++{
++    if(p != NULL)
++    {
++        close(p->fd);
++    }
++}
++
++/*
++ *  Read at most max_packets from the capture stream and call the callback
++ *  for each of them. Returns the number of packets handled, -1 if an
++ *  error occured, or -2 if we were told to break out of the loop.
++ */
++static int
++ieee802154_read(pcap_t *p, int cnt, pcap_handler callback, u_char *user)
++{
++    u_char buffer[160];
++    int ret;
++    struct pcap_pkthdr	pcap_header;
++    ssize_t sz ;
++    u_char state;
++
++    state = 0;
++    /* wait for syncbyte */
++    while (state != 0x01)
++    {
++        sz = read(p->fd, &state, sizeof(u_char));
++        if (sz == 0)
++        {
++            return 0;
++        }
++    }
++    sz = 0;
++    while (sz != 1)
++    {
++        sz = read(p->fd, &buffer[0], sizeof(u_char));
++    }
++    sz = 0;
++    do 
++    {
++        sz += read(p->fd, &buffer[sz+1], ((buffer[0]-sz)*sizeof(u_char)));        
++    }
++    while(sz<buffer[0]);
++    sz = 0;
++    while (sz != 1)
++    {
++        sz = read(p->fd, &state, sizeof(u_char));
++    }
++    
++    if (state != 4)
++    {
++        return -1;
++    }
++    else
++    {
++        /* We managed to receive a packet !
++           since wireshark 1.0.0. does not process the 
++           802.15.4 length field (PHY Header, PHR), we remove it 
++           here, maybe sooner or later wireshark supports it,
++           then we easily step back one byte in buffer.
++         */
++        pcnt ++;
++        pcap_header.caplen = buffer[0];
++        pcap_header.len = buffer[0];
++        callback(user, &pcap_header, &buffer[1]);
++        ret = 1;
++    }
++    return ret;
++}
++
++int
++ieee802154_platform_finddevs(pcap_if_t **devlistp, char *errbuf)
++{
++    int c, ret;
++    char name[32];
++
++    snprintf(name, 16, "ieee802154");
++    if (pcap_add_if(devlistp, name, 0, NULL, errbuf) == -1){
++			ret = -1;
++    }
++    ret = 0;
++    return ret;
++}
++
++/*
++ * Installs the given bpf filter program in the given pcap structure.  There is
++ * no attempt to store the filter in kernel memory as that is not supported
++ * with DAG cards.
++ */
++static int
++ieee802154_setfilter(pcap_t *p, struct bpf_program *fp)
++{
++	if (!p)
++		return -1;
++	if (!fp) {
++		strncpy(p->errbuf, "setfilter: No filter specified",
++			sizeof(p->errbuf));
++		return -1;
++	}
++
++	/* Make our private copy of the filter */
++
++	if (install_bpf_program(p, fp) < 0)
++		return -1;
++
++	p->md.use_bpf = 0;
++
++	return (0);
++}
++
++static int
++ieee802154_set_datalink(pcap_t *p, int dlt)
++{
++	p->linktype = dlt;
++	return (0);
++}
++
++
++static int
++ieee802154_stats(pcap_t *p, struct pcap_stat *ps) {
++	/* TODO: implement statistics ... implement via socket */
++	p->md.stat.ps_recv = 0;
++	p->md.stat.ps_drop = 0;
++	*ps = p->md.stat;
++	return 0;
++}
++
++
++static int
++ieee802154_inject(pcap_t *p, const void *buf _U_, size_t size _U_)
++{
++	strlcpy(p->errbuf, "Sending packets is currently not supported here ;-) stay tuned",
++	    PCAP_ERRBUF_SIZE);
++	return (-1);
++}
++
++
++pcap_t *
++ieee802154_open_live(const char *device, int snaplen, int promisc, int to_ms, char *ebuf)
++{
++	pcap_t *handle;    
++
++  	handle = malloc(sizeof(pcap_t));
++    if (handle == NULL){
++		snprintf(ebuf, PCAP_ERRBUF_SIZE, "malloc %s: %s", device, pcap_strerror(errno));
++		return NULL;
++	}    
++
++	memset(handle, 0, sizeof(pcap_t));
++
++	if((handle->fd = ieee802154_open((char *)device)) < 0) {
++		snprintf(ebuf, PCAP_ERRBUF_SIZE, "ieee802154_open %s: %s", device, pcap_strerror(errno));
++        free(handle);
++        handle = NULL;
++	} else {
++        handle->snapshot	= snaplen;
++	    handle->linktype = DLT_IEEE802_15_4;
++        handle->bufsize = 0;
++        handle->selectable_fd = -1;
++        
++ 	    handle->read_op = ieee802154_read;
++	    handle->inject_op = ieee802154_inject;
++	    handle->setfilter_op = ieee802154_setfilter;
++	    handle->setdirection_op = NULL; /* Not implemented.*/
++	    handle->set_datalink_op = ieee802154_set_datalink;
++	    handle->getnonblock_op = pcap_getnonblock_fd;
++	    handle->setnonblock_op = pcap_setnonblock_fd;
++	    handle->stats_op = ieee802154_stats;
++	    handle->close_op = ieee802154_close;
++	    handle->md.stat.ps_drop = 0;
++	    handle->md.stat.ps_recv = 0;
++    }
++    return handle;
++}
++
++
++#endif
+diff -Nur ../libpcap-0.9.7/pcap-linux.c ./pcap-linux.c
+--- ../libpcap-0.9.7/pcap-linux.c	2007-06-11 21:34:28.000000000 +0200
++++ ./pcap-linux.c	2008-05-01 09:15:21.000000000 +0200
+@@ -255,6 +255,11 @@
+ 	}
+ #endif /* HAVE_SEPTEL_API */
+ 
++#ifdef HAVE_IEEE802154_API
++	if (strstr(device, "ieee802154")) {
++		return ieee802154_open_live(device, snaplen, promisc, to_ms, ebuf);
++	}
++#endif /* HAVE_SEPTEL_API */
+ 	/* Allocate a handle for this session. */
+ 
+ 	handle = malloc(sizeof(*handle));
+@@ -914,7 +919,10 @@
+ 	if (septel_platform_finddevs(alldevsp, errbuf) < 0)
+ 		return (-1);
+ #endif /* HAVE_SEPTEL_API */
+-
++#ifdef HAVE_IEEE802154_API
++    if(ieee802154_platform_finddevs(alldevsp, errbuf) < 0)
++		return (-1);    
++#endif /* HAVE_IEEE802154_API */
+ 	return (0);
+ }
+ 

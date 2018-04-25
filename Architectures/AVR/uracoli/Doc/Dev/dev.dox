@@ -1,0 +1,648 @@
+/* Copyright (c) 2007 - 2012 Axel Wachtler
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   * Neither the name of the authors nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   POSSIBILITY OF SUCH DAMAGE. */
+
+/* $Id$ */
+
+/**
+ @page pgDevMain HOWTOs
+
+ This part of the @uracoli manual gives information
+ about the build process,
+ the tools are used,
+ how to add new hardware to the project and
+ explains how to deal with the USB drivers for some of the boards.
+
+
+  - Software
+    - @subpage pgToolChain
+  - Hardware
+    - @subpage pgDevProgDebug
+    - @subpage pgNewHw
+  - Misc
+    - @subpage pgDevUSB
+    - @subpage pgDevMisc
+    - @subpage pgOpenocd_selfbuild
+
+*/
+
+
+/**
+ @page pgToolChain Toolchain and Tools
+
+ @section secToolChainOverview Overview
+
+ The following tools are required for compiling the @uracoli library and
+ running the applications.
+
+  - AVR toolchain with @c avr-gcc and @c avr-binutils
+  - a build system tool
+     - @c GNUmake for @c uracoli-<version>.zip
+     - @c Scons for @c uracoli-devel-<version>.zip and direct builds from the repository
+  - a programming tool (@c avrdude, @c atprogram.exe)
+  - @c python and @c pyserial to run the Python scripts.
+  - optionally @c doxygen and @c graphviz if the documentation shall be generated.
+
+
+ All tools are available under Linux, *BSD, MacOS and Windows.
+
+
+ @section secToolChainWindows Windows Installation
+
+ @par AVR Toolchain Option 1:  Atmel Studio
+
+ - Download Atmel Studio from http://www.atmel.com/tools/atmelstudio.aspx
+ - Install the MSI File
+ - Add the following PATH components to your environment.
+ - AtmelStudio
+
+ @par AVR Toolchain Option 2:  Use arduino.cc and/or arduino.org and MinGW
+
+ - Download and Install Arduino IDE
+ - Install MinGW Make
+
+ @par Python
+
+ - Download and Install Python with a version < 3.x
+ - Python 2.7.9 has PIP, the Python Package Installer (a.k.a. @c "pip installs packages")
+   already integrated, use a version above this.
+
+ @par Doxygen and graphviz
+
+ - Download and Install Doxygen
+ - Download and Install Graphviz
+
+ @par Scons
+
+    Download scons from http://www.scons.org
+
+ @par Mercurial
+
+ This step is optionally, just in case the repository wants to be accessed.
+
+*/
+/**
+
+ @page pgToolChain
+
+ @section secToolChainLinux Linux Installation
+
+ @par AVR Toolchain Option 1: Linux Packages
+
+ @code
+    sudo apt-get install make avr-libc binutils-avr gcc-avr avrdude avarice gdb-avr
+ @endcode
+
+ @par Python
+
+ - Download and Install Python with a version < 3.x
+ - Python 2.7.9 has PIP, the Python Package Installer (a.k.a. @c "pip installs packages")
+   already integrated, use a version above this.
+
+ @code
+    sudo apt-get install python python-pip
+    sudo pip install pyserial
+ @endcode
+
+ @par Doxygen and graphviz
+
+ @code
+    sudo apt-get install doxygen graphviz
+ @endcode
+
+ @par Scons
+
+ @code
+    sudo apt-get install scons
+ @endcode
+
+ @par Mercurial
+
+
+ This step is optionally, just in case the repository wants to be accessed.
+
+ @code
+    sudo apt-get install mercurial
+ @endcode
+
+*/
+
+/**
+ @page pgNewHw How to add a new radio board to the library
+
+ A detailed description on how to add new custom hardware configuration
+ can be found at: http://uracoli.nongnu.org/custom.html .
+
+*/
+
+/**
+ @page pgDevProgDebug Programming and Debugging Targets
+
+ @section secDevProg Programming with avrdude
+
+ @note  avrdude uses libusb to access JTAG-ICE, Dragon, ISP etc.
+        Section @ref pgDevUSBPROG describes, what to do, that
+        normal users can access these devices.
+
+ @code
+  (1)  avrdude -P usb -p m1281 -c jtag2 -U fl:w:install/bin/sniffer_stk541.hex
+  (2)  avrdude -P usb:4711 -p m1281 -c jtag2 -U fl:w:install/bin/sniffer_stk541.hex
+  (3)  avrdude -P usb:1234 -p m1281 -c avrisp2 -U fl:w:install/bin/sniffer_stk541.hex
+ @endcode
+
+
+ @section secDevDebug Debugging with avarice + avr-gdb (ddd)
+
+ @code
+   avarice -I -P atmega1281 -2 -j usb --detach :4242
+   ddd --debugger avr-gdb install/bin/sniffer_stk541.elf &
+ @endcode
+
+ When ddd/avr-gdb has opened, type @c "target remote:4242<ENTER>"
+ in order to connect avarice and avr-gdb.
+
+
+ @section secDevDW Using DebugWire
+
+ @par Enable DebugWire
+
+ @todo finish this section, it is incomplete not fully tested.
+
+ - use any isp capable programmer: stk500v2, jtag2isp, dragon_isp??
+ @code
+
+    ISPDUDE="-c jtag2isp -P usb -p t44"
+    DWDUDE="-c jtag2dw -P usb -p t44"
+    avrdude $ISPDUDE  -F -U hfuse:w:????:m
+    avrdude $DWDUDE -F
+ @endcode
+
+http://www.homebuilthardware.com/index.php/avr/linux-avrdragon-tutorial-1/
+*/
+
+
+/** @page pgDirStruct File and Directory Structure of the Package
+
+   After unpacking the archive file, you'll find the following
+   directory structure.
+
+   <pre>
+uracoli
+|
++---Src ............................. Sources
+|   +---Lib ......................... Library source code
+|   |   +---Inc
+|   |   |   \---boards
+|   |   +---Ioutil
+|   |   \---Rf230
+|   +---App ......................... Application source code
+|   |   +---Inc
+|   |   \---Sniffer
+|   \---Xmpl ........................ Example source code
+|
++---Contrib ......................... PC Applications, that interact
+|                                     with firmware applications
+|   \---PacketCapture ............... Sniffer Interface
+|
++---Doc ............................. Doxygen Sources
+|   +---App
+|   +---Contrib
+|   +---Dev
+|   +---Images
+|   \---Usr
+|
++---Templates
+|
++---Tools
+|
+|  ---------------------------------------------------------------------
+|     All directories below this line can be erased, they just contain
+|     stuff, which is generated during the build process.
+|  ---------------------------------------------------------------------
+|
++---build ........................... temporary build directories
+|
+\---install ......................... compiled/generated files
+    +---bin ......................... elf/hex files
+    +---doc ......................... html doc
+    |   +---app
+    |   +---contrib
+    |   +---dev
+    |   \---usr
+    +---inc ......................... include files, interface for the libs
+    |   \---boards
+    +---lib ......................... static libraries
+    \---xmpl ........................ all example, make- and project files
+</pre>
+
+*/
+
+/**
+@page pgDevCodeGen Automatic Code Generation
+
+Some of the source files are created by code generation scripts. The following picture
+shows the dependencies between the templates and the generated source files.
+
+@dot
+  digraph "g" {
+      graph [rankdir="LR",size="14,14"];
+      bgcolor="transparent";
+      node [shape = "record"];
+
+      "board.cfg" -> "boardcfg.py" -> "board_cfg.h";
+
+      "board_cfg.h" -> "board.h|...\n#include \"board_cfg.h\"";
+
+      "at86rfXXX.txt" -> "ds2reg.py" -> "at86rfXXX.h";
+
+      "at86rfXXX.h" -> "transceiver.h|...\n#include \"at86rfXXX.h\"";
+
+
+   }
+@enddot
+
+
+
+*/
+
+
+/**
+ @page pgDevMisc Random Notes
+
+ @section secImgCols Color Codes used for Images
+
+<pre>
+ Group          Open Office Codes           HTML
+----------------------------------------------------
+ uracoli logo  230 230 255 (Blue Gray)      \#e6e6ff
+ radio         230 230 255 (Blue Gray)      \#e6e6ff
+ background    247 250 247 (uracoli green)  \#f7faf7
+ transceiver   204 204 255 (Sun 4)          \#ccccff
+ board         230 230 230 (Gray 10%)       \#e6e6e6
+ timer         255 204 153 (Orange 4)       \#ffcc99
+ hif           255 128 128 (Salmon)         \#ff8080
+ ioutil        230 230  76 (Yellow 4)       \#e6e64c
+ sensors       174 207   0 (Diagramm 8)     \#aecf00
+ utils         255 211  32 (Diagramm 3)     \#ffd320
+
+ # free colors
+               153 204 255 (Blue 8)         \#99ccff
+               255 255 204 (Pale Yellow)    \#ffffcc
+</pre>
+
+ @section secIncLayout Current Include File Layout
+
+ \dotfile "uracoli.dot" "Include file graph for liburacoli_<board>.a"
+
+ - @subpage pgDevSciptFragments
+ - @subpage pgDevCodeGen
+ - @subpage pgDirStruct
+
+
+ */
+
+/**
+  @page pgDevSciptFragments Script Fragments
+
+  Here is a collection of tool snippets that are used during development.
+  It took some time to find the information, so it is worth keeping this work.
+
+  @par Convert Impress slides to single PNG Files
+  @code
+    import os
+    file = "uracoli_modules.odg"
+    names = [None, None, "trx", "radio", "sensors", "hif", "timer", "utils", "gpio", "library", "examples", "applications"]
+    for i in range(1,len(names)+1):
+
+        if names[i]:
+            ofile = "uracoli_modules_%s" % names[i]
+        else:
+            ofile = "uracoli_modules"
+        print "convert %s" % ofile
+        cmd = 'unoconv -f pdf --stdout -e "PageRange=%d" %s > %s.pdf' % (i, file, ofile)
+        print cmd
+        os.system(cmd)
+        os.system('convert %s.pdf -fuzz 1%% -trim +repage %s.png' % (ofile, ofile))
+  @endcode
+ */
+/**
+ @page pgDevUSB USB drivers
+
+ @section secSnfConn Connecting Board and PC
+
+ Most of the current transceiver boards are equipped with a USB connector. If
+ the USB cord is plugged into the PC, the OS will load a driver and assign
+ a virtual serial port. Before starting the sniffer, the name of the serial
+ port needs to be determined.
+
+ @par Linux:
+
+ The device names are usually:
+  - <code>/dev/ttyS[0-9]</code> for regular RS232 serial ports,
+  - <code>/dev/ttyUSB[0-9]</code> for FTDI and CP210x based boards and
+  - <code>/dev/ttyACM[0-9]</code> for CDC devices like the Raven RZUSB stick.
+
+ The assigned name of a serial port can be found with the command @c dmesg.
+ @code
+  $ dmesg | grep tty
+  usb 4-1: FTDI USB Serial Device converter now attached to ttyUSB0
+  cdc_acm 2-3.1:1.0: ttyACM0: USB ACM device
+  usb 2-3.3: cp2101 converter now attached to ttyUSB1
+ @endcode
+
+
+ @par Windows
+
+ The name of the assigned COM port can be found with the <b>Device Manager</b>.
+ A quick way to open this tool (see http://en.wikipedia.org/wiki/Device_Manager)
+ is either to type @c devmgmt.msc in @c cmd.exe window
+ or click: <code>Start -> Run -> devmgmt.msc -> OK</code>
+
+   - @subpage pgDevFTDI245
+   - @subpage pgDevCDC
+   - @subpage pgDevUSBPROG
+ */
+
+/**
+ @page pgDevFTDI245 FT245BM Driver
+
+ The FTDI FT245BM is a FIFO to USB converter with a
+ parallel interface.
+ The USB device emulates a serial port, which is COMx in
+ Windows or /dev/ttyUSBx in Linux
+ (http://www.ftdichip.com/FTProducts.htm#FT245BM).
+
+ With the parallel interface its easy to provide a high data
+ rate connection between PC and AVR. The memory buffer
+ inside the FT245xx for both, TX and RX direction,
+ relaxes the CPU load on the AVR side. The MCU can write/read
+ whole chunks of data to the chip without lots of interrupts
+ or peramnently polling a USART status register.
+
+ The FT245 can be branded with custom vendor and product IDs
+ in a external EEPROM. In combination with the hardware described
+ here, the following combinations can occur:
+
+   - original FT245BM ID
+     - Vendor 0x0403, Device 0x6001
+   - Atmel STK541 Sniffer Kit
+     - Vendor 0x03eb, Device 0x2009
+     - http://www.nongnu.org/uracoli/hwlist.html#STK541
+   - Dresden Electronic Sensor Terminal Board
+     - Vendor 0x1cf1, Device 0x0001
+     - http://www.nongnu.org/uracoli/hwlist.html#STB230
+
+ The following sections describe, how the driver for
+ different VID/PID in Linux and Windows is adapted:
+
+   - @subpage pgDevFTDI245Linux
+   - @subpage pgDevFTDI245Windows
+*/
+/**
+ @page pgDevFTDI245Linux  Patching the FT245 Driver under Linux
+
+ This steps have to be done in order to modify the Linux kernel
+ module @c ftdi_sio.ko so, that it accepts devices with the vendor/device
+ IDs of the Atmel STK541 and/or the Dresden Elektronik Sensor Terminal Board
+ and assigns them a serial device like @c /dev/ttyUSBxx.
+
+
+ @par Modify the Driver Source Code
+ In the directory @c /usr/src/linux/drivers/usb/serial/ there are the
+ files @c ftdi_sio.h and @c ftdi_sio.c, which needs to be modified.
+
+ There are two patches available but most probably they will not work at
+ a specific system, since in @c ftdi_sio.c, the line numbers change rapidly by adding new
+ devices from other vendors. So the patches most probably needs to be applied manually.
+
+  - <a href="ftdi_sio_2.6.13-15-default.patch">ftdi_sio_2.6.13-15-default.patch</a>  (SuSE 10.0, default kernel)
+  - <a href="ftdi_sio_2.6.25.5-1.1-pae.patch">ftdi_sio_2.6.25.5-1.1-pae.patch</a>  (SuSE 11.0, default kernel)
+
+ At first, the macros for the vendor and product ID
+ of the boards have to be added in the file @c ftdi_sio.h:329.
+
+ @code
+    #define ATMEL_VID              0x03eb  /* Atmel Vendor ID */
+    #define STK541_PID             0x2109  /* Zigbee Controller */
+    #define DE_VID                 0x1cf1  /* Dresden Electronic Vendor ID */
+    #define STB_PID                0x0001  /* Sensor Terminal Board */
+ @endcode
+
+ Next in the file @c ftdi_sio.c the new Vendor/Device ID tuples needs to be added:
+
+ @code
+     static struct usb_device_id id_table_combined [] = {
+            { USB_DEVICE(FTDI_VID, FTDI_AMC232_PID) },
+            ...
+            ...
+            ...
+            { USB_DEVICE(ATMEL_VID, STK541_PID) },
+            { USB_DEVICE(DE_VID, STB_PID) },
+            { },                                    /* Optional parameter entry */
+            { }                                     /* Terminating entry */
+     };
+ @endcode
+
+
+ @par Build the Modified Kernel Modul
+
+ <pre>
+    root\@pandora>cd /usr/src/linux
+    root\@pandora>make drivers/usb/serial/ftdi_sio.ko
+    CC [M]  drivers/usb/serial/ftdi_sio.o
+    MODPOST
+    CC      drivers/usb/serial/ftdi_sio.mod.o
+    LD [M]  drivers/usb/serial/ftdi_sio.ko
+ </pre>
+
+ @note
+ If an error message like "You have not yet configured your kernel! (missing kernel .config file)" occurs,
+ under SuSE Linux you can quickly recover from this issue by doing "zcat /proc/config.gz > .config"
+ in the directory @c /usr/src/linux.
+
+ @par Install the new Kernel Modul
+
+ <pre>
+    root\@pandora>rmmod ftdi_sio
+    root\@pandora>cd /lib/modules/`uname -r`/kernel/drivers/usb/serial
+    root\@pandora>cp ftdi_sio.ko ftdi_sio.ko.orig
+    root\@pandora>cp /usr/src/linux/drivers/usb/serial/ftdi_sio.ko .
+    root\@pandora>depmod -a
+ </pre>
+
+ @par Load and Test the new Kernel Modul
+
+ <pre>
+    root\@pandora>modprobe ftdi_sio
+    root\@pandora>lsmod | grep ftdi
+    ftdi_sio               27400  0
+    usbserial              28776  1 ftdi_sio
+    usbcore               112640  5 ftdi_sio,usbserial,uhci_hcd,rt73
+    root\@pandora>dmesg | grep FTDI
+    ftdi_sio 1-1.2:1.0: FTDI USB Serial Device converter detected
+    usb 1-1.2: FTDI USB Serial Device converter now attached to ttyUSB0
+    drivers/usb/serial/ftdi_sio.c: v1.4.3:USB FTDI Serial Converters Driver
+ </pre>
+
+*/
+
+/**
+ @page pgDevFTDI245Windows  Using the FT245 Driver under Windows
+
+ @section secFTDIInstall Installation
+ In order to operate the sensor terminal board or STK541 under
+ windows, the virtual COM port driver (VCP) from http://www.ftdichip.com/Drivers/VCP.htm
+ has to be used.
+ With the following steps the driver gets installed:
+
+ -# Download the driver package @e "CDM 2.04.06 WHQL Certified.zip"
+ -# Unpack it in a temp directory.
+ -# Apply the patch <a href="ftdi_cdm_2.04.06.patch">ftdi_cdm_2.04.06.patch</a>
+    manually or with the @e patch command (e.g., if mingw or cygwin is installed).
+ -# Connect the USB board to the PC and guide the hardware assistent to
+    the patched directory and complete the installation. Since the WHQL
+    certification breaks with the patch, you have explicitely to confirm,
+    that you want to install @e that driver.
+ -# Now you should find the assigned COM port in the device manager.
+
+ @section secFTDIPatch Patch for ftdibus.inf and ftdiport.inf
+ @include ftdi_cdm_2.04.06.patch
+
+ @section secFTDILic VCP Driver Licensing Conditions
+
+ The Website of FTDI states
+ http://www.ftdichip.com/Drivers/VCP.htm (2009-02-03).
+
+ <em><b>
+ FTDI device drivers may be used only in conjunction with
+ products based on FTDI parts.
+ <br>
+ The driver may be distributed in any form as long as our license information is not modified.
+ <br>
+ If a custom Vendor ID and/or Product ID, or description string are used, it is the responsibility of the product manufacturer to maintain any changes and subsequent WHQL re-certification as a result of using these changes.
+ </b></em>
+
+
+*/
+
+/**
+ @page pgDevCDC  Using the CDC driver for RZUSBSTICK
+
+ The HIF driver for the Raven USB stick implements a CDC device.
+ This can be handled by generic virtuell COM port driver.
+
+ The Vendor/Device ID used by @uracoli is:
+
+  - Vendor ID: 5824 0x16C0
+  - Product ID: 2183 0x887
+
+ see also http://www.frank-buss.de/pid.txt
+
+ @par Linux
+
+ - /usr/sbin/lsusb\n
+   - <tt>Bus 003 Device 009: ID 16c0:0887</tt>
+ - for SuSE 10.0 the driver cdc_acm was not loaded automatically,
+   in this case the command "modprobe cdc_acm" loads the driver.
+ - dmesg | grep ACM ==> "cdc_acm 3-1.4:1.0: ttyACM0: USB ACM device"
+ - Some older pyserial versions come up with the following error:
+   <tt>[Errno 11] Resource temporarily unavailable</tt>
+   In this case apply the patch or upgrade pyserial:
+   http://mail.python.org/pipermail/python-list/2004-November/294242.html
+
+ @par Windows
+
+ - @uracoli provids a INF file that installs the usbserial.sys driver.
+   <a href="uracoli-cdc.inf">uracoli-cdc.inf</a>
+   @include uracoli-cdc.inf
+
+
+
+*/
+
+
+/**
+ @page pgDevUSBPROG Using USB connected Programmers under Linux
+
+ @par Ubuntu / Raspbian
+
+ Create a config file <tt>/etc/udev/rules.d/80-usbprog.rules</tt>
+
+ @code
+ cd  /etc/udev/rules.d/
+ vi 80-usbprog.rules
+ @endcode
+
+ In this file add the following lines:
+
+ @code
+ # AVR ISP
+ ATTR{idVendor}=="03eb", ATTR{idProduct}=="2104", GROUP="dialout", MODE="0660"
+ # AVR Dragon
+ ATTR{idVendor}=="03eb", ATTR{idProduct}=="2107", GROUP="dialout", MODE="0660"
+ # JTAG ICE MkII
+ ATTR{idVendor}=="03eb", ATTR{idProduct}=="2103", GROUP="dialout", MODE="0660"
+ @endcode
+
+ @code
+ sudo /etc/init.d/udev restart
+ sudo /etc/init.d/udev status
+ @endcode
+
+ If the device is after reload not yet accessible, reconnect it.
+
+ If you want to enable other USB devices for users access, just
+ check the output of lsusb command.
+
+ @code
+ $$ lsusb
+  ...
+  Bus 006 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+  Bus 002 Device 009: ID 03eb:2103 Atmel Corp. JTAG ICE mkII
+  Bus 002 Device 003: ID 07d1:3c03 D-Link System DWL-G122 802.11g Adapter [ralink rt73]
+  Bus 002 Device 002: ID 0409:005a NEC Corp. HighSpeed Hub
+  ...
+ @endcode
+
+ Thanks to the german description at:
+ http://www.wiki.elektronik-projekt.de/mikrocontroller/avr/avrdude
+
+ @par SuSE 11.0
+
+ see section Ubuntu / Debian /Raspbian
+
+ @par SuSE 10.0
+
+ Add the following line at the end of file
+ /etc/udev/rules.d/50-udev.rules
+
+ @code
+ SUBSYSTEM=="usb", ACTION=="add", ENV{PRODUCT}=="3eb/2103/*", RUN+="/bin/sh -c '/bin/chgrp uucp $env{DEVICE} ; /bin/chmod g+w $env{DEVICE}'"
+ @endcode
+
+*/
+

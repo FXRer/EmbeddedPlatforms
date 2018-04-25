@@ -1,0 +1,34 @@
+diff -ur oftdi/ftdi_sio.c ./ftdi_sio.c
+--- oftdi/ftdi_sio.c	2009-02-22 08:07:51.000000000 +0100
++++ ./ftdi_sio.c	2009-02-22 08:17:54.000000000 +0100
+@@ -372,6 +372,8 @@
+ 	{ USB_DEVICE(FTDI_VID, LMI_LM3S_EVAL_BOARD_PID),
+ 		.driver_info = (kernel_ulong_t)&ftdi_jtag_quirk },
+ 	{ USB_DEVICE(RATOC_VENDOR_ID, RATOC_PRODUCT_ID_USB60F) },
++	{ USB_DEVICE(ATMEL_VID, STK541_PID) },
++	{ USB_DEVICE(DE_VID, STB_PID) },
+ 	{ },					/* Optional parameter entry */
+ 	{ }					/* Terminating entry */
+ };
+diff -ur oftdi/ftdi_sio.h ./ftdi_sio.h
+--- oftdi/ftdi_sio.h	2009-02-22 08:07:51.000000000 +0100
++++ ./ftdi_sio.h	2009-02-22 08:17:12.000000000 +0100
+@@ -593,6 +593,18 @@
+ #define RATOC_PRODUCT_ID_USB60F	0xb020
+ 
+ /*
++ * Atmel STK541 
++ */ 
++#define ATMEL_VID       0x03eb	/* Vendor ID */
++#define STK541_PID      0x2109	/* Zigbee Controller */
++
++/*
++ * Dresden Elektronic Sensor Terminal Board
++ */ 
++#define DE_VID			0x1cf1	/* Vendor ID */
++#define STB_PID         0x0001	/* Sensor Terminal Board */
++
++/*
+  *   BmRequestType:  1100 0000b
+  *   bRequest:       FTDI_E2_READ
+  *   wValue:         0

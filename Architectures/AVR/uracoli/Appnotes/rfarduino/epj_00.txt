@@ -1,0 +1,330 @@
+:author: Daniel Thiele, Axel Wachtler
+:lang: de
+
+= Funkübertragung mit IEEE 802.15.4 Transceivern - nicht nur für Profis =
+
+== Kurzfassung ==
+
+Im Artikel wird ein Überblick über die IEEE-802.15.4 Funktechnik gegeben und
+die derzeit verfügbaren Atmel-Transceiver werden vorgestellt. In einem
+Beispielprojekt wird mit Hilfe von zwei Radio-Boards und der µracoli-Library
+gezeigt, wie ein einfacher Temperatur-Webserver in Python programmiert wird.
+
+== Einleitung ==
+
+Der Funkstandard IEEE-802.15.4 <<ieee154>> wurde speziell für batteriebetriebene
+Sensoranwendungen mit niedrigen Datenraten im Bereich von 20 bis 250 kbit/s
+spezifiziert, wodurch mit diesen Funkknoten eine Batterielebensdauer von
+mehreren Jahren erreicht werden kann <<clt2011>>. Im Standard sind die
+physikalische Datenübertragung (PHY-Layer) und der Zugriff auf den Funkkanal
+(MAC-Layer) beschrieben. Das Zigbee-Protokoll setzt auf dem
+802.15.4-MAC-Layer auf und erlaubt es, Daten über mehrere Knoten zu routen.
+Charakteristisch für IEEE-802.15.4 basierte Anwendungen ist, dass es einen
+zentralen Koordinator-Knoten gibt, an dem sich die Sensor-Knoten anmelden.
+
+Bereits an dieser Stelle fragt man sich, ob der Einarbeitungsaufwand
+in diese Funktechnologie für den Laien nicht zu aufwändig ist und das Projekt
+für eine einfache drahtlose Sensoranwendung nicht doch besser mit RFM12-Bauteilen
+aufgebaut wird. In den folgenden Abschnitten wird beschrieben, wie mit geringem
+Aufwand, basierend auf der µracoli-Library, ein einfacher Temperaturserver mit
+IEEE-802.15.4-Modulen realisiert werden kann.
+
+== Transceiver ==
+
+Die Transceiver der Firma Atmel zeichnen sich durch geringen Stromverbrauch
+und ein großes Linkbudget und damit eine große Reichweite aus. Sie bieten eine
+einfache und flexible Programmierschnittstelle auf Registerebene und
+implementieren Teile des IEEE-802.15.4-Standards bereits in Hardware. Derzeit
+sind Transceiver für den Frequenzbereich 700/800/900 MHz und für das 2,4 GHz
+Band verfügbar. Eine Sonderstellung nimmt der IC ATmega128RFA1 ein, bei dem
+Mikrocontroller und Transceiver in einem Bauteil integriert sind. In
+<<tab_transceiver>> sind die derzeit verfügbaren Transceiver aufgezählt.
+
+[[tab_transceiver]]
+.Übersicht Atmel Transceiver
+[options="header"]
+|===============================================================================
+| IC            | Frequenzband   | Interface | Sleep-Strom | RX-Strom | TX-Strom
+| AT86RF212     | 700/800/900 MHz |  SPI      | 200 nA      |  9,0 mA  | 17,0 mA
+| AT86RF230     |  2,4 GHz        |  SPI      |  20 nA      | 15,5 mA  | 16,5 mA
+| AT86RF231     |  2,4 GHz        |  SPI      |  20 nA      | 12,3 mA  | 14,0 mA
+| AT86RF232     |  2,4 GHz        |  SPI      | 400 nA      | 11,8 mA  | 13,8 mA
+| AT86RF233     |  2,4 GHz        |  SPI      | 200 nA      | 11,8 mA  | 13,8 mA
+| ATmega128RFA1 |  2,4 GHz        |  MCU+TRX  | 250 nA      | 16,6 mA  | 18,6 mA
+|===============================================================================
+
+Die Transceiver-Bausteine sind SMD-Bauteile mit geringen Pinabständen, so
+dass das Selbstlöten in aller Regel ausscheidet. Zusätzlich wird einige
+Erfahrung beim UHF-Design der Leiterplatten vorausgesetzt. Für ein Hobbyprojekt
+greift man deshalb besser auf fertige Module zurück. Dass die Eigenentwicklung
+einer Leiterplatte für diese Transceiver in der Hobbywerkstatt dennoch möglich
+ist, wird in <<clt2012>> und <<tiny230>> gezeigt.
+
+== Module ==
+
+Für die Integration von IEEE-802.15.4-Funk in eine eigene Schaltung bieten sich
+komplett bestückte und zertifizierte Module an. Auf diesen Modulen befinden sich
+der Transceiver und ein Mikrocontroller.  Ein sehr populärer Vertreter ist das
+Zigbit-Modul von Atmel (ehemals Meshnetics). Eine ausführliche Analyse dieses
+Moduls findet man in <<zigbit>>. In <<tab_module>> sind Module weiterer
+Hersteller aufgeführt.
+
+[[tab_module]]
+.802.15.4 Module
+[options="header"]
+|===============================================================================
+| Modul                  | Hersteller            | Transceiver  | MCU
+| ANY2400SC-3            | AN-Solutions       2+^| ATmega128RFA1
+| ZigBit ATZB-A24-UFL/U0 | Atmel                 | AT86RF230    | ATmega1281
+| ZigBit ATZB-900-B0     | Atmel                 | AT86RF212    | ATmega1281
+| deRFmega128            | dresden elektronik 2+^| ATmega128RFA1
+| WiMOD im240a           | IMST GmbH             | AT86RF231    | ATmega328
+| IC-RadioModul          | In-Circuit GmbH       | AT86RF230    | ATmega1281
+|===============================================================================
+
+== Radiofaro Board ==
+
+Das Radiofaro-Board <<radiofaro>> entstand aus der Idee heraus, das
+Arduino-Diecimila-Design <<arduino>> mit einen modernen Prozessor mit
+Funkschnittstelle auszustatten. Um die Notwendigkeit einer kostenintensiven
+Funkzulassung zu umgehen, fiel die Wahl auf das damals verfügbare Modul
+derfmega128 <<derfmega>> der Firma _dresden elektronik ingenieurtechnik gmbh_.
+Das Modul ist FCC und ETSI zertifiziert und kann daher ohne Bedenken in eigene
+Schaltungen integriert werden.
+
+Warum wurde das derfmega128 und nicht das Zigbit-Modul verwendet?
+Gegenüber einem ATmega1281 mit 8KByte SRAM verfügt der ATmega128RFA1 über die
+doppelte Menge SRAM. Weiterhin erfolgt der Zugriff auf den Transceiver beim
+ATmega128RFA1 direkt über interne Register anstatt über einen SPI-Link wie
+beim ZigBit Modul. Außerdem wurde ein Transceiver der zweiten Generation
+integriert, der zusätzliche Möglichkeiten bietet, u.a. ist ein asynchroner
+MAC-Symbol-Counter verfügbar, mit dem sehr lange Sleep-Intervalle realisiert
+werden können. Neben dem für ATmega-Controller untypischen AES-Block kommt im
+Beispielprojekt der integrierte Temperatursensor zur Anwendung.
+
+Das Radiofaro-Board sieht auf den ersten Blick zwar aus wie ein Arduino-Board,
+ist aber leider nur mechanisch mit seinem italienischen Verwandten kompatibel.
+Das liegt u.a. daran, dass der ATmega128RFA1 nur Spannungen bis maximal
+3.8V an den Port-Pins erlaubt. Die Port-Pins wurden daher durch Vorwiderstände
+geschützt. Allerdings kann man die Funktion mancher Shields damit nicht
+sicherstellen. Eine weitere Inkompatibilität betrifft den "falsch platzierten"
+ISP Header, der bei allen offiziellen Arduino-Boards an der Vorderseite,
+gegenüber der USB-Buchse zu finden ist und den manche Shields verwenden.
+Dieser digitale Anschluss würde sich aber im Antennenbereich des PCB befinden
+und hätte somit Einfluss auf die HF-Eigenschaften.
+
+Es gibt aber auch eine ganze Reihe von Vorteilen:
+
+ - einen JTAG-Connector, mit dem man komplexere Software debuggen kann
+ - ein Batterie-Halter für 2 AA-Batterien, damit das Board auch längere Zeit
+   autark arbeiten kann
+ - die Möglichkeit der Auswahl zwischen drei Versorgungsspannung durch einen
+   Jumper (DC-Buchse, USB und Batterie)
+ - 2 Status LEDs befinden sich auf dem Board
+ - ungenutzte IO-Pins des Mikrocontrollers sind auf einer extra
+   Stiftleiste herausgeführt
+
+== Software ==
+
+.AVR-Toolchain
+
+Das eigentliche Ziel des Radiofaro-Projektes ist es, die Firmware mit der
+Arduino-IDE zu programmieren, um Einsteigern die ersten Schritte im Bereich
+der Funktechnik zu erleichtern. Leider ist in den aktuellen IDE-Paketen eine
+Toolchain vom Jahr 2008 enthalten, in der der ATmega128RFA1 noch nicht
+unterstützt wird. In einem der nächsten Artikel wird daher das Update der
+Arduino-IDE beschrieben. Für das nachfolgend vorgestellte Beispielprojekt wird
+eine reguläre AVR-Toolchain, bestehend aus +avr-gcc+, +avr-binutils+, +avr-libc+
+und +avrdude+ (alternativ auch Atmel Studio unter Windows) und die
+µracoli-Library verwendet.
+
+Die Installation der AVR-Toolchain unter den verschiedenen Betriebssystemen
+würde allein schon einen eigenen Artikel füllen, daher sei an dieser Stelle auf
+folgende Quellen verwiesen:
+
+ - http://www.mikrocontroller.net/articles/AVR-GCC
+ - http://www.mikrocontroller.net/articles/AVR_und_Linux
+
+Eine weitere Kurzanleitung für Windows und Linux in englischer Sprache
+findet man in <<avrtools>>.
+
+.Python
+
+Für die Implementierung des Webservers wird Python2.x <<python>> und das Modul
+pyserial <<pyserial>> verwendet. Unter Windows muss zusätzlich noch das Modul
++win32com+ installiert werden.
+
+.Radio-Library
+
+Die µracoli-Library beinhaltet Funktionen zur Ansteuerung des Transceivers
+sowie verschiedene Hilfsfunktionen zur Timer-, UART-, LED- und Tasteransteuerung.
+Da es sich um eine Bibliothek handelt, kann man die zur Verfügung gestellten
+Hilfsfunktionen verwenden, muss es aber nicht tun. Es werden derzeit ca. 80
+verschiedene Boards und Module von der Library unterstützt.
+Für das Beispielprojekt wird das aktuelle Paket +uracoli-src-0.3.0.zip+ von
+http://uracoli.nongnu.org/download.html verwendet und in einem
+Arbeitsverzeichnis entpackt. Man erhält damit die folgende Verzeichnisstruktur:
+
+-----------------------
+uracoli-src-rel_0.3.0/
+|-- bin ................. vorkompilierte Images
+|-- doc ................. Dokumentation als Text und PDF
+|-- inc ................. Include Dateien
+|-- lib ................. vorkompilierte Bibliotheken
+|-- sniffer ............. Quellcode der Sniffer-Firmware
+|-- src ................. Quellcode der Library
+|   |-- libioutil
+|   |-- libradio
+|-- wibo ................ Quellcode Wireless Bootloader
+|-- wuart ............... Quellcode Wireless UART
+`-- xmpl ................ Beispiele zur Verwendung der Library
+-----------------------
+
+== Das Projekt ==
+
+Es soll ein einfacher Temperatur-Webserver realisiert werden. Als Hardware
+werden zwei oder mehr Transceiver-Boards benötigt, eine Gateway-Board und ein
+oder mehrere Sensor-Boards. Das Gateway-Board wird über eine serielle oder USB
+Schnittstelle mit dem PC verbunden. Als Sensor-Knoten kommen Radiofaro-Boards
+oder andere Boards mit ATmega128RFA1 zum Einsatz, da der integrierte
+Temperatursensor verwendet werden soll. Als Sensor-Knoten kann aber prinzipiell
+jedes von  µracoli unterstützte Board verwendet werden, wenn es mit einem
+Temperatursensor bestückt ist oder nachgerüstet wird.
+
+
+["ditaa"]
+---------------------------------------------------------------------
+  +-----------+                              ^
+  | /-------+ |                              | +-----------+
+  | |browser| +--+                           +-+ Sensor #1 |
+  | +-------+ |  | Ethernet/                   +-----------+
+  | Client    |  | WLAN        +------+  ^
+  +-----------+  |             | Gate-|  |     ^
+                 |        +----+ way- +--+     | +-----------+
+  +--------------+---+    |    | Node |        +-+ Sensor #2 |
+  | /--------------+ |    |    +------+          +-----------+
+  | | webserver.py | +----+
+  | |              | |  RS232/USB               ^
+  | +--------------+ |                          | +-----------+
+  |     Server/PC    |                          +-+ Sensor #3 |
+  +------------------+                            +-----------+
+
+                                               ^
+                                               | +-----------+
+                                               +-+ Sensor #N |
+                                                 +-----------+
+---------------------------------------------------------------------
+
+.Gateway-Knoten
+
+Auf dem Gateway-Board wird die Wireless-UART Firmware (WUART) installiert. Der
+Transceiver des Gateways ist ständig auf Empfang (Zustand RX_ON). Da das
+Gateway-Board über USB mit Strom versorgt wird, ist der permanente
+Stromverbrauch von ca. 14mA akzeptabel.
+
+Die Firmware wird wie folgt gebaut und installiert:
+------------------------------------
+cd uracoli-src-0.3.0
+make -C src radiofaro             # compilieren von lib/liburacoli_radiofaro.a
+make -C wuart radiofaro           # compilieren von bin/wuart_radiofaro.hex
+avrdude -P usb -c dragon_jtag -p m128rfa1 -U bin/wuart_radiofaro.hex
+------------------------------------
+
+Eine Liste von Boards, die als Gateway-Knoten eingesetzt werden können, erhält
+man mit dem Befehl:
+------------------------------------
+make -C wuart list
+------------------------------------
+Die Firmware für ein alternatives Gateway-Board wird entsprechend dem obigen
+Beispiel gebaut und auf dem Mikrocontroller installiert.
+
+.Sensor-Knoten
+
+Auf den Sensor-Boards läuft eine spezielle Firmware zur Temperaturerfassung und
+Messwertübertragung. Da die Sensor-Knoten autark arbeiten und von einer Batterie
+versorgt werden, muss in der Firmware Powermanagement implementiert sein um eine
+lange Laufzeit zu erreichen. In <<clt2011>> werden verschiedene Temperatur- und
+Feuchtesensoren vorgestellt und miteinander verglichen. Der Source-Code zur
+Ansteuerung dieser Sensoren befindet sich im Paket +uracoli-sensorlogger-1.0.zip+.
+
+Wenn mehrere Sensor-Knoten verwendet werden sollen, müssen diese durch Adressen
+unterschieden werden. Die Adressen können entweder im Flash-Speicher oder im
+EEPROM des Mikrocontrollers abgelegt werden. In der µracoli-Library gibt es
+Methoden um einen Konfigurationsdatensatz zu erzeugen und auszuwerten. Dieser
+Datensatz beinhaltet u.a. eine 16-Bit-Adresse und die 16-Bit-PAN-ID
+(Netzwerkadresse) des Knotens. Mit dem folgenden Befehl kann der
+Konfigurationsdatensatz erzeugt und in das EEPROM der MCU programmiert werden.
+-----------------
+python nodeaddr.py -a <addr> -p <panid> -c <channel> -O 0 > addr.hex
+avrdude -P usb -p m128rfa1 -c jtag2 -U ee:w:addr.hex:i
+-----------------
+
+Im Beispiel-Projekt sendet der Sensor-Knoten die Messwerte als Textstrings,
+die in der Payload von IEEE-802.15.4-Datenrahmen eingebettet sind. Es wurde
+die redundantere ASCII-Übertragung gegenüber der einem effizienteren binären
+Format gewählt, da damit die WUART-Firmware im Gateway-Knoten eingesetzt werden
+konnte.
+
+------------------------------------
+ ADDR=0003, T=26.7 [degC], Vcore=3,25 [V]
+ ADDR=0004, T=18.2 [degC], Vcore=2,93 [V]
+ ADDR=0003, T=26.7 [degC], Vcore=3,25 [V]
+ ADDR=0004, T=18.4 [degC], Vcore=2,92 [V]
+------------------------------------
+
+.Server
+
+Der Temperatur-Webserver ist in Python implementiert und damit unter Linux,
+Windows oder auch MacOS lauffähig. Ein Thread des Webservers liest die
+ASCII-Daten von der seriellen Schnittstelle und parst die Werte. Die Adressen
+werden auf Strings gemappt und die lokale Uhrzeit des Server-PCs wird
+hinzugefügt. Anschließend werden diese Daten als HTML-Tabelle aufbereitet und
+über einen HTTP-Socket an anfragende Web-Browser ausgeliefert.
+In <<clt2011>> wurde dieser einfache Webserver-Ansatz weiter ausgebaut, u.a.
+wurden die Daten in einer Round-Robin-Database <<rrdtool>> gespeichert und das
+Python-Script kann als Server-Dienst unter Linux vom Init-Prozeß gestartet
+werden.
+
+== Ausblick ==
+
+Das vorgestellte Beispiel-Projekt zeigt, wie mit geringem Aufwand eine einfache
+Sensor-Webanwendung realisiert werden kann. Durch den Einsatz von Funkmodulen
+reduziert sich der Aufwand bei der Hardware-Entwicklung. Das vorgestellte
+Radiofaro-Board wird in kommenden Beiträgen als IEEE-802.15.4-Sniffer verwendet
+und über die Arduino-IDE programmiert. Die Software zum Artikel findet man unter
+http://uracoli.nongnu.org/download.html in den Paketen +uracoli-src-0.3.0.zip+
+und +uracoli-epj00-1.0.zip+.
+
+
+[bibliography]
+Literatur
+---------
+
+[bibliography]
+- [[[arduino]]] Internet, 'Arduino Diecimila'
+  http://arduino.cc/en/Main/ArduinoBoardDiecimila
+- [[[avrtools]]] Internet, 'µracoli Documentation - AVR Tools',
+  http://uracoli.nongnu.org/avrtools.html
+- [[[clt2011]]] Axel Wachtler, Jörg Wunsch, Matthias Vorwerk,
+  'Drahtlose Sensordatenerfassung und -verarbeitung mit Linux',
+  http://uracoli.nongnu.org/clt2011/
+- [[[clt2012]]] Wunsch, Wachtler & Vorwerk.
+  'Tic Tac Toe Reloaded', 2012, http://uracoli.nongnu.org/clt2012/
+- [[[derfmega]]] dresden elektonik GmbH,
+  'Evaluations-Module deRFmega128'
+  http://www.dresden-elektronik.de/funktechnik/products/radio-modules/eval-derfmega/
+- [[[ieee154]]] IEEE,
+  'IEEE 802.15 Standards',
+   http://standards.ieee.org/about/get/802/802.15.html
+- [[[pyserial]]] Internet, 'pyserial Documentation',
+  http://pyserial.sourceforge.net/
+- [[[python]]] Internet, 'Python Programming Language - Official Website',
+  http://www.python.org/
+- [[[radiofaro]]] Daniel Thiele, 'Radiofaro',
+  http://uracoli.nongnu.org/radiofaro.html
+- [[[rrdtool]]] Tobias Oetiker, 'RRDtool',
+  http://oss.oetiker.ch/rrdtool/
+- [[[tiny230]]] Jörg Wunsch, 'The tiny230 Radio Board',
+  http://www.sax.de/~joerg/tiny230/
+- [[[zigbit]]]  Wiki-Autorenkollektiv,
+  'Meshnetics Zigbee', http://www.mikrocontroller.net/articles/Meshnetics_Zigbee

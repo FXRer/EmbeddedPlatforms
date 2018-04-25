@@ -1,0 +1,26 @@
+This sensor simulates 3 different noes and is derived from
+the xmpl_linbuf_tx example.
+The node just sends frames like
+
+n: 0x0004, t: 26
+n: 0x0002, t: 15
+n: 0x0005, t: 44
+
+like Axels proposal.
+
+NOTE: The Makefile ist pre-configures for the stb230 board right now.
+
+
+To receive the frames just use the xmpl_linbuf_rc and connect the USB cable to the
+to the host PC.
+Use testserver2.py to visualize the 3 different nodes.
+
+run as:
+
+ python testserver2.py -p /dev/ttyUSB0
+
+or whatever port is used.
+
+
+avrdude -P usb -p m1281 -c dragon_jtag  -U flash:w:bin/sensorapp_fake1_stb230.hex
+

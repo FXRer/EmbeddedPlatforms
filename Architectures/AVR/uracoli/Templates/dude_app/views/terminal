@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{{port}}</title>
+        <link rel="stylesheet" href="css/picnic.min.css">
+        <link rel="stylesheet" href="css/plugins.min.css">
+        <script src="js/jquery.js"></script>
+    </head>
+    <body>
+    <div style="margin: 20px 20px;">
+        <div class="tabs three" style="text-align: left;">
+            <input id='tabC-1' type='radio' name='tabgroupC' checked />
+            <label class="button toggle" for="tabC-1">term</label>
+            /
+            <input id='tabC-2' type='radio' name='tabgroupC'>
+            <label class="button toggle" for="tabC-2">flash</label>
+            /
+            <input id='tabC-3' type='radio' name='tabgroupC'>
+            <label class="button toggle" for="tabC-3">config</label>
+            /
+            <span>
+            <form method="post" action="q">
+                <input type="hidden" name="port" value="{{port}}"/>
+                <input type="submit" value="back"/>
+            </form>
+            </span>
+            <div class="row">
+                <div class='tab'>
+                    <div class="card">
+                        <header>Terminal {{port}} : {{user}}
+                        <a class="button" onclick="doPoll();">GET-CONTENTS</a>
+                        <a class="button" onclick="doClear();">CLEAR-CONTENTS</a>
+                        <input type="text" id="terminal_input" />
+
+                        <form method="post" action="terminal" style="display: inline;">
+                            <input type="hidden" name="port" value="{{port}}"/>
+                            <input type="hidden" name="user" value="{{user}}"/>
+                            <input type="hidden" name="command" value="reset"/>
+                            <input type="submit" value="reset"/>
+                        </form>
+                        </header>
+                        <div class="card">
+                            <pre id="messages" style="overflow-y: scroll; height:400px;">
+                            </pre>
+                        </div>
+                        <footer><em>{{time}}</em></footer>
+                    </div>
+                </div>
+                <div class='tab'>
+                    <div class="card">
+                        <header>Firmware</header>
+                            <table  class="primary">
+                                %for f in files:
+                                    <tr>
+                                    <td>{{f['filename']}}</td>
+                                    <td>{{f['user']}} / {{f['date']}} / {{f['comment']}}</td>
+                                    <td>
+                                        <span>
+                                        <form method="post" action="flash">
+                                            <input type="hidden" name="port" value="{{port}}"/>
+                                            <input type="hidden" name="user" value="{{user}}"/>
+                                            <input type="hidden" name="file" value="{{f['fn']}}"/>
+                                            <input type="submit" value="flash" data-tooltip="Flash: value="{{f['fn']}}"  class="tooltip-right"/>
+                                        </form>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        %if user == f['user']:
+                                            <button>delete</button>
+                                        %end
+                                    </td>
+                                    </tr>
+                                %end
+                                <tr>
+                                    <form method="post" enctype="multipart/form-data" action="upload">
+                                    <input type="hidden" name="port" value="{{port}}"/>
+                                    <td colspan="3">
+                                        <input type="file" name="firmware" size="50" accept="text/*"  />
+                                    </td>
+                                    <td>
+                                        <input type="submit" name="upload" value="upload" />
+                                    </td>
+                                    </form>
+                                </tr>
+                            </table>
+                        <footer><em>{{time}}</em></footer>
+                    </div>
+                </div>
+                <div class='tab'>
+                    <div class="card">
+                        <header>Config</header>
+                        <div class="card" >
+                        cfg: <br><pre>{{cfg}}</pre>
+                        </div>
+                        <footer><em>{{time}}</em></footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+    $("#terminal_input").keypress(function(e)
+    {
+        var chr = String.fromCharCode(e.keyCode || e.which)
+        //$("#messages").append("<em style='color:red'>"+chr+"</em>");
+
+        ws.send(chr)
+
+        if(e.which == 13)
+        {
+            //$("#messages").append("<br/>");
+        }
+
+        $("#messages").scrollTop($("#messages")[0].scrollHeight);
+    });
+    function doPoll(){
+        $.get('tdata', function(data) {
+            $("#messages").append(data);
+            $("#messages").scrollTop($("#messages")[0].scrollHeight);
+            //setTimeout(doPoll,5000);
+        });
+    }
+
+    function doClear(){
+        $("#messages").empty();
+    }
+
+    /* check for websocket type */
+    if (!window.WebSocket) {
+        if (window.MozWebSocket) {
+            window.WebSocket = window.MozWebSocket;
+        } else {
+            $('#messages').append("<li>Your browser doesn't support WebSockets.</li>\n");
+        }
+    }
+
+    var loc = window.location, new_uri;
+    if (loc.protocol === "https:") {
+        new_uri = "wss:";
+    } else {
+        new_uri = "ws:";
+    }
+    new_uri += "//" + loc.host;
+    new_uri += loc.pathname + "/ws?port={{port}};user={{user}}";
+    var ws = new WebSocket(new_uri);
+    ws.onopen = function() {
+        $('#messages').append('<em>WebSocket connection opened ' + new_uri + '</em>\n');
+        ws.send(JSON.stringify({port: "{{port}}", user: "{{user}}"}))
+    };
+
+    ws.onmessage = function (evt) {
+        var obj = jQuery.parseJSON( evt.data );
+        $('#messages').append(obj.msg.replace(/\r\n|\n|\r/g, "<br />"));
+        $("#messages").scrollTop($("#messages")[0].scrollHeight);
+    };
+    </script>
+    </body>
+</html>

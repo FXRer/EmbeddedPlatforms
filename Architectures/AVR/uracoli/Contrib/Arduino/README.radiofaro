@@ -1,0 +1,60 @@
+$Id$
+
+Abstract
+--------
+
+This overlay package for arduino-0021
+enables the use of 
+  - 2.4GHz ZigBit Modules 
+  - 900MHz ZigBit Modules   
+  - RFArduino
+  - littleGee231
+combined with the uracoli libradio_*.a from inside the Arduino 
+development environment.
+
+For updates check http://uracoli.nongnu.org
+
+
+Installation
+------------
+ - Unzip the package in your current sketchbook directory
+ - Open ./arduino and select Tools / Board / RadioFaro
+ - Select File / Examples / Radio / HelloRadio compile and upload it.
+
+
+Command Line Building of the example sketch
+-------------------------------------------
+make -C examples/Radio/HelloRadio
+make -C examples/Radio/IoCheck
+
+
+Pin Assignments
+---------------
+  see file pins_*.c
+
+License
+-------
+The uracoli files are under Modified BSD License
+(http://uracoli.nongnu.org/license.html), which is compatible
+with LGPL V2.1 and GPL V2, used by Arduino.
+
+Package Specific Contents
+----------------
+
+|-- examples
+|   `-- Radio
+|       `-- HelloRadio
+|           |-- HelloRadio.pde ....... example sketch file
+|           `-- Makefile
+`-- hardware
+    |-- boards.txt
+    `-- cores
+        `-- zigbit
+            |-- HardwareRadio.h ..... wrapper for libradio
+            |-- Makefile
+            |-- const.h .............. uracoli header
+            |-- libradio_wdba1281.a .. uracoli lib
+            |-- pins_zigbit.c
+            |-- pins_zigbit.h
+            `-- radio.h .............. uracoli header
+

@@ -1,0 +1,6 @@
+include MANIFEST.in
+include setup.py SConstruct Makefile
+include README LICENSE
+include pydude.i pydude.cpp pydude.h
+#recursive-include src *.i *.cpp *.h
+#recursive-include docs *.html *.css *.gif *.jpg *.txt

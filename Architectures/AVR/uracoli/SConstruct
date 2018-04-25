@@ -1,0 +1,228 @@
+#   Copyright (c) 2015 Axel Wachtler
+#   All rights reserved.
+#
+#   Redistribution and use in source and binary forms, with or without
+#   modification, are permitted provided that the following conditions
+#   are met:
+#
+#   * Redistributions of source code must retain the above copyright
+#     notice, this list of conditions and the following disclaimer.
+#   * Redistributions in binary form must reproduce the above copyright
+#     notice, this list of conditions and the following disclaimer in the
+#     documentation and/or other materials provided with the distribution.
+#   * Neither the name of the authors nor the names of its contributors
+#     may be used to endorse or promote products derived from this software
+#     without specific prior written permission.
+#
+#   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS'
+#   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+#   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+#   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+#   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+#   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+#   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+#   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+#   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+#   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+#   POSSIBILITY OF SUCH DAMAGE.
+
+# $Id$
+"""
+Scons build system for uracoli
+
+Usage:
+   scons [options] [targets]
+
+Options:
+    --ccdef macro=value, -ccdef macro1
+        Adds a CPP macro to the compile options, e.g. -Dmacro=value or -Dmacro1=
+        This macros does appear in each compiler call.
+    boards=<FILE>
+        Name of the board config file, default: Config/board.cfg
+    xmpls=<FILE>
+        Name of the example application config file, default: Config/examples.cfg
+    apps=<FILE>
+        Name of the application config file, default: Config/applications.cfg
+    pkgs=<FILE>
+        Name of the package config file, default: Config/packages.cfg
+    tcs=<FILE>
+        Name of the toolchain config file, default: Config/toolchains.cfg
+    bdir=<DIRECTORY>
+        Destination directory for intermediate build results, default: ./build
+    idir=<DIRECTORY>
+        Destination directory for install results, default: ./install
+    verbose=<value>
+        Control verbositiy of build commands, default: 0
+    url=<ARDUINO_PACKAGEURL>
+        Set the download Url for Arduino Package. default: http://download.savannah.gnu.org/releases-noredirect/uracoli/
+        e.g. url="http://localhost:8000" for "python -m SimpleHTTPServer"
+
+Targets:
+    -h
+        Show help and exit.
+    <board>
+        Name of the board to be build. Note: without a <board> all boards defined
+        the "boards" config file are build.
+        Usage: scons -f SConstruct2 radiofaro rdk230 ...
+    clean
+        Removes the build directory (see bdir option) entirely.
+        Usage: scons -f SConstruct2 -c clean
+    distclean
+        Removes the build and the install directory (see idir option) entirely.
+        Usage: scons -f SConstruct2 -c distclean
+
+Documentation targets:
+    usrguide
+        user guide in the uracoli-src package
+    snfdoc
+        sniffer manual in the uracoli-sniffer package
+    doc
+        library reference in the uracoli-doc package
+
+
+The follwing <board>s are defined in %s:
+
+   %s
+
+"""
+
+import sys, os, time
+sys.path.append('Tools')
+
+import scons_helpers as sc_helpers
+
+import pprint
+pp = pprint.pprint
+
+# === create environment =======================================================
+com = Environment()
+
+AddOption('--ccdef',
+          dest='cpp_defines',
+          nargs=1, type='string',
+          action='append')
+LAST_VERSION="0.6.0"
+com['VERSION'] = ARGUMENTS.get('version', LAST_VERSION+"-"+time.strftime("%Y%m%d"))
+com['ENV']['PATH'] = os.environ['PATH']
+# get config files
+com['BOARD_CFG_FILE'] = ARGUMENTS.get('boards', 'Config/board.cfg')
+com['XMPL_CFG_FILE'] = ARGUMENTS.get('xmpls', 'Config/examples.cfg')
+com['APP_CFG_FILE'] = ARGUMENTS.get('apps', 'Config/applications.cfg')
+com['PKG_CFG_FILE'] = ARGUMENTS.get('pkgs', 'Config/packages.cfg')
+com['TC_CFG_FILE'] = ARGUMENTS.get('tcs', 'Config/toolchains.cfg')
+com['DOC_CFG_FILE'] = ARGUMENTS.get('docs', 'Config/docs.cfg')
+com['PKG_URL'] = ARGUMENTS.get('url', 'http://www.radiofaro.de')
+
+# define directories for build
+com['INSTALL_DIR'] = com.Dir(ARGUMENTS.get('idir', '#install'))
+com['BUILD_DIR'] = com.Dir(ARGUMENTS.get('bdir', '#build'))
+com['INC_DIR'] = com.Dir('${INSTALL_DIR}/inc')
+com['LIB_DIR'] = com.Dir('${INSTALL_DIR}/lib')
+com['BIN_DIR'] = com.Dir('${INSTALL_DIR}/bin')
+com['SRC_DIR'] = com.Dir('${INSTALL_DIR}/src')
+com['DOC_DIR'] = com.Dir('${INSTALL_DIR}/doc')
+com['SCRIPT_DIR'] = com.Dir('${INSTALL_DIR}/scripts')
+
+# === load config files =====================================================
+com['BOARDS'] = sc_helpers.GetBoardCfg(com['BOARD_CFG_FILE'])
+com['EXAMPLES'] = sc_helpers.GetApplicationCfg(com['XMPL_CFG_FILE'])
+com['TOOLCHAINS'] = sc_helpers.GetToolChainsCfg(com['TC_CFG_FILE'])
+com['APPLICATIONS'] = sc_helpers.GetApplicationCfg(com['APP_CFG_FILE'])
+com['PACKAGES'] = sc_helpers.GetPackagesCfg(com['PKG_CFG_FILE'])
+com['DOCS'] = sc_helpers.GetDocsCfg(com['DOC_CFG_FILE'])
+
+# === scons help message =======================================================
+com.Help(__doc__ % (com['BOARD_CFG_FILE'], sc_helpers.ListBoards(com['BOARDS'])))
+
+# === add custom builders ======================================================
+sc_helpers.add_builders(com)
+
+# === compile messages =========================================================
+if not ARGUMENTS.get('verbose', 0):
+    com["CCCOMSTR"] = "Compiling ${name}:${TARGET.file}"
+    com["LINKCOMSTR"] = "Linking ${name}:${TARGET.file}"
+    com["ARCOMSTR"] = "Archiving ${name}:${TARGET.file}"
+    com["RANLIBCOMSTR"] = "Indexing ${name}:${TARGET.file}"
+
+# === board selection ==========================================================
+
+# This is for scons speed optimization in build process
+all_boards = com['BOARDS'].keys()
+
+# Here we use dict comprehension to remove duplicate board targets,
+# which did occur in hbm251.py
+selected_boards = {t: 1 for t in COMMAND_LINE_TARGETS if t in all_boards}.keys()
+if len(COMMAND_LINE_TARGETS) == 0:
+    selected_boards = sorted(all_boards)
+if GetOption('help'):
+    selected_boards = []
+
+pkgs = com['PACKAGES'].keys()
+for pkg in [t for t in COMMAND_LINE_TARGETS if t in pkgs]:
+    for b in com['PACKAGES'][pkg].get("boards", []):
+        if b not in selected_boards:
+            selected_boards.append(b)
+
+print 'build %d of %d boards' % (len(selected_boards), len(all_boards))
+
+com['SELECTED_BOARDS'] = selected_boards
+
+# create an environment for each selected board
+for bn in com['BOARDS'].keys():
+    board = com['BOARDS'][bn]
+    board['toolchain'] = sc_helpers.FindToolChain(board, com['TOOLCHAINS'])
+    board['apps'] = []
+    for k,v in com['APPLICATIONS'].items():
+        if bn not in v.get("excludes", []) and \
+           v['requires'].issubset(board['provides']):
+            board["apps"].append(k)
+    board['apps'].sort()
+    board['xmpls'] = []
+    for k,v in com['EXAMPLES'].items():
+        if bn not in v.get("excludes", []) and \
+           v['requires'].issubset(board['provides']):
+            board["xmpls"].append(k)
+    board["xmpls"].sort()
+
+for bn in com['SELECTED_BOARDS']:
+    board = com['BOARDS'][bn]
+    board['env'] = com.Clone(tools = ['mingw'],
+                             PROGSUFFIX='.elf',
+                             ENV = os.environ,
+                             name = bn)
+    tcn = board['toolchain']
+    sc_helpers.SetToolChain(board, board['env'], com['TOOLCHAINS'][tcn])
+    if GetOption("cpp_defines"):
+        board['env'].Append(CPPDEFINES=GetOption("cpp_defines"))
+    # create the list of supported example applications
+    board["env"]["xmpls"] = []
+    for k,v in com['EXAMPLES'].items():
+        if bn not in v.get("excludes", []) and \
+           v['requires'].issubset(board['provides']):
+            board["env"]["xmpls"].append(k)
+
+    # todo: create the list of applications for each board here
+    board["env"]["apps"] = []
+    for k,v in com['APPLICATIONS'].items():
+        if bn not in v.get("excludes", []) and \
+           v['requires'].issubset(board['provides']):
+            board["env"]["apps"].append(k)
+
+
+# === build board libs and apps ================================================
+for bn in com['SELECTED_BOARDS']:
+    be = com['BOARDS'][bn]
+    board = be['env']
+    com.SConscript("SConscript_board",
+                   exports = "board",
+                   variant_dir = "$BUILD_DIR/%s" % bn,
+                   duplicate = 0)
+    # add the board target to the list of default targets
+    com.Default(bn)
+
+# === general build tasks ======================================================
+com.SConscript("SConscript_general", exports = "com")
+
+#=== clean ============================================================
+com.Clean("distclean",["$BUILD_DIR", "$INSTALL_DIR"])
+com.Clean("clean",["$BUILD_DIR"])

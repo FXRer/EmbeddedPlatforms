@@ -1,0 +1,194 @@
+/* Copyright (c) 2007 Axel Wachtler
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   * Neither the name of the authors nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   POSSIBILITY OF SUCH DAMAGE. */
+
+/* $Id$ */
+
+/**
+ @defgroup grpTransceivers Transceiver Definitions
+
+*/
+
+/**
+@addtogroup grpTransceivers
+@{
+
+  @page pgTransceivers Overview
+  The following transceivers are supported by @uracoli:
+
+   - @ref  at86rf230a.h @n
+        - AT86RF230 Rev.A 2.4GHz IEEE 802.15.4-Transceiver.
+        - http://www.atmel.com/images/doc5131.pdf
+   - @ref  at86rf230b.h @n
+        - AT86RF230 Rev.B 2.4GHz IEEE 802.15.4-Transceiver.
+        - http://www.atmel.com/images/doc5131.pdf
+   - @ref  at86rf231.h @n
+        - AT86RF231 2.4GHz IEEE 802.15.4-2006-Transceiver.
+        - http://www.atmel.com/images/doc8111.pdf
+   - @ref  at86rf232.h @n
+        - AT86RF232 2.4GHz IEEE 802.15.4-2006-Transceiver.
+        - http://www.atmel.com/images/doc8321.pdf
+   - @ref  at86rf233.h @n
+        - AT86RF233 2.4GHz IEEE 802.15.4-2006-Transceiver.
+        - http://www.atmel.com/images/atmel-8351-mcu_wireless-at86rf233_datasheet.pdf
+   - @ref  at86rf212.h @n
+        - AT86RF212 - 700/868/900MHz IEEE 802.15.4-2006-Transceiver.
+        - http://www.atmel.com/images/doc8168.pdf
+   - @ref  atmega_rfa1.h @n
+        - ATmega128RFA1 2.4GHz IEEE 802.15.4-2006-Transceiver.
+        - http://www.atmel.com/Images/Atmel-8266-MCU_Wireless-ATmega128RFA1_Datasheet.pdf
+   - @ref  atmega_rfr2.h @n
+        - ATmega256RFR2 2.4GHz IEEE 802.15.4-2006-Transceiver.
+        - http://www.atmel.com/images/atmel-8393-mcu_wireless-atmega256rfr2-atmega128rfr2-atmega64rfr2_datasheet.pdf
+
+@}
+*/
+
+/**
+ @defgroup grpTrx Transceiver API
+ @brief <div style="background-color:#ccccff;">
+        The low level interface to the radio transceiver.</div>
+ */
+
+/**
+ @addtogroup grpTrx
+ @{
+ */
+
+/**
+ @page pgTrx Overview
+ @image html uracoli_modules_trx.png "Tranceiver API in liburacoli_<board>.a" width=40%
+ @image latex uracoli_modules_trx.png "Tranceiver API in liburacoli_<board>.a"
+ @par Usage
+
+  This group of functions provides the register level access to the radio
+  transceivers. The @c trx interface is given in @ref transceiver.h
+
+  The use of the Transceiver API is illustrated by the following examples.
+
+  @code
+    #include "board.h"
+    #include "transceiver.h"
+
+    mcu_init();
+    trx_io_init(SPI_RATE_1_2);
+
+    TRX_RESET_LOW();
+    TRX_SLPTR_LOW();
+    DELAY_US(TRX_RESET_TIME_US);
+    TRX_RESET_HIGH();
+    trx_reg_write(RG_TRX_STATE,CMD_TRX_OFF);
+  @endcode
+
+  @par Examples
+
+    - @ref xmpl_trx_base.c
+    - @ref xmpl_trx_txrx.c
+    - @ref xmpl_trx_txrx_auto.c
+
+ @example xmpl_trx_base.c
+
+ This example illustrates the use of the basic radio transceiver
+ access functions. It can also be used to test a new board definition.
+
+ @example xmpl_trx_txrx.c
+
+ This example shows, how frames are transmitted and received and how
+ their CRCR16 is checked in software.
+
+ @example xmpl_trx_txrx_auto.c
+
+ The example shows, how a frame is transmitted in TX_ARET mode and received in RX_AACK mode.
+ Within this mode, CCA is done automatically. Additionally the
+ example illustrates, how the fram data can be directly manipulated
+ in the SRAM (see IRQ service routine). The receiver in RX_AACK does 
+ address filtering and FCS checking. 
+
+ @}
+ */
+
+/**
+ @defgroup grpRadio Radio API
+ @brief <div style="background-color:#e6e6ff;">
+         The high level interface to the radio chip.</div>
+
+ */
+
+/**
+ @addtogroup grpRadio
+ @{
+ */
+
+/**
+ @page pgRadio Overview
+ @image html uracoli_modules_radio.png "Radio API in liburacoli_<board>.a" width=40%
+ @image latex uracoli_modules_radio.png "Radio API in liburacoli_<board>.a"
+
+ @par Usage
+
+ @code
+    #include "board.h"
+    #include "radio.h"
+    void main()
+    {
+        radio_init(rxbuf, MAX_FRAME_SIZE);
+        ...
+    }
+ @endcode
+
+ @par Examples
+
+  - @ref xmpl_linbuf_rx.c
+  - @ref xmpl_linbuf_tx.c
+  - @ref xmpl_radio_range.c
+  - @ref xmpl_radio_stream.c
+
+  @example xmpl_linbuf_rx.c
+
+  @example xmpl_linbuf_tx.c
+
+  @example xmpl_radio_range.c
+
+  This application sends periodically a test frame and
+  is the rest of the time in receive mode. All parameters
+  of the received frames (ED, LQI, sequence number) are printed
+  to the host interface.
+
+  The LEDs have the following meaning:
+   - LED0 flashes and signalizes the transmission of a frame.
+   - LED1 toggles with each received frame.
+
+  @example xmpl_radio_stream.c
+
+  This example shows, how the avr-libc
+  <a target="_" href="http://www.nongnu.org/avr-libc/user-manual/group__stdiodemo.html">stdio
+  facilities</a> can be used to do a printf to the radio transceiver.
+  The data printed to the transceiver can be watched on a terminal either with
+  the wuart application or with @ref pgXmplLbufferRx "xmpl_linbuf_rx.c".
+
+ @}
+*/

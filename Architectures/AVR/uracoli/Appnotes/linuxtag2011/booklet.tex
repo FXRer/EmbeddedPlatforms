@@ -1,0 +1,24 @@
+% Produktion von Booklets
+% Aufruf:
+% pdflatex -shell-escape "\def\pdffile{PDF-File} \input booklet.tex"
+%\typein[\pdffile]{Name der PDF-Datei:}
+\def\pdffile{drahtlosesensoren.pdf}
+\documentclass[a4paper]{article}
+\usepackage{calc}
+\usepackage{pdfpages}
+\begin{document}
+% Get page count
+\pdfximage{\pdffile}
+%\typeout{\the\pdflastximagepages}
+\makeatletter
+\count@=\pdflastximagepages
+% Compute signature
+\advance \count@ by 3
+\divide \count@ by 4
+\multiply \count@ by 4
+\def\sig{\the\count@}
+\typeout{\sig}
+\makeatother
+% Output
+\includepdf[pages=-,landscape=true,signature={\sig}]{\pdffile}
+\end{document}

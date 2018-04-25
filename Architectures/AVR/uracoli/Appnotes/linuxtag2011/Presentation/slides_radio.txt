@@ -1,0 +1,210 @@
+// ca. 4 - 5 slides
+Funkstandards
+-------------
+Derzeit verbreitetete Funkstandards sind:
+
+[horizontal]
+*IEEE 802.11.x* (WiFi);;
+[role="incremental"]
+  - 54 ... 300 Mbit/s
+  - Netzwerkinterface, FileTransfer, Audio, Video
+*IEEE 802.15.1* (Bluetooth);;
+[role="incremental"]
+  - 732,2 kbit/s ... 2,1 MBit/s
+  - Nahbereichskommunikation, Sprachübertragung.
+*IEEE 802.15.4* (ZigBee);;
+[role="incremental"]
+  - 20 bis 250 kbit/s
+  - hauptsächlich für Sensoranwendungen geeignet:
+    * geringe Datenrate 
+    * energiesparend
+    * niedrige Systemkosten
+
+Drahtloses Datenlogger System
+-----------------------------
+
+image::blocks.png[alt="Blockschaltbild",align="center",width="65%"]
+
+[horizontal]
+*Sensorknoten*;;
+  - autark, (Batterie, Energy-Harvesting)
+  - sendet kontinuierlich die Werte der Sensoren zum Gateway
+*Gateway*;;
+  - Ausgabe der Sensordaten über serielles Interface
+  - permanente Stromversorgung (Netztteil, USB)
+*Webserver*;;
+  - liest und speichert die Daten vom Gatewayknoten
+  - Auswertung der Daten mit speziellen Anwendungen.
+
+Boards - Übersicht
+-------------------
+
+- Es gibt eine Vielzahl an Funkmodulen von unterschiedliche Boardherstellern.
+
+- Die µracoli-Library unterstützt derzeit über 30 Boards und Module
+
+ * A.N. Solutions
+ * Atmel
+ * Colorado Micro Devices
+ * Dietzsch und Thiele Partnerschaftsgesellschaft
+ * dresden elektronik ingenieurtechnik gmbh
+ * In-Circuit GmbH
+ * Logos Electromechanical LLC 
+ * Meshnetics
+
+Boards - Vorstellung
+-------------------
+
++++
+ <img class="cover" src="hboards.png" 
+      style="position: absolute; right: 5%; top: 5%; width=40%"/>
++++
+
+- *tiny230* - DIY Projekt von *Jörg Wunsch*
+  * ATtiny44/84 mit AT86RF230/231,
+  * Sensoren: KTY13, LED als Lichtsensor
+- *RadioFaro* - DIY Projekt von *Daniel Thiele*
+  * ATmega128RFA1 Module von Dresden Elektronik 
+  * Arduino Formfaktor
+- *Muse231* - Prototyp *Ingenieurbüro Dietzsch und Thiele*
+  * ATmega88pa + AT86RF231,
+  * Sensoren SHT21, MMA7455, Mikrofon, Lichtsensor-LED
+- *ZigBit Adapter Boards*
+  * ATmega1281 + AT86RF230
+  * Sensoren über Breakoutboard angeschlossen
+
+Zutaten für die Firmware-Entwicklung
+-------------------------------------
+
+.Hardware
+
+  - 1 x Gateway Knoten mit USB/RS232,  1...N x Sensorknoten
+  - 1 x Programmer, optional Hardware-Debugger
+    * AVR Dragon => ISP Programmer + JTAG Debugger
+    * AVR ISP, USBprog, PonyProg => ISP Programmer
+    * AVR JTAG ICE mkII => JTAG Debugger
+
+.Software
+
+ - avr-gcc + binutils => Compiler und Linker
+ - avr-libc => Standard C Library für AVR
+ - avrdude => Programmier Tool
+ - avarice + avr-gdb => Debugger und JTAG Bridge
+ - µracoli => AVR Radio Library
+ 
+µracoli - Die AVR-Radio-Library
+--------------------------------
+
+Library zur einfachen Inbetriebnahme von IEEE-802.15.4-Transceiver-Knoten.
+
+image::uracoli-logo.png[alt="logo",align="center", width="35%"]
+
+[role="incremental"]
+ - URL: http://www.uracoli.de
+ - derzeit über 40 Plattformen (AVR + Atmel-Transceiver) unterstützt
+ - High und Low Level Transceiver-Funktionen 
+ - Timer, Sensor und IO-Funktionen sind optional 
+ - viele Beispiele, Anwendungen: Wireless UART, Sniffer, Arduino Support
+ - modified BSD Lizenz
+
+//////////////////////////
+
+Sensornetzwerke
+---------------
+
+.Topologien
+ - Punkt-zu-Punkt
+   (wireless serial interface, wireless UART)
+ - Sternnetz (1 Koordinator, viele)
+ - Mesh-Netzwerke
+
+.Protokolle
+[horizontal]
+*IEEE-802.15.4 MAC*::
+    Sternnetz, in synchroner (beacon enabled),
+    asynchroner (non-beacon) Betriebsweise.
+*ZigBee*::
+    Anwendungsprofile Homeautomation, SmartEnergy,
+    Meshnetz
+*RF4CE*:: 
+    Remote Control for Consumer Electronics, kÃ¼nftiger 
+    Ersatz der Infrarotschnittstelle,
+    Sternnetz
+*6LoWPAN*::
+    IPV6 for WPANs, Meshnetz
+
+
+Aufbau eines Funkknotens
+------------------------
+
+.Ein Funkknoten besteht aus:
+ 
+ - Mikrocontroller + Funk-Transceiver
+ - Sensoren,
+   z.B. __Temperatur, Luftfeuchte, Beschleunigung, 
+    Bewegung, Helligkeit__
+ - Spannungsversorgung,
+   z.B. __Netzteil, USB, Batterie, Solarzelle__
+ - optional PC-Interface,
+   __RS232, USB__
+ 
+.Funk-Module
+Kleine Leiterplatten die aus Mikrokontroller und Transceiver
+bestehen und wie ein Schaltkreisin eigene Schaltungen
+integriert werden, z.B. __ZigBit, ANY2400, ANY900__.
+
+.Printed Circuit Boards
+Leiterplatten mit Spannungsversorgung,
+Sensoren, PC-Interface z.B. __RCB230, RadioFaro, tiny230__
+
+
+
+Mikrocontroller + Transceiver
+-----------------------------
+
+.AVR Microcontroller
+ - 8 bit RISC controller,
+ - 8 - 128 kByte Flash 
+ - 512 Byte - 16 KByte RAM
+ - in C Programmierbar (AVR-GCC, )
+
+.RF Transceiver
+ - 868 / 900 Mhz und 2.4 GHz
+ - RahmenlÃ¤nge 127 Byte
+ - 
+
+  - Was koennen sie? (1 Slide)
+  - Wie werden sie angesteuert + genutzt, Aussenbeschaltung (1 Slide)
+
+  - Raumfrage: Wer hat schon? (Andere Vortraege, selbst)
+  - Kurzvorstellung, Flash, RAM, Verweis auf
+    andere Vortraege (1..2 Slides)
+  - Programmierumgebung (AVR Studio, avr-gcc, avr-libc,
+    avr-binutils) (1 Slide)
+  - Programmieradapter, Programmiertools (1 Slide + Bilder)
+  - Beispiel: Installation unter Ubuntu, Verweis auf MC.net,
+    AVR Freaks (1 Slide)
+
+
+Âµracoli
+-------
+  - Wozu:
+    - einfaches System, niedrige Einstiegsschwelle.
+  - Verbindung MC + Transceiver (RCB/andere),
+    Gateway zum PC  (1 Slide + Bilder)
+  - Was ist und macht uracoli? (1 Slide)
+  - Wie setze ich es ein? (simple Codebeispiele) (2 Slides)
+  - verfuegbare Beispiele (LED, Sender, wuart, Sniffer?) (1 Slide)
+
+Aufbau einer Funkverbindung
+---------------------------
+
+. 2 x Wireless UART
+  - Demo mit 2 Terminal Fenstern
+  
+. 1 WUART wird durch Testsender ersetzt
+  - "A wonderful bird"
+
+. Firmware zum Senden von Temperaturen
+  - Verteilen der Knoten im Raum
+//////////////////////////

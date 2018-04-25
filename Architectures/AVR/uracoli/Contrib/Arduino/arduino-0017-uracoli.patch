@@ -1,0 +1,40 @@
+Index: app/src/processing/app/debug/Compiler.java
+===================================================================
+--- app/src/processing/app/debug/Compiler.java	(Revision 827)
++++ app/src/processing/app/debug/Compiler.java	(Arbeitskopie)
+@@ -148,6 +148,11 @@
+ 
+     baseCommandLinker.add(runtimeLibraryName);
+     baseCommandLinker.add("-L" + buildPath);
++    baseCommandLinker.add("-L" + target.getPath());
++    String avrLdFlags = Preferences.get("boards." + Preferences.get("board") + ".build.ldflags");
++    if (avrLdFlags != null) {    
++        baseCommandLinker.add(avrLdFlags);
++    }
+     baseCommandLinker.add("-lm");
+ 
+     execAsynchronously(baseCommandLinker);
+@@ -441,6 +446,11 @@
+       "-DF_CPU=" + Preferences.get("boards." + Preferences.get("board") + ".build.f_cpu"),
+     }));
+ 
++    String boardId = Preferences.get("boards." + Preferences.get("board") + ".build.boardid");
++    if (boardId != null) {
++        baseCommandCompiler.add("-D" + boardId + "=1");
++    }
++
+     for (int i = 0; i < includePaths.size(); i++) {
+       baseCommandCompiler.add("-I" + (String) includePaths.get(i));
+     }
+@@ -467,6 +477,11 @@
+       "-DF_CPU=" + Preferences.get("boards." + Preferences.get("board") + ".build.f_cpu"),
+     }));
+ 
++    String boardId = Preferences.get("boards." + Preferences.get("board") + ".build.boardid");
++    if (boardId != null) {
++        baseCommandCompilerCPP.add("-D" + boardId + "=1");
++    }
++
+     for (int i = 0; i < includePaths.size(); i++) {
+       baseCommandCompilerCPP.add("-I" + (String) includePaths.get(i));
+     }

@@ -1,0 +1,47 @@
+// ca. 2-3 Slides
+
+Einleitung
+----------
+
+.Motivation
+
+ - Umweltgrößen (Temperatur, Luftfeuchte, Druck und Licht)
+  *beeinflussen technische Prozesse und Vorgänge als Stellgrößen*.
+ - Durch die dezentrale Erfassung an (vielen) unterschiedlichen Orten 
+  kann der ortsabhängige Verlauf von Parametern bestimmt werden.
+ - Die *drahtgebundene* Verteilung von Sensoren verursacht einen     
+  erhöhten Infrastruktur-Aufwand.
+ - Die Datenrate einzelner Sensoren ist gering. 
+  Messwerte fallen in der Regel im Sekunden- oder Minutentakt an.
+
+[role="incremental"]
+.Gliederung
+
+ - Übersicht Funkmodule
+ - Vergleich verschiedener Sensoren
+ - Verarbeitung der Sensordaten
+
+Drahtlose Sensornetzwerke
+-------------------------
+++++
+<br/>
+<br/> 
+<div class="incremental" 
+     style="margin-left: 4em; position: relative;">
+ <img class="" src="system_001.png" 
+      style="position: static; vertical-align: bottom; width:80%">
+ <img class="" src="system_002.png" 
+      style="position: absolute; left: 0pt; top: 0pt; width:80%" > 
+ <img class="invisible" src="system_003.png"
+      style="position: absolute; left: 0pt; top: 0pt; width:80%">
+</div>
+++++
+
+///////////////
++++
+<div style="width:20%; position: absolute; right:5%; bottom:5%">
+<img class="" src="system_001.png" 
+     style="position: absolute; right: 5%; bottom: 10%; width=10%" />
+</div>
++++
+///////////////////

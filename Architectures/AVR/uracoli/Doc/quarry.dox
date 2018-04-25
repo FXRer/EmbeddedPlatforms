@@ -1,0 +1,356 @@
+/* $Id$ */
+/**
+@page pgNewHw How to add a new radio board to the library
+
+
+The following section illustrates how to add your own
+radio board to the @uracoli build process, For illustration of
+the steps, the board tiny230 from DL8DTL is used.
+
+@par Create two board identifiers.
+
+Select a short and a long name for the board.
+
+The short name should contain 4 ... 8 lower case letters and numbers, e.g.
+@e tiny230.
+It is used for naming the board in the scons build process
+(<tt>scons tiny230</tt>) and identifying the generated libraries and
+executables (<tt>ls install/*/*_tiny230.*</tt>).
+
+The long name should contain 12 ... 16 upper case letters and numbers and
+underlines, e.g. @e TINY_230.
+It is used as symbolic name for a unique board identifier, defined in
+Src/Lib/Inc/const.h.
+
+@par Create a board abstraction header file
+
+The board abstraction header file (e.g. Src/Lib/Inc/boards/board_tiny230.h)
+defines macros for accessing the ressources of the radio board, such as SPI
+and GPIO pins.
+
+The board abstraction header files are located in the directory @em Src/Lib/Inc/boards.
+
+Before you start to write your own board abstraction file from scratch, have a
+look into the already existing files. Either you copy one of the existing files
+and modify it or you simply add an alias to an existing board. See @e board_rbb.h
+for an example, how the aliases rbb230, rbb231 and rbb212 are handled.
+
+The alias method should always used, if the boards belongs to the same family
+and are rebuilds/clones of existing ones, but should have a new name.
+
+
+@par Modify const.h
+
+Add the @e long @e name to the file @em Src/Lib/Inc/const.h
+and give it a unique number.
+
+@todo Check to use an enum instead of a define in order to
+      avoid non uniqeness of the assigned numbers.
+
+@code
+Src/Lib/Inc/const.h #define  ZGB_LINK_231    (51) /**< Board description see @ref grpZgbLink . */
+Src/Lib/Inc/const.h #define  ZGB_LINK_212    (52) /**< Board description see @ref grpZgbLink . */
+Src/Lib/Inc/const.h
+Src/Lib/Inc/const.h /* DIY and wirewrap projects */
+Src/Lib/Inc/const.h #define  TINY_230        (90) /**< Board description see @ref grpTINY230 . */
+Src/Lib/Inc/const.h #define  STK500_MEGA8    (91) /**< Board description see @ref grpSTKM8 . */
+Src/Lib/Inc/const.h #define  STK500_MEGA16   (92) /**< Board description see @ref grpSTKM16 . */
+@endcode
+
+
+If your newly added radio board uses a MCU, that is not yet used, you
+also need to add a unique define
+
+
+@par Add the board to the file board.cfg
+
+Add a configruation section to Src/Lib/Inc/boards/board.cfg.
+
+@code
+# Joergs low resource DIY board with ATtiny84.
+[tiny230]
+aliases    = tiny231
+comment    = Joerg's (DL8DTL) ATtiny44 with AT86RF230
+include    = boards/board_tiny230.h
+cpu        = attiny84
+bootoffset = 0x0
+ccflags    =
+f_cpu      = 8000000UL
+no_app     = diag rdiag wuart wuart2 sniffer
+no_xmpl    = xmpl_keys xmpl_key_events xmpl_hif xmpl_hif_echo
+             xmpl_radio_stream
+@endcode
+
+
+@param [sectionname]
+       This is name of the board, it must be a unique
+       among all board and alias names.
+@param aliases
+       A space seperated list of aliased derivates of this
+       board
+@param comment
+       The comment is displayed when <tt>scons -h</tt> is used.
+@param include
+       Name of the board abstraction header file.
+@param cpu
+       MCU name which is  used in mmcu option of avr-gcc.
+@param bootoffset
+       Location address of the boot loader.
+@param ccflags
+       Additional compiler parameters, like -I or -D options.
+@param f_cpu
+       MCU clock frequency
+@param no_app
+       @uracoli applications that should be excluded from the build,
+       e.g. due to the lack of ressources.
+@param no_xmpl
+       @uracoli examples that should be excluded from the build,
+       e.g. due to the lack of ressources.
+@param more_xmpls
+        board specific example applications.
+
+@par Build the software of the new radio board
+
+@code
+scons install\inc\board_cfg.h
+scons tiny230
+@endcode
+
+<div style="color:grey">
+@subsection secCreateXbrd32h Create a board definition header file
+ - copy board_dummy.h to board_xbrdm32.h
+   - fill wiring comment
+   - replace include guards BOARD_DUMMY_H with BOARD_XBRDM32_H
+   - fill CPU_TYPE (see const.h, if necessarry add your cpu there)
+   - fill all "..." placeholder according your wiring
+   - for impl. of the Macros TRX_IRQ_INIT, DI_TRX_IRQ,EI_TRX_IRQ
+     consult the CPU data sheet
+   - in necessary adapt the inline function SPI_INIT
+   - implement LED_SET_VALUE and LED_GET_VALUE in order
+     to reflect if your LED's react inverted (STK500) or not.
+   - TUNED_OSCCAL is necessarry if your CPU uses the internal
+     RC Oscilator and runs at different voltage level then
+     during the factory calibration of your CPU. Use the
+     calosc.c application in order to check this.
+     Tuning the OSCCAL register is only needed, if you need
+     a correct uart baud rate.
+</div>
+
+*/
+
+
+/**
+ @page pgrequtools Tool Chain
+
+ @par Overview
+
+ Beside the standard tools for compiling and loading software
+ for the defined radio boards, there are additional tools required
+ to run the automatic build process. Which tools are used for which
+ purpose is described in the next section.
+
+ - @subpage pgToolChainOvr
+
+ @par Installation Instructions
+
+ The following steps describe the tool chain setup under different
+ operating systems.
+
+    - @subpage pgToolChainWin
+    - @subpage pgToolChainLin
+    - @subpage pgToolChainLinFromScratch
+
+*/
+
+/**
+
+ @page pgToolChainOvr Required Tools
+
+ @par Build System and Code Generation
+
+ In order to keep track of the dependencies among the source files
+ automatically, when compiling the project, the scons build system
+ was choosen. This build system is written in Python, therefore
+ this package is installed here too.
+
+  @anchor motpython
+  -# @b Python (mandatory)@n
+     http://www.python.org @n
+     Python is used as the central scripting language in this
+     project, therefore it is mandatory to install. It is primarily
+     used for the scons build system, utility scripts and PC
+     applications.
+     Python is used in version 2.x, starting with version 2.4 the build
+     is tested. Version 3.x is not yet supported.
+  @anchor motscons
+  -# @b Scons (mandatory)@n
+     http://www.scons.org @n
+     Scons is a Python based build sytem, similiar to make. Its
+     main strengths are
+     - the clean dependency managment, which is based on
+       hash sums instead of timestamps,
+     - the flexible extension with Python functions and
+     - the easy to read and understand build scripts.
+
+ @par AVR Tools
+
+  For cross compiling the @uracoli sources the avr-gcc compiler and
+  the avr-binutils are needed. The avr-libc package provides a standard
+  C library for AVR micro controllers.
+
+  @anchor motbinutils
+  -# <b>GNU AVR Binutils</b> (mandatory)@n
+     http://www.gnu.org/software/binutils @n
+     This packages contain the assembler, linker
+     and various utilities for generating and transforming
+     executable programm code for AVR microcontrollers.
+  @anchor motgcc
+  -# <b>GNU AVR GCC</b> (mandatory)@n
+     http://www.gnu.org/software/gcc @n
+     The GNU compiler collection provides compilers for different
+     programming languages. For this project the AVR GCC compiler
+     is used.
+  @anchor motavrlibc
+  -# <b>AVR Libc</b> (mandatory)@n
+     http://avr-libc.nongnu.org @n
+     AVR Libc is collection of high quality C functions and
+     macros to be used in conjunction with AVR microcontrollers.
+
+  @note All the above mentioned tools are available in the package 
+         WinAvr for Windows users.
+
+ @par Programming and Debugging of Radio Boards
+
+ For loading and debugging executables on radio boards, different
+ tools for Linux and Windows are used.
+
+  @anchor motprog
+  -# @b Programmer (mandatory)
+    - Linux/Unix: avrdude
+    - Windows: AvrStudio
+  @anchor motdeb
+  -# @b Debugger (optional but highly recommended)
+    - Linux/Unix: avarice, avr-gdb, ddd
+    - Windows: AvrStudio
+
+ @par Documentation
+
+  The project documentation is generated as set of HTML files with doxygen.
+  Additionally tool graphviz (dot) is needed to generate images of graphes.
+
+  @anchor motdox
+  -# <b>Doxygen</b> (optional)@n
+     http://www.doxygen.org @n
+     Doxygen is a documentation system for various programming
+     languages, including C and Python. The tool should be installed,
+     if the documentation has to be generated.
+  @anchor motdot
+  -# <b>Graphviz</b> (optional)@n
+     http://www.graphviz.org @n
+     Graphviz is a tool for visualization of dependency graphs and
+     networks. It is mainly used inside the documentation for illustrating
+     the relations of various programm components. The tool should be installed,
+     if the documentation has to be generated.
+
+
+ @par Additional Packages
+
+  Because of its platform independence, the PC applications
+  of the @uracoli project are written in Python, which uses 
+  the packages <em>pyserial</em> and <em>py2exe</em> 
+  that are not part of the standard distribution.
+
+  @anchor motpyser
+  -# @b pyserial (optional)@n
+     http://pyserial.sourceforge.net @n
+     The pyserial package provides plattform independent access to
+     serial interfaces of a PC. It is mandatory needed for any
+     Python application that communicates via serial interface with
+     an AVR microcontroller. The package should be installed, and has
+     to be installed, if the packet capturing is used.
+  @anchor motpyexe
+  -# @b py2exe (optional, only windows)@n
+     http://www.py2exe.org/ @n
+     py2exe is a Python Distutils extension which converts Python
+     scripts into executable Windows programs, able to run without
+     requiring a Python installation.
+     The package should be installed with windows esxecutables should
+     be generated from python scripts.
+
+
+  Additionally when developping more complex wireless applications
+  a wireless sniffer tool makes the debugging process a lot easier,
+  therefore we go with Wireshark.
+
+  @anchor motwshark
+  -# @b Wireshark (optional)@n
+     http://www.wireshark.org/ @n
+     In conjunction with the @uracoli packet capture tool, wireshark
+     is used for decoding and displaying frames, captured on air.
+     The package should be installed, and has to be installed, if the
+     packet capturing is used.
+
+ @par Source Code Managment
+
+ This tools are used if you want to check in and check out
+ the @uracoli source code directly from the CVS repository.
+
+  @anchor motcvs
+   -# @b CVS (optional but highly recommended)@n
+      http://cvs.nongnu.org @n
+      The cvs tool (Concurrent Versions System) is needed for checking
+      out, comparing and committing files from and to the source code repository.
+      The tool is needed to update the local @uracoli project tree from
+      the repository. Since the project changes rapidly in this development
+      phase, the tool is highly recommended to be installed.
+  @anchor motssh
+   -# @b ssh and @b ssh-agent (optional)@n
+      http://www.openssh.com/ @n
+      The secure shell is needed for accessing the repository
+      as registered @uracoli developer. All other people interested
+      in the project, will be able to do an anonymous checkout via
+      the pserver protocol.
+
+ */
+
+/**
+ @page pg1stbuild Building @uracoli
+
+ In order to build the project or subproject, scons is used in
+ the following way.
+
+ @par Help
+
+  - <tt>scons -h</tt> @n
+    display a screen with the current options of the build system
+
+ @par Building
+
+   - @c scons or <tt>scons all</tt> @n
+       build libraries and applications for all plattforms
+   - <tt>scons doc</tt> @n
+      build documentation
+   - <tt>scons libs</tt> @n
+      build libraries for all plattforms
+   - <tt>scons apps</tt> @n
+      build applications for all plattforms
+   - <tt>scons &lt;BoardType&gt;</tt> @n
+       build libraries and applications for specified board type:
+      - <tt>&lt;BoardType&gt;</tt>: stkm16, ict230, ...
+   - <tt>scons l&lt;BoardType&gt;</tt> @n
+       build libraries for specified board type
+   - <tt>scons a&lt;BoardType&gt;</tt> @n
+       build applications for specified board type
+   - <tt>scons x&lt;BoardType&gt;</tt> @n
+       build example applications for specified board type
+
+ @par Cleaning
+
+   - <tt>scons -c &lt;target&gt;</tt> @n
+      cleaning a specific target
+      - <tt>&lt;target&gt;</tt> @n
+         all, doc, libs, apps, &lt;BoardType&gt;, l&lt;BoardType&gt;, a&lt;BoardType&gt;
+   - <tt>scons -c distclean</tt> @n
+       remove all created files and directories
+
+*/

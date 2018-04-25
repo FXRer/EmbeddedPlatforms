@@ -1,0 +1,89 @@
+// $Id$
+
+Table-Server (Prinzip) - `tableserver.py`
+------------------------------------------
+
+[source,python]
+---------------------------------------------------
+import SimpleHTTPServer
+import SocketServer
+
+GLOBDSLIST=[
+ [ "vmcu", "Supply", "V"],
+ [ "sht_t", "Temperature", "C" ],
+ [ "sht_rh", "Humidity", "%" ],
+]
+# ...
+def build_sensor_html_table():
+  global RRDFILES
+  x = glob.glob("%s/sensor_*.rrd" % WORKDIR)
+  for fname in x:
+    rdlast=rrdtool.last(fname)
+    if time.time() - rdlast > 15:
+      # ...
+    else:
+      rinfo = rrdtool.info(fname)
+      for dsi in GLOBDSLIST:
+        ik="ds[%s].last_ds" % (ds[0])
+        if rinfo.has_key(ik):
+          ret += "<td>%.3f</td>" % ( float(rinfo[ik]) )
+
+# Http Server Class
+class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
+  def do_GET(self):
+    self.send_response(200)
+    self.send_header('Content-type','text/html')
+    self.end_headers()
+    txt = build_sensor_html_table()
+    self.wfile.write(header() + txt + footer())
+
+if __name__ == "__main__":
+  httpd = SocketServer.ThreadingTCPServer(('', PORT),CustomHandler)
+  httpd.serve_forever()
+---------------------------------------------------
+
+
+
+Heimautomatisierung - Prinzip
+------------------------------
+
+- "Higher Level" Heimautomatisierung / Überwachung
+
+- Was brauchen wir?
+
+- Das OSI Schichtenmodell :-)
+
+image::500px-Automatisierungspyramide2.png[alt="Automatisierungspyramide",align="left"]
+[small]#Quelle: Wikipedia "Automatisierungspyramide"#
+
+Heimautomatisierung - Software
+-------------------------------
+
+- Datenerfassung
+  * Sensorknoten + Gatewayknoten + uracoli Firmware
+  * Standard-Datenprotokoll, z.B. Modbus (Freemodbus Projekt) +
+    http://freemodbus.berlios.de/
+
+- SCADA (Supervisory Control and Data Acquisition)
+  * spezielle Daemons zur Steuerung und Erfassung
+  * Frameworks
+
+- HMI (Human-Machine Interaction)
+
+- Projekte:
+  * OpenAPC: Graphische Entwicklung, Plugins für Datenerfassung +
+    http://openapc.com/
+
+  * PVbrowser: HMI, SCADA, Prozess Visualisierung,
+    Graphische GUI Erstellung, C++/LUA Coding +
+    http://pvbrowser.de
+
+  * Liste: http://linuxscada.info/
+
+// Einbindung Home-Automation (?? nicht viel verfuegbar??
+// Fragen, wer kennt was)
+
+Screenshot Session
+------------------
+
+image::sensorserver-hotel.png[]

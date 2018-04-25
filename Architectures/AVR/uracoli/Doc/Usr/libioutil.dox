@@ -1,0 +1,232 @@
+/* Copyright (c) 2007 Axel Wachtler
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   * Neither the name of the authors nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   POSSIBILITY OF SUCH DAMAGE. */
+
+/* $Id$ */
+
+/**
+ @defgroup grpTimer Timer/RTC API
+ @brief <div style="background-color:#ffcc99;">
+         Starting, stopping and execution of time triggered actions.</div>
+
+ */
+/**
+  @addtogroup grpTimer
+  @{
+  @page pgTimer Overview
+  @image html uracoli_modules_timer.png "Timer and RTC API in liburacoli_<board>.a" width=40%
+  @par Usage
+
+  The timer module is inspired by Jörg Wunschs timer implementation,
+  which can be found here: http://sax.sax.de/~joerg/avr-timer/
+
+  RTC functions are implemented by use of the asynchronous clock facilities of
+  the microcontroller.
+
+  @par Examples
+
+  - @ref xmpl_timer.c
+  - @ref xmpl_timer_callback.c
+  - @ref xmpl_rtc.c
+
+  @example xmpl_timer.c
+  @example xmpl_timer_callback.c
+  @example xmpl_rtc.c
+
+  @}
+ */
+
+/**
+ @defgroup grpHIF HostInterface API
+ @brief <div style="background-color:#ff8080;">
+         Communicating with the host computer.</div>
+*/
+
+/**
+  @addtogroup grpHIF
+  @{
+  @page pgHIF Overview
+  @image html uracoli_modules_hif.png "HostInterface API in liburacoli_<board>.a" width=40%
+  @par Usage
+
+  @par Examples
+  - @ref xmpl_hif.c
+
+  @example xmpl_hif.c
+  The programm dumps at first a view text lines to the host interface, then
+  waiting for input data. All characters received are echoed, except for
+  '\\n' and '\\r' which where treated as line break, printing out a prompt with
+  the current line number in square brackets.
+
+  This is an example screenshot of the terminal window, with the output of
+  tree command, redirected to the HIF.
+
+  @image html scrn_xmpl_hif.png "Screenshot of terminal window." width=10cm
+
+  @example xmpl_hif_echo.c
+
+  @}
+ */
+
+/**
+ @defgroup grpIoUtilLedKey GPIO API
+ @brief <div style="background-color:#e6e64c;">Controlling the LEDs and Keys.</div>
+ */
+
+/**
+  @addtogroup grpIoUtilLedKey
+  @{
+  @page pgIoUtilLedKey Overview
+  @image html uracoli_modules_gpio.png "GPIO API in liburacoli_<board>.a" width=40%
+  @par Usage
+
+  @par Examples
+
+  - @ref xmpl_key_events.c
+  - @ref xmpl_keys.c
+  - @ref xmpl_leds.c
+  - @ref xmpl_dbg.c
+
+  @example xmpl_key_events.c
+  @example xmpl_keys.c
+  @example xmpl_leds.c
+  @example xmpl_dbg.c
+
+  @}
+ */
+
+
+/**
+ @defgroup grpIoUtilBuffer Utilities API
+ @brief <div style="background-color:#ffd320;">Utility functions</div>
+ */
+/**
+  @addtogroup grpIoUtilBuffer
+  @{
+
+  @page pgIoUtilBuffer Overview
+  @image html uracoli_modules_utils.png "Utilities API in liburacoli_<board>.a" width=40%
+  @par Usage
+
+  @par Examples
+
+  - @ref xmpl_linbuf_rx.c
+  - @ref xmpl_linbuf_tx.c
+
+  @example xmpl_linbuf_rx.c
+
+  @example xmpl_linbuf_tx.c
+   The application fills a piece of text as chunks in a linear buffer
+   and sends it. The example illustrates
+   - the initialization of a linear buffer (see @ref grpIoUtilBuffer),
+   - the appending of characters as payload,
+   - the prepending of a frame header prior the payload,
+   - the extraction of data pointer and data size from the buffer.
+   - reset of the buffer.
+
+  @}
+ */
+
+/**
+  @defgroup grpSensorDefs Sensor Drivers
+  @brief <div style="background-color:#aecf00;">Low Level Sensor-Bus and Sensor functions</div>.
+  @{
+  @section secSensorDefsOverview Overview
+
+  @par Examples
+
+    - Sensor Bus Drivers
+     - @ref xmpl_ow.c
+     - @ref xmpl_i2c.c
+
+    - Sensor Drivers
+     - @ref xmpl_isl29020.c
+     - @ref xmpl_lgee_acc_simple.c
+     - @ref xmpl_tsl2550.c
+     - @ref xmpl_lm73.c
+
+    @example xmpl_ow.c
+    @example xmpl_i2c.c
+
+    @example xmpl_isl29020.c
+    @example xmpl_tsl2550.c
+    @example xmpl_lm73.c
+    @example xmpl_lgee_acc_simple.c
+
+ @}
+*/
+
+/**
+  @defgroup grpSensor Sensor API
+  @brief <div style="background-color:#aecf00;">High Level Sensor functions</div>.
+ */
+/**
+  @addtogroup grpSensor
+  @{
+  @page pgSensor Overview
+
+  The sensor API implements a generic abstraction for the sensors that
+  are supported by @uracoli. The low level drivers are documented in
+  section @ref grpSensorDefs.
+
+  @image html uracoli_modules_sensors.png "Sensor API in liburacoli_<board>.a" width=40%
+
+  The sensors of a board are defined in file @c board.cfg in the key
+  @c sensors: <sensors1> <sensor2> ...
+
+  @par Usage
+
+@code
+    uint8_t nb_sensors;
+    nb_sensors = create_board_sensors();
+    /* beside the return value of create_board_sensors() the number of sensors can be retrieved with sensor_get_number() too */
+    PRINTF("number of sensors: %d\n", sensor_get_number());
+    for (i = 0; i < nb_sensors; i++)
+    {
+        PRINTF("  %d : id=%d name=%s type=%s data_sz=%d\n",
+               i, sensor_get_id(i),
+               sensor_get_name(i),
+               sensor_get_type(i),
+               sensor_get(i, NULL));
+    }
+    while (1)
+    {
+        sensor_trigger(ALL_SENSORS, 1);
+        DELAY_MS(10); // wait for conversion ready
+        sensor_getALL_SENSORS, buf);
+        PRINTF("decode: %s\n",sensor_decode(buf, line, sizeof(line)));
+        DELAY_MS(2000);
+    }
+@endcode
+
+  @par Examples
+
+    - High level abstraction example @ref xmpl_sensor.c
+
+    @example xmpl_sensor.c
+@}
+ */

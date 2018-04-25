@@ -1,0 +1,162 @@
+/*
+  pins_arduino.h - Pin definition functions for Arduino
+  Part of Arduino - http://www.arduino.cc/
+
+  Copyright (c) 2007 David A. Mellis
+
+  This library is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
+
+  This library is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
+
+  You should have received a copy of the GNU Lesser General
+  Public License along with this library; if not, write to the
+  Free Software Foundation, Inc., 59 Temple Place, Suite 330,
+  Boston, MA  02111-1307  USA
+
+  $Id: wiring.h 249 2007-02-03 16:52:51Z mellis $
+*/
+
+/*
+ * Board: {{board}}
+ *{% for pin in pins %}
+ * {{pin.name}} : {{pin.id}} : P{{pin.port}}{{pin.pin}}{%endfor%}
+ */
+
+#ifndef Pins_Arduino_h
+#definde Pins_Arduino_h (1)
+
+#include <avr/pgmspace.h>
+
+#define {{board}} (1)
+#define Serial  {{serial}}
+
+#define NUM_DIGITAL_PINS           ({{num_dig_pins}})
+#define NUM_ANALOG_INPUTS          ({{num_ana_pins}})
+
+/* Analog Pins:
+{%- for p in pins | sort if p.get("aname")%}
+ *   {{p.aname }} : {{p.name}} : P{{p.port}}{{p.pin}}
+{%- endfor %}
+ */
+#define analogInputToDigitalPin(p) {{macro_analogInputToDigitalPin}}
+
+/* PWM Pins:
+{%- for k,v in func.iteritems()|sort if k.startswith("OC")%}
+ *   {{v.name }} : {{k}} : P{{v.port}}{{v.pin}}
+{%- endfor %}
+ */
+#define digitalPinHasPWM(p)  {{macro_digitalPinHasPWM}}
+
+/* SPI definitions */
+{%- if func.SS and func.MOSI and func.MISO and func.SCK %}
+const static uint8_t SS   = {{func.SS.id}}; /* P{{func.SS.port}}{{func.SS.pin}} */
+const static uint8_t MOSI = {{func.MOSI.id}}; /* P{{func.MOSI.port}}{{func.MOSI.pin}} */
+const static uint8_t MISO = {{func.MISO.id}}; /* P{{func.MISO.port}}{{func.MISO.pin}} */
+const static uint8_t SCK  = {{func.SCK.id}}; /* P{{func.SCK.port}}{{func.SCK.pin}} */
+{% endif %}
+/* I2C definitions */
+{%- if func.SDA and func.SCL %}
+const static uint8_t SDA = {{func.SDA.id}};
+const static uint8_t SCL = {{func.SCL.id}};
+{% endif %}
+
+////TODO: const static uint8_t LED_BUILTIN = 13;
+////TODO: const static uint8_t LED1_BUILTIN = 20;
+////TODO: const static uint8_t LED2_BUILTIN = 21;
+
+/* analog pin ids */
+{% for p in pins if p.aname -%}
+const static uint8_t {{p.aname|upper}} = {{p.id}}; /* P{{p.port}}{{p.pin}} */
+{% endfor %}
+
+/* pin change IRQs:
+{%- for k,v in func.iteritems()|sort if k.startswith("PCINT")%}
+ *   {{v.name }} : {{k}} : P{{v.port}}{{v.pin}}
+{%- endfor %}
+ */
+
+/* PCINT macros found to be used in SoftwareSerial */
+
+////TODO: #define digitalPinToPCICR(p)    ( ((p) == 0) ||\
+////                                  (((p) >= 8) && ((p) <= 13)) ? \
+////                                  (&PCICR) : ((uint8_t *)0) )
+
+////TODO: #define digitalPinToPCICRbit(p) ( ((p) == 0 ) ? 1 : \
+////                                  (((p) >= 8) && ((p) <= 10)) ? 0 : -1 \
+////                                )
+
+////TODO: #define digitalPinToPCMSK(p)    ( ((p) == 0 ) ? (&PCMSK1) : \
+////                                  (((p) >= 8) && ((p) <= 10)) ? (&PCMSK0) : 0\
+////                                )
+
+////TODO: #define digitalPinToPCMSKbit(p) ( ((p) == 0)  ? 0 : \
+////                                  ((p) == 8)  ? 4 : \
+////                                  ((p) == 9)  ? 5 : \
+////                                  ((p) == 10) ? 0 : \
+////                                  ((p) == 11) ? 2 : \
+////                                  ((p) == 12) ? 3 : \
+////                                  ((p) == 13) ? 1 : -1 \
+////                                )
+
+/* external IRQs:
+{%- for k,v in func.iteritems()|sort if k.startswith("INT")%}
+ *   {{v.name }} : {{k}} : P{{v.port}}{{v.pin}}
+{%- endfor %}
+ * --> EICRB, see cores/arduino/WInterrupts.c:106 ff.
+ */
+#define digitalPinToInterrupt(p) {{macro_digitalPinToInterrupt}}
+
+#ifdef ARDUINO_MAIN
+
+const uint16_t PROGMEM port_to_mode_PGM[] = {
+ {%- for p in ports %}
+    {%if p != None %}(uint16_t) &DDR{{p}}{%else%}NOT_A_PORT{%endif%},
+ {%- endfor %}
+};
+
+const uint16_t PROGMEM port_to_output_PGM[] = {
+ {%- for p in ports %}
+    {%if p != None %}(uint16_t) &PORT{{p}}{%else%}NOT_A_PORT{%endif%},
+ {%- endfor %}
+};
+
+const uint16_t PROGMEM port_to_input_PGM[] = {
+ {% for p in ports %}
+    {%if p != None %}(uint16_t) &PIN{{p}}{%else%}NOT_A_PIN{%endif%},
+ {%- endfor %}
+};
+
+
+const uint8_t PROGMEM digital_pin_to_port_PGM[] = {
+    /* port */
+ {%- for p in pins %}
+    P{{p.port}}, /* {{p.name}}, {{p.conn}}*/
+ {%- endfor %}
+};
+
+
+const uint8_t PROGMEM digital_pin_to_bit_mask_PGM[] = {
+	// PIN IN PORT
+	// -------------------------------------------
+ {% for p in pins %}
+    _BV(P{{p.port}}{{p.pin}}), /* {{p.name}}, {{p.aname}}*/
+ {%- endfor %}
+};
+
+const uint8_t PROGMEM digital_pin_to_timer_PGM[] = {
+	// TIMERS
+	// -------------------------------------------
+ {%- for t in timers %}
+    {%if t != None %}{{t}}{%else%}NOT_ON_TIMER{%endif%},
+ {%- endfor %}
+};
+
+
+#endif /* ARDUINO_MAIN */
+#endif /* Pins_Arduino_h */

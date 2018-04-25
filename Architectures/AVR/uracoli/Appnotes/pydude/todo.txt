@@ -1,0 +1,6 @@
+main -> lib
+    default config dir in library als statische Variable einbinden.
+
+exits in der library suchen und ggf. durch was anderes ersetzen .
+
+alle datentypen in ein header file 

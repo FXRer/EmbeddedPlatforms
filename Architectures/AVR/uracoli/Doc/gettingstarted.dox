@@ -1,0 +1,88 @@
+/* Copyright (c) 2009 Axel Wachtler
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   * Neither the name of the authors nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   POSSIBILITY OF SUCH DAMAGE. */
+
+/* $Id$ */
+
+/*
+@page pgStartSetupCheck Basic Setup Check
+
+Initially you may want to see, that some basic RF communication
+between your boards is running.
+
+At first flash xmpl_radio_range_<board>.hex.
+This application sends every 500ms a frame and stays in
+receive mode for the remaining time between the transmissions.
+
+If your radio Boards have LED's, LED1 flashes quickly indicating
+that a frame is transmitted and LED 2 toggles with each received
+frame.
+
+If you have a board connected to a UART, you will see the following
+output.
+
+@code
+ .... todo: Screen ....
+
+@endcode
+
+
+If nothing happens, that indicate that your setup is working correctly,
+go to the section @ref pgHowtoDebugSetup.
+
+
+*/
+
+/*
+ @page pgStartRunApps Running Applications
+
+*/
+/*
+ @page pgStartWriteApps Writing Applications
+
+ Tne easiest way of creating own applications
+ is to start from one of the existing examples
+ (@ref pgXmplMain ).
+
+ Then you should copy the following files to your
+ own project working directory, e.g. myproject/,
+  - xmpl_[XYZ].c
+  - xmpl.h
+  - xmpl_[XYZ]_[BOARD].mk
+  - xmpl_[XYZ]_[BOARD].aps
+
+ Now run make -f  xmpl_[XYZ]_[BOARD].mk or double
+ click on xmpl_[XYZ]_[BOARD].aps and compile and
+ download @b your application.
+
+ If this fails, you need probably to correct the
+ URACOLI_INSTALL variable in your Makefile.
+
+ Finally you will implement the applications functionality
+ in the file xmpl_[XYZ].c.
+
+*/

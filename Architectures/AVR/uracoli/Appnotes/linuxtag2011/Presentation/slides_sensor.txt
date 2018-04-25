@@ -1,0 +1,96 @@
+// ca. 4-5 Slides                         -*-mode: Text; coding: utf-8;-*-
+
+Vergleich von Sensoren
+----------------------
+.Auswahl von Temperatursensoren
+[role="incremental"]
+  * große Vielfalt an analogen und digitalen Sensoren
+  * Vergleich von:
+  ** LM75 (National Semiconductor, I²C)
+  ** DS18B20 (Maxim/Dallas, "OneWire")
+  ** SHT-21 (Sensirion (CH), I²C); Temperatur und rel. Luftfeuchte
+  ** TMP141 (TI/Burr Brown, "SensorPath")
+  ** KTY13-6 (Infineon)
+  ** ATmega128RFA1 (Atmel), interner Sensor
+  * Preis zwischen EUR 0,50 und EUR 20
+
+Versuchsaufbau
+--------------
+[role="incremental"]
+--
+.Umgebung
+[role="incremental"]
+* Langzeittests in ruhiger Umgebung
+* Vergleich mit Laborthermometer
+* Tests in wechselnder Umgebung, einschließlich Klimaschrank Vötsch VT4004
+--
+
+--
+++++
+<div>
+  <img src="sensorboard.jpg" alt="Sensorboard" width="30%"
+  style="position: absolute; right: 5%; bottom: 10%" />
+</div>
+++++
+.Hardware
+* Montage der Sensoren auf Board
+* SHT-21 2x, TMP141 3x, alle anderen 1x
+* Abfrage über Zigbit-Funkmodul
+* Weiterleitung der Daten über Funk
+* Batteriebetrieb mit 2 x LR03
+--
+
+Messung in ruhiger Umgebung
+---------------------------
+++++
+<br/>
+<br/>
+<div class="incremental" style="margin-left: 4em; position: relative;">
+ <img class="" src="all.png" width="80%"
+      style="position: static; vertical-align: bottom;">
+ <img class="invisible" src="smooth-all.png" width="80%"
+      style="position: absolute; left: 0pt; top: 0pt;">
+ <img class="invisible" src="nonsmooth.png"  width="80%"
+      style="position: absolute; left: 0pt; top: 0pt;">
+ <img class="invisible" src="smooth.png"  width="80%"
+      style="position: absolute; left: 0pt; top: 0pt;">
+ <img class="invisible" src="stable.png" width="80%"
+      style="position: absolute; left: 0pt; top: 0pt;">
+ <img class="invisible" src="smooth-stable.png" width="80%"
+      style="position: absolute; left: 0pt; top: 0pt;">
+</div>
+++++
+
+Messung im Klimaschrank
+-----------------------
+++++
+<br/>
+<br/>
+<div class="incremental" style="margin-left: 4em; position: relative;">
+ <img class="" src="schrank-komplett.png" width="80%"
+      style="position: static; vertical-align: bottom;">
+ <img class="invisible" src="schrank-sht-tmp.png" width="80%"
+      style="position: absolute; left: 0pt; top: 0pt;">
+ <img class="invisible" src="schrank-sht-tmp-detail.png"  width="80%"
+      style="position: absolute; left: 0pt; top: 0pt;">
+</div>
+++++
+
+Schlussfolgerungen
+------------------
+.Temperaturmessung
+[role="incremental"]
+* größte Abweichung: unkalibrierter KTY13-6, aber konstant -1,8 K
+* LM75: -0,7 K, (ist mit ± 3K spezifiziert)
+* alle anderen sehr eng gemeinsam gruppiert
+* ATmega128RFA1: schlechte direkte Auflösung (1,13 K), aber gute
+  Mittelwertbildung; Offset ca. -0,5 K, aber Gradient bei -30 °C
+* SHT-21: Genauigkeit eines guten Laborthermometers, Nutzung als
+  Referenz und für hohe Ansprüche
+* TMP141 haben gutes Preis-/Leistungsverhältnis bei ansprechender
+  Genauigkeit
+
+.Feuchtigkeitsmessung
+[role="incremental"]
+* kein Vergleich, nur SHT-21 selbst; gegenseitige Abweichung < 1 % RH
+

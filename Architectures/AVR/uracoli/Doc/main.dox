@@ -1,0 +1,162 @@
+/* Copyright (c) 2007 Axel Wachtler
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   * Neither the name of the authors nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   POSSIBILITY OF SUCH DAMAGE. */
+
+/* $Id$ */
+
+/**
+ @mainpage
+
+\uracoli stands for <em><b>microcontroller radio communications
+library</b></em> and is a package that demonstrates the capabilities and
+usage of Atmels IEEE-802.15.4 radio transceivers. Currently supported are
+
+  - AT86RF230a, AT86RF230b
+  - AT86RF231
+  - AT86RF232
+  - AT86RF233
+  - AT86RF212
+  - ATmega128RFA1
+  - ATmega256RFR2, ATmega2564RFR2
+
+in combination with Atmel AVR microcontrollers of the families ATmega,
+ATxmega and ATtiny.
+
+The picture shows the software components of the \uracoli project.
+
+@image html uracoli_modules.png "Software modules" width=40%
+@image latex "uracoli_modules.png" "Software modules"
+
+The core component of \uracoli is the @b library @c liburacoli_<board>.a.
+It contains the driver functions for the hardware components of the over 100
+supported boards, e.g.
+
+- low and high level drivers for the supported radio transceivers,
+- drivers for several sensors with SPI-, one-wire- and I2C-interface,
+- drivers for host interface communication,
+- timer and rtc implementation and
+- GPIO handling (e.g. LEDs and KEYs).
+
+Using a library means, that only code that is called from the application is
+linked into the firmware image. This results in small programm sizes, leaving
+as much memory as possible for the application.
+
+On top of the library there exist @b examples and @b applications, which are
+microcontroller applications that make use of the library-functions.
+.
+While the @c examples are very simple programs, that serve just as illustraion
+of the use of the library functions, the @c applications implement more complex
+programs, that can be of general use as utility or tool.
+
+In some cases there are specialised PC-applications, that communicate via a
+serial port with the microcontroller board. These programs are refered as
+@b scripts. since they are primarily written in the Python programming
+language.
+
+\uracoli supports over  100 @b different @b PCBs with various combinations of
+microcontrollers, transceivers and sensors. Therefore a generic platform
+abstraction concept was developped, which allows the easy definition and
+integration of new PCBs into the project.
+
+*/
+/**
+@page pgMain User Guide
+
+This Manual conains the following sections:
+
+  - @subpage pgGetStarted\n
+    <em>How to do the first steps with \uracoli ?</em>
+  - @subpage pgBoards\n
+    <em>A list of supported hardware.</em>
+  - @subpage pgLibMain\n
+    <em>Library concept</em>
+  - @subpage pgXmplMain\n
+    <em>A set of rather basic examples.</em>
+  - @subpage pgAppMain\n
+    <em>Out of the box applications like wireless uart, sniffer, ...</em>
+  - @subpage pgContribArduino @n
+    <em>A description, how various transceiver boards can be programmed with
+    the Arduino IDE.</em>
+  - @subpage pgDevMain\n
+    <em>Detailed information about the development process.</em>
+  - @subpage pgEpilogue \n
+     <em>Release notes, License, Acknowledgements.</em>
+
+*/
+
+/**
+ @page pgEpilogue Epilogue
+
+  - @subpage pgMainReleases \n
+     <em>An overview about the package versions.</em>
+  - @subpage pgMainLicense "License" \n
+    <em>All software and documentation provided here, is released under the
+    terms of the Modified BSD license.</em>
+  - @subpage pgExtLicenses \n
+    <em>Licenses of txternal software packages, \uracoli depends on.</em>
+  - @subpage pgAck "Acknowledgements" \n
+    <em>for various contributions are stated here.</em>
+
+*/
+/**
+ @page pgMainLicense License and Copyright
+
+<pre>
+\htmlinclude "LICENSE"
+</pre>
+
+ */
+
+/**
+ @page pgExtLicenses External Package Licenses
+
+ @c Python is available under the Python Software Foundation License
+  (PSF). http://docs.python.org/license.html
+
+ @c pyserial is available under the Python License.
+     http://pyserial.sourceforge.net/appendix.html#license
+
+ @c win32com
+     A license page could not be found on the Web.
+
+ @c Wireshark is available under the GNU General Public License version 2.
+     http://www.wireshark.org/about.html
+
+ @c @uracoli (firmware and converter application) is licensed with a
+     Modified BSD License.
+     http://uracoli.nongnu.org/license.html
+*/
+
+
+/**
+ @page pgMainReleases Release Notes
+
+<pre>
+\htmlinclude "RELEASENOTES"
+</pre>
+
+ */

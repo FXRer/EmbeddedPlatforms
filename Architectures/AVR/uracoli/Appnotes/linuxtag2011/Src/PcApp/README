@@ -1,0 +1,23 @@
+Plug wuart-Hardware on USB port
+which should create a device /dev/ttyUSB0
+(otherwise use a different port on the
+sensorlogger commandline)
+
+
+# start the logger
+# creates .rrd files in /tmp
+python sensorlogger.py -p /dev/ttyUSB0 -v
+
+# start the webserver generating the graphics:
+# (runs on local port 8080)
+# open webserver http://localhost:8080
+# or http://localhost:8080/reload
+# to enable autoreload function
+python sensorserver.py -v
+
+# start simpl webserver that just creates
+# a table with latest measured values
+# open port on http://localhost:8081
+python tableserver.py
+
+

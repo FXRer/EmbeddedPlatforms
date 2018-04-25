@@ -1,0 +1,202 @@
+// $Id$
+Drahtlose Sensordatenerfassung und -verarbeitung mit Linux
+==========================================================
+:version: 1.0
+:toc:
+
+Dies ist die Dokumentation des Paketes +uracoli-sensorlogger-<VERSION>.zip+.
+Das Paket enthält sowohl die Software für die Gateway- und Sensorknoten
+als auch die Python-Skripte.
+
+Links
+-----
+
+[horizonal]
+Chemnitzer Linux-Tage 2011;; http://chemnitzer.linux-tage.de/2011/
+Vortragsseite;; http://www.uracoli.de/clt2011
+Projekt-Home;; http://www.uracoli.de
+Mailing List;; http://lists.nongnu.org/mailman/listinfo/uracoli-devel
+
+
+Paketinhalt
+-----------
+
+
+----
+.
+|-- bin ................ AVR Hexfiles
+|-- inc ................ uracoli includes
+|   `-- boards
+|-- lib ................ precompiled Libraries
+|-- pc_apps ............ Python Scripts
+|-- sensor ............. Sensor app. sources
+|-- uracoli-src ........ Library sources
+|   |-- libioutil
+|   |-- libradio
+|   `-- libwibohost
+`-- wuart .............. Wuart sources.
+----
+
+
+Flashen der Funkknoten
+----------------------
+
+Sensorknoten
+~~~~~~~~~~~~
+
+.Firmware
+Das Paket enthält bereits vorkompilierte hex Files für die beiden
+derzeit unterstützten Sensorboards Muse231 und Tiny230. Sollen andere
+Boards als Sensorknoten verwendet werden, muss die Applikation im
+Verzeichnis +./sensor/+ angepasst und neu compiliert werden.
+
+Wenn ein AVR-Dragon als Programmieradapter verwendet wird,
+so können die Boards Muse231 und Tiny230 Boards mit folgenden
+Kommandos geflasht werden:
+
+-----
+avrdude -P usb -p m88 -c dragon_jtag -U bin/sensorapp_muse231.hex
+avrdude -P usb -p t84 -c dragon_jtag -U bin/sensorapp_tiny230.hex
+-----
+
+Bei Verwendung eines anderen Programmieradapters müssen die Optionen 
+-P (Portname) und -c (Typ des Programmers) angepasst werden.
+
+.Adressen
+
+Sollen mehrere Sensorknoten verwendet werden, müssen die
+Boards mit unterschiedlichen Adressen versehen werden. Hierzu
+wird das Script +pc_apps/wibo_muse231.py+ verwendet.
+
+Die Adressen und der Funkkanal wird im EEPROM des AVR-Controllers
+gespeichert. Das erfolgt mit dem Kommando.
+
+-----
+
+python pc_apps/wibo_muse231.py -a 1 -p 0xcafe -c 17 -O 0 | \
+        avrdude -P usb -p t84 -c dragon_jtag -U ee:w:-:i
+-----
+
+In der etwas länglichen Befehlszeile wird dem angeschlossen Tiny230 
+Board (avrdude -p t84) die Adresse 1 (-a), der PAN-ID 0xcafe (-p) und 
+der Kanal 17 (-c) nichtflüchtig im EEPROM gespeichert.
+
+.Note
+Das Script erzeugt einen Parameter-Record im Intel-Hex Format, der 
+an Adresse 0 des EEPROMS gespeichert wird (-O 0). Der Record ist durch 
+eine CRC8 (Ibutton-CRC) gesichert. Die Defaultwerte in der 
+Sensorknoten-Firmware sind -c 17 -p 0xcafe -a 0xbabe.
+
+Gateway
+~~~~~~~
+
+Es wird wieder der +avrdude+ verwendet. Für im obigen Beispiel
+verwendetes Board ist  für den Dragon Programmer dann beispielsweise
+folgendes Kommando zu verwenden:
+
+-----
+avrdude -p m1281 -c dragon_jtag -Pusb -U wuart/bin/wuart_stb230.hex
+-----
+
+
+Bauen der Firmware
+------------------
+
+µracoli-Libraries
+~~~~~~~~~~~~~~~~~~
+
+Im Paket sind die Libraries für die Boards stb230, psk230, radiofaro, 
+tiny230, muse231 vorcompiliert enthalten. Um ein anderes Board als 
+Gateway- oder Sensorknoten zu verwenden, müssen die entsprechenden
+Liraries compiliert werden.
+
+Eine Liste der im aktuellen Paket unterstützten Boards erhält man mit dem 
+Befehl:
+
+-----
+$$make -C uracoli-src list
+
+  any2400          : A.N. Solutions ANY Brick
+  any2400st        : A.N. Solutions ANY Stick
+  ...
+  rzusb            : Atmel Raven USB Stick with AT86RF230 Rev. B
+  ...
+-----
+
+Das eigentliche Bauen der Libraries erfolgt dann, z.B. für ein Raven 
+RZUSB Stick mit dem Kommando:
+
+-----
+make -C uracoli-src rzusb
+-----
+
+Sensor-Applikation
+~~~~~~~~~~~~~~~~~~
+
+Derzeit werden die Boards tiny230 und muse231 von der Sensor-Applikation
+unterstützt. Das bauen der Software erfolgt aus dem Verzeichnis uracoli-sensorlogger-<version> mit 
+dem Kommando:
+
+-----
+make -C sensor tiny230 muse231
+-----
+
+Nach der Compilierung befinden sich die folgenden Dateien
+im Verzeichnis +sensor/bin/+.
+-----
+sensorapp_muse231.elf
+sensorapp_muse231.hex
+sensorapp_tiny230.elf
+sensorapp_tiny230.hex
+-----
+
+Wuart-Applikation
+~~~~~~~~~~~~~~~~~
+
+Die Software für den Sensorknoten wird analog zur Sensor App. gebaut.
+
+
+-----
+cd uracoli-sensorlogger-<version>
+make -C wuart psk230
+-----
+
+Hierbei ist statt +psk230+ das verwendete Gatewayboard anzugeben.
+Die Liste der unterstützten Boards ist auch im wuart/Makefile zu finden.
+
+
+
+
+Starten des Sensorloggers und der Webserver
+--------------------------------------------
+
+Nachdem der Gatewayknoten per USB Kabel an den PC angeschlossen wurde
+und beispielsweise das erste serielle USB-Interface belegt wurde (+/dev/ttyUSB0+),
+kann nun der Sensorlogger gestartet werden:
+
+-----
+cd pc_apps
+# not as daemon and verbose output:
+python sensorlogger.py -v -p /dev/ttyUSB0
+# or: if run as daemon:
+python sensorlogger.py -D -p /dev/ttyUSB0
+-----
+
+Es kann noch die Geschwindgkeit der seriellen Schnittstelle eingestellt werden
+mit der `-b` Option.
+
+Wenn der Logger läuft, sollten für jeden Sensor eine `.rrd` Datei um +data+ Verzeichnis
+angelegt werden, welche die Round Robin Archieve enthält.
+
+Nun können die Webserver zur Datenvisualisierung gestartet werden:
+
+-----
+# Table server, default serves at port 8081,
+python tableserver.py -v
+# Sensor server, default serves at port 8080,
+python sensorserver.py -v
+-----
+
+Sollen die server als Daemon gestartet werden, ist die Option `-D` zu verwenden.
+Alternative Ports können über die Option `-p` eingestellt werden.
+

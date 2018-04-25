@@ -1,0 +1,52 @@
+== µracoli Regression ==
+
+All scripts are based on the "testenv.py" module, which
+uses the python unittest module.
+
+
+Testing of release packages (compiling, completeness)
+    test_src_pkg.py
+    test_arduino_pkg.py
+
+Testing of firmware images (functionality)
+    test_fw_rdiag.py
+    test_fw_sniffer.py
+    test_fw_wibo.py
+    test_fw_wuart.py
+    test_fw_xmpl_hif.py
+    test_fw_xmpl_tsl2550.py
+
+
+Usage:
+
+    python test_<script>.py [OPTIONS] [ARGUMENTS]
+
+General Options:
+
+    -h, --help
+        show help for the test script
+    -v, --verbose
+        increase message verbose level,
+        several -v occurences increase level more
+    -r <runner>, --runner=<runner>:
+        select test runner ('text', 'xml'), default: text
+
+Script Specific Options:
+
+    Check with -h which option each script supports
+
+    -B <boardcfg>, --boardcfg=<boardcfg>:
+        select board config file., default: Config/board.cfg
+    -b <builddir>, --builddir=<builddir>:
+        select build directory, default: ./build
+    -C <setupcfg>, --setupcfg=<setupcfg>:
+        Regression config file, default: regression.cfg
+    -D <bindir>, --bindir=<bindir>:
+        select binary directory, default: install/bin
+    -d <duts>, --duts=<duts>:
+        set the dut device or dut list, default:
+    -f <noflash>, --no-flash=<noflash>:
+        disable flashing, default: False
+    -p <peer>, --peer=<peer>:
+        set the peer device, default: None
+

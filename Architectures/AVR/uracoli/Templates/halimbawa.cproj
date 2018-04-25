@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>6.2</ProjectVersion>
+    <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
+    <ProjectGuid>{93311ee3-d882-48ce-a297-e9411d38a6bc}</ProjectGuid>
+    <avrdevice>ATmega128rfa1</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <AssemblyName>halimbawa</AssemblyName>
+    <Name>halimbawa</Name>
+    <RootNamespace>halimbawa</RootNamespace>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress />
+    <UncachedRange />
+    <OverrideVtorValue />
+    <BootSegment>2</BootSegment>
+    <eraseonlaunchrule>1</eraseonlaunchrule>
+    <AsfFrameworkConfig>
+      <framework-data xmlns="">
+  <options />
+  <configurations />
+  <files />
+  <documentation help="" />
+  <offline-documentation help="" />
+  <dependencies>
+    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.17.0" />
+  </dependencies>
+</framework-data>
+    </AsfFrameworkConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <AvrGcc>
+  <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
+  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+  <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <avrgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>NDEBUG</Value>
+    </ListValues>
+  </avrgcc.compiler.symbols.DefSymbols>
+  <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </avrgcc.linker.libraries.Libraries>
+</AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <AvrGcc>
+  <avrgcc.common.optimization.RelaxBranches>True</avrgcc.common.optimization.RelaxBranches>
+  <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+  <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+  <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+  <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+  <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+  <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <avrgcc.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>F_CPU=8000000UL</Value>
+      <Value>rbb128rfa1</Value>
+    </ListValues>
+  </avrgcc.compiler.symbols.DefSymbols>
+  <avrgcc.compiler.directories.IncludePaths>
+    <ListValues>
+      <Value>../../../inc</Value>
+      <Value>../../../inc/boards</Value>
+      <Value>../../../inc/sensors</Value>
+    </ListValues>
+  </avrgcc.compiler.directories.IncludePaths>
+  <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+  <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+  <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+  <avrgcc.compiler.optimization.DebugLevel>Default (-g2)</avrgcc.compiler.optimization.DebugLevel>
+  <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+  <avrgcc.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </avrgcc.linker.libraries.Libraries>
+  <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>
+</AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\src\hif_at90usb.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\hif_at90usb.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\hif_dump.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\hif_dump.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\hif_ft245.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\hif_ft245.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\hif_print.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\hif_print.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\hif_uart.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\hif_uart.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\lin_buffer.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\lin_buffer.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\stream_io.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\stream_io.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\timer.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\timer.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\timer_tstamp.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\timer_tstamp.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\radio_rf230.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\radio_rf230.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_datarate.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_datarate.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_datarate_str.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_datarate_str.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_rf230.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_rf230.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_rf230_bitrd.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_rf230_bitrd.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_rf230_bitwr.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_rf230_bitwr.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_rf230_crc.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_rf230_crc.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_rf230_frame.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_rf230_frame.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_rf230_irq.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_rf230_irq.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_rf230_misc.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_rf230_misc.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_rf230_param.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_rf230_param.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_rf230_sram.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_rf230_sram.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_rfa.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_rfa.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_rfa_irq.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_rfa_irq.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\trx_rf230_irq.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\trx_rf230_irq.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\usr_radio_error.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\usr_radio_error.c</Link>
+    </Compile>
+    <Compile Include="..\..\src\usr_radio_irq.c">
+      <SubType>compile</SubType>
+      <Link>uracoli\usr_radio_irq.c</Link>
+    </Compile>
+    <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="uracoli" />
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+</Project>

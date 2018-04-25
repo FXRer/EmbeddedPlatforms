@@ -1,0 +1,70 @@
+% $Id$
+\section{Webserver}
+%
+%
+"Uber die serielle Schnittstelle des Host-PCs werden nun die Daten der Sensorknoten empfangen
+und es k"onnen auch Daten an diese gesendet werden. 
+Als einfaches Beispiel wird hier das Auslesen und
+Darstellen der von den Sensorknoten gemessenen Temperaturen mit Hilfe 
+eines Webservers gezeigt. Dieser ist in Python geschrieben und verwendet
+die Module \texttt{Simple\-HTTP\-Server} und \texttt{SocketServer}.
+Das Server wird mit dem Befehl \texttt{python webserver.py} gestartet und 
+ist danach unter \texttt{http://localhost:8080} erreichbar.
+
+\begin{lstlisting}[tabsize=4]
+import SocketServer
+import SimpleHTTPServer
+...
+class CustomHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        global sdev
+        self.send_response(200)
+        self.send_header('Content-type','text/html')
+        self.end_headers()
+        txt = sdev.build_sensor_html_table()
+        self.wfile.write(header() + txt + footer())
+
+if __name__ == "__main__":
+	...
+    httpd = SocketServer.ThreadingTCPServer(
+                    ('localhost', PORT),CustomHandler)
+	...
+	httpd.serve_forever()
+\end{lstlisting}
+
+In einem separaten Thread werden die ankommenden Sensordaten von der
+seriellen Schnittstelle gelesen und in einem Dictionary gespeichert.
+Die Funktion {\tt build\_sensor\_html\_table()} baut daraus eine HTML-Tabelle. 
+Diese Methode wird von der oben beschriebenen Serverfunktion 
+{\tt do\_GET()} aus aufgerufen.
+\begin{lstlisting}[tabsize=4]
+class Device:
+    def __init__(self,port, baud, verbose=0):
+        self.sport = serial.Serial(port, baud)
+        self.rxThread = threading.Thread(target = self._rx_thread_)
+        ...
+        self.rxThread.start()
+        self.sensor_data = {} # collects sensor data
+
+    # function running in thread
+    def _rx_thread_(self):
+        while 1:
+            sline = self.sport.readline().strip()
+            tim = int(time.time())
+            (node, temp) = self.parse_line(sline)
+            self.sensor_data[node] = (tim, temp)
+
+    def build_sensor_html_table(self):
+        ...
+        for node in nodes:
+            ...
+            (tim,temp) = self.sensor_data[node]
+            if (int(time.time()) - tim) > 10:
+                ret += '<td style="color:red">'\
+                       '%s</td>\n' % temp
+            else:  
+                ret += '<td>%s</td>\n' % temp
+        ...
+        return ret
+\end{lstlisting}
+

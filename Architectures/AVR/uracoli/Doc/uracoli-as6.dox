@@ -1,0 +1,54 @@
+/**
+@page pgGetStarted
+@section md_as6 AtmelStudio 6 Project Template
+
+The source code package provides a preconfigured AtmelStudio 6 template.
+It can be used as base for own software projects.
+The tagalog word _Halimbawa_ means _example_ according to the
+[Tagalog Dictionary](http://www.tagalog-dictionary.com/cgi-bin/search.pl?s=halimbawa Tagalog Dictionary)
+
+The _halimbawa_ directory of the source code package can be used in the following
+way:
+
+### Step 1: copy the project and rename it.
+
+- Change into the directory `uracoli-src-<version>/as6/`
+- Copy the entire directory `halimbawa` and rename it to e.g. `testproject`
+- Change to the directory `testproject` and rename the file
+  `halimbawa.cproj` to `testproject.cproj`
+
+![Copy the Project](Doc/Images/as6_copy_project.png)
+
+### Step 2: open the copied project with AtmelStudio 6
+
+- Double click on `testproject.cproj` and wait until AtmelStudio 6 has finished
+  loading the project.
+  ![Snapshot of the solution explorer window in AS6](Doc/Images/as6_solexp.png)
+- Do a right click on _testproject_ in the _solution explorer window_ and
+  choose _Properties_.
+  ![Property selection](Doc/Images/as6_contextprop.png)
+
+### Step 3: Configure the project
+
+- Find your board in the section @ref pgBoards and
+  remember the paramters
+    - `Build Target`,
+    - `MMCU` and
+    - `F_CPU`.
+- In the properties dialogue select the `Toolchain` tab. The preconfigured
+  symbols are
+    - `F_CPU = 8000000UL` (8MHz) and
+    - `rbb128rfa1` (Build Target).
+    - Modify the symbols according to the values of your board.
+  ![GCC Symbols - add the target name and `F_CPU`](Doc/Images/as6_symbols.png)
+- Select the _Device_ tab in the _Properties_ dialogue.
+  Press the _Change Device_ button to select the MMCU for your board.
+  ![Select the MCU of your board](Doc/Images/as6_selectmcu.png)
+- Press the _F7_ key, and check, if the project compiles with the new settings.
+
+### Step 4: add your code
+
+Finally you can start with programming your own project.
+Just edit in the file `main.c`, and leave the other source files untouched
+... unless you find a bug.
+*/

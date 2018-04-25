@@ -1,0 +1,365 @@
+#   Copyright (c) 2015 Axel Wachtler
+#   All rights reserved.
+#
+#   Redistribution and use in source and binary forms, with or without
+#   modification, are permitted provided that the following conditions
+#   are met:
+#
+#   * Redistributions of source code must retain the above copyright
+#     notice, this list of conditions and the following disclaimer.
+#   * Redistributions in binary form must reproduce the above copyright
+#     notice, this list of conditions and the following disclaimer in the
+#     documentation and/or other materials provided with the distribution.
+#   * Neither the name of the authors nor the names of its contributors
+#     may be used to endorse or promote products derived from this software
+#     without specific prior written permission.
+#
+#   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS 'AS IS'
+#   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+#   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+#   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+#   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+#   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+#   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+#   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+#   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+#   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+#   POSSIBILITY OF SUCH DAMAGE.
+
+# $Id$
+import os
+import scons_helpers as sc_helpers
+Import("com")
+
+# === init globals =============================================================
+
+# === install/generate library header files  ===================================
+xx = com.Install('${INC_DIR}/', ['Src/Lib/Inc/board.h',
+                            'Src/Lib/Inc/transceiver.h',
+                            'Src/Lib/Inc/const.h',
+                            'Src/Lib/Inc/radio.h',
+                            'Src/Lib/Inc/ioutil.h',
+                            'Src/Lib/Ioutil/hif_uart.h',
+                            'Src/Lib/Ioutil/hif_usb.h',
+                            'Src/Lib/Inc/timer.h',
+                            'Src/Lib/Inc/hif.h',
+                            'Src/Lib/Inc/i2c.h',
+                            'Src/Lib/Inc/sensor.h',
+                            'Src/Lib/Inc/sensor_defs.h',
+                            'Src/Lib/Inc/p2p.h',
+                            'Src/Lib/Inc/p2p_protocol.h',
+                            'Src/Lib/Inc/rtc.h', 'Src/Lib/Inc/ow.h'])
+com.Install('${INC_DIR}/boards', com.Glob('Src/Lib/Inc/boards/*.h'))
+com.Install('${INC_DIR}/sensors', com.Glob('Src/Lib/Inc/sensors/*.h'))
+
+for fn in com.Glob('Templates/*.txt'):
+    com.WriteRadioHeaderFile('${INC_DIR}/${SOURCE.filebase}.h', fn)
+
+com.WriteBoardHeaderFile('${INC_DIR}/board_cfg.h', '${BOARD_CFG_FILE}',
+                          SELECTED_BOARDS = None)
+com.Default('${INC_DIR}')
+
+# === install library sources ==================================================
+tc_defs = sc_helpers.GetMakeToolDefs(com)
+all_rule, board_rules = sc_helpers.GetLibMakeRules(com)
+parms = { 'all_rule'    : all_rule,
+          'board_rules' : board_rules,
+          'more_flags'  : "# --- todo ---\n",
+          'toolchain_defs' : tc_defs}
+
+com.Install('${SRC_DIR}/',
+                com.Glob('Src/Lib/Rf230/*.c') +
+                com.Glob('Src/Lib/Ioutil/*.c') +
+                com.Glob('Src/Lib/P2P/*.c'))
+com.TextTransformer("${SRC_DIR}/Makefile",
+                 "Templates/src.mk",
+                 TEXT_PARAMS = parms)
+
+# === install applications =====================================================
+for app in com["APPLICATIONS"].values():
+    if len(app["ingroup"]):
+        dst_path = "${INSTALL_DIR}/%s/%%s" % app["ingroup"]
+        topdir = "../.."
+    else:
+        dst_path = "${INSTALL_DIR}/%s"
+        topdir = ".."
+    app_name = app['name']
+    app_src_path = dst_path % app['name']
+    mk_file = "Makefile"
+    mk_name = "%s/%s" % (app_src_path, mk_file)
+    mk_sources = " \\\n          ".join([os.path.basename(s) for s in app['sources']])
+    app_files = ["Src/App/%s" % src for src in app["sources"]]
+    app_files += ["Src/App/%s" % src for src in app["headers"]]
+    all_rule, board_rules = sc_helpers.GetAppMakeRules(com, app_name)
+    parms = { 'all_rule'    : all_rule,
+              'board_rules' : board_rules,
+              'more_flags'  : "# --- todo ---\n",
+              'toolchain_defs' : sc_helpers.GetMakeToolDefs(com, str(app.get('flags')).lower()),
+              'topdir' : topdir,
+              'project': app_name,
+              'makefile': mk_file,
+              'sources': mk_sources,
+              'appname': app_name}
+    com.Install(app_src_path, app_files )
+    com.TextTransformer(mk_name,
+                        "Templates/app.mk",
+                        TEXT_PARAMS = parms)
+
+# === install examples =========================================================
+for app in com["EXAMPLES"].values():
+    xmpl_path = "${INSTALL_DIR}/xmpl"
+    topdir = ".."
+    app_name = app['name']
+    mk_file = "%s.mk" % app_name
+    mk_name = "%s/%s" % (xmpl_path, mk_file)
+    mk_sources = " \\\n          ".join([os.path.basename(s) for s in app['sources']])
+    app_files = ["Src/Xmpl/%s" % src for src in app["sources"]]
+    app_files += ["Src/Xmpl/xmpl.h"]
+    all_rule, board_rules = sc_helpers.GetAppMakeRules(com, app_name, "EXAMPLES")
+    parms = { 'all_rule'    : all_rule,
+              'board_rules' : board_rules,
+              'more_flags'  : "# --- todo ---\n",
+              'toolchain_defs' : sc_helpers.GetMakeToolDefs(com, str(app.get('flags')).lower()),
+              'topdir' : topdir,
+              'project': app_name,
+              'makefile': mk_file,
+              'sources': mk_sources,
+              'appname': app_name}
+
+    com.Install(xmpl_path, app_files)
+    com.TextTransformer(mk_name,
+                        "Templates/app.mk",
+                        TEXT_PARAMS = parms)
+
+# === install arduino ==========================================================
+arduino_core_src = com.Glob("Contrib/Arduino/hardware_1x/uracoli/libraries/HardwareRadio/HardwareRadio.*")
+arduino_core_meta = com.Glob("Contrib/Arduino/hardware_1x/uracoli/libraries/HardwareRadio/[kl]*")
+
+arduino_uracoli_src = [ "${INSTALL_DIR}/inc/atmega_rfa1.h",
+                      "${INSTALL_DIR}/inc/atmega_rfr2.h",
+                      "${INSTALL_DIR}/inc/at86rf230a.h",
+                      "${INSTALL_DIR}/inc/at86rf230b.h",
+                      "${INSTALL_DIR}/inc/at86rf212.h",
+                      "${INSTALL_DIR}/inc/board.h",
+                      "${INSTALL_DIR}/inc/const.h",
+                      "${INSTALL_DIR}/inc/radio.h",
+                      "${INSTALL_DIR}/inc/transceiver.h",
+                      "${INSTALL_DIR}/inc/p2p_protocol.h",
+                      "Src/Lib/Rf230/radio_rf230.c",
+                      "Src/Lib/Rf230/trx_datarate.c",
+                      "Src/Lib/Rf230/trx_datarate_str.c",
+                      "Src/Lib/Rf230/trx_rf230_bitrd.c",
+                      "Src/Lib/Rf230/trx_rf230_bitwr.c",
+                      "Src/Lib/Rf230/trx_rf230.c",
+                      "Src/Lib/Rf230/trx_rf230_crc.c",
+                      "Src/Lib/Rf230/trx_rf230_frame.c",
+                      "Src/Lib/Rf230/trx_rf230_irq.c",
+                      "Src/Lib/Rf230/trx_rf230_misc.c",
+                      "Src/Lib/Rf230/trx_rf230_param.c",
+                      "Src/Lib/Rf230/trx_rf230_sram.c",
+                      "Src/Lib/Rf230/trx_rfa.c",
+                      "Src/Lib/Rf230/trx_rfa_irq.c",
+                      "Src/Lib/Rf230/usr_radio_irq.c"]
+
+arduino_boards = ["${INSTALL_DIR}/inc/boards/board_derfa.h",
+                  "${INSTALL_DIR}/inc/boards/board_radiofaro.h",
+                  "${INSTALL_DIR}/inc/boards/board_wdba1281.h",
+                  "${INSTALL_DIR}/inc/boards/base_zdma1281.h"]
+# currently just one version of Arduino is supported
+arduino_version_config = [
+            {
+              "base" : com.Dir("${BUILD_DIR}/arduino_15x/"),
+              "core" : com.Dir("${BUILD_DIR}/arduino_15x/"),
+              "cfgfiles" : Glob("Contrib/Arduino/hardware_15x/uracoli/avr/*.txt")
+            }
+        ]
+
+a = []
+# compile boot loader
+com.Command(["Contrib/Arduino/hardware_1x/uracoli/bootloaders/radiofaro/ATmegaBOOT_radiofaro.hex",
+             "Contrib/Arduino/hardware_1x/uracoli/bootloaders/radiofaro/ATmegaBOOT_radiofaro2.hex"],
+            ["Contrib/Arduino/hardware_1x/uracoli/bootloaders/radiofaro/ATmegaBOOT.c",
+             "Contrib/Arduino/hardware_1x/uracoli/bootloaders/radiofaro/Makefile"],
+             ["make -C Contrib/Arduino/hardware_1x/uracoli/bootloaders/radiofaro clean radiofaro",
+              "make -C Contrib/Arduino/hardware_1x/uracoli/bootloaders/radiofaro clean radiofaro2" ])
+
+
+for acfg in arduino_version_config:
+    com["ARDUINO_BASE_DIR"] = acfg['base']
+    com["ARDUINO_CORE_DIR"] = acfg['core']
+
+    # === core and variants ====================================================
+    a += com.Install("${ARDUINO_CORE_DIR}", acfg['cfgfiles'])
+    a += com.Install("${ARDUINO_CORE_DIR}/libraries/HardwareRadio", arduino_core_meta)
+    a += com.Install("${ARDUINO_CORE_DIR}/libraries/HardwareRadio/src", arduino_core_src)
+    a += com.Install("${ARDUINO_CORE_DIR}/libraries/HardwareRadio/src/uracoli", arduino_uracoli_src)
+    a += com.Install("${ARDUINO_CORE_DIR}/libraries/HardwareRadio/src/uracoli/boards", arduino_boards)
+    a += com.WriteBoardHeaderFile('${ARDUINO_CORE_DIR}/libraries/HardwareRadio/src/uracoli/board_cfg.h',
+                              '${BOARD_CFG_FILE}',
+                              SELECTED_BOARDS = ["radiofaro", "radiofaro2", "wdba1281", "mnb900", "pinoccio", "atzb256rfr2xpro"],
+                              PRESELECTED_BOARD = "radiofaro")
+
+    a += com.Install("${ARDUINO_CORE_DIR}",
+                     "Contrib/Arduino/hardware_1x/uracoli/variants")
+
+    # === bootloaders ==========================================================
+    a += com.InstallAs("${ARDUINO_CORE_DIR}/bootloaders",
+                       "Contrib/Arduino/hardware_1x/uracoli/bootloaders")
+
+    # === examples =============================================================
+    a += com.InstallAs("${ARDUINO_CORE_DIR}/libraries/HardwareRadio/examples",
+                       "Contrib/Arduino/examples/Radio")
+
+    # === tools ================================================================
+    a += com.Install("${ARDUINO_CORE_DIR}/tools",
+                       "Tools/radiofarogw_wrapper.py")
+
+
+    # === documentation and licenses ===========================================
+    a += com.InstallAs("${ARDUINO_CORE_DIR}/libraries/HardwareRadio/extras/hardwareradio.pdf",
+                       "${BUILD_DIR}/arduinodoc/latex/refman.pdf")
+
+
+    # 1) Patching in the original arduino core
+    # 2) the second patch introduces the Serial modifications
+    a += com.Command("${ARDUINO_CORE_DIR}/cores",
+            ["Contrib/Arduino/core.patch", "Contrib/Arduino/core_serial.patch"],
+            ["patch -d ${ARDUINO_CORE_DIR}/ -p0 -i ../../Contrib/Arduino/core.patch",
+             "patch -d ${ARDUINO_CORE_DIR}/ -p5 -i ../../Contrib/Arduino/core_serial.patch"
+            ])
+
+com.Alias("arduino", a)
+
+# === install Atmel Studio template ============================================
+com.InstallAs("${INSTALL_DIR}/as6/halimbawa/main.c", "Templates/halimbawa_main.c")
+com.Install("${INSTALL_DIR}/as6/halimbawa", "Templates/halimbawa.cproj")
+
+# === install scripts ==========================================================
+# generic Tools
+com.Install("${SCRIPT_DIR}", ["Tools/sterm.py", "Tools/hbm251.py"])
+
+# sniffer
+com.Install("${SCRIPT_DIR}", ["Contrib/PacketCapture/ieee802154_base.py",
+                                       "Contrib/PacketCapture/sniffer_io.py",
+                                       "Contrib/PacketCapture/sniffer.py",
+                                       "Tools/p2p.lua"])
+# wibo
+com.Install("${SCRIPT_DIR}", "Src/App/WiBo/PyHost/wibohost.py")
+com.TextTransformer('${SCRIPT_DIR}/nodeaddr.py',
+                    ["Templates/nodeaddr.py.in"],
+                     TEXT_PARAMS = {
+                        'filename'  : "nodeaddr",
+                        'version'   : com.subst("${VERSION}"),
+                        'board'     : "UNKNOWN",
+                        'mmcu_table': sc_helpers.GetBoardMmcuTable(com['BOARDS'])
+                        })
+com.Alias('scripts', '${SCRIPT_DIR}')
+BUILD_TARGETS.append('scripts')
+# === documentation ============================================================
+
+# main documentation
+
+com.WriteBoardDoxFile("${BUILD_DIR}/maindoc/boards.dox", "${BOARD_CFG_FILE}")
+com.Command("${BUILD_DIR}/maindoc/uracoli.dot",
+            ["Src/App/rsensor.c", "${INSTALL_DIR}/inc"],
+            "python Tools/h2dot.py -Iinstall/inc -Iinstall/inc/boards -Iinstall/inc/sensors $SOURCE > $TARGET")
+
+params = com["DOCS"]["main"]
+params.update( {'build_dir': com.subst("${BUILD_DIR}/maindoc"),
+                'html_output': com.subst("${INSTALL_DIR}/doc/maindoc"),
+                'latex_output': com.subst("${BUILD_DIR}/maindoc/latex"),
+                'xml_output': com.subst("${BUILD_DIR}/maindoc/xml"),
+                'dox_version': com.subst("${VERSION}"),
+                })
+df = com.TextTransformer("${BUILD_DIR}/maindoc/Doxyfile",
+                [ "Templates/doxyfile.in",
+                  "${DOC_CFG_FILE}",
+                  "${BUILD_DIR}/maindoc/boards.dox",
+                  "${BUILD_DIR}/maindoc/uracoli.dot"],
+                  TEXT_PARAMS = params)
+htmlfile = com.Command("${INSTALL_DIR}/doc/maindoc/index.html",
+                df,
+                ["doxygen $SOURCE"])
+
+# Generate Latex Documentation
+com.Depends("${BUILD_DIR}/maindoc/latex/refman.tex", htmlfile)
+pdffile = com.Command("${BUILD_DIR}/maindoc/latex/refman.pdf",
+                      "${BUILD_DIR}/maindoc/latex/refman.tex",
+                      "make -C ${BUILD_DIR}/maindoc/latex/")
+pdfusrguide = com.InstallAs("${INSTALL_DIR}/doc/maindoc/uracoli-manual.pdf",
+                            pdffile)
+
+com.Alias("maindoc", [htmlfile])
+com.Alias("maindocpdf", [pdfusrguide, htmlfile])
+
+# sniffer documentation
+readme = com.Install("${BUILD_DIR}/sniffer/", "Contrib/PacketCapture/README.html")
+
+params = com["DOCS"]["sniffer"]
+
+params.update( {'build_dir': com.subst("${BUILD_DIR}/sniffer/doc"),
+                'html_output': com.subst("${BUILD_DIR}/sniffer/doc"),
+                'latex_output': com.subst("${BUILD_DIR}/sniffer/latex"),
+                'xml_output': com.subst("${BUILD_DIR}/sniffer/xml"),
+                'dox_version': com.subst("${VERSION}"),
+                })
+df = com.TextTransformer("${BUILD_DIR}/sniffer/Doxyfile",
+                [ "Templates/doxyfile.in","${DOC_CFG_FILE}"],
+                TEXT_PARAMS = params)
+htmlfile = com.Command("${BUILD_DIR}/sniffer/doc/index.html",
+                df,
+                ["doxygen $SOURCE"])
+com.Alias("snfdoc", [htmlfile, readme])
+
+com.Alias("doc", ["maindoc", ])
+
+# UASP documentation
+params = com["DOCS"]["arduino"]
+params.update( {'build_dir': com.subst("${BUILD_DIR}/arduinodoc"),
+                'html_output': com.subst("${BUILD_DIR}/arduinodoc/html"),
+                'latex_output': com.subst("${BUILD_DIR}/arduinodoc/latex"),
+                'xml_output': com.subst("${BUILD_DIR}/arduinodoc/xml"),
+                'dox_version': com.subst("${VERSION}"),
+                })
+com.WriteBoardDoxFile("${BUILD_DIR}/arduinodoc/boards.dox",
+                      "${BOARD_CFG_FILE}",
+                      BOARDS = {k: com["BOARDS"].get(k) for k in
+                                ["radiofaro", "pinoccio", "atzb256rfr2xpro",
+                                 "mnb900", "wdba1281"]})
+df = com.TextTransformer("${BUILD_DIR}/arduinodoc/Doxyfile",
+                [ "Templates/doxyfile.in",
+                  "${DOC_CFG_FILE}",
+                  "${BUILD_DIR}/arduinodoc/boards.dox",],
+                   TEXT_PARAMS = params)
+htmlfile = com.Command("${BUILD_DIR}/arduinodoc/html/index.html",
+                df,
+                ["doxygen $SOURCE"])
+pdffile = com.Command("${BUILD_DIR}/arduinodoc/latex/refman.pdf",
+                      htmlfile,
+                      "make -C ${BUILD_DIR}/arduinodoc/latex/")
+com.Alias("arduinodoc", [htmlfile, pdffile])
+
+com.Alias("doc", ["usrguide", "maindoc", "arduinodoc"])
+
+# === packages =================================================================
+for pkg in com['PACKAGES'].values():
+    alias = pkg['alias']
+    pname = pkg['name']
+    flist = []
+    for f in pkg["files"]:
+        flist.extend(com.Glob(f))
+    pfile = com.subst("%s-${VERSION}" % pname)
+    x = com.CreateZipFile("${INSTALL_DIR}/%s.zip" % pfile,
+                          flist,
+                          PREFIX = pkg.get('prefix', pfile),
+                          UNPREFIX = pkg["unprefix"],
+                          RELOCATE = pkg["relocate"],
+                          COMMENT = pkg["comment"] )
+    com.Depends(x, pkg['boards'])
+    if pkg['alias'] == "parduino15":
+        x += com.UpdateArduinoPackageJson(
+            "${INSTALL_DIR}/package_uracoli_index.json",
+            "Contrib/Arduino/package_uracoli_index.json",
+            pkg = "${INSTALL_DIR}/%s.zip" % pfile)
+
+    com.Alias(pkg['alias'], x)

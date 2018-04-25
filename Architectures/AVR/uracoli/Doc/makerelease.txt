@@ -1,0 +1,33 @@
+= How to make a release =
+
+1 create a release branch, e.g.
+    hg branch rel_0.4.x
+2 switch to the branch
+    hg up -C rel_0.4.x
+3 check if all builds
+    scons all doc
+4 create a local release tag first
+    hg tag -l 0.4.0
+5 build the release packages
+    #bash Tools/makerelease.sh 0.4.0
+    in the uracoli-basedir there are now
+    the file
+        - uracoli-arduino-0.4.0.zip
+        - uracoli-devel-0.4.0.zip
+        - uracoli-doc-0.4.0.zip
+        - uracoli-sniffer-0.4.0.zip
+        - uracoli-src-0.4.0.zip
+
+6 test the release packages
+    python  Regression/test_src_pkg.py uracoli-src-0.4.0.zip
+  - test xmpl_hif firmware
+     python Regression/test_xmpl_hif.py Regression/env_aw.cfg
+  - test wuart firmware
+    python Regression/test_wuart.py Regression/env_aw.cfg
+  - test sniffer firmware
+    python Regression/test_sniffer.py Regression/env_aw.cfg
+
+7 test docu package
+
+8 test arduino package
+

@@ -1,0 +1,1056 @@
+/* Copyright (c) 2007 - 2012 Axel Wachtler
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   * Neither the name of the authors nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   POSSIBILITY OF SUCH DAMAGE. */
+
+/* $Id$ */
+
+/*=== Radio Applications ====================================================*/
+
+/**
+@page pgrdiag Radio Diagnostics
+
+@brief <div style="background-color:#e6e6ff;">
+       This application provides a framework for testing the radio
+       functions.</div>
+
+@section secRdiagOverview Overview
+
+The basic functions of the transceiver, e.g. setting channel, adjusting
+power and transmission/reception of frames can be done with hotkeys.
+The application is usefull to check if a new board definition is valid
+or a hardware platform works as expected.
+
+
+@section secRdiagPrereq Prerequisites
+
+@par Compiling and Flashing
+
+    @code
+    make -C src/rdiag/ [help|list|clean|<board>]
+    make -C src/rdiag/ list
+     any2400          : baudrate= 38400, A.N. Solutions ANY Brick
+     ...
+    @endcode
+
+Section @ref pgDevProgDebug describes how the file <tt>rdiag_<board>.hex</tt> is
+flashed to the target board.
+
+@par Terminal
+
+The application is operated with a terminal. The baudrate is defined per
+board and can be found either with
+ - <tt>make -C src/rdiag/ list | grep <myboard></tt>
+    @code
+    $ make -C  test/uracoli-x/src/rdiag list | grep radiofaro
+    radiofaro        : baudrate= 57600, RadioFaro, Arduino like board with deRFmega128-22A001
+    radiofaro2       : baudrate= 57600, RadioFaro, Arduino like board with deRFmega256-23M00
+    @endcode
+ - at the end of the build
+    @code
+    $make -C  test/uracoli-x/src/rdiag rdk230
+    ....
+    make[1]: Leaving directory `/home/axel/Work/uracoli-aw/test/uracoli-x/src/rdiag'
+
+    rdk230 : baudrate=38400-8-N-1
+    @endcode
+ - or in @ref pgBoards.
+
+@section secAppRdiagUse Usage
+
+- After resetting the hardware the following message appears in the terminal:
+    @code
+    Radio Diag 0.12
+    >RADIO INIT: OK
+    @endcode
+- Press @b h to display a help screen
+    @code
+    i/I : show / show and reset statistic
+    +/- : incr./decr. channel
+    P/p : incr./decr. power
+    C/c : incr./decr. CCA mode
+    o   : set state OFF
+    t   : set state TX
+    r   : set state RX
+    s   : send a test frame
+    R   : toggle RXON_IDLE parameter
+    V/v : incr./decr. verbosity (0...2)
+    @endcode
+- Press @b i to display a statistic of the radio. <br>
+   If the key @b I (upper case i) is pressed, the statistic values are
+   reset to 0 after printing.
+    @code
+    >STAT duration: 33 ticks
+     RX: frames: 12 crcerr: 12
+     RX: channel 26 avg rssi: 0 avg lqi:  0
+     TX: frames: 0
+    @endcode
+- with the keys @b o (TRX_OFF), @b r (TRX_RX), @b t (TRX_TX), the radio can be set into the
+   basic states
+    @code
+    >SATE_OFF
+    >SATE_RX
+    >SATE_TX
+    @endcode
+- with the keys @b + and @b - the radio channel can be selected (11...26).
+   The initial channel after chip reset is 11 (hardware feature).
+    @code
+    >CHAN: 12
+    >CHAN: 11
+    >CHAN: 26
+    @endcode
+- with @b p and @b P the transmit power is modified.
+   The numbers 0 ... 15 represent the power values given in the data sheet
+   of the AT86RF230
+    @code
+    >PWR: 9
+    >PWR: 10
+    @endcode
+- with @b c and @b C the CCA mode is switched (0...3)
+    @code
+    >CCA: 0
+    >CCA: 3
+    @endcode
+- with @b s a single test frame is send.
+- with @b S a test frame is send continously (until @b S is pressed).
+    @code
+    >SEND len=42
+    0000  01 00 02 55 55 55 55 55 55 55 55 55 55 55 55 55
+    0010  55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55
+    0020  55 55 55 55 55 55 55 55 00 00
+    >SEND CONTINOUS START
+    >SEND CONTINOUS STOP
+    @endcode
+- with @b R the transceiver state, while idle is selected
+   - 1 after sending a frame, the transceiver is set to state TRX_RX
+   - 0 after sending a frame, the transceiver is set to state TRX_OFF
+    @code
+    >RXON_IDLE: 1
+    >RXON_IDLE: 0
+    @endcode
+- with @b V and @b v the verbose level can be changed between 0..2
+   - at 0 : nothing about TX and RX events is printed
+   - at 1 : frame parameters for TX and RX events are printed
+   - at 1 : the frame contents is also dumped
+- in case of many events, not all messages can be printed and
+   display will miss information
+    @code
+    >VERBOSE: 0
+    >VERBOSE: 1
+    ++FRAME len=117, crc=238, lqi=0 rssi=0
+    ++FRAME len=31, crc=192, lqi=0 rssi=0
+    >SEND len=42
+    >VERBOSE: 2
+    ++FRAME len=71, crc=119, lqi=0 rssi=0
+    0000  24 d9 80 79 eb b1 91 cf 6a ab 14 21 f7 f0 ce 6c
+    0010  6e a6 6c a1 16 37 72 e4 e7 60 56 20 66 27 31 42
+    0020  41 db 82 66 36 54 88 37 57 37 47 73 1c 7a d7 72
+    0030  6a 3f 40 82 17 c5 27 24 1d 1e 16 a6 52 71 59 64
+    0040  66 22 4c 32 71 37 53
+    >SEND len=42
+    0000  01 00 03 55 55 55 55 55 55 55 55 55 55 55 55 55
+    0010  55 55 55 55 55 55 55 55 55 55 55 55 55 55 55 55
+    0020  55 55 55 55 55 55 55 55 00 00
+    @endcode
+
+*/
+
+/**
+ @page pgwuart Wireless UART
+
+ @section secWuartOverview Overview
+
+ The wireless UART can be used to communicate between two PCs via a RF
+ link, or to communicate between a PC and an autonomous sensor/actor
+ node. The WUART application starts on a fixed radio channel and
+ operates automatically in transparent data mode. By means of the "+++"
+ escape sequence, the menue mode is entered and the application can be
+ configured.
+
+ Alternatively the example programm @ref xmpl_linbuf_tx.c can be used as
+ an alternative data source for the wuart application. This example maybe be
+ used as starting point for own sensor applications (see also @ref secXmplCompile).
+
+ The wuart application is also compatible with the sketch @ref RadioUart.ino from
+ the @ref pgContribArduino "Arduino support package".
+
+ The programm documentation of the firmware can be found in
+ @ref grpAppWuart "this section".
+
+@code
+     +------------------+            +------------------+
+     |   Terminal PC#1  |            |   Terminal PC#2  |
+     |------------------|            |------------------|
+     |    Wuart 0.2 ... |            |    Wuart 0.2 ... |
+     |#2: howdy #1      |            |#1: hiho #2       |
+     |#3: t=24          |            |#3: t=24          |
+     |#2: yyyyy         |            |#1: xxxxx         |
+     |#3: t=25          |            |#3: t=25          |
+     |                  |            |                  |
+     +-------*----------+            +--------*---------+
+             |                                |
+             |serial IF                       |serial IF
+             |                                |
+             |       ^                 ^      |
+         +---*----+  |                 |  +---*----+
+         | WUART  |  |                 |  | WUART  |
+         | Node#1 +--+                 +--+ Node#2 |
+         |        |                       |        |
+         +--------+       ^               +--------+
+                          | +--------+
+                          +-+ Sensor |
+                            | Node#3 |
+                            +--------+
+
+@endcode
+
+@section secWuartPrereq Prerequisites
+
+@par Compiling and Flashing
+
+    @code
+    make -C src/wuart [help|list|clean|<board>]
+    make -C src/wuart list
+     any2400          : baudrate= 38400, A.N. Solutions ANY Brick
+     ...
+    @endcode
+
+Section @ref pgDevProgDebug describes how the file <tt>wuart_<board>.hex</tt> is
+flashed to the target board.
+
+@par Terminal
+
+The application is operated with a terminal. The baudrate is defined per
+board and can be found either with
+
+ - <tt>make -C src/wuart list | grep <myboard></tt>
+    @code
+    $ make -C  test/uracoli-x/src/wuart list | grep radiofaro
+    radiofaro        : baudrate= 57600, RadioFaro, Arduino like board with deRFmega128-22A001
+    radiofaro2       : baudrate= 57600, RadioFaro, Arduino like board with deRFmega256-23M00
+    @endcode
+ - at the end of the build
+    @code
+    $make -C  test/uracoli-x/src/wuart rdk230
+    ....
+    make[1]: Leaving directory `/home/axel/Work/uracoli-aw/test/uracoli-x/src/wuart'
+
+    rdk230 : baudrate=38400-8-N-1
+    @endcode
+ - or in @ref pgBoards.
+
+@section secWuartUsage Usage
+
+@par Reset and Transparent Data Mode
+
+ After a reset of the board , the programm prints a one-line startup message
+ and operates from then in the transparent data mode.
+ In the transparent data mode the payload of incoming frames is printed on
+ the serial interface and incoming data from the serial interface are sent
+ as IEEE 802.15.4 frames.
+
+ The startup message contains the following information:
+
+@code
+Wuart 0.3 chan=11 radio 83.4 cfg F
+      |    |         |        |
+      |    |         |        +... configuration read from flash (F) or EEPROM (E)
+      |    |         +............ values of transceivers PART_NUM.VERSION_NUM register
+      |    +...................... configured IEEE radio channel
+      +........................... application version
+@endcode
+
+@par Configuration
+
+The wireless UART has a configuration menue, that can be reached by typing the
+<a href="http://en.wikipedia.org/wiki/Time_Independent_Escape_Sequence">
+Hayes 302 break sequence</a>: <tt>pause +++ pause</tt>. After entering this sequence
+the following menu will appear in the terminal window:
+
+    MENU:
+    [a] node address: 0x6172
+    [p] peer address: 0x6172
+    [P] PAN ID:       0xb5c2
+    [c] channel:      17
+    [C] chat mode:      0
+    [r] reset changes
+    [e] save and exit
+    [f] reset to factory defaults
+    [q] discard changes and exit
+    ===
+
+Pressing the letter in the square brackets will query you at a prompt for a
+new parameter value. Pressing "e" stores the current settings in the EEPROM.
+After pressing "e" or "q" the application returns to data mode.
+
+@note The parameters "peer address" [p] and "chat mode" [C] are none persistent
+and needs to be set after each reset of the board.
+
+In the "chat mode" [C] the issued data are prefixed with the node ID, which
+is @c "PANID<<16 + SHORTADDRESS". The terminal log will look similiar like this:
+
+    <bbbb0002>
+    hi all
+    <b5c20003>
+    howdy
+    <*b5c20001>
+    my reply
+
+@section secAppWuartProto Frame Format
+
+The wireless UART uses the simple P2P air protocol. It assumes IEEE 802.15.4
+data frames with 16 bit adressing and PAN-ID compression. The following frame
+contains just one payload byte (7), the ASCII letter 'c':
+
+    Frame Bytes:
+    +------+----+------+------+------+------+----+------+
+    | 4188 | 02 | 4242 | 0700 | 0600 | 4055 | 63 | e9b1 |
+    +------+----+------+------+------+------+----+------+
+     (1)    (2)  (3)    (4)    (5)    (6)    (7)  (8)
+
+    Protocoll Data:
+    Frame 282: 14 bytes on wire (112 bits), 14 bytes captured (112 bits)
+    IEEE 802.15.4 Data, Dst: 0x0007, Src: 0x0006
+    P2P Protocol Data
+        FCF:   0x4188               (1)
+        Seq:        2               (2)
+        pan:   0x4242               (3)
+        to:    0x0007               (4)
+        from:  0x0006               (5)
+        cmd:   P2P_WUART_DATA (64)  (6a)
+        mode:  85                   (6b)
+        sdata: c                    (7)
+        FCS:   0xb1e9               (8)
+
+*/
+
+/**
+ @page pgwibo Wireless Bootloader
+ @anchor pgwibohost
+ @anchor pgwibotest
+
+@section secWiboOverview Overview
+
+The Wireless Bootloader provides "over the air upgrade" (OTA) facility for
+\uracoli supported boards. WiBo works like a regular bootloader, except that it
+uses the radio transceiver instead of the UART for communication.
+WiBo modifies the flash directly, therefore no special backup flash memory,
+like in other OTA solutions, is required.
+
+The wireless bootloader consists of three components:
+
+  - The python script @c wibohost.py runs on the PC and implements all functions
+    required for flashing the firmware.
+  - The WiBo host application runs on the @c WiBoHostNode, a board that is
+    connected via USB/Serial interface to the PC.
+  - The bootloader app, resides in the bootloader section of the remote nodes,
+    that are going to be flashed wirelessly
+
+@code
+    +------------------+                       ^
+    |                  |                       | +-----------+
+    |   +---------+    |                       +-+ NwNode #1 |
+    |   | app.hex |    |                         +-----------+
+    |   +---------+    |                           ^
+    |       |          |                           | +-----------+
+    |       v          |         +------+  ^       +-+ NwNode #2 |
+    | /-------------+  |         | WiBo |  |         +-----------+
+    | | wibohost.py |->*---------* Host +--+
+    | |             |  | serial  | Node |         ^
+    | +-------------+  | inter-  +------+         | +-----------+
+    |                  | face                     +-+ NwNode #3 |
+    |                  |                            +-----------+
+    |       PC         |
+    |                  |                        ^
+    |                  |                        | +-----------+
+    +------------------+                        +-+ NwNode #N |
+                                                  +-----------+
+@endcode
+
+The python script @c wibohost.py sends the file @c app.hex in slices
+to the host node. The host node transmits these data slices to the network nodes.
+The network nodes collect the data slices and programm them in the application
+memory section.
+
+In order to verfify that the network nodes was programmed correctly, the nodes
+calculate a 16-bit-CRC over the data slices. When the programming is completed,
+the host node queries the CRC from the network nodes and compare it with its
+own calculated CRC.
+
+The bootload process can be done either in @c unicast mode or in @c broadcast
+mode. In @c unicast @c mode each network node is programmed with a program
+image at one time. In @c broadcast @c mode, multiple network nodes receive the
+same image in parallel. This is useful for programming multiple network nodes
+with identical hardware and with the same firmware image.
+
+
+@section secWiboPrereq Prerequisites
+
+@par Scripts
+
+For the WiBo programming process, the scripts @c nodeaddr.py and @c wibohost.py
+in the directory @c scripts require
+
+- [Python](http://www.python.org) with a version < 3.x
+- the module [pyserial](http://pyserial.sourceforge.net)
+
+Both scripts work under Linux and Windows.
+
+@par Compiling and Configuring the Host Node Firmware
+
+The host node firmware is stored in the directory @c src/wibo/wibohost.
+The makefile provides the following functions
+
+    make -C src/wibo/wibohost [help|list|clean|<board>]
+
+A list of boards available is obtained by the command
+
+    make -C src/wibo/wibohost list
+     any2400          : baudrate= 38400, A.N. Solutions ANY Brick
+     ...
+
+The firmware for the host node is compiled with the commands:
+
+    make -C src/wibo/wibohost <board>
+    python scripts/nodeaddr.py -B <board> -c <channel> \
+                                -a <shortaddr> -p <pan> [-A <ieeeaddr>]\
+                                -f src/bin/wibohost_<board>.hex\
+                                -o wibohost_<board>_<shortaddr>.hex
+
+The script @c nodeaddr.py applies the address and channel configuration to the
+firmware file @c wibohost_<board>.hex and writes it to the file
+@c wibohost_<board>_<shortaddr>.hex. Section @ref pgDevProgDebug describes how
+the file @c "wibohost_<board>_<shortaddr>.hex" is flashed to the host node board.
+
+
+@par Compiling and Configuring the Bootloader Firmware
+
+The source code of the bootloader firmware is stored in the directory
+@c src/wibo/wibo. The makefile provides the following functions
+
+    make -C src/wibo/wibo [help|list|clean|<board>]
+
+A list of boards available is obtained by the command
+
+    make -C src/wibo/wibo list
+
+The wibo firmware for a network node is compiled with the commands:
+
+    make -C src/wibo/wibo <nodeboard>
+    python src/wibo/nodeaddr.py -B <nodeboard> -c <channel> \
+                                -a <shortaddr> -p <pan> [-A <ieeeaddr>]\
+                                -b src/bin/wibo_<board>.hex\
+                                -o wibo_<board>_<shortaddr>.hex
+
+The script @c nodeaddr.py applies the address and channel configuration to the
+firmware file @c src/bin/wibo_<board>.hex and writes it to the file
+@c wibo_<board>_<shortaddr>.hex. Section @ref pgDevProgDebug describes how the
+file @c wibo_<board>_<shortaddr>.hex is flashed to the network node board.
+
+Additionally the MCU needs to run in the bootloader section after reset.
+Therefore the fuses needs to be set correctly. The correct setting of the fuses
+can be found in the datasheet of the MCU. The following command gives an example
+how an Atmega1281 is configured:
+
+    # Fuses for initial jump to bootloader
+    avrdude -P usb -p m1281 -c jtag2 -U lf:w:0xe2:m \
+            -U hf:w:0x98:m -U ef:w:0xff:m
+
+@par Compiling Wibo Test Firmware
+
+The source code of the wibo test firmware is stored in the directory
+@c src/wibo/wibotest. The makefile provides the following functions
+
+    make -C src/wibo/wibotest [help|list|clean|<board>]
+
+A list of boards available is obtained by the command
+
+    make -C src/wibo/wibotest list
+
+The test firmware for a network node is compiled with the command:
+
+    make -C src/wibo/wibotest/ <nodeboard>
+
+@par Determining the Serial Port of the Host Node
+
+The serial port and the baudrate of the wibo host node is required to use
+the script @c wibohost.py.
+
+Under Linux unplug and replug the host node board and find the serial port
+with the command:
+
+    dmesg | grep tty | tail -1
+
+for example:
+
+    $ dmesg | grep tty | tail -1
+    [357398.561431] usb 1-1.4: cp210x converter now attached to ttyUSB2
+
+Under Windows use the program @c DeviceManager.exe to find the assigned COM port.
+
+The baudrate of the host node board is determinde with the command
+
+    make -C src/wibo/wibohost list | grep <hostboard>
+
+for example
+
+    $ make -C src/wibo/wibohost list | grep wdba1281
+    wdba1281         : baudrate= 38400, Meshnetics MeshBean WDB-A1281 and MNZB-900 development boards
+
+
+
+@section secWiboUsage Usage of wibohost.py
+
+@par Command Line Options
+
+@code
+    python wibohost.py [OPTIONS]
+
+    Options:
+      -P PORT : Port string ("port" or "port:baudrate"), e.g. /dev/ttyS0, COM1:38400
+                [default COM2:38400]
+      -h      : show help and exit
+      -V      : show version and exit
+      -a ADDR : set current node addresses, e.g. -a 1, -a 1,3,5 or -a 1:10,15
+                [default 1:8]
+      -u FILE : selectively update nodes selected by ADDR with FILE
+      -U FILE : broadcast update nodes with FILE
+      -S      : scan for nodes in range min(ADDR):max(ADDR),
+      -J      : send jump_to_bootloader frame to nodes selected by ADDR
+      -E      : send exit_from_bootloader frame to nodes selected by ADDR
+      -c CHANS: issue jump bootloader over the given channels, default: [11]
+      -v      : increase verbose level
+@endcode
+
+
+@par Examples
+
+As a first step, it is checked if all network nodes are in the bootloader.
+This is done with the "scan command" (-S).
+
+@code
+    python wibohost.py -P <comport>[:<baudrate>] [-v] -S
+@endcode
+
+for example
+
+@code
+    $python scripts/wibohost.py -P /dev/ttyUSB0:57600 -v -S
+    scan nodes [0, 1, 2, 3, 4, 5, 6, 7]
+    Found 2 devices
+
+    appname, boardname, crc, short_addr, status, target, version
+    wibo, wdba1281, 0, 4, None, F, 16
+    wibo, m256rfr2xpro, 0, 5, None, F, 16
+    SCAN: [4, 5]
+@endcode
+
+In the next step one node is selectively updated with an example application (-u).
+
+@code
+    python scripts/wibohost.py -P <comport>[:<baudrate>] [-v] -a <addr> -u <image>.hex
+@endcode
+
+for example
+
+@code
+    $python scripts/wibohost.py -P /dev/ttyUSB0:57600 -v -a 5 -u src/bin/wibotest_m256rfr2xpro.hex
+    selective flashing nodes [5]
+    flash node 5
+    WARN ignoring rec type 0x01
+    file: src/bin/wibotest_m256rfr2xpro.hex, node: 0x0005, crc: 0x5e6e
+    CRC None
+    EXIT {'code': 'OK', 'data': ''}
+@endcode
+
+Multiple nodes of identical hardware can be updated in parallel with a
+broadcast update (-U).
+
+@code
+    $python scripts/wibohost.py -P /dev/ttyUSB0:57600 -v -U src/bin/wibotest_m256rfr2xpro.hex
+    scan nodes [0, 1, 2, 3, 4, 5, 6, 7]
+    Found 2 devices
+
+    broadcast flashing nodes: [4, 5]
+    WARN ignoring rec type 0x01
+    file: src/bin/wibotest_m256rfr2xpro.hex, node: 0x0005, crc: 0x5e6e
+    CRC: 4 None
+    EXIT: 4 {'code': 'OK', 'data': ''}
+    CRC: 5 None
+    EXIT: 5 {'code': 'OK', 'data': ''}
+@endcode
+
+Another scan shows, that the network nodes now execute the example program:
+
+@code
+    $ python scripts/wibohost.py -P /dev/ttyUSB0:57600 -v -S
+    scan nodes [0, 1, 2, 3, 4, 5, 6, 7]
+    Found 2 devices
+
+    appname, boardname, crc, short_addr, status, target, version
+    wibotestwdba1281, wdba1281, 0, 4, None, F, 5
+    wibotestm256rfr2xpro, m256rfr2xpro, 0, 5, None, F, 16
+    SCAN: [4, 5]
+@endcode
+
+If the applications on the network nodes supports the wireless
+jump-to-bootloader command, then they can reset to bootloader mode (-J)
+and flashed with another application.
+
+@code
+    $python scripts/wibohost.py -P /dev/ttyUSB0:57600 -v -J -S
+    Jump to bootloader
+    Wibo listeners: []
+    scan nodes [0, 1, 2, 3, 4, 5, 6, 7]
+    Found 2 devices
+
+    appname, boardname, crc, short_addr, status, target, version
+    wibo, wdba1281, 0, 4, None, F, 5
+    wibo, m256rfr2xpro, 0, 5, None, F, 5
+    SCAN: [4, 5]
+@endcode
+
+
+@section secWiBoMemory Memory Organization
+
+@par Flash memory partitioning
+
+The AVR flash memory can be divided in an application section and a booloader
+section. The application section is located in the lower address memory.
+The bootloader section is located in the upper flash memory. Only in the
+bootloader section the self programming operations (SPM) can be executed by
+the AVR core. The SPM operations allow erasing and reprogramming the
+application flash memory.
+
+@code
+     +--------------------------------+ <----FLASH_END
+     |  Config Record                 |
+     |--------------------------------|
+     |                                |
+     | Bootloader Section             |
+     |                                |
+     +--------------------------------+ <----BOOTLOADER_OFFSET
+     |                                |
+     |                                |
+     |                                |
+     |                                |
+     |                                |
+     | Application Section            |
+     |                                |
+     +--------------------------------+ <-----0x0000
+@endcode
+
+
+The start address of the bootloader section is determined by the BOOTLSZ
+fuse bits. The BOOTRST fuse bit determines, if the AVR core jumps after
+reset to the application section (address 0x0000) or to the bootloader
+section (e.g. address 0xf000). The AVR fuse bits and the content of the
+bootloader section can only be changed either by ISP, JTAG or High Voltage
+programming.
+
+In order to have enough memory for the application available, the booloader
+section is choosen to be rather small, e.g. for 8K devices a 1K bootloader
+section and 7K application section is a reasonable choice. The larger 128k
+AVR devices are partitioned usually with a 4K bootloader section, leaving
+124K flash memory for the application.
+
+
+@par The Configuration Record at FLASH_END
+
+For WiBo, the last 16 byte of the flash memory are reserved for a configuration
+record. It holds address and channel parameters, which are needed for
+operation. The structure of this record is defined in file @ref board.h in the
+type @ref node_config_t. It stores
+
+- 2 byte SHORT_ADDRESS
+- 2 byte PAN ID
+- 8 byte IEEE_ADDRESS
+- 1 byte channel hint
+- 2 reserved bytes
+- 2 byte CRC16
+
+The configuration record is accessible from the application section and from the
+bootloader section.
+
+
+@section secNODEADDR The script nodeaddr.py
+
+TODO: reorder
+The file @c nodeaddr.py is used to to combine
+the bootloader image, the configuration record and optionally an application
+image into one intel-hex-file that can be flashed to the target board.
+
+The script can be found in the @c scripts directory of the @uracoli package.
+With @c "python scripts/nodeaddr.py -h" the help screen of the tool is displayed.
+
+To flash multiple nodes more efficiently, the script @c nodeaddr.py can pipe its
+output directly into avrdude.
+@code
+    python nodeaddr.py -a $1 -p 1 -c 11 -f ../bin/wibo_rdk230.hex -B rdk230 |\
+           avrdude -P usb -p m1281 -c jtag2 \
+                    -U fl:w:-:i -U lf:w:0xe2:m -U hf:w:0x98:m -U ef:w:0xff:m
+@endcode
+
+This command line can be stored in shell-script, e.g. @c flashwibo.sh.
+Under Windows replace $1 by %1 and store the command in a batch-file, e.g.
+@c flashwibo.bat.
+
+TODO: less blabla!
+
+The most important parameter is the radio channel, e.g. the frequency on which
+the radios communicate. Depending of the radio type, the cannel can be 11 - 26
+for the 2.4GHz radios and 0 - 10 for the 868/900 MHz radios. Which channel to
+choose depends on the area where the network is operated (for 868/900 MHz) and
+which other interferers are present (e.g. Bluetooth and WLAN for 2.4GHz). Since
+this topic can't be covered here complete, consult other information sources for
+selecting a radio channel to operate on.
+
+Other important parameters are the node address and the network address.
+The IEEE-802.15.4 radios support a 16 bit (SHORT-ADDRESS) and a 64 bit
+(IEEE-ADDRESS) node address as well as a 16 bit network identifier (PAN-ID).
+
+Since for bootloaders with the limited amount of programm memory no complex
+search and asociation procedures can be implemented, the channel and addressing
+parameters needs to be stored persistently in the Flash or EEPROM memory of the
+network node.
+
+Since the EEPROM in AVR controllers can be easily erased or modified by the
+application, a safe place to store  the radio configuration is the flash memory
+(the programm memory itself). Since the parameters should be accessible from the
+bootloader and from the final application, a so called configuration record is
+stored at the end of the flash memory.
+
+In order to create the config record at the flash end, a Intel Hex file needs to
+be generated, that is flashed with the hardware programmer and .e.g. with the
+tool avrdude.
+
+For generating config records for multiple nodes, the pythonscript
+@c "wibo/nodeaddr.py"
+is used. Basically the tool can be used directly on the command line.
+
+@code
+    $python wibo/nodeaddr.py -B rdk230 -c 17 -a 1 -A 0x1234567890ABCDEF -p 0xcafe -o foo.hex
+    Use Parameters:
+     board:      rdk230
+     addr_key:   1
+     group_key:  None
+     short_addr: 0x0001
+     pan_id:     0xcafe
+     ieee_addr:  0x1234567890abcdef
+     channel:    17
+     offset:     0x0001fff0
+     infile:     None
+     outfile:    foo.hex
+@endcode
+
+More detailed information about the tools options are displayed with the command
+
+@code
+    $python wibo/nodeaddr.py -h
+@endcode
+
+As you see in the above example a command line that covers all relevant
+parameters is very long and therefore error prone too. The script +nodeaddr.py+
+can read its parameters also from a configuration file.
+
+A initial annotated config file for a network setup is created with the command:
+
+@code
+    $python wibo/nodeaddr.py -G mynetwork.cfg
+    generated file mynetwork.cfg
+    $cat mynetwork.cfg
+    # In the "groups" section several nodes can be configured to be in one group,
+    # e.g. 1,3,4,5 are ravenboards.
+    #[group]
+    #ravengang=1,3:5
+    ....
+@endcode
+
+Assuming that your network consists just of rdk230 boards, the file
++mynetwork.cfg+ for the above command line would look so:
+
+@code
+    [board]
+    default = rdk230
+
+    [channel]
+    default=17
+
+    [pan_id]
+    default=42
+
+    [ieee_addr]
+    0=0x1234567890abcdef
+
+    [firmware]
+    outfile = node_<saddr>.hex
+@endcode
+
+The HEX files for the nodes are generated with the next command:
+
+@code
+    $python wibo/nodeaddr.py -C mynetwork.cfg -a 0
+    $python wibo/nodeaddr.py -C mynetwork.cfg -a 1
+@endcode
+
+or in very freaky pipeline way:
+
+@code
+    $python wibo/nodeaddr.py -Cmynetwork.cfg -a0 -o- | avrdude <OPTIONS> -U fl:w:-:i
+@endcode
+
+
+@section secWiboHostAPI The WiBoHost API
+
+The file wibohost.py can also be used as a python module. The following
+script shows how a broadcast and a unicast flash can be programmed.
+
+@code
+from wibohost import WIBOHost
+
+wh = WIBOHost()
+# open serial connection to wibohost node
+wh.close()
+wh.setPort("COM19")
+wh.setBaudrate(38400)
+wh.setTimeout(1)
+wh.open()
+# check if local echo works.
+print WHOST.echo("The quick brown fox jumps")
+
+# scan addresses 1 to 4
+addr_lst = wh.scan(range(1,4+1))
+
+# broadcast mode, flash all nodes
+for n in addr_lst:
+    wh.xmpljbootl(n)
+    print "PING  :", n, wh.ping(n)
+
+print "FLASH :", wh.flashhex(0xffff, "foo.hex")
+for n in addr_lst:
+    print "CRC  :", n, wh.checkcrc(n)
+    print "EXIT :", n, wh.exit(n)
+
+# unicast mode, flash node 1
+wh.xmpljbootl(1)
+print "PING  :#1", wh.ping(1)
+print "FLASH :#1", wh.flashhex(1, "bar.hex")
+print "CRC   :#1", wh.checkcrc(1)
+print "EXIT  :#1", wh.exit(1)
+@endcode
+
+*/
+
+/**
+@page pgrsensor Radio Sensor
+
+@section secRsensorOverview Overview
+
+The @c rsensor application combines sensor node and gateway functionality
+in one application. Over the configuration menue on the serial port, the nodes
+can be configured.
+
+    +-------------+ ^
+    | end-node #1 | |
+    | <rsensor>   |-+        ^ +-----------+    +-----------+
+    +-------------+          | | gateway   |    | PC        |
+                             +-| <rsensor> |----| Terminal  |
+      +-------------+ ^        +-----------+    +-----------+
+      | end-node #2 | |
+      | <rsensor>   |-+
+      +-------------+
+
+            +-------------+ ^
+            | end-node #N | |
+            | <rsensor>   |-+
+            +-------------+
+
+
+@section secRsensorPrerequisites Prerequisites
+
+@par Compiling and Flashing
+
+    @code
+    make -C src/rsensor/ [help|list|clean|<board>]
+    make -C src/rsensor/ list
+     any2400          : baudrate= 38400, A.N. Solutions ANY Brick
+     ...
+    @endcode
+
+Section @ref pgDevProgDebug describes how the file <tt>rsensor_<board>.hex</tt> is
+flashed to the target board.
+
+@par Terminal
+
+The application is operated with a terminal. The baudrate is defined per
+board and can be found either with
+ - <tt>make -C src/rsensor/ list | grep <myboard></tt>
+    @code
+    $ make -C  test/uracoli-x/src/rsensor list | grep radiofaro
+    radiofaro        : baudrate= 57600, RadioFaro, Arduino like board with deRFmega128-22A001
+    radiofaro2       : baudrate= 57600, RadioFaro, Arduino like board with deRFmega256-23M00
+    @endcode
+ - at the end of the build
+    @code
+    $make -C  test/uracoli-x/src/rsensor rdk230
+    ....
+    make[1]: Leaving directory `/home/axel/Work/uracoli-aw/test/uracoli-x/src/rsensor'
+
+    rdk230 : baudrate=38400-8-N-1
+    @endcode
+ - or in @ref pgBoards.
+
+@section secRsensorUsage Usage
+
+@par Operation
+
+The @c rsensor application transmits the sensor values, that are defined for
+each board and optionally prints it to the host interface.
+
+    rsensor: board=radiofaro cfg=E addr=b5c2_0001 chan=17
+    addr: *b5c2_0001, temp: 18.51, vtg: 3.46, ed: none, seq: 0
+    addr: *b5c2_0001, temp: 19.64, vtg: 3.46, ed: none, seq: 0
+    addr: b5c2_0002, temp: 15.12, vtg: 3.46, ed: 235, seq: 1
+    addr: b5c2_0002, temp: 13.99, vtg: 3.46, ed: 235, seq: 2
+    addr: *b5c2_0001, temp: 18.51, vtg: 3.46, ed: none, seq: 0
+    addr: b5c2_0002, temp: 15.12, vtg: 3.46, ed: 235, seq: 3
+    addr: b5c2_0003, temp: 20.77, ed: 196, seq: 1
+    addr: b5c2_0003, temp: 21.90, ed: 190, seq: 2
+    addr: b5c2_0003, temp: 21.90, ed: 193, seq: 3
+    addr: *b5c2_0001, temp: 18.51, vtg: 3.46, ed: none, seq: 0
+
+The sensor values measured every 5 minutes. This parameter can be changed in
+@c rsensor.c with the macro DEFAULT_UPDATE_INTERVALL which defines the
+measurement period in seconds.
+
+    #define DEFAULT_UPDATE_INTERVALL (5*60)
+
+After a reset of the node, the measurement occurs in shorter intervalls,
+increasing the intervall up to @c DEFAULT_UPDATE_INTERVALL by doubling the value
+starting with a 4 seconds intervall.
+
+
+@note
+Time stamps for the measurements needs to be created by the application that is
+reading the terminal.
+
+@par Configuration
+
+The configuration menue of the node is displayed, if any key is pressed, when
+the node is connected to a terminal.
+
+    MENU:
+    [a] short addr: 0x0003
+    [p] panid:      0xb5c2
+    [c] channel:    17
+    [l] LogMode:    on
+    [t] TxMode:     on
+    [r] RxMode:     on
+    [R] reset changes
+    [F] load factory defaults
+    [S] save changes and exit
+    [Q] discard changes and exit
+    ===
+
+The following keys configure the parameters of the application.
+
+- @b a : enter the @b "short address" of the node in hexadecimal,
+         (e.g. AAAA or 0xAAAA).@n
+         If an invalid number is entered, the address
+         becomes 0x0000. @n
+         This address is used as source address for the frames.
+- @b p : enter the @b "pan-id" of the node in hexadecimal,
+         (e.g. AAAA or 0xAAAA).@n
+         If an invalid number is entered, the pan-id
+         becomes 0x0000. @n
+         The pan-id identifies the network and is part of the addressfiltering.
+- @b c : enter the @b "radio channel".@n
+         For 2.4GHz, valid numbers are 11 ... 26. @n
+         For sub-GHz transceivers, the numbers 0 ... 10 are valid. @n
+         If an invalid channel number is entered, the old value is retained.
+- @b l : If LogMode is set to on, the local and received values are
+         printed to the host interface.
+- @b t : If TxMode is set to on, the measured sensor values are transmitted.
+- @b r : If RxMode is set to on, the transceiver is set to RX_ON in idle mode.
+- @b R : Reset the current made changes.
+- @b F : Load the factory defaults.
+- @b S : Save current changes to EEPROM and exit configuration menu.
+- @b Q : Abandon current changes  and exit configuration menu.
+
+
+@par Example Configuration as Gateway
+
+A gateway needs to receive the other sensor nodes (@c RxMode = @c on) and print
+the received information to the terminal (@c LogMode =  @c on). It may ommit to
+transmit its own sensor values (@c TxMode = @c off). If there are multiple
+gateways in the configuration @c TxMode may even be set to @c on
+
+    MENU:
+    [a] short addr: 0x0001
+    [p] panid:      0xb5c2
+    [c] channel:    17
+    [l] LogMode:    on
+    [t] TxMode:     off
+    [r] RxMode:     on
+    [R] reset changes
+    [F] load factory defaults
+    [S] save changes and exit
+    [Q] discard changes and exit
+    ===
+    save changes and exit
+
+    addr: *b5c2_0001, temp: 17.38, vtg: 3.46, ed: none, seq: 6
+    addr: b5c2_0003, temp: 19.64, ed: 196, seq: 8
+    addr: *b5c2_0001, temp: 18.51, vtg: 3.46, ed: none, seq: 0
+    addr: b5c2_0002, temp: 16.25, vtg: 3.38, ed: 235, seq: 8
+    addr: b5c2_0003, temp: 20.77, ed: 193, seq: 1
+    addr: b5c2_0002, temp: 20.77, ed: 193, seq: 2
+
+@par Example Configuration as Sensor-Node
+
+A sensor node configures just @c TxMode = @c on, in order to save maximum power.
+
+    MENU:
+    [a] short addr: 0x0002
+    [p] panid:      0xb5c2
+    [c] channel:    17
+    [l] LogMode:    off
+    [t] TxMode:     on
+    [r] RxMode:     off
+    [R] reset changes
+    [F] load factory defaults
+    [S] save changes and exit
+    [Q] discard changes and exit
+    ===
+    save changes and exit
+
+
+@section secRsensorFrame Frame Format
+
+
+
+
+*/

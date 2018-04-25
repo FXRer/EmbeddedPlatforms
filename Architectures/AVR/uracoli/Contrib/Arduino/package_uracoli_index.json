@@ -1,0 +1,92 @@
+{
+    "packages": [
+        {
+            "maintainer": "Axel Wachtler",
+            "help": {
+                "online": "http://www.radiofaro.de"
+            },
+            "websiteURL": "http://uracoli.nongnu.org",
+            "platforms": [
+                {
+                    "category": "Arduino",
+                    "name": "uracoli",
+                    "url": "http://download.savannah.nongnu.org/releases/uracoli/uracoli-arduino-15x-0.5.1rc3.zip",
+                    "checksum": "SHA-256:1fbc5fa057bf45930f545de4d9eb893acc745cbffaf67cd88b928b0d8dc29d64",
+                    "help": {
+                        "online": "http://www.radiofaro.de"
+                    },
+                    "version": "0.5.1",
+                    "architecture": "avr",
+                    "archiveFileName": "uracoli-arduino-15x-0.5.1rc3.zip",
+                    "boards": [
+                        {
+                            "name": "radiofaro"
+                        },
+                       {
+                            "name": "radiofaro2"
+                        },
+
+                        {
+                            "name": "pinoccio"
+                        },
+                        {
+                            "name": "atzb256rfr2xpro"
+                        },
+                        {
+                            "name": "zigbit24"
+                        },
+                        {
+                            "name": "zigbit09"
+                        }
+                    ],
+                    "size": "373157"
+                }
+            ],
+            "email": "axel@uracoli.de",
+            "name": "uracoli",
+            "tools": []
+        },
+        {
+            "maintainer": "Axel Wachtler",
+            "help": {
+                "online": " "
+            },
+            "websiteURL": "http://uracoli.nongnu.org",
+            "platforms": [
+                {
+                    "category": "Arduino",
+                    "name": "uracoli",
+                    "url": "http://download.savannah.nongnu.org/releases/uracoli/uracoli-arduino-0.4.2-for-boardmanager.zip",
+                    "checksum": "SHA-256:3dba2899de7d1faf3fd7ee4008da39ede79c46c280a9ba3456a8c86a50f97091",
+                    "help": {
+                        "online": "http://www.radiofaro.de"
+                    },
+                    "version": "0.4.2",
+                    "architecture": "avr",
+                    "archiveFileName": "uracoli-arduino-0.4.2-for-boardmanager.zip",
+                    "boards": [
+                        {
+                            "name": "radiofaro"
+                        },
+                        {
+                            "name": "pinoccio"
+                        },
+                        {
+                            "name": "atzb256rfr2xpro"
+                        },
+                        {
+                            "name": "zigbit24"
+                        },
+                        {
+                            "name": "zigbit09"
+                        }
+                    ],
+                    "size": "372380"
+                }
+            ],
+            "email": "axel@uracoli.de",
+            "name": "uracoli",
+            "tools": []
+        }
+    ]
+}

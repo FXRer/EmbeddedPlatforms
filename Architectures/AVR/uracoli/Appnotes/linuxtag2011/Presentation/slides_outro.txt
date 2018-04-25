@@ -1,0 +1,70 @@
+// ca. 1 - 2 slides
+
+Ausblick
+---------
+
+- Demo: Erfassung, Übertragung und Visualisierung der Sensordaten
+
+- Hinzufügen von Benachrichtigungsfunktionen (SMS, E-Mail)
+
+- Optimierung des Energieverbrauchs
+  * Optimierung des Sensor-Datenprotokolls
+  * Verlängerung der Knoten-Schlafzustände
+
+- Steuerungsfunktionalität (Bidirektionaler Datenverkehr)
+  * Sensorknoten empfangen Daten
+  * Bidirektionaler Datenverkehr
+
+- Einbindung in Heimautomatisierungssystem
+  * Sensorknoten + Gateway (Modbus Protokoll?)
+  * Framework zur Prozessvisualisierung, Steuerungsfunktionalität
+
+
+Danksagung
+----------
+
+Wir möchten uns bei den folgenden Firmen und Personen
+für die Unterstützung bei diesem Vortrag bedanken.
+
+.Herrn Daniel Thiele
+für die vielen Freizeitstunden bei Entwicklung und
+Aufbau der RadioFaro-Module.
+
++++
+<hr width="50%" />
++++
+
+image::sensirion_logo.jpg[width="30%"]
+für die großzügige Bemusterung mit digitalen Feuchtesensoren
+vom Typ SHT21. +
+http://www.sensirion.com[]
+
++++
+<hr width="50%" />
++++
+
+image::ibdt_logo.png[width="30%"]
+für die Bereitstellung der Muse231-Prototypen. +
+http://www.ib-dt.de/[]
+
+Referenzen
+-----------
+
+- http://uracoli.nongnu.org/clt2011/index.html
+  * Quelltexte zur Demo (Knoten, Gateway, Daemons)
+  * Links zu weiteren Quellen
+
+- http://uracoli.nongnu.org/
+  * Projektwebseite
+
+- http://lists.nongnu.org/mailman/listinfo/uracoli-devel
+  * Entwickler Mailingliste
+
+- http://www.sax.de/~joerg/tiny230/
+  * Dokumentation Tiny230 Board
+
+- http://www.uracoli.de/radiofaro.html
+  * Dokumentation RadioFaro Board
+
+- http://www.ib-dt.de
+  * Entwicklerseite des Muse231 Prototyps

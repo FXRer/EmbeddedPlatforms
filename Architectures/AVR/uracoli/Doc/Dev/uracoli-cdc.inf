@@ -1,0 +1,57 @@
+; Windows uracoli CDC Setup File
+; http://uracoli.nongnu.org
+;
+; Copyright (c) 2000 Microsoft Corporation
+
+[Version]
+Signature="$Windows NT$"
+Class=Ports
+ClassGuid={4D36E978-E325-11CE-BFC1-08002BE10318}
+Provider=%COMPANY%
+LayoutFile=layout.inf
+DriverVer=06/06/2006,1.0.0.0
+
+[Manufacturer]
+%MFGNAME% = ManufName
+
+[DestinationDirs]
+DefaultDestDir=12
+
+[ManufName]
+; FIXME: use correct uracoli VID/PID
+%Modem3% = Modem3, USB\VID_16C0&PID_0887
+;------------------------------------------------------------------------------
+;  Windows 2000/XP Sections
+;------------------------------------------------------------------------------
+
+[Modem3.nt]
+CopyFiles=USBModemCopyFileSection
+AddReg=Modem3.nt.AddReg
+
+[USBModemCopyFileSection]
+usbser.sys,,,0x20
+
+[Modem3.nt.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,usbser.sys
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+
+[Modem3.nt.Services]
+AddService=usbser, 0x00000002, DriverService
+
+[DriverService]
+DisplayName=%SERVICE%
+ServiceType=1
+StartType=3
+ErrorControl=1
+ServiceBinary=%12%\usbser.sys
+
+;------------------------------------------------------------------------------
+;  String Definitions
+;------------------------------------------------------------------------------
+
+[Strings]
+COMPANY="uracoli Library"
+MFGNAME="uracoli"
+Modem3="USB Virtual Serial Port"
+SERVICE="USB Virtual Serial Port CDC Driver"

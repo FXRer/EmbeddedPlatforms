@@ -1,0 +1,45 @@
+# $Id$
+# --------------------------------------------------------------------------
+# This is the RFArduino V1.1 Partlist for Reichelt-Elektronik
+# Reichelt: www.reichelt.de
+# Farnell: www.hbe-shop-de
+# --------------------------------------------------------------------------
+
+# (1) 100nF C
+X7R-G0805 100N;7
+# (2) 10k R
+SMD-0805 10,0K;1
+# (3) 1k R
+SMD-0805 1,00K;7
+# (4) green power LED
+LG L29K;1
+# (5) yellow LEDs (2 user , UART RX/TX)
+LY L29K;4
+# (6) Reset Taster
+TASTER 9313;1
+# (7) 2xAA Holder 1x mit Stiften; nicht bei Reichelt (Farnell: 1702630)
+# (8) USB Mini-Buchse
+USB BWM SMD;1
+# (9) LDO 3.3V Voltage Regulator (Farnell: 1202826)
+# (10)              FT232RL                 1               
+FT 232 RL;1
+# (11) 47uF C
+X5R-G1206 47/6;3
+# (12) 100R 0805               1               
+SMD-0805 100;1
+# (13)              Ferrit 0805             1               
+BLM21PG 221;1
+# (14)PWR Plug
+HEBW21;1
+# (15) 33R 0805
+SMD-0805 33,0;22
+# (16) 22p 0805
+NPO-G0805 22P;2
+# (17) HC49U-SMD 16MHz 1               
+16,0000-HC49-SMD;1
+# (18)  2x13 Stiftleiste 2,54mm, 5 JTAG, 3 ISP, 3 PWRJmper
+SL 2X13G 2,54;1
+# (19) 1x23 1,27mm 2x, Leisten fuer RFA1 Modul
+BL 1X20G 1,27;3
+# (20) 3 Buchsenleisten 1x8 + 1x8 + 1x6 + 1x5 2,54mm(Partitionierung?)
+BL 1X10G8 2,54;4

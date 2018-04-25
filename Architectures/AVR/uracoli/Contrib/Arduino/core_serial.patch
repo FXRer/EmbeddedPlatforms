@@ -1,0 +1,46 @@
+diff -r 060954887ffb uracoli/hardware/avr/0.5.2/cores/uracoli/HardwareSerial.cpp
+--- a/uracoli/hardware/avr/0.5.2/cores/uracoli/HardwareSerial.cpp	Fri Aug 12 22:04:41 2016 +0200
++++ b/uracoli/hardware/avr/0.5.2/cores/uracoli/HardwareSerial.cpp	Fri Aug 12 22:14:14 2016 +0200
+@@ -41,7 +41,7 @@
+ // but we can refer to it weakly so we don't pull in the entire
+ // HardwareSerial instance if the user doesn't also refer to it.
+ #if defined(HAVE_HWSERIAL0)
+-  void serialEvent() __attribute__((weak));
++  void serialEvent() __attribute__((weak)); /* :-) */
+   bool Serial0_available() __attribute__((weak));
+ #endif
+
+diff -r 060954887ffb uracoli/hardware/avr/0.5.2/cores/uracoli/HardwareSerial.h
+--- a/uracoli/hardware/avr/0.5.2/cores/uracoli/HardwareSerial.h	Fri Aug 12 22:04:41 2016 +0200
++++ b/uracoli/hardware/avr/0.5.2/cores/uracoli/HardwareSerial.h	Fri Aug 12 22:14:14 2016 +0200
+@@ -140,7 +140,7 @@
+ };
+
+ #if defined(UBRRH) || defined(UBRR0H)
+-  extern HardwareSerial Serial;
++  extern HardwareSerial Serial0;
+   #define HAVE_HWSERIAL0
+ #endif
+ #if defined(UBRR1H)
+diff -r 060954887ffb uracoli/hardware/avr/0.5.2/cores/uracoli/HardwareSerial0.cpp
+--- a/uracoli/hardware/avr/0.5.2/cores/uracoli/HardwareSerial0.cpp	Fri Aug 12 22:04:41 2016 +0200
++++ b/uracoli/hardware/avr/0.5.2/cores/uracoli/HardwareSerial0.cpp	Fri Aug 12 22:14:14 2016 +0200
+@@ -65,15 +65,15 @@
+ }
+
+ #if defined(UBRRH) && defined(UBRRL)
+-  HardwareSerial Serial(&UBRRH, &UBRRL, &UCSRA, &UCSRB, &UCSRC, &UDR);
++  HardwareSerial Serial0(&UBRRH, &UBRRL, &UCSRA, &UCSRB, &UCSRC, &UDR);
+ #else
+-  HardwareSerial Serial(&UBRR0H, &UBRR0L, &UCSR0A, &UCSR0B, &UCSR0C, &UDR0);
++  HardwareSerial Serial0(&UBRR0H, &UBRR0L, &UCSR0A, &UCSR0B, &UCSR0C, &UDR0);
+ #endif
+
+ // Function that can be weakly referenced by serialEventRun to prevent
+ // pulling in this file if it's not otherwise used.
+ bool Serial0_available() {
+-  return Serial.available();
++  return Serial0.available();
+ }
+
+ #endif // HAVE_HWSERIAL0

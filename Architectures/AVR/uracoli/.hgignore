@@ -1,0 +1,53 @@
+syntax: glob
+*.pyc
+syntax: glob
+*.hex
+syntax: glob
+*.elf
+syntax: glob
+*.rej
+syntax: glob
+*.orig
+syntax: glob
+*.out
+syntax: glob
+.sconsign.dblite
+syntax: glob
+*.zip
+
+syntax: regexp
+^uracoli/Contrib/Rose/Muse231$
+syntax: regexp
+^uracoli/Contrib/Rose/Rose$
+syntax: regexp
+^uracoli/Contrib/Rose/Rose_Selftest$
+syntax: regexp
+^uracoli/Contrib/Rose/Rose231$
+syntax: regexp
+^uracoli/Contrib/Rose/RoseHost_psk230$
+syntax: regexp
+^uracoli/Contrib/Rose/RoseHost_radiofaro$
+
+^uracoli/Src/App/WiBo/BootlApp/.cproject
+^uracoli/Src/App/WiBo/BootlApp/.project
+^uracoli/Src/App/WiBo/BootlApp/.settings/de.innot.avreclipse.core.prefs
+^uracoli/Src/App/WiBo/HostApp/.cproject
+^uracoli/Src/App/WiBo/HostApp/.project
+^uracoli/Src/App/WiBo/HostApp/.settings/de.innot.avreclipse.core.prefs
+^uracoli/Src/App/WiBo/XmplApp/.cproject
+^uracoli/Src/App/WiBo/XmplApp/.project
+^uracoli/Src/App/WiBo/XmplApp/.settings/de.innot.avreclipse.core.prefs
+
+^build
+^install
+
+^\.scons-signatures\.dblite
+
+syntax: regexp
+^uracoli-appnotes/SensorNWK/Apps/rose231/rose231$
+syntax: regexp
+^uracoli-appnotes/SensorNWK/Apps/muse231/muse231_mma7455$
+syntax: regexp
+^uracoli-appnotes/SensorNWK/Apps/museII232/museII232$
+syntax: regexp
+^uracoli-appnotes/SensorNWK/Apps/museII232/museIIrfa$

@@ -1,0 +1,51 @@
+{
+    "board" : "atzb256rfr2xpro",
+    "serial" : "Serial1",
+    "pins" :
+    [
+            # === EXT1 ===
+            { "name" : "d0", "port" : "F", "pin" : "0", "conn": "E1.3/", "func":  "ADC0"},
+            { "name" : "d1", "port" : "F", "pin" : "1", "conn": "E1.4", "func":  "ADC1"},
+            { "name" : "d2", "port" : "E", "pin" : "2", "conn": "E1.5", "func":  ""},
+            { "name" : "d3", "port" : "E", "pin" : "3", "conn": "E1.6", "func":  ""},
+            { "name" : "d4", "port" : "B", "pin" : "5", "conn": "E1.7/E4.7", "func":  "OC1A"},
+            { "name" : "d5", "port" : "B", "pin" : "6", "conn": "E1.8", "func":  "OC1B"},
+            { "name" : "d6", "port" : "E", "pin" : "5", "conn": "E1.9/E4.9", "func":  "INT5"},
+            { "name" : "d7", "port" : "D", "pin" : "5", "conn": "E1.10/E4.15", "func":  ""},
+            { "name" : "d8", "port" : "D", "pin" : "1", "conn": "E1.11/E2.11/E3.11/E4.11/E5.11", "func":  "SDA"},
+            { "name" : "d9", "port" : "D", "pin" : "0", "conn": "E1.12/E2.12/E3.12/E4.12/E5.12", "func":  "SCL"},
+            { "name" : "d10", "port" : "E", "pin" : "0", "conn": "E1.13/E2.13/E3.13/E4.13/E5.13", "func":  "RXD0"},
+            { "name" : "d11", "port" : "E", "pin" : "1", "conn": "E1.14/E2.14/E3.14/E4.14/E5.14", "func":  "TXD0"},
+            { "name" : "d12", "port" : "G", "pin" : "0", "conn": "E1.15/E4.10", "func":  "SELB"},
+            { "name" : "d13", "port" : "B", "pin" : "2", "conn": "E1.16/E2.16/E3.16/E4.16/E5.16", "func":  "MOSI"},
+            { "name" : "d14", "port" : "B", "pin" : "3", "conn": "E1.17/E2.17/E3.17/E4.17/E5.17", "func":  "MISO"},
+            { "name" : "d15", "port" : "B", "pin" : "1", "conn": "E1.18/E2.18/E3.18/E4.18/E5.18", "func":  "SCK"},
+
+            # === EXT2 ===
+            { "name" : "d16", "port" : "E", "pin" : "6", "conn": "E2.9/E5.9", "func":  "INT6"},
+            { "name" : "d17", "port" : "D", "pin" : "6", "conn": "E2.10/E5.15", "func":  "SELA"},
+            { "name" : "d18", "port" : "D", "pin" : "4", "conn": "E2.15/E5.10", "func":  "SELB"},
+
+            # === EXT3 ===
+            { "name" : "d19", "port" : "F", "pin" : "3", "conn": "E3.3", "func":  ""},
+            { "name" : "d20", "port" : "G", "pin" : "5", "conn": "E3.4", "func":  ""},
+            { "name" : "d21", "port" : "B", "pin" : "7", "conn": "E3.5", "func":  ""},
+            { "name" : "d22", "port" : "E", "pin" : "7", "conn": "E3.9", "func":  "INT7"},
+            { "name" : "d23", "port" : "D", "pin" : "7", "conn": "E3.9", "func":  "SELB"},
+            { "name" : "d24", "port" : "G", "pin" : "2", "conn": "E3.15", "func":  "SELA"},
+
+            # SPARE ADC
+
+            { "name" : "d25", "port" : "F", "pin" : "4", "conn": "SPADC.2", "func":  "ADC4/TCK", "aname" : "a0"},
+            { "name" : "d26", "port" : "F", "pin" : "5", "conn": "SPADC.3", "func":  "ADC5/TMS", "aname" : "a1"},
+            { "name" : "d27", "port" : "F", "pin" : "6", "conn": "SPADC.4", "func":  "ADC6/TDO", "aname" : "a2"},
+            { "name" : "d28", "port" : "F", "pin" : "7", "conn": "SPADC.5", "func":  "ADC7/TDI", "aname" : "a3"}
+
+#            { "name" : "d", "port" : "", "pin" : "", "conn": "J1", "func":  ""},
+
+#            { "name" : "GND", "conn": "E1.2/E1.19/E2.2/E2.19/E3.2/E3.19/E4.2/E4.19/E5.2/E5.19", "func":  ""},
+#            { "name" : "VCC", "conn": "E1.20/E2.20/E3.20/E4.20/E5.20", "func":  ""},
+
+
+    ]
+}

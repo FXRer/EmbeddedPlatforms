@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/picnic.min.css">
+        <link rel="stylesheet" href="css/plugins.min.css">
+    </head>
+    <body>
+        <h1>&mu;racoli devices</h1>
+        <p>
+            <em>{{time}}</em>
+        </p>
+        <p>
+
+            <table>
+                <tr>
+                    <th>Interface</th>
+                    <th>Board</th>
+                    <th>Used by</th>
+                </tr>
+                %for d in res:
+                <tr>
+                    <td>
+                        <a href="terminal?port={{d["port"]}}"><button>{{d["port"]}}</button></a>
+                    </td>
+                    <td>{{d["board"]}}</td>
+                    <td>
+                    %if d["user"]:
+                       <em style="color:red">{{d["user"]}}</em>
+                    %end
+                    </td>
+                </tr>
+                %end
+            <table>
+        </p>
+    </body>
+</html>

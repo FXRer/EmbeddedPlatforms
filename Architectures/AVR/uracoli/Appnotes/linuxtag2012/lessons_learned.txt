@@ -1,0 +1,63 @@
+== Erkenntnisse beim Workshop 2012 ==
+
+=== Workshop Material ===
+
+ - LibreOffice mit Serienbrief-Funktion ist perfekt für Labels
+ - CD-Rohlinge erst brennen und danach bedrucken oder lightscriben
+ - Klebe-Etiketten sind ungünstig, CD hält beklebt max. ein
+   paar Jahre.
+ - Inhalts-README auf CD
+ - Testen ob Life-Linux oder Qemu-Image mit Toolchain auf CD
+   die Lage verbessert.
+
+=== Teilnehmer ===
+
+ - Liste mit Mail-Adressen auf freiwilliger Basis rumgehen lassen
+ - Ggf. ein Forum oder Wiki zum Workshop anbieten
+
+=== Hardware Wunschliste ===
+
+ - Erweiterungslpads (RS232, I2C) nicht versetzt sondern in 2,54mm Raster
+ - Erweiterungs-Stecker auch wie JTAG-Stecker herausführen (10 pol + Reset).
+ - ermöglichen einer preiswerten Programmierung, Optionen:
+   * ISP-Kontakte,
+   * serieller Bootloader
+   * Funk mit Wibo + preiswerten USB-Stick
+ - Plazierungsmarken auf Leiterplatte
+ - Port-Pin zur HW Erkennung
+
+=== Organisation ===
+
+ - 2 Wochen vor dem Termin sollte Code-Freeze sein.
+ - Code-Review Workshop-Sourcen durchführen.
+ - 1 Woche vor dem Termin sind alle unterlagen fertig + Bugs gefixt.
+ - 3 Tage vor dem Termin ist alles Zubehör/Material fertig gepackt.
+
+=== Verkauf ===
+
+ - runde Preise, zur Not Rundungsbetrag als Prototypenkosten oder
+   Verbrauchsmaterial (Lötzinn, Lötfett) deklarieren.
+ - Wechselgeld mitbringen.
+ - Rechnungsnummern ggf. schon vordrucken, damit sie nicht
+   vergessen werden.
+
+=== Workshop ===
+
+ - rote "Stewardess"-Lampe auf den Tisch stellen, da können die
+   Tln. anzeigen, wenn etwas nicht stimmt und müssen sich nicht ewig melden.
+ - in 3h wurden 3 Themen bearbeitet (Setup, Led, Timer).
+ - Kurzzusammenfassung für die Kapitel, die übersprungen werden.
+ - 2 Beamer + Tafel sind perfekt.
+
+=== Präsentation ===
+
+ - für jeden Abschnitt einen Präsenter bestimmen, alle anderen müssen helfen.
+ - Desktop vom Präsenter-Laptop optimieren,
+    * Schnellstart-Leiste für schnellen Wechsel zw. Terminal und Präsentation
+    * die seperate Bildfläche war Ok.
+
+== Diverses ==
+
+=== Posterstand ===
+
+ - Flyer, Visitenkarten auslegen, Stifte, Gummibären, .... 

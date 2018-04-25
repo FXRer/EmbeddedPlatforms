@@ -1,0 +1,52 @@
+{
+    "board" : "radiofaro2",
+    "serial" : "Serial1",
+    "pins" :
+    [
+            { "name" : "d0", "port" : "E", "pin" : "0", "conn": "IOL.1", "func":  "RXD0/PCINT8/TIMER1A"},
+            { "name" : "d1", "port" : "E", "pin" : "1", "conn": "IOL.2", "func":  "TXD0/TIMER1B"},
+            { "name" : "d2", "port" : "E", "pin" : "4", "conn": "IOL.3", "func":  "OC3B/INT4/TIMER0A"},
+            { "name" : "d3", "port" : "E", "pin" : "5", "conn": "IOL.4", "func":  "OC3C/INT5/TIMER3C"},
+            { "name" : "d4", "port" : "E", "pin" : "6", "conn": "IOL.5", "func":  "INT6"},
+            { "name" : "d5", "port" : "E", "pin" : "7", "conn": "IOL.6", "func":  "INT7"},
+            { "name" : "d6", "port" : "E", "pin" : "2", "conn": "IOL.7", "func":  "AIN0"},
+            { "name" : "d7", "port" : "E", "pin" : "3", "conn": "IOL.8", "func":  "OC3A/AIN1"},
+
+            { "name" : "d8",  "port" : "B", "pin" : "4", "conn": "IOH.1", "func": "OC2A/PCINT4"},
+            { "name" : "d9",  "port" : "B", "pin" : "5", "conn": "IOH.2", "func": "OC1A/PCINT5"},
+            { "name" : "d10", "port" : "B", "pin" : "0", "conn": "IOH.3", "func": "PCINT0/SS"},
+            { "name" : "d11", "port" : "B", "pin" : "2", "conn": "IOH.4/ISP.4", "func": "PCINT2/MOSI"},
+            { "name" : "d12", "port" : "B", "pin" : "3", "conn": "IOH.5/ISP.1", "func": "PCINT3/MISO"},
+            { "name" : "d13", "port" : "B", "pin" : "1", "conn": "IOH.6/ISP.3", "func": "PCINT1/SCK"},
+
+
+            { "name" : "d14", "port" : "F", "pin" : "0", "conn": "AD.1", "func": "ADC0", "aname":"a0"},
+            { "name" : "d15", "port" : "F", "pin" : "1", "conn": "AD.2", "func": "ADC1", "aname":"a1"},
+            { "name" : "d16", "port" : "F", "pin" : "4", "conn": "AD.3", "func": "ADC4", "aname":"a2"},
+            { "name" : "d17", "port" : "F", "pin" : "5", "conn": "AD.4", "func": "ADC5", "aname":"a3"},
+            { "name" : "d18", "port" : "F", "pin" : "6", "conn": "AD.5", "func": "ADC6", "aname":"a4"},
+            { "name" : "d19", "port" : "F", "pin" : "7", "conn": "AD.6", "func": "ADC7", "aname":"a5"},
+
+            { "name" : "d20", "port" : "G", "pin" : "1", "conn": "ULED1/P4.7", "func": "DIG1"},
+            { "name" : "d21", "port" : "G", "pin" : "2", "conn": "ULED2/P4.8", "func": "AMR"},
+
+            # spare0
+            { "name" : "d22", "port" : "B", "pin" : "6", "conn": "P4.3", "func": "OC1B/PCINT6"},
+            # spare1
+            { "name" : "d23", "port" : "B", "pin" : "7", "conn": "P4.4", "func": "OC0A/OC1C/PCINT7"},
+            # spare2
+            { "name" : "d24", "port" : "D", "pin" : "4", "conn": "P4.5", "func": "ICP1"},
+            # spare3
+            { "name" : "d25", "port" : "D", "pin" : "7", "conn": "P4.6", "func": "T0"},
+
+            # SDA
+            { "name" : "d26", "port" : "D", "pin" : "1", "conn": "IOH.9/P4.1", "func": "SDA/INT1"},
+            # SCL
+            { "name" : "d27", "port" : "D", "pin" : "0", "conn": "IOH.10/P4.2", "func": "SCL/INT0"}
+
+#            { "name" : "GND", "conn": "IOH.7/P4.9/POWER.6/POWER.7", "func":  ""},
+#            { "name" : "VCC", "conn": "P4.10/POWER.2/POWER.4", "func":  ""},
+
+
+    ]
+}

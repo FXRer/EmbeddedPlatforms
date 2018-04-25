@@ -1,0 +1,3777 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="cap_schem.svg">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective542" />
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mend"
+       style="overflow:visible;">
+      <path
+         id="path4128"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;">
+      <path
+         id="path4122"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <linearGradient
+       id="linearGradient4742"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#ff0000;stop-opacity:1;"
+         offset="0"
+         id="stop4744" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="Arrow2Sstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Sstart"
+       style="overflow:visible">
+      <path
+         id="path4149"
+         style="font-size:12.0;fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.3) translate(-2.3,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-8"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4128-0"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7225"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7227"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Mend-9"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4128-6"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7743"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7745"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7747"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7749"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7751"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7753"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7751-7"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7753-2"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7751-1"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path7753-0"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)" />
+    </marker>
+    <inkscape:perspective
+       id="perspective4227"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.0119166"
+     inkscape:cx="313.42541"
+     inkscape:cy="669.00291"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:window-width="1280"
+     inkscape:window-height="961"
+     inkscape:window-x="0"
+     inkscape:window-y="4"
+     inkscape:window-maximized="0"
+     inkscape:snap-grids="true"
+     inkscape:snap-center="false"
+     inkscape:snap-object-midpoints="true"
+     inkscape:object-paths="true"
+     inkscape:snap-global="false"
+     inkscape:snap-midpoints="true"
+     inkscape:object-nodes="true"
+     inkscape:snap-to-guides="true"
+     inkscape:snap-nodes="true"
+     units="mm">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2985"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       units="mm"
+       spacingx="0.5mm"
+       spacingy="0.5mm" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Ebene 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       x="124.01575"
+       y="476.57477"
+       id="text7271-1-89-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="124.01575"
+         y="476.57477"
+         id="tspan5403" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       x="416.33859"
+       y="644.88184"
+       id="text7271-1-89-22-2-4-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan7273-8-2-2-9-2-0"
+         x="416.33859"
+         y="644.88184" /></text>
+    <g
+       id="g3807">
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5350"
+         d="m 158.92316,644.88187 0,124.01575"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.99527559, 5.99527559;stroke-dashoffset:0" />
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(-36.406706,177.16536)"
+         id="g4794">
+        <path
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path6211-2-6"
+           sodipodi:cx="265.74802"
+           sodipodi:cy="77.952736"
+           sodipodi:rx="17.716536"
+           sodipodi:ry="17.716536"
+           d="m 283.46455,77.952736 c 0,9.784572 -7.93196,17.716535 -17.71653,17.716535 -9.78458,0 -17.71654,-7.931963 -17.71654,-17.716535 0,-9.784573 7.93196,-17.716536 17.71654,-17.716536 9.78457,0 17.71653,7.931963 17.71653,17.716536 z"
+           transform="translate(-97.44093,469.48819)"
+           inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 159.44882,556.29919 8.85827,0 0,-17.71653 8.85826,0"
+           id="path4760"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path4762"
+         d="m 131.90038,742.32282 0,0 0,17.71653"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(-36.406706,177.16536)"
+         id="g4789">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 159.44882,582.87399 17.71653,0"
+           id="path4783"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 162.47156,587.14859 10.76416,-0.33638"
+           id="path4785"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 166.17174,591.85791 4.03656,-0.33638"
+           id="path4787"
+           inkscape:connector-curvature="0" />
+      </g>
+      <rect
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         y="662.59839"
+         x="203.21452"
+         height="17.716536"
+         width="53.149605"
+         id="rect4798"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3.99685049, 3.99685049;stroke-dashoffset:0" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path4800"
+         d="m 212.07277,689.17321 35.43307,-35.43307"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#marker7751)" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5000"
+         d="m 132.74094,706.55337 0,-35.09669 26.5748,0"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5002"
+         d="m 176.6397,671.45668 26.5748,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(-18.242184,177.16536)"
+         id="g5585">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 242.36642,520.86612 0,17.71654"
+           id="path5004"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 247.52451,520.86612 0,17.71654"
+           id="path5006"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 233.50815,529.72439 8.85827,0"
+           id="path5008"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 248.0315,529.72439 11.88084,0"
+           id="path5010"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5012"
+         d="m 185.49797,671.45668 0,35.43307 26.5748,0 8.85827,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5014"
+         d="m 238.64757,706.88975 35.43307,0 0,-35.43307 -17.71653,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5016"
+         d="m 274.08064,671.45668 17.71654,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(124.78032,275.9925)"
+         d="m 64.06429,395.46417 c 0,1.8483 -1.498343,3.34664 -3.346642,3.34664 -1.8483,0 -3.346642,-1.49834 -3.346642,-3.34664 0,-1.8483 1.498342,-3.34664 3.346642,-3.34664 1.848299,0 3.346642,1.49834 3.346642,3.34664 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-5-0"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(213.71654,276.32888)"
+         d="m 64.06429,395.46417 c 0,1.8483 -1.498343,3.34664 -3.346642,3.34664 -1.8483,0 -3.346642,-1.49834 -3.346642,-3.34664 0,-1.8483 1.498342,-3.34664 3.346642,-3.34664 1.848299,0 3.346642,1.49834 3.346642,3.34664 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-5-0-6"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5092"
+         d="m 158.92316,671.45668 17.71654,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(98.205526,275.9925)"
+         d="m 64.06429,395.46417 c 0,1.8483 -1.498343,3.34664 -3.346642,3.34664 -1.8483,0 -3.346642,-1.49834 -3.346642,-3.34664 0,-1.8483 1.498342,-3.34664 3.346642,-3.34664 1.848299,0 3.346642,1.49834 3.346642,3.34664 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-5-0-7"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89"
+         y="662.07281"
+         x="163.88551"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="662.07281"
+           x="163.88551"
+           id="tspan7273-8-2"
+           sodipodi:role="line">row</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-2"
+         y="662.3667"
+         x="132.26416"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="662.3667"
+           x="132.26416"
+           id="tspan7273-8-2-3"
+           sodipodi:role="line">PB3</tspan></text>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5350-1"
+         d="m 309.51372,644.88187 0,124.01575"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:5.99527559, 5.99527559;stroke-dashoffset:0" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5423"
+         d="m 291.79718,671.45668 115.15748,0"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5425"
+         d="m 336.08852,671.45668 0,17.71653"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(168.59084,177.57292)"
+         id="g4789-0">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 159.44882,582.87399 17.71653,0"
+           id="path4783-3"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 162.47156,587.14859 10.76416,-0.33638"
+           id="path4785-4"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 166.17174,591.85791 4.03656,-0.33638"
+           id="path4787-0"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(248.79607,275.9925)"
+         d="m 64.06429,395.46417 c 0,1.8483 -1.498343,3.34664 -3.346642,3.34664 -1.8483,0 -3.346642,-1.49834 -3.346642,-3.34664 0,-1.8483 1.498342,-3.34664 3.346642,-3.34664 1.848299,0 3.346642,1.49834 3.346642,3.34664 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-5-0-7-9"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(275.37087,275.9925)"
+         d="m 64.06429,395.46417 c 0,1.8483 -1.498343,3.34664 -3.346642,3.34664 -1.8483,0 -3.346642,-1.49834 -3.346642,-3.34664 0,-1.8483 1.498342,-3.34664 3.346642,-3.34664 1.848299,0 3.346642,1.49834 3.346642,3.34664 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-5-0-6-5"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="matrix(0,0.62912125,-0.59626633,0,495.51079,532.2652)"
+         sodipodi:open="true"
+         sodipodi:end="3.1234408"
+         sodipodi:start="0"
+         d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+         sodipodi:ry="8.8582678"
+         sodipodi:rx="8.8582678"
+         sodipodi:cy="449.99997"
+         sodipodi:cx="221.4567"
+         id="path7594-4-6"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:open="true"
+         sodipodi:end="3.1234408"
+         sodipodi:start="0"
+         d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+         sodipodi:ry="8.8582678"
+         sodipodi:rx="8.8582678"
+         sodipodi:cy="449.99997"
+         sodipodi:cx="221.4567"
+         id="path7594-5-7-41"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc"
+         transform="matrix(0,0.62912125,0.59626633,0,-36.95366,532.2652)" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22"
+         y="724.60632"
+         x="229.78932"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="724.60632"
+           x="229.78932"
+           id="tspan7273-8-2-2"
+           sodipodi:role="line">Cpar</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22-8"
+         y="689.17328"
+         x="229.78932"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan3805"
+           sodipodi:role="line">Rfinger</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22-2"
+         y="706.88977"
+         x="96.915291"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="706.88977"
+           x="96.915291"
+           id="tspan7273-8-2-2-9"
+           sodipodi:role="line">Vout</tspan></text>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         id="g5585-1"
+         transform="matrix(0,1,-1,0,918.96251,473.3816)">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 242.36642,520.86612 0,17.71654"
+           id="path5004-8"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 247.52451,520.86612 0,17.71654"
+           id="path5006-0"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 233.50815,529.72439 8.85827,0"
+           id="path5008-9"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 248.0315,529.72439 11.88084,0"
+           id="path5010-6"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5621"
+         d="m 389.23812,706.88975 0,-35.43307"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5623"
+         d="m 389.23812,733.46455 0,26.5748"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(221.38448,176.73828)"
+         id="g4789-0-8">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 159.44882,582.87399 17.71653,0"
+           id="path4783-3-2"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 162.47156,587.14859 10.76416,-0.33638"
+           id="path4785-4-0"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 166.17174,591.85791 4.03656,-0.33638"
+           id="path4787-0-4"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(328.52047,275.9925)"
+         d="m 64.06429,395.46417 c 0,1.8483 -1.498343,3.34664 -3.346642,3.34664 -1.8483,0 -3.346642,-1.49834 -3.346642,-3.34664 0,-1.8483 1.498342,-3.34664 3.346642,-3.34664 1.848299,0 3.346642,1.49834 3.346642,3.34664 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-5-0-6-5-2"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22-6"
+         y="743.66791"
+         x="397.35419"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan5691"
+           y="743.66791"
+           x="397.35419"
+           sodipodi:role="line">Cin=Cpin+Cpad</tspan></text>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(61.482232,141.73231)"
+         d="m 283.46456,591.73224 c 0,4.89228 -3.96598,8.85827 -8.85827,8.85827 -4.89228,0 -8.85827,-3.96599 -8.85827,-8.85827 0,-4.89229 3.96599,-8.85827 8.85827,-8.85827 4.89229,0 8.85827,3.96598 8.85827,8.85827 z"
+         sodipodi:ry="8.8582678"
+         sodipodi:rx="8.8582678"
+         sodipodi:cy="591.73224"
+         sodipodi:cx="274.60629"
+         id="path5714"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5716"
+         d="m 336.08852,715.74802 0,8.85826"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5718"
+         d="m 336.08852,742.32282 0,17.71653"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5720"
+         d="m 344.94679,698.03148 -8.85827,17.71654"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5722"
+         d="m 336.08852,689.17321 0,8.85827"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22-4"
+         y="706.88977"
+         x="318.37198"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="706.88977"
+           x="318.37198"
+           id="tspan7273-8-2-2-6"
+           sodipodi:role="line">Sd</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-1"
+         y="661.54718"
+         x="272.64313"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="661.54718"
+           x="272.64313"
+           id="tspan7273-8-2-4"
+           sodipodi:role="line">r_sens</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22-2-6"
+         y="751.18115"
+         x="344.94678"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="751.18115"
+           x="344.94678"
+           id="tspan7273-8-2-2-9-9"
+           sodipodi:role="line">Vout2</tspan></text>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(-26.574834,186.54924)"
+         id="g5837">
+        <rect
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect5811"
+           width="35.433105"
+           height="35.433048"
+           x="434.05511"
+           y="467.71652" />
+        <g
+           id="g5833"
+           transform="translate(137.60458,-159.44882)">
+          <path
+             sodipodi:nodetypes="cccc"
+             inkscape:connector-curvature="0"
+             id="path5813"
+             d="m 301.1811,653.74014 6.23018,-0.52562 6.83304,-17.19092 4.65332,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             sodipodi:nodetypes="cccc"
+             inkscape:connector-curvature="0"
+             id="path5813-2"
+             d="m 305.3088,653.74014 6.23018,-0.52562 6.83304,-17.19092 4.65332,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        </g>
+      </g>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22-1"
+         y="706.88977"
+         x="406.95465"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="706.88977"
+           x="406.95465"
+           id="tspan7273-8-2-2-30"
+           sodipodi:role="line">Schmitt-</tspan><tspan
+           id="tspan5866"
+           y="719.38977"
+           x="406.95465"
+           sodipodi:role="line">Trigger</tspan></text>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="translate(-107.5974,67.311007)"
+         id="g5950">
+        <text
+           xml:space="preserve"
+           style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+           x="271.05042"
+           y="686.17401"
+           id="text7271-1-89-22-2-4"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan7273-8-2-2-9-2"
+             x="271.05042"
+             y="686.17401">U=</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+           x="292.32285"
+           y="680.31494"
+           id="text7271-1-89-22-2-4-5"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan5914"
+             x="292.32285"
+             y="680.31494">0</tspan><tspan
+             sodipodi:role="line"
+             id="tspan5916"
+             x="292.32285"
+             y="692.81494">Vcc   t ≥ t0</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+           x="319.68607"
+           y="680.31494"
+           id="text7271-1-89-22-2-4-9"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan7273-8-2-2-9-2-4"
+             x="319.68607"
+             y="680.31494">t &lt; t0</tspan></text>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 314.0573,670.76286 0.26281,24.44128"
+           id="path5948"
+           inkscape:connector-curvature="0" />
+      </g>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-1-2"
+         y="644.8819"
+         x="185.49799"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="644.8819"
+           x="185.49799"
+           id="tspan6614"
+           sodipodi:role="line">Ron = (4 .. 50) MΩ</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-0-5-1-4"
+         y="662.36664"
+         x="315.29553"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="662.36664"
+           x="315.29553"
+           id="tspan7273-2-1-6-7"
+           sodipodi:role="line">PG0</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22-4-7"
+         y="706.25842"
+         x="369.8269"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="706.25842"
+           x="369.8269"
+           id="tspan7273-8-2-2-6-4"
+           sodipodi:role="line">Cin</tspan></text>
+    </g>
+    <g
+       id="g4979">
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5092-9"
+         d="m 326.83532,901.05259 -107.61234,0"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-2-0"
+         y="892.38013"
+         x="307.63239"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="892.38013"
+           x="307.63239"
+           id="tspan7273-8-2-3-2"
+           sodipodi:role="line">PG0</tspan></text>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         id="g5585-1-0"
+         transform="matrix(0,1,1,0,-378.92797,729.0579)">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 242.36642,520.86612 0,17.71654"
+           id="path5004-8-1"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 247.52451,520.86612 0,17.71654"
+           id="path5006-0-4"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 233.50815,529.72439 8.85827,0"
+           id="path5008-9-5"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 248.0315,529.72439 11.88084,0"
+           id="path5010-6-3"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         transform="matrix(-1,0,0,1,318.65006,405.65443)"
+         id="g4789-0-8-6">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 159.44882,582.87399 17.71653,0"
+           id="path4783-3-2-8"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 162.47156,587.14859 10.76416,-0.33638"
+           id="path4785-4-0-0"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 166.17174,591.85791 4.03656,-0.33638"
+           id="path4787-0-4-6"
+           inkscape:connector-curvature="0" />
+      </g>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22-6-4"
+         y="979.92743"
+         x="162.79546"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan5691-9"
+           y="979.92743"
+           x="162.79546"
+           sodipodi:role="line">Cbody</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22-1-4"
+         y="936.67145"
+         x="419.31009"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="936.67145"
+           x="419.31009"
+           id="tspan7273-8-2-2-30-7"
+           sodipodi:role="line">Schmitt-</tspan><tspan
+           id="tspan5866-9"
+           y="949.17145"
+           x="419.31009"
+           sodipodi:role="line">Trigger</tspan></text>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         transform="matrix(-1,0,0,1,549.27407,407.35467)"
+         id="g4789-0-6-2">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 159.44882,582.87399 17.71653,0"
+           id="path4783-3-0-2"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 162.47156,587.14859 10.76416,-0.33638"
+           id="path4785-4-04-5"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 166.17174,591.85791 4.03656,-0.33638"
+           id="path4787-0-5-2"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         transform="matrix(-1,0,0,1,656.38268,371.51406)"
+         d="m 283.46456,591.73224 c 0,4.89228 -3.96598,8.85827 -8.85827,8.85827 -4.89228,0 -8.85827,-3.96599 -8.85827,-8.85827 0,-4.89229 3.96599,-8.85827 8.85827,-8.85827 4.89229,0 8.85827,3.96598 8.85827,8.85827 z"
+         sodipodi:ry="8.8582678"
+         sodipodi:rx="8.8582678"
+         sodipodi:cy="591.73224"
+         sodipodi:cx="274.60629"
+         id="path5714-4-3"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5716-8-5"
+         d="m 381.77637,945.52976 0,8.85826"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5718-6-8"
+         d="m 381.77637,972.10456 0,17.71654"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5720-1-2"
+         d="m 372.9181,927.81322 8.85827,17.71654"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5722-5-4"
+         d="m 381.77637,918.95495 0,8.85827"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22-4-1-3"
+         y="936.67139"
+         x="387.04663"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="936.67139"
+           x="387.04663"
+           id="tspan7273-8-2-2-6-4-6"
+           sodipodi:role="line">Sd</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22-2-6-1-7"
+         y="980.96283"
+         x="386.95508"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="980.96283"
+           x="386.95508"
+           id="tspan7273-8-2-2-9-9-5-3"
+           sodipodi:role="line">Vout=0</tspan></text>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path6700"
+         d="m 381.77639,918.95496 0,-17.71653 -53.1496,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         transform="matrix(-1,0,0,1,443.78428,167.77388)"
+         id="g6727">
+        <path
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path5714-4-3-1"
+           sodipodi:cx="274.60629"
+           sodipodi:cy="591.73224"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 283.46456,591.73224 c 0,4.89228 -3.96598,8.85827 -8.85827,8.85827 -4.89228,0 -8.85827,-3.96599 -8.85827,-8.85827 0,-4.89229 3.96599,-8.85827 8.85827,-8.85827 4.89229,0 8.85827,3.96598 8.85827,8.85827 z"
+           transform="translate(-212.59841,106.29923)" />
+        <path
+           sodipodi:type="arc"
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path5714-4-3-18"
+           sodipodi:cx="274.60629"
+           sodipodi:cy="591.73224"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 283.46456,591.73224 c 0,4.89228 -3.96598,8.85827 -8.85827,8.85827 -4.89228,0 -8.85827,-3.96599 -8.85827,-8.85827 0,-4.89229 3.96599,-8.85827 8.85827,-8.85827 4.89229,0 8.85827,3.96598 8.85827,8.85827 z"
+           transform="translate(-212.59842,115.1575)" />
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path6731"
+         d="m 390.109,830.37228 -17.71654,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path6733"
+         d="m 381.25073,830.37228 0,26.57481"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path6735"
+         d="m 381.25073,883.52189 0,17.71653"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         transform="matrix(-1,0,0,1,441.96838,505.77425)"
+         d="m 64.06429,395.46417 c 0,1.8483 -1.498343,3.34664 -3.346642,3.34664 -1.8483,0 -3.346642,-1.49834 -3.346642,-3.34664 0,-1.8483 1.498342,-3.34664 3.346642,-3.34664 1.848299,0 3.346642,1.49834 3.346642,3.34664 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-5-0-73-8"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path6755"
+         d="m 396.33918,856.87382 0,26.5748"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#marker7751-7)" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-2-0-3"
+         y="852.29376"
+         x="341.75052"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="852.29376"
+           x="341.75052"
+           id="tspan7273-8-2-3-2-9"
+           sodipodi:role="line">I<tspan
+   id="tspan6978"
+   style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans">pullup</tspan></tspan></text>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         transform="matrix(0,0.73313806,-0.73313806,0,849.04022,787.40879)"
+         id="g7005">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 106.29921,653.74014 0,8.85826"
+           id="path6980"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 97.440945,662.5984 8.858265,8.85827 0,8.85827"
+           id="path6982"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         id="g5585-1-0-4"
+         transform="matrix(0,1,1,0,-201.09764,703.38753)">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 242.36642,520.86612 0,17.71654"
+           id="path5004-8-1-4"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 247.52451,520.86612 0,17.71654"
+           id="path5006-0-4-8"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 233.50815,529.72439 8.85827,0"
+           id="path5008-9-5-6"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 248.0315,529.72439 11.88084,0"
+           id="path5010-6-3-3"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5621-6-6"
+         d="m 328.62675,936.89566 0,-35.43307"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path5623-8-4"
+         d="m 328.62675,963.47046 0,26.57481"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         transform="matrix(-1,0,0,1,496.48038,406.74421)"
+         id="g4789-0-8-6-1">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 159.44882,582.87399 17.71653,0"
+           id="path4783-3-2-8-5"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 162.47156,587.14859 10.76416,-0.33638"
+           id="path4785-4-0-0-6"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 166.17174,591.85791 4.03656,-0.33638"
+           id="path4787-0-4-6-4"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         transform="matrix(-1,0,0,1,389.3444,505.99843)"
+         d="m 64.06429,395.46417 c 0,1.8483 -1.498343,3.34664 -3.346642,3.34664 -1.8483,0 -3.346642,-1.49834 -3.346642,-3.34664 0,-1.8483 1.498342,-3.34664 3.346642,-3.34664 1.848299,0 3.346642,1.49834 3.346642,3.34664 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-5-0-6-5-2-7-8"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22-6-4-9"
+         y="936.67145"
+         x="336.87018"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan5691-9-3"
+           y="936.67145"
+           x="336.87018"
+           sodipodi:role="line">Cin</tspan></text>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         transform="translate(-8.8583,416.33099)"
+         id="g5837-0">
+        <rect
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="rect5811-7"
+           width="35.433105"
+           height="35.433048"
+           x="434.05511"
+           y="467.71652" />
+        <g
+           id="g5833-7"
+           transform="translate(137.60458,-159.44882)">
+          <path
+             sodipodi:nodetypes="cccc"
+             inkscape:connector-curvature="0"
+             id="path5813-3"
+             d="m 301.1811,653.74014 6.23018,-0.52562 6.83304,-17.19092 4.65332,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             sodipodi:nodetypes="cccc"
+             inkscape:connector-curvature="0"
+             id="path5813-2-1"
+             d="m 305.3088,653.74014 6.23018,-0.52562 6.83304,-17.19092 4.65332,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        </g>
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path7099"
+         d="m 381.25073,901.23842 44.29134,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.89229,0 -8.85827,-3.96598 -8.85827,-8.85827 0,-4.89229 3.96598,-8.85827 8.85827,-8.85827 4.89228,0 8.85826,3.96598 8.85826,8.85827 z"
+         sodipodi:ry="8.8582678"
+         sodipodi:rx="8.8582678"
+         sodipodi:cy="449.99997"
+         sodipodi:cx="221.4567"
+         id="path7594-5-1-1"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc"
+         transform="matrix(-1,0,0,-1,469.83341,1351.2383)" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-1-8"
+         y="892.03491"
+         x="261.77911"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan4977"
+           sodipodi:role="line">c_sens</tspan></text>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         id="g5585-1-0-1"
+         transform="matrix(1,0,0,-1,-38.60622,1430.6851)">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 242.36642,520.86612 0,17.71654"
+           id="path5004-8-1-3"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 247.52451,520.86612 0,17.71654"
+           id="path5006-0-4-3"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 233.50815,529.72439 8.85827,0"
+           id="path5008-9-5-5"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 248.0315,529.72439 11.88084,0"
+           id="path5010-6-3-7"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path4800-8"
+         d="m 193.95357,911.98259 21.48971,-21.67087"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#marker7751)" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-1-8-5"
+         y="930.02893"
+         x="189.14445"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="930.02893"
+           x="189.14445"
+           id="tspan7273-8-2-4-4-3"
+           sodipodi:role="line">Cfinger</tspan></text>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         transform="matrix(-1,0,0,1,575.99326,162.88122)"
+         id="g7257">
+        <path
+           sodipodi:type="arc"
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7253"
+           sodipodi:cx="413.29559"
+           sodipodi:cy="738.85962"
+           sodipodi:rx="11.150061"
+           sodipodi:ry="19.140938"
+           d="m 424.44565,738.85962 c 0,10.57125 -4.99205,19.14094 -11.15006,19.14094 -6.15801,0 -11.15006,-8.56969 -11.15006,-19.14094 0,-10.57125 4.99205,-19.14094 11.15006,-19.14094 6.15801,0 11.15006,8.56969 11.15006,19.14094 z"
+           transform="translate(-4.831693,-3.7166869)" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 407.48031,715.74801 0,-8.85827"
+           id="path7255"
+           inkscape:connector-curvature="0" />
+        <path
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7251"
+           sodipodi:cx="409.39307"
+           sodipodi:cy="704.10864"
+           sodipodi:rx="6.5042019"
+           sodipodi:ry="6.6900363"
+           d="m 415.89727,704.10864 c 0,3.69481 -2.91203,6.69004 -6.5042,6.69004 -3.59218,0 -6.50421,-2.99523 -6.50421,-6.69004 0,-3.6948 2.91203,-6.69003 6.50421,-6.69003 3.59217,0 6.5042,2.99523 6.5042,6.69003 z"
+           transform="translate(-1.9127514,0.61286767)" />
+      </g>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7262"
+         d="m 174.76955,882.99658 20.31821,17.77832"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path7262-0"
+         d="m 160.40539,883.09515 -20.31821,17.77832"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path7282"
+         d="m 172.17475,915.39944 8.17671,30.10516 5.9467,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path7282-9"
+         d="m 163.99804,915.95695 -8.17671,30.10516 -5.9467,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path7302"
+         d="m 150.79642,962.78277 0,-17.71653"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         sodipodi:linespacing="125%"
+         id="text7271-1-89-22-6-8"
+         y="971.61041"
+         x="242.37622"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan5691-6"
+           y="971.61041"
+           x="242.37622"
+           sodipodi:role="line">Cin=Cpin+Cpad</tspan></text>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         inkscape:connector-curvature="0"
+         id="path4258"
+         d="m 299.53599,848.08881 0,106.29922"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 4;stroke-dashoffset:0" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/cap_sense.png"
+         transform="matrix(-1,0,0,1,360.26751,505.77425)"
+         d="m 64.06429,395.46417 c 0,1.8483 -1.498343,3.34664 -3.346642,3.34664 -1.8483,0 -3.346642,-1.49834 -3.346642,-3.34664 0,-1.8483 1.498342,-3.34664 3.346642,-3.34664 1.848299,0 3.346642,1.49834 3.346642,3.34664 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-5-0-7-3"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+       x="593.50397"
+       y="627.16534"
+       id="text7271-6-7-1-9-1-4-9-0-4-8-4"
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         x="593.50397"
+         y="627.16534"
+         id="tspan5841-2" /></text>
+    <g
+       id="g4730">
+      <rect
+         y="474.00555"
+         x="222.77663"
+         height="141.73227"
+         width="106.2992"
+         id="rect4631"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7"
+         y="565.50684"
+         x="226.27052"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="565.50684"
+           x="226.27052"
+           id="tspan7273-6-4"
+           sodipodi:role="line">XTAL1</tspan></text>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="matrix(0,1,-1,0,655.06006,350.49677)"
+         id="g5585-2">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 242.36642,520.86612 0,17.71654"
+           id="path5004-1"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 247.52451,520.86612 0,17.71654"
+           id="path5006-3"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 233.50815,529.72439 8.85827,0"
+           id="path5008-2"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 248.0315,529.72439 11.88084,0"
+           id="path5010-7"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+         transform="matrix(0,1,-1,0,708.20966,350.49677)"
+         id="g5585-2-6">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 242.36642,520.86612 0,17.71654"
+           id="path5004-1-1"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 247.52451,520.86612 0,17.71654"
+           id="path5006-3-5"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 233.50815,529.72439 8.85827,0"
+           id="path5008-2-5"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+           d="m 248.0315,529.72439 11.88084,0"
+           id="path5010-7-4"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         transform="translate(-188.27171,24.076123)"
+         id="g5017">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 336.61417,565.15746 0,-17.71654 8.85827,0 0,17.71654 z"
+           id="path4990"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 349.73923,568.80665 0,-25.85485"
+           id="path4992"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 332.26973,568.80665 0,-25.85485"
+           id="path4992-7"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 327.72767,556.22862 4.54206,0"
+           id="path5013"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 354.28129,556.22862 -5.24084,0"
+           id="path5015"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path5024"
+         d="m 125.33567,589.16301 0,-8.85826 17.71653,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         id="path5026"
+         d="m 160.76874,580.30475 17.71653,0 0,8.85826"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <g
+         transform="translate(-193.56197,6.289017)"
+         id="g5032">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 310.03937,609.4488 17.71654,0"
+           id="path5028"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 318.89764,609.4488 0,-8.85827"
+           id="path5030"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         id="g5032-9"
+         transform="translate(-140.41237,6.7181488)">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 310.03937,609.4488 17.71654,0"
+           id="path5028-9"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 318.89764,609.4488 0,-8.85827"
+           id="path5030-6"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path5060"
+         d="m 178.48527,580.30475 44.29134,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path5062"
+         d="m 125.33567,580.30475 0,-17.71654 97.44094,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         transform="translate(64.61802,184.84057)"
+         d="m 64.06429,395.46417 a 3.346642,3.346642 0 1 1 -6.693284,0 3.346642,3.346642 0 1 1 6.693284,0 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-7-6"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(117.76763,184.84057)"
+         d="m 64.06429,395.46417 a 3.346642,3.346642 0 1 1 -6.693284,0 3.346642,3.346642 0 1 1 6.693284,0 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-7-2"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-3"
+         y="553.72992"
+         x="125.33567"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan4728"
+           sodipodi:role="line">Q1 16 MHz</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-3-4"
+         y="606.87952"
+         x="134.19395"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="606.87952"
+           x="134.19395"
+           id="tspan7273-6-4-9-2"
+           sodipodi:role="line">2x22 pF</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-1"
+         y="584.6803"
+         x="227.05147"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="584.6803"
+           x="227.05147"
+           id="tspan7273-6-4-6"
+           sodipodi:role="line">XTAL2</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-0"
+         y="530.87427"
+         x="226.35268"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="530.87427"
+           x="226.35268"
+           id="tspan7273-6-4-64"
+           sodipodi:role="line">AVSS_RFN</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-0-0"
+         y="486.13184"
+         x="226.27052"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="486.13184"
+           x="226.27052"
+           id="tspan7273-6-4-64-2"
+           sodipodi:role="line">AVSS_RFP</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-0-0-8"
+         y="501.27914"
+         x="226.04463"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="501.27914"
+           x="226.04463"
+           id="tspan7273-6-4-64-2-6"
+           sodipodi:role="line">RFP</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-0-0-8-1"
+         y="516.19995"
+         x="226.14574"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="516.19995"
+           x="226.14574"
+           id="tspan7273-6-4-64-2-6-1"
+           sodipodi:role="line">RFN</tspan></text>
+      <g
+         inkscape:transform-center-y="-28.649966"
+         inkscape:transform-center-x="14.674373"
+         id="g5032-9-5"
+         transform="matrix(0,1,-1,0,814.30413,208.33162)">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 310.03937,609.4488 17.71654,0"
+           id="path5028-9-1"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 318.89764,609.4488 0,-8.85827"
+           id="path5030-6-5"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         id="g5032-9-3"
+         transform="matrix(0,1,-1,0,814.30413,163.95911)">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 310.03937,609.4488 17.71654,0"
+           id="path5028-9-8"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 318.89764,609.4488 0,-8.85827"
+           id="path5030-6-3"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path5271"
+         d="m 213.91834,482.8638 8.85827,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path5273"
+         d="m 213.91834,527.27866 8.85827,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path5275"
+         d="m 222.77661,500.58034 -53.1496,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path5277"
+         d="m 222.77661,509.4386 -53.1496,0"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path5279"
+         d="m 169.62701,500.58034 0,-17.71654 0,-8.85827"
+         style="fill:none;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path5279-9"
+         d="m 169.62701,536.01341 0,-17.71654 0,-8.85827"
+         style="fill:none;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-3-8"
+         y="501.99509"
+         x="118.46299"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="501.99509"
+           x="118.46299"
+           id="tspan7273-6-4-9-8"
+           sodipodi:role="line">PCB-</tspan><tspan
+           id="tspan5320"
+           y="514.49512"
+           x="118.46299"
+           sodipodi:role="line">Antenne</tspan></text>
+      <g
+         inkscape:transform-center-y="-28.649966"
+         inkscape:transform-center-x="14.674373"
+         id="g5032-9-5-1"
+         transform="matrix(0,1,-1,0,814.39593,287.63252)">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 310.03937,609.4488 17.71654,0"
+           id="path5028-9-1-5"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 318.89764,609.4488 0,-8.85827"
+           id="path5030-6-5-0"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path5273-7"
+         d="m 214.01011,606.57956 8.85827,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-1-9"
+         y="610.60107"
+         x="228.13872"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="610.60107"
+           x="228.13872"
+           id="tspan7273-6-4-6-8"
+           sodipodi:role="line">DVSS</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-1-9-1"
+         y="606.68701"
+         x="297.05859"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="606.68701"
+           x="297.05859"
+           id="tspan7273-6-4-6-8-9"
+           sodipodi:role="line">AVDD</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-1-9-1-4"
+         y="584.27155"
+         x="296.08847"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="584.27155"
+           x="296.08847"
+           id="tspan7273-6-4-6-8-9-9"
+           sodipodi:role="line">DVDD</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-1-9-1-4-9"
+         y="566.86139"
+         x="296.9343"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="566.86139"
+           x="296.9343"
+           id="tspan7273-6-4-6-8-9-9-6"
+           sodipodi:role="line">EVDD</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-1-9-1-4-9-9"
+         y="548.79547"
+         x="288.94"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="548.79547"
+           x="288.94"
+           id="tspan7273-6-4-6-8-9-9-6-2"
+           sodipodi:role="line">DEVDD</tspan></text>
+      <g
+         transform="translate(-193.56197,6.289017)"
+         id="g5579">
+        <g
+           id="g5585-2-6-1"
+           transform="translate(307.09324,44.39367)"
+           inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90">
+          <path
+             inkscape:connector-curvature="0"
+             id="path5004-1-1-3"
+             d="m 242.36642,520.86612 0,17.71654"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path5006-3-5-5"
+             d="m 247.52451,520.86612 0,17.71654"
+             style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path5008-2-5-5"
+             d="m 233.50815,529.72439 8.85827,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path5010-7-4-7"
+             d="m 248.0315,529.72439 11.88084,0"
+             style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        </g>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 542.25302,574.0475 -19.56583,0"
+           id="path5516"
+           inkscape:connector-curvature="0" />
+        <g
+           transform="matrix(0,1,1,0,-34.567541,255.16428)"
+           id="g5032-9-5-1-8-1"
+           inkscape:transform-center-x="-14.674373"
+           inkscape:transform-center-y="-28.649966">
+          <path
+             inkscape:connector-curvature="0"
+             id="path5028-9-1-5-2-9"
+             d="m 310.03937,609.4488 17.71654,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path5030-6-5-0-3-9"
+             d="m 318.89764,609.4488 0,-8.85827"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        </g>
+      </g>
+      <g
+         id="g5579-4"
+         transform="translate(-193.63499,-29.068056)">
+        <g
+           id="g5585-2-6-1-2"
+           transform="translate(307.09324,44.39367)"
+           inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90">
+          <path
+             inkscape:connector-curvature="0"
+             id="path5004-1-1-3-1"
+             d="m 242.36642,520.86612 0,17.71654"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path5006-3-5-5-3"
+             d="m 247.52451,520.86612 0,17.71654"
+             style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path5008-2-5-5-8"
+             d="m 233.50815,529.72439 8.85827,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path5010-7-4-7-4"
+             d="m 248.0315,529.72439 11.88084,0"
+             style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        </g>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 542.25302,574.0475 -19.56583,0"
+           id="path5516-9"
+           inkscape:connector-curvature="0" />
+        <g
+           transform="matrix(0,1,1,0,-34.567541,255.16428)"
+           id="g5032-9-5-1-8-1-7"
+           inkscape:transform-center-x="-14.674373"
+           inkscape:transform-center-y="-28.649966">
+          <path
+             inkscape:connector-curvature="0"
+             id="path5028-9-1-5-2-9-0"
+             d="m 310.03937,609.4488 17.71654,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path5030-6-5-0-3-9-2"
+             d="m 318.89764,609.4488 0,-8.85827"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        </g>
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path5635"
+         d="m 329.07583,562.58821 8.85826,0 0,-17.71653"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         transform="translate(277.21645,149.4075)"
+         d="m 64.06429,395.46417 a 3.346642,3.346642 0 1 1 -6.693284,0 3.346642,3.346642 0 1 1 6.693284,0 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-7-2-4"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-3-4-7"
+         y="603.98639"
+         x="387.87198"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="603.98639"
+           x="387.87198"
+           id="tspan7273-6-4-9-2-3"
+           sodipodi:role="line">2x100 nF</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-3-4-7-0"
+         y="544.87164"
+         x="391.08371"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="544.87164"
+           x="391.08371"
+           id="tspan7273-6-4-9-2-3-0"
+           sodipodi:role="line">3x100 nF</tspan></text>
+      <g
+         inkscape:transform-center-y="-28.649966"
+         inkscape:transform-center-x="14.674373"
+         id="g5032-9-5-17"
+         transform="matrix(0,1,-1,0,814.50883,225.97404)">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 310.03937,609.4488 17.71654,0"
+           id="path5028-9-1-6"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 318.89764,609.4488 0,-8.85827"
+           id="path5030-6-5-5"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path5273-5"
+         d="m 214.12308,544.92108 8.85827,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-0-5"
+         y="547.58923"
+         x="226.72951"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="547.58923"
+           x="226.72951"
+           id="tspan7273-6-4-64-0"
+           sodipodi:role="line">AVSS</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-1-9-1-4-9-0"
+         y="530.87891"
+         x="296.94525"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="530.87891"
+           x="296.94525"
+           id="tspan7273-6-4-6-8-9-9-6-7"
+           sodipodi:role="line">DVSS</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path5766"
+         d="m 329.07583,527.15514 44.29133,0 0,17.71654"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         transform="translate(312.64952,149.4075)"
+         d="m 64.06429,395.46417 a 3.346642,3.346642 0 1 1 -6.693284,0 3.346642,3.346642 0 1 1 6.693284,0 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-7-2-4-8"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:nodetypes="ccccccc"
+         inkscape:connector-curvature="0"
+         id="path5786"
+         d="m 329.07583,482.8638 35.43307,0 0,-8.85827 17.71653,22.03274 -17.71653,22.2586 0,-8.85827 -35.43307,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-1-9-1-4-9-0-4"
+         y="492.7103"
+         x="278.39676"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="492.7103"
+           x="278.39676"
+           id="tspan7273-6-4-6-8-9-9-6-7-3"
+           sodipodi:role="line">PORTS,</tspan><tspan
+           id="tspan5811"
+           y="505.2103"
+           x="278.39676"
+           sodipodi:role="line">TST,RSTN</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-1-9-1-4-9-0-4-8"
+         y="491.74948"
+         x="388.39835"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan5811-7"
+           y="491.74948"
+           x="388.39835"
+           sodipodi:role="line">zu den LED,</tspan><tspan
+           id="tspan5841"
+           y="504.24948"
+           x="388.39835"
+           sodipodi:role="line">Pads, Interfaces</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path5843"
+         d="m 337.93409,562.58821 62.00788,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:none" />
+      <path
+         transform="translate(277.21645,167.12403)"
+         d="m 64.06429,395.46417 a 3.346642,3.346642 0 1 1 -6.693284,0 3.346642,3.346642 0 1 1 6.693284,0 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-7-2-4-7"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path6293"
+         d="m 399.94197,553.72994 0,17.71654"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path6299"
+         d="m 404.35322,558.17695 0,8.61121"
+         style="fill:none;stroke:#000000;stroke-width:2.48031497;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path6301"
+         d="m 404.56042,562.56291 12.8469,10e-6"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <g
+         inkscape:transform-center-y="-28.649966"
+         inkscape:transform-center-x="-14.674373"
+         id="g5032-9-5-1-8-2"
+         transform="matrix(0,1,1,0,-184.40061,243.66528)">
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 310.03937,609.4488 17.71654,0"
+           id="path5028-9-1-5-2-2"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 318.89764,609.4488 0,-8.85827"
+           id="path5030-6-5-0-3-7"
+           inkscape:connector-curvature="0" />
+      </g>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-7-3-4-7-8"
+         y="581.76752"
+         x="397.70248"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="581.76752"
+           x="397.70248"
+           id="tspan7273-6-4-9-2-3-3"
+           sodipodi:role="line">BAT 2x1,5 V</tspan></text>
+      <g
+         transform="translate(-193.45475,29.306239)"
+         id="g5579-7">
+        <g
+           id="g5585-2-6-1-9"
+           transform="translate(307.09324,44.39367)"
+           inkscape:export-filename="/home/mavo/develop/doc/clt2012/res_sense.png"
+           inkscape:export-xdpi="90"
+           inkscape:export-ydpi="90">
+          <path
+             inkscape:connector-curvature="0"
+             id="path5004-1-1-3-3"
+             d="m 242.36642,520.86612 0,17.71654"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path5006-3-5-5-8"
+             d="m 247.52451,520.86612 0,17.71654"
+             style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path5008-2-5-5-0"
+             d="m 233.50815,529.72439 8.85827,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path5010-7-4-7-2"
+             d="m 248.0315,529.72439 11.88084,0"
+             style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        </g>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 542.25302,574.0475 -19.56583,0"
+           id="path5516-4"
+           inkscape:connector-curvature="0" />
+        <g
+           transform="matrix(0,1,1,0,-34.567541,255.16428)"
+           id="g5032-9-5-1-8-1-8"
+           inkscape:transform-center-x="-14.674373"
+           inkscape:transform-center-y="-28.649966">
+          <path
+             inkscape:connector-curvature="0"
+             id="path5028-9-1-5-2-9-3"
+             d="m 310.03937,609.4488 17.71654,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path5030-6-5-0-3-9-9"
+             d="m 318.89764,609.4488 0,-8.85827"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        </g>
+      </g>
+    </g>
+    <g
+       id="g5849">
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6315-9-0-1-8"
+         d="m 575.7874,361.4173 -17.71654,8.85827"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6315-9-0-1"
+         d="m 575.7874,219.68502 -17.71654,8.85827"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6315-9-0"
+         d="m 575.7874,290.55116 -17.71654,8.85827"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6313-8"
+         d="m 504.92126,166.53541 0,194.88189 -17.71654,8.85827"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6315-9"
+         d="m 504.92126,290.55116 -17.71654,8.85827"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6317-4"
+         d="m 504.92126,219.68502 -17.71654,8.85827"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6280"
+         d="m 407.48031,166.53541 0,239.17323"
+         style="fill:none;stroke:#000000;stroke-width:0.91855866px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6280-1"
+         d="m 478.34645,175.39368 0,230.31496"
+         style="fill:none;stroke:#000000;stroke-width:0.90138781px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6280-2"
+         d="m 549.2126,193.11022 0,212.59842"
+         style="fill:none;stroke:#000000;stroke-width:0.86602539px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6307"
+         d="m 372.04724,237.40156 239.17323,0"
+         style="fill:none;stroke:#000000;stroke-width:1.01904929px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6309"
+         d="m 372.04724,308.2677 239.17323,0"
+         style="fill:none;stroke:#000000;stroke-width:1.01904929px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6311"
+         d="m 372.04724,379.13384 239.17323,0"
+         style="fill:none;stroke:#000000;stroke-width:1.01904929px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6313"
+         d="m 434.05512,166.53541 0,194.88189 -17.71654,8.85827"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6315"
+         d="m 434.05512,290.55116 -17.71654,8.85827"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6317"
+         d="m 434.05512,219.68502 -17.71654,8.85827"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(141.7323,159.44882)"
+         d="m 283.46455,77.952736 a 17.716536,17.716536 0 1 1 -35.43307,0 17.716536,17.716536 0 1 1 35.43307,0 z"
+         sodipodi:ry="17.716536"
+         sodipodi:rx="17.716536"
+         sodipodi:cy="77.952736"
+         sodipodi:cx="265.74802"
+         id="path6211"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(212.59844,301.1811)"
+         d="m 283.46455,77.952736 a 17.716536,17.716536 0 1 1 -35.43307,0 17.716536,17.716536 0 1 1 35.43307,0 z"
+         sodipodi:ry="17.716536"
+         sodipodi:rx="17.716536"
+         sodipodi:cy="77.952736"
+         sodipodi:cx="265.74802"
+         id="path6211-0"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(141.7323,301.1811)"
+         d="m 283.46455,77.952736 a 17.716536,17.716536 0 1 1 -35.43307,0 17.716536,17.716536 0 1 1 35.43307,0 z"
+         sodipodi:ry="17.716536"
+         sodipodi:rx="17.716536"
+         sodipodi:cy="77.952736"
+         sodipodi:cx="265.74802"
+         id="path6211-2"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(283.46458,230.31496)"
+         d="m 283.46455,77.952736 a 17.716536,17.716536 0 1 1 -35.43307,0 17.716536,17.716536 0 1 1 35.43307,0 z"
+         sodipodi:ry="17.716536"
+         sodipodi:rx="17.716536"
+         sodipodi:cy="77.952736"
+         sodipodi:cx="265.74802"
+         id="path6211-5"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(212.59844,230.31496)"
+         d="m 283.46455,77.952736 a 17.716536,17.716536 0 1 1 -35.43307,0 17.716536,17.716536 0 1 1 35.43307,0 z"
+         sodipodi:ry="17.716536"
+         sodipodi:rx="17.716536"
+         sodipodi:cy="77.952736"
+         sodipodi:cx="265.74802"
+         id="path6211-7"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(141.7323,230.31496)"
+         d="m 283.46455,77.952736 a 17.716536,17.716536 0 1 1 -35.43307,0 17.716536,17.716536 0 1 1 35.43307,0 z"
+         sodipodi:ry="17.716536"
+         sodipodi:rx="17.716536"
+         sodipodi:cy="77.952736"
+         sodipodi:cx="265.74802"
+         id="path6211-6"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(283.46458,159.44882)"
+         d="m 283.46455,77.952736 a 17.716536,17.716536 0 1 1 -35.43307,0 17.716536,17.716536 0 1 1 35.43307,0 z"
+         sodipodi:ry="17.716536"
+         sodipodi:rx="17.716536"
+         sodipodi:cy="77.952736"
+         sodipodi:cx="265.74802"
+         id="path6211-3"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(212.59844,159.44882)"
+         d="m 283.46455,77.952736 a 17.716536,17.716536 0 1 1 -35.43307,0 17.716536,17.716536 0 1 1 35.43307,0 z"
+         sodipodi:ry="17.716536"
+         sodipodi:rx="17.716536"
+         sodipodi:cy="77.952736"
+         sodipodi:cx="265.74802"
+         id="path6211-61"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(283.46458,301.1811)"
+         d="m 283.46455,77.952736 a 17.716536,17.716536 0 1 1 -35.43307,0 17.716536,17.716536 0 1 1 35.43307,0 z"
+         sodipodi:ry="17.716536"
+         sodipodi:rx="17.716536"
+         sodipodi:cy="77.952736"
+         sodipodi:cx="265.74802"
+         id="path6211-9"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6415"
+         d="m 575.7874,219.68502 0,-115.15748 35.43307,0"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6417"
+         d="m 575.7874,290.55116 8.85827,0 0,-177.16535 26.5748,0"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6419"
+         d="m 575.7874,361.4173 17.71653,0 0,-239.17322 17.71654,0"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6425"
+         d="m 549.2126,193.11022 62.00787,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6427"
+         d="m 611.22047,175.39368 -132.87402,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6429"
+         d="m 407.48031,166.53541 0,-8.85826 203.74016,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6431"
+         d="m 504.92126,166.53541 0,0 0,-79.724406 106.29921,0"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path6433"
+         d="m 434.05512,166.53541 0,-88.582674 177.16535,0"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271"
+         y="379.13382"
+         x="345.47244"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="379.13382"
+           x="345.47244"
+           id="tspan7273"
+           sodipodi:role="line">row0</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-0"
+         y="308.2677"
+         x="345.47244"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="308.2677"
+           x="345.47244"
+           id="tspan7273-2"
+           sodipodi:role="line">row1</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-0-5"
+         y="237.40157"
+         x="345.47244"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="237.40157"
+           x="345.47244"
+           id="tspan7273-2-1"
+           sodipodi:role="line">row2</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6"
+         y="379.75632"
+         x="615.57788"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="379.75632"
+           x="615.57788"
+           id="tspan7273-6"
+           sodipodi:role="line">PB5</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-0-3"
+         y="308.89017"
+         x="615.57788"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="308.89017"
+           x="615.57788"
+           id="tspan7273-2-6"
+           sodipodi:role="line">PB4</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-0-5-1"
+         y="238.02405"
+         x="615.57788"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="238.02405"
+           x="615.57788"
+           id="tspan7273-2-1-6"
+           sodipodi:role="line">PB3</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5"
+         y="193.7327"
+         x="615.57788"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="193.7327"
+           x="615.57788"
+           id="tspan7273-6-7"
+           sodipodi:role="line">PB2</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-3"
+         y="176.01617"
+         x="615.57788"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan7392"
+           y="176.01617"
+           x="615.57788"
+           sodipodi:role="line">PB1</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-3-4"
+         y="158.29962"
+         x="615.57788"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan7392-8"
+           y="158.29962"
+           x="615.57788"
+           sodipodi:role="line">PB0</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-3-4-8"
+         y="201.96849"
+         x="380.90552"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan7392-8-9"
+           y="201.96849"
+           x="380.90552"
+           sodipodi:role="line">col0</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-3-7"
+         y="201.96849"
+         x="451.77164"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan7392-1"
+           y="201.96849"
+           x="451.77164"
+           sodipodi:role="line">col1</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-9"
+         y="201.96849"
+         x="522.63782"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="201.96849"
+           x="522.63782"
+           id="tspan7273-6-7-4"
+           sodipodi:role="line">col2</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-1"
+         y="131.10234"
+         x="389.76379"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="131.10234"
+           x="389.76379"
+           id="tspan7273-6-7-8"
+           sodipodi:role="line">r_sens0</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-1-0"
+         y="131.10234"
+         x="460.62991"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="131.10234"
+           x="460.62991"
+           id="tspan7273-6-7-8-1"
+           sodipodi:role="line">r_sens1</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-1-3"
+         y="131.10234"
+         x="540.35431"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="131.10234"
+           x="540.35431"
+           id="tspan7273-6-7-8-0"
+           sodipodi:role="line">c_sens</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-1-4"
+         y="87.433495"
+         x="615.57788"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="87.433495"
+           x="615.57788"
+           id="tspan7273-6-7-8-7"
+           sodipodi:role="line">PD5..7</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-1-4-1"
+         y="114.00829"
+         x="615.57788"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="114.00829"
+           x="615.57788"
+           id="tspan7273-6-7-8-7-2"
+           sodipodi:role="line">PG0..5,</tspan><tspan
+           id="tspan7963"
+           y="126.50829"
+           x="615.57788"
+           sodipodi:role="line">PD5..7</tspan></text>
+      <path
+         transform="matrix(3,0,0,2.8333334,60.71996,-997.06124)"
+         d="m 88.582676,396.85037 a 26.574802,26.574802 0 1 1 -53.149605,0 26.574802,26.574802 0 1 1 53.149605,0 z"
+         sodipodi:ry="26.574802"
+         sodipodi:rx="26.574802"
+         sodipodi:cy="396.85037"
+         sodipodi:cx="62.007874"
+         id="path6437-0"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.34272709;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <g
+         transform="matrix(0.70710678,-0.70710678,0.70710678,0.70710678,-207.64472,-105.21467)"
+         id="g7562-5">
+        <g
+           id="g7205-7">
+          <path
+             inkscape:connector-curvature="0"
+             id="path6439-42"
+             d="m 141.73228,432.28344 0,17.71654"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6441-33"
+             d="m 141.73228,441.14171 17.71654,-8.85827 0,17.71654 z"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6443-3"
+             d="m 124.01575,441.14171 53.1496,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6445-1"
+             d="M 148.8189,432.28344 z"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6451-1"
+             d="m 150.59055,432.28344 -8.85827,-8.85827"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6453-6"
+             d="m 150.59055,423.42517 -8.85827,-8.85826"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)" />
+        </g>
+        <g
+           transform="matrix(-1,0,0,-1,301.1811,908.85822)"
+           id="g7205-9-5">
+          <path
+             inkscape:connector-curvature="0"
+             id="path6439-4-1"
+             d="m 141.73228,432.28344 0,17.71654"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6441-3-5"
+             d="m 141.73228,441.14171 17.71654,-8.85827 0,17.71654 z"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6443-0-6"
+             d="m 124.01575,441.14171 53.1496,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6445-5-7"
+             d="M 148.8189,432.28344 z"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6451-3-7"
+             d="m 150.59055,432.28344 -8.85827,-8.85827"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6453-5-3"
+             d="m 150.59055,423.42517 -8.85827,-8.85826"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)" />
+        </g>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 124.01575,467.71651 0,-26.5748"
+           id="path7263-7"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 177.16535,467.71651 0,-26.5748"
+           id="path7265-5"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 124.01575,449.99998 -17.71654,0"
+           id="path7267-9"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 177.16535,449.99998 17.71654,0"
+           id="path7269-9"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path7584-0"
+         d="m 247.90644,75.527468 5.7371,-5.7371 10.81658,-0.0209"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path7586-8"
+         d="m 186.23261,137.2013 -1.67332,1.43427 0.17642,10.85828"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path7588-8"
+         d="m 149.30264,149.49385 194.88189,0"
+         style="fill:none;stroke:#000000;stroke-width:1.21106017px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path7590-6"
+         d="m 264.46012,34.336368 0,186.023622"
+         style="fill:none;stroke:#000000;stroke-width:1.22474492px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         d="m 230.31496,449.99997 a 8.8582678,8.8582678 0 1 1 -17.71653,0 8.8582678,8.8582678 0 1 1 17.71653,0 z"
+         sodipodi:ry="8.8582678"
+         sodipodi:rx="8.8582678"
+         sodipodi:cy="449.99997"
+         sodipodi:cx="221.4567"
+         id="path7594-5-1"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc"
+         transform="matrix(1,0,0,-1,69.57823,546.34421)" />
+      <path
+         transform="translate(203.44391,-325.6738)"
+         d="m 64.06429,395.46417 a 3.346642,3.346642 0 1 1 -6.693284,0 3.346642,3.346642 0 1 1 6.693284,0 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-9"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(124.55878,-245.83249)"
+         d="m 64.06429,395.46417 a 3.346642,3.346642 0 1 1 -6.693284,0 3.346642,3.346642 0 1 1 6.693284,0 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-5-1"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path7651-4"
+         d="m 290.93469,87.001668 0,-13.02372 35.5333,-30.78332"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text7271-1-8"
+         y="159.00891"
+         x="208.72852"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="159.00891"
+           x="208.72852"
+           id="tspan7273-8-3"
+           sodipodi:role="line">row</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text7271-2-9"
+         y="183.39163"
+         x="244.10733"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="183.39163"
+           x="244.10733"
+           id="tspan7273-7-3"
+           sodipodi:role="line">col</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text7271-62-9"
+         y="50.960182"
+         x="282.35464"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="50.960182"
+           x="282.35464"
+           id="tspan7273-9-2"
+           sodipodi:role="line">c_sens</tspan></text>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         d="m 230.31496,449.99997 a 8.8582678,8.8582678 0 1 1 -17.71653,0 8.8582678,8.8582678 0 1 1 17.71653,0 z"
+         sodipodi:ry="8.8582678"
+         sodipodi:rx="8.8582678"
+         sodipodi:cy="449.99997"
+         sodipodi:cx="221.4567"
+         id="path7594-5-1-2"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc"
+         transform="matrix(1,0,0,-1,327.7559,687.40152)" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         d="m 230.31496,449.99997 a 8.8582678,8.8582678 0 1 1 -17.71653,0 8.8582678,8.8582678 0 1 1 17.71653,0 z"
+         sodipodi:ry="8.8582678"
+         sodipodi:rx="8.8582678"
+         sodipodi:cy="449.99997"
+         sodipodi:cx="221.4567"
+         id="path7594-5-1-2-1"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc"
+         transform="matrix(1,0,0,-1,327.7559,758.26766)" />
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         d="m 230.31496,449.99997 a 8.8582678,8.8582678 0 1 1 -17.71653,0 8.8582678,8.8582678 0 1 1 17.71653,0 z"
+         sodipodi:ry="8.8582678"
+         sodipodi:rx="8.8582678"
+         sodipodi:cy="449.99997"
+         sodipodi:cx="221.4567"
+         id="path7594-5-1-2-9"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc"
+         transform="matrix(1,0,0,-1,327.7559,829.13381)" />
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(96.204689,-63.912206)"
+         id="g8147">
+        <path
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7594-4"
+           sodipodi:cx="221.4567"
+           sodipodi:cy="449.99997"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+           sodipodi:start="0"
+           sodipodi:end="3.1234408"
+           sodipodi:open="true"
+           transform="translate(90.042146,-5.15887)" />
+        <path
+           transform="matrix(1,0,0,-1,90.042143,891.36489)"
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7594-5-7"
+           sodipodi:cx="221.4567"
+           sodipodi:cy="449.99997"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+           sodipodi:start="0"
+           sodipodi:end="3.1234408"
+           sodipodi:open="true" />
+      </g>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(96.654236,-134.55513)"
+         id="g8147-4">
+        <path
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7594-4-3"
+           sodipodi:cx="221.4567"
+           sodipodi:cy="449.99997"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+           sodipodi:start="0"
+           sodipodi:end="3.1234408"
+           sodipodi:open="true"
+           transform="translate(90.042146,-5.15887)" />
+        <path
+           transform="matrix(1,0,0,-1,90.042143,891.36489)"
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7594-5-7-2"
+           sodipodi:cx="221.4567"
+           sodipodi:cy="449.99997"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+           sodipodi:start="0"
+           sodipodi:end="3.1234408"
+           sodipodi:open="true" />
+      </g>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(96.865789,-205.45327)"
+         id="g8147-4-0">
+        <path
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7594-4-3-8"
+           sodipodi:cx="221.4567"
+           sodipodi:cy="449.99997"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+           sodipodi:start="0"
+           sodipodi:end="3.1234408"
+           sodipodi:open="true"
+           transform="translate(90.042146,-5.15887)" />
+        <path
+           transform="matrix(1,0,0,-1,90.042143,891.36489)"
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7594-5-7-2-3"
+           sodipodi:cx="221.4567"
+           sodipodi:cy="449.99997"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+           sodipodi:start="0"
+           sodipodi:end="3.1234408"
+           sodipodi:open="true" />
+      </g>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(166.50229,-64.042925)"
+         id="g8147-5">
+        <path
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7594-4-5"
+           sodipodi:cx="221.4567"
+           sodipodi:cy="449.99997"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+           sodipodi:start="0"
+           sodipodi:end="3.1234408"
+           sodipodi:open="true"
+           transform="translate(90.042146,-5.15887)" />
+        <path
+           transform="matrix(1,0,0,-1,90.042143,891.36489)"
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7594-5-7-4"
+           sodipodi:cx="221.4567"
+           sodipodi:cy="449.99997"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+           sodipodi:start="0"
+           sodipodi:end="3.1234408"
+           sodipodi:open="true" />
+      </g>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(166.95184,-134.68584)"
+         id="g8147-4-7">
+        <path
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7594-4-3-5"
+           sodipodi:cx="221.4567"
+           sodipodi:cy="449.99997"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+           sodipodi:start="0"
+           sodipodi:end="3.1234408"
+           sodipodi:open="true"
+           transform="translate(90.042146,-5.15887)" />
+        <path
+           transform="matrix(1,0,0,-1,90.042143,891.36489)"
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7594-5-7-2-7"
+           sodipodi:cx="221.4567"
+           sodipodi:cy="449.99997"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+           sodipodi:start="0"
+           sodipodi:end="3.1234408"
+           sodipodi:open="true" />
+      </g>
+      <g
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         transform="translate(167.16339,-205.58398)"
+         id="g8147-4-0-9">
+        <path
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7594-4-3-8-8"
+           sodipodi:cx="221.4567"
+           sodipodi:cy="449.99997"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+           sodipodi:start="0"
+           sodipodi:end="3.1234408"
+           sodipodi:open="true"
+           transform="translate(90.042146,-5.15887)" />
+        <path
+           transform="matrix(1,0,0,-1,90.042143,891.36489)"
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+           id="path7594-5-7-2-3-4"
+           sodipodi:cx="221.4567"
+           sodipodi:cy="449.99997"
+           sodipodi:rx="8.8582678"
+           sodipodi:ry="8.8582678"
+           d="m 230.31496,449.99997 c 0,4.89229 -3.96598,8.85827 -8.85826,8.85827 -4.82961,0 -8.76915,-3.86867 -8.85681,-8.69749"
+           sodipodi:start="0"
+           sodipodi:end="3.1234408"
+           sodipodi:open="true" />
+      </g>
+      <path
+         transform="matrix(3,0,0,2.8333334,61.16511,-781.24599)"
+         d="m 88.582676,396.85037 a 26.574802,26.574802 0 1 1 -53.149605,0 26.574802,26.574802 0 1 1 53.149605,0 z"
+         sodipodi:ry="26.574802"
+         sodipodi:rx="26.574802"
+         sodipodi:cy="396.85037"
+         sodipodi:cx="62.007874"
+         id="path6437"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.34272709;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <g
+         transform="matrix(0.70710678,-0.70710678,0.70710678,0.70710678,-207.19957,110.60058)"
+         id="g7562">
+        <g
+           id="g7205">
+          <path
+             inkscape:connector-curvature="0"
+             id="path6439"
+             d="m 141.73228,432.28344 0,17.71654"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6441"
+             d="m 141.73228,441.14171 17.71654,-8.85827 0,17.71654 z"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6443"
+             d="m 124.01575,441.14171 53.1496,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6445"
+             d="M 148.8189,432.28344 z"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6451"
+             d="m 150.59055,432.28344 -8.85827,-8.85827"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6453"
+             d="m 150.59055,423.42517 -8.85827,-8.85826"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)" />
+        </g>
+        <g
+           transform="matrix(-1,0,0,-1,301.1811,908.85822)"
+           id="g7205-9">
+          <path
+             inkscape:connector-curvature="0"
+             id="path6439-4"
+             d="m 141.73228,432.28344 0,17.71654"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6441-3"
+             d="m 141.73228,441.14171 17.71654,-8.85827 0,17.71654 z"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6443-0"
+             d="m 124.01575,441.14171 53.1496,0"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6445-5"
+             d="M 148.8189,432.28344 z"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6451-3"
+             d="m 150.59055,432.28344 -8.85827,-8.85827"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path6453-5"
+             d="m 150.59055,423.42517 -8.85827,-8.85826"
+             style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow1Mend)" />
+        </g>
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 124.01575,467.71651 0,-26.5748"
+           id="path7263"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 177.16535,467.71651 0,-26.5748"
+           id="path7265"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 124.01575,449.99998 -17.71654,0"
+           id="path7267"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="m 177.16535,449.99998 17.71654,0"
+           id="path7269"
+           inkscape:connector-curvature="0" />
+      </g>
+      <path
+         inkscape:connector-curvature="0"
+         id="path7584"
+         d="m 248.35159,291.34272 5.7371,-5.7371 10.81658,-0.0209"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path7586"
+         d="m 186.67776,353.01655 -1.67332,1.43427 0.17642,10.85828"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path7588"
+         d="m 149.74779,365.3091 194.88189,0"
+         style="fill:none;stroke:#000000;stroke-width:1.21106017px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path7590"
+         d="m 264.90527,250.15162 0,186.02362"
+         style="fill:none;stroke:#000000;stroke-width:1.22474492px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         transform="translate(70.023379,-128.98222)"
+         sodipodi:open="true"
+         sodipodi:end="3.1234408"
+         sodipodi:start="0"
+         d="m 230.31496,449.99997 a 8.8582678,8.8582678 0 0 1 -17.71507,0.16078"
+         sodipodi:ry="8.8582678"
+         sodipodi:rx="8.8582678"
+         sodipodi:cy="449.99997"
+         sodipodi:cx="221.4567"
+         id="path7594"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         sodipodi:open="true"
+         sodipodi:end="3.1234408"
+         sodipodi:start="0"
+         d="m 230.31496,449.99997 a 8.8582678,8.8582678 0 0 1 -17.71507,0.16078"
+         sodipodi:ry="8.8582678"
+         sodipodi:rx="8.8582678"
+         sodipodi:cy="449.99997"
+         sodipodi:cx="221.4567"
+         id="path7594-5"
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:3.54330707;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc"
+         transform="matrix(1,0,0,-1,70.023376,768.2143)" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path7614"
+         d="m 291.48007,329.87603 0,35.43307"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         transform="translate(203.88906,-109.85855)"
+         d="m 64.06429,395.46417 a 3.346642,3.346642 0 1 1 -6.693284,0 3.346642,3.346642 0 1 1 6.693284,0 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(125.00393,-30.017241)"
+         d="m 64.06429,395.46417 a 3.346642,3.346642 0 1 1 -6.693284,0 3.346642,3.346642 0 1 1 6.693284,0 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-5"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         transform="translate(230.6622,-30.017237)"
+         d="m 64.06429,395.46417 a 3.346642,3.346642 0 1 1 -6.693284,0 3.346642,3.346642 0 1 1 6.693284,0 z"
+         sodipodi:ry="3.346642"
+         sodipodi:rx="3.346642"
+         sodipodi:cy="395.46417"
+         sodipodi:cx="60.717648"
+         id="path7624-7"
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+         sodipodi:type="arc" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path7651"
+         d="m 291.37984,302.81692 0,-13.02372 35.5333,-30.78332"
+         style="fill:none;stroke:#000000;stroke-width:0.99921262;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text7271-1"
+         y="374.82419"
+         x="209.17366"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="374.82419"
+           x="209.17366"
+           id="tspan7273-8"
+           sodipodi:role="line">row</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text7271-2"
+         y="399.20688"
+         x="244.55246"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="399.20688"
+           x="244.55246"
+           id="tspan7273-7"
+           sodipodi:role="line">col</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text7271-62"
+         y="266.77545"
+         x="282.7998"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="266.77545"
+           x="282.7998"
+           id="tspan7273-9"
+           sodipodi:role="line">r_sens</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path8243"
+         d="m 291.30511,308.28955 0,-8.07312"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-1-5"
+         y="229.41731"
+         x="166.35316"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="229.41731"
+           x="166.35316"
+           id="tspan7273-6-7-8-5"
+           sodipodi:role="line">kapazitiver</tspan><tspan
+           id="tspan8342"
+           y="241.91731"
+           x="166.35316"
+           sodipodi:role="line">Sensor + LED</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-1-5-7"
+         y="430.22818"
+         x="169.5096"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="430.22818"
+           x="169.5096"
+           id="tspan7273-6-7-8-5-7"
+           sodipodi:role="line">resistiver</tspan><tspan
+           id="tspan8342-4"
+           y="442.72818"
+           x="169.5096"
+           sodipodi:role="line">Sensor + LED</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-1-5-0"
+         y="422.15506"
+         x="412.98465"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="422.15506"
+           x="412.98465"
+           id="tspan7273-6-7-8-5-2"
+           sodipodi:role="line">resistive</tspan><tspan
+           id="tspan8342-0"
+           y="434.65506"
+           x="412.98465"
+           sodipodi:role="line">Sensoren + LEDs</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-1-5-7-9"
+         y="420.13678"
+         x="523.99005"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           y="420.13678"
+           x="523.99005"
+           id="tspan7273-6-7-8-5-7-0"
+           sodipodi:role="line">kapazitive</tspan><tspan
+           id="tspan8342-4-1"
+           y="432.63678"
+           x="523.99005"
+           sodipodi:role="line">Sensoren + LEDs</tspan></text>
+      <path
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         inkscape:connector-curvature="0"
+         id="path8416"
+         d="M 513.98869,60.713848 513.31593,453.60573"
+         style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 8;stroke-dashoffset:0" />
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-1-5-0-8"
+         y="58.864632"
+         x="440.68866"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan8465"
+           y="58.864632"
+           x="440.68866"
+           sodipodi:role="line">Platine 1</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-1-5-0-8-8"
+         y="58.387032"
+         x="535.17279"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan8342-0-3-5"
+           y="58.387032"
+           x="535.17279"
+           sodipodi:role="line">Platine 2</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-1-5-0-8-3"
+         y="40.222515"
+         x="466.55124"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan8465-8"
+           y="40.222515"
+           x="466.55124"
+           sodipodi:role="line">Schaltungsvarianten</tspan></text>
+      <text
+         inkscape:export-ydpi="90"
+         inkscape:export-xdpi="90"
+         inkscape:export-filename="/home/mavo/develop/doc/clt2012/matrix_schem_all.png"
+         sodipodi:linespacing="125%"
+         id="text7271-6-5-1-5-0-8-3-8"
+         y="41.271557"
+         x="603.79614"
+         style="font-size:10px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         xml:space="preserve"><tspan
+           id="tspan8465-8-7"
+           y="41.271557"
+           x="603.79614"
+           sodipodi:role="line">Controller</tspan></text>
+      <path
+         inkscape:connector-curvature="0"
+         id="path5798"
+         d="m 611.41101,144.16711 0.0257,261.46996 44.71288,0 -0.34932,-261.50928"
+         style="fill:none;stroke:#000000;stroke-width:1.00902271px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path5800-7"
+         d="m 611.48462,92.340749 c 2.73104,-2.48576 5.76224,-4.21195 9.14107,-3.45878 6.64603,1.4089 12.03239,7.43869 21.98798,9.14107 6.25153,-0.63618 8.73668,-3.78328 13.09396,-5.68229"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path5800-9"
+         d="m 611.51459,132.36381 c 2.73104,-2.48576 5.76224,-4.21195 9.14107,-3.45878 6.64603,1.4089 12.03239,7.43869 21.98798,9.14107 6.25153,-0.63618 8.73668,-3.78328 13.09396,-5.68229"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path5827"
+         d="m 611.46343,132.57296 -0.24706,-30.882 44.71712,0 0,30.882"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path5829"
+         d="m 611.21637,92.549895 0,-23.470314 44.22301,0 0,23.470314"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+      <path
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="path5800-9-3"
+         d="m 611.50698,144.49816 c 2.73104,-2.48576 5.76224,-4.21195 9.14107,-3.45878 6.64603,1.4089 12.03239,7.43869 21.98798,9.14107 6.25153,-0.63618 8.73668,-3.78328 13.09396,-5.68229"
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>

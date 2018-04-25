@@ -1,0 +1,27 @@
+Drahtlose Sensordatenerfassung und -verarbeitung mit Linux
+==========================================================
+:author: Axel Wachtler, Jörg Wunsch, Matthias Vorwerk
+:date: 2011-03-19
+:max-width: 95%
+:data-uri:
+///////////
++++
+ <img class="cover" src="../ibdt_muse_node.png" style="position: absolute; right: 5%; bottom: 5%; width: 20%" />
++++
+///////////
+
+include::slides_intro.txt[]
+
+include::slides_radio.txt[]
+
+include::slides_sensor.txt[]
+
+include::slides_server.txt[]
+
+include::slides_outro.txt[]
+
+Backup Slides
+-------------
+
+include::backup_radio.txt[]
+include::backup_server.txt[]

@@ -1,0 +1,53 @@
+<!--$Id$-->
+<html>
+<body>
+<b><em>Drahtlose Sensordatenerfassung und -verarbeitung mit Linux</em></b>
+<p>
+Die Erfassung und Auswertung physikalischer Gr&ouml;&szlig;en
+wie z.B. Temperatur oder Luftfeuchte in Abh&auml;ngigkeit von
+der Zeit ist ein wichtiges Werkzeug zur Optimierung und
+&Uuml;berwachung von Prozessen, gleich ob es sich dabei um das
+heimische Terrarium, den Weinkeller oder um den Serverraum
+in der Firma handelt. Typische Sensoranwendungen zeichnen
+dabei die gemessenen Daten f&uuml;r eine sp&auml;tere Auswertungen auf
+und generieren Alarme, wenn ein Parameter seinen zul&auml;ssigen
+Bereich verl&auml;&szlig;t.
+</p>
+<p>
+Drahtlose Sensoren haben gegen&uuml;ber kabelgebundenen Sensoren
+den Vorteil, dass sie einfach, auch an schwer erreichbaren Pl&auml;tzen
+zu installieren sind und damit der Verkabelungsaufwand entf&auml;llt.
+</p>
+<p>
+In den letzten Jahren werden Funkschaltkreise, die nach dem IEEE-802.15.4-
+Standard arbeiten auch im Bastlerbereich immer popul&auml;rer. Mit dieser
+Funktechnik ist es m&ouml;glich, verteilte Sensoranwendungen auf
+batteriebetriebenen Funkknoten mit geringem Aufwand zu entwicklen.
+Die im Volksmund auch &quot;ZigBee Transceiver&quot; genannten Schaltkreise
+unterst&uuml;tzen Datenraten von 250 kBit/s, zeichnen sich durch
+einen geringen Energiebedarf aus und arbeiten im 2,4-GHz-ISM-Band,
+in dem in vielen L&auml;ndern der Welt eine Allgemeinzuteilung existiert,
+sodass keine separate Beantragung der Frequenznutzung durch den
+Endanwender erforderlich ist.
+</p>
+<p>
+Im Beitrag werden am Beispiel einer verteilten Temperaturerfassung
+mit mehreren Messstellen alle Entwicklungsschritte von der
+Firmwareentwicklung f&uuml;r den AVR-Mikrocontroller bis hin zur
+Datenaufbereitung und -darstellung in einem Webserver unter Linux
+demonstriert.
+</p>
+<p>
+Die Firmware der Funkknoten verwendet die Open-Source-Libraries des
+uracoli-Projektes. Zur Anbindung der seriellen Schnittstelle des
+Gateway-Modules und zur Aufbereitung der empfangenen Daten wird die
+Programmiersprache Python verwendet. Zus&auml;tzlich werden im Beitrag
+verschiedene Temperatursensoren und Funkmodule hinsichtlich
+Preis, Programmierung und Genauigkeit gegen&uuml;bergestellt.
+</p>
+<p>
+Weitere Information zum Vortrag sind unter http://www.uracoli.de/clt2011
+zu finden.
+</p>
+</body>
+</html>

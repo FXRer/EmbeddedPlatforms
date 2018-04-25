@@ -1,0 +1,166 @@
+:author: Daniel Thiele and Axel Wachtler
+:lang: de
+
+= Radiofaro und der König von Italien =
+
+== Einleitung ==
+
+Arduino ist eine aus Soft- und Hardware bestehende "Physical Computing"
+Plattform <<arduino>>. Das Projekt wurde 2005 ins Leben gerufen, um Studenten
+eine einfache Entwicklungsplattform in die Hand zu geben, mit der sie
+Design- und Kunst-Projekte interaktiv steuern konnten. Die technischen Details
+des Mikrocontrollers sind hinter einer IDE verborgen. Mit diesem Konzept
+gelingt selbst Anwendern ohne technisches Detailwissen ein sehr rascher
+Einstieg in die Welt des Embedded Programming.
+
+Die originale Arduino Hardware bestand ursprünglich aus einem Atmel AVR
+Controller ATmega8, der inzwischen durch ATmega168 und ATmega328 abgelöst
+wurde. Es gibt auch zahlreiche abgewandelte Boards, die mit der Arduino-IDE
+genutzt werden können <<hwlist>>.
+
+Die IO-Ports des Controllers sind über Steckleisten nach aussen geführt. Die
+Anordnung definiert den Arduino-Footprint, der es ermöglicht sogenannte Shields
+mit diverser Zusatzhardware aufzustecken. Zurzeit (März 2012) gibt es 285
+Shields von 144 Herstellern <<shieldlist>>.
+
+Die Programmierung des Controllers erfolgt per IDE mit dem Bootloader des
+Microcontrollers über die serielle Schnittstelle.
+
+== Die Hardware von Radiofaro ==
+
+Radiofaro ist Arduino-Formfaktor kompatibles Board, das auf dem Layout
+des Arduino Duemilanove (Arduino 2009) basiert. Als Mikrocontroller wird
+anstelle eines ATmega328 ein ATmega128RFA1 verwendet. Dieser IC besitzt neben
+den für Arduino-Verhälnisse üppigen 16 KiB SRAM und 128 KiB FLASH einen
+integrierten IEEE-802.15.4-Transceiver. Mit dem  Transceiver können im
+lizenzfreien 2.4 GHz Band Daten mit bis zu 1.4MBit/s gesendet und empfangen
+werden. Der Mikrocontroller wurde in Form eines zertifizierten Funk-Moduls von
+Dresden-Elektronik auf der Platine verbaut, wodurch eine teure Zulassungsprozedur
+für die Funkschnittstelle eingespart wurde.
+
+Mit einem Jumper kann zwischen drei Spannungsquellen gewählt werden, 9V aus
+einem Netzteil, Versorgung über die USB-Schnittstelle oder über Batterie. Ein
+Batteriefach für zwei AA-Batterien kann auf der Unterseite von Radiofaro
+montiert werden.
+
+Die serielle Schnittstelle des ATmega128RFA1 ist über einen FT232RL-USB-Seriell
+Wandler herausgeführt.
+
+Neben einem ISP-Stecker besitzt das Radiofaro-Board auch einen JTAG-Connector.
+Mit einem AVR Dragon oder AVR JTAG ICE mkII kann man über diese Schnittstelle
+Programme komfortabel direkt auf dem Microcontroller debuggen.
+
+Als der Original-Arduino 2005 das Licht der Welt erblickte, war die 5V-Technik
+noch Stand der Technik. Da der ATmega128RFA1 jedoch für einen Spannungsbereich
+von 1.8V bis 3.6V spezifiziert ist, sind die GPIO-Pins mit 100-Ohm-Vorwiderständen
+geschützt. Die Verwendung von Shields, die dauerhaft 5V gegen die Controller-Pins
+treiben sollte trotzdem vermieden werden. Eine zweite Einschränkung betrifft die
+Position des ISP-Steckers, den vor allem originale Arduino-Shields als
+SPI-Connector verwenden, obwohl die SPI-Signale auch auf die seitlichen
+Steckverbinder geführt sind.
+
+Trotz dieser Einschränkung kann ist Radiofaro eine leistungsfähige Plattform
+für eigene Projekte und Experimente, die drahtlos kommunizieren sollen.
+Durch die Verwendung des IEEE-802.15.4-Standards kann mit einer Reihe andere
+Funkmodule kommuniziert werden, u.a. Atmel ZigBit, Raven und RZUSB-Stick oder
+mit den ICRadio-Modulen.
+
+== Installation und Update ==
+
+Die Arduino-IDE ist in Java geschrieben und somit auf Linux, MacOS und Windows
+lauffähig. Die Installation erfolgt einfach durch das Entpacken des Paketes in
+einem Verzeichnis. Die IDE befindet sich danach im Verzeichnis _arduino-1.0_
+(MacOS: _Arduino.app_).
+
+Bis auf die Linux-Version enthalten alle Installations-Pakete eine
+AVR-Toolchain, bestehend aus avr-gcc, avr-binutils und avrdude.
+Allerdings stammen die im Paket mitgelieferten Tools aus dem Jahr 2005 n.Chr.
+(avarice: 2.8, avrdude: 5.5, avr-libc: 1.6.4, binutils: 2.19, gcc-3: 3.4.6,
+gcc-4: 4.3.2 gdb: 6.8, libusb: 0.1.12, make: 3.81) und enthalten neben
+vielen heute bereits reparierten Bugs keinerlei Support für den ATmega128RFA1.
+
+Um nun Radiofaronutzen zu können, muss zuerst die mitgelieferte Toolchain gegen
+eine aktuelle Version ausgetauscht werden. Eine Anleitung zur Aktualisierung der
+Toolchain unter den einzelnen Betriebssystemen befindet sich auf der
+Radiofaro-Webseite <<radiofaro>>.
+
+Im nächsten Schritt wird das Paket +uracoli-arduino-<version>.zip+ im
+Sketchbook-Directory  entpackt. Es enthält den angepassten Arduino-Core
+für Radiofaro, einen Bootloader und die Radiofaro-Beispiel-Sketches.
+
+Wenn bis hierhin geklappt hat, kann man nun Radiofaro unter _Tools / Board_
+auswählen.
+
+image:0001_epj01.png[width="50%"]
+
+== Die erste Verbindung ==
+
+Nach dem Öffnen der Arduino-IDE kann man im Menü _Tools / Board_ die
+Option _Radiofaro_ auswählen.
+
+
+== Der erste Sketch ==
+
+Im nächsten Schritt wird Radiofaro per USB mit dem PC verbunden. Daraufhin
+sollte eine weitere serielle Schnittstelle im Geräte-Manager angezeigt werden.
+
+== ... und die Komandozeilen-Junkies ==
+
+Es ist nicht immer der bequemste Weg, sich mit der Maus durch viele Menüs
+zu klicken. Man wünscht sich also einen Weg, wie man den Build - Upload - Test
+Vorgang beschleunigen und automatisieren kann. Stellvertretend für viele
+Arduino-Kommandozeilen Tools, soll hier "arscons" stehen.
+
+
+== Lizenzfragen ==
+
+
+
+== Was ist nun mit dem König? ==
+
+Arduin von Ivrea war von 1002 bis 1004 König von Italien. Ziehmlich genau
+1000 Jahre später trafen sich im Lokal "Re Arduin" im Ort, die Entwickler
+M. Banzi und D. Quartielles. Ob nun das Lokal oder aber die historische
+Vergangenheit des Ortes Pate für den Namen stand, bleibt eigenen Mutmaßungen
+überlassen.
+
+== Literatur ==
+
+[bibliography]
+- [[[arduino]]]
+   'Offizielle Arduino Webseite' +
+  http://www.arduino.cc/
+- [[[hwlist]]]
+  'Arduino Hardware Liste' +
+  http://en.wikipedia.org/wiki/List_of_Arduino_compatibles
+- [[[shieldlist]]]
+  'Arduino Shield List' +
+  http://shieldlist.org/
+- [[[radiofaro]]]
+  'Radiofaro Projekt Seite'
+  http://uracoli.nongnu.org/radiofaro.html
+
+== Details für Webseite ==
+
+//////////
+Original eingereichte Gliederung
+1) Einf<FC>hrung
+    - Arduino HW + IDE + Toolchain
+    - Unterschiede Arduino und RadioFaro
+    - Funktechnik hinter Radiofaro
+ 2) Wireless UART Sketch: zwei PCs kommunizieren <FC>ber Wireless Link
+    - Installation uracoli-arduino Paket
+    - Code Diskussion
+    - Inbetriebnahme
+ 3) Schalter/LED/Seriell-IF Sketch:
+    - Schalter Events werden zum PC Terminal geschickt.
+    - LED wird durch Eingaben ein/aus geschalten.
+    - Sketch l<E4>uft auf normalem Arduino, <FC>ber USB mit PC verbunden
+    - Sketch auf Radiofaro, der Arduino Sketch
+      wird auf "wireless" umgestellt, die Gegenstelle am PC ist der
+      zuvor vorgestellte "Wireless UART"
+ 4) Ausblick
+    - Weitere Optionen der uracoli-Lib: sniffer und wireless bootloader.
+embedded_journal.txt (END)
+
+//////////

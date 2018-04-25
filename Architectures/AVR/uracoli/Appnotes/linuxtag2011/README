@@ -1,0 +1,19 @@
+$Id$
+
+Ubuntu Pakete
+=============
+
+apt-get install texlive texlive-doc-de texlive-latex-extra texlive-lang-german 
+
+Problem luximono wurde nicht gefunden.
+
+Bauen des Vortages
+==================
+
+pdflatex dratlosesensoren.tex 
+ ===> dratlosesensoren.pdf
+
+pdflatex booklet.tex 
+ ===> booklet.pdf
+
+

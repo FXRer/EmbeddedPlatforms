@@ -1,0 +1,60 @@
+= Call for Posters 2012 =
+
+Anmeldung
+---------
+
+Call for Presentations:
+http://chemnitzer.linux-tage.de/2012/live/call_form
+
+Titel
+-----
+Tic-Tac-Toe Reloaded
+
+Art des Beitrags
+----------------
+Posterstand - Nur ein Poster, nicht ständig besetzt
+
+
+Kurze Zusammenfassung
+---------------------
+
+Das Spiel Tic-Tac-Toe wird in einer Hardwareversion
+mit dem Microcontroller ATmega128RFA1 neu implementiert, 
+wobei die entwickelte Schaltung bewuÃŸt minimalistisch
+gehalten wurde.
+
+Der Posterstand soll ein Treffpunkt sein, an dem mit
+den Âµracoli-Entwicklern Ã¼ber das im Workshop bearbeitete
+Tic-Tac-Toe-Projekt und Ã¼ber andere interessierende Themen
+zur Hard- und Software-Entwicklung mit AVR-Mikrokontrollern
+unter Linux und FreeBSD, sowie Ã¼ber IEEE-802.15.4-Funktechnik
+diskutiert werden kann.
+
+
+== Webseite ==
+
+- http://uracoli.nongnu.org/clt2012
+
+== Mitgebrachte Geräte (voraussichtlich): ==
+
+PCs:      keine
+Laptops:  3 (nur temporär, wenn Stand besetzt)
+Monitore: 1 (evtl)
+Beamer:   1 (evtl)
+Sonstiges: Kleinmaterial, in Koffer unterm Tisch, 
+           ab/an-geschlossen.
+
+== Weitere Wünsche: (genaue Absprache per E-Mail) ==
+
+ keine
+
+== Weitere Bemerkungen zur Organisation ==
+
+Der Posterstand wird zeitweise besetzt sein, eine 
+Uhr/Schild am Stand zeigt an, wann der Stand das
+nÃ¤chste mal besetzt sein wird.
+
+== Autoren ==
+
+
+Axel Wachtler, JÃ¶rg Wunsch, Matthias Vorwerk

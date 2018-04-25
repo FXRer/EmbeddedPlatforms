@@ -1,0 +1,63 @@
+// $Id$
+Das Sensorprogramm (... etwas vereinfacht)
+------------------------------------------
+
+[source,C]
+----------------------------------------------
+  #include <stdlib.h>
+  #include "board.h"
+  #include "radio.h"
+
+  volatile app_evnt_t app_evnt;
+
+  int main(void) {
+      app_init();
+      while (1) {
+          app_task();
+          do_sleep();
+      }
+  }
+
+  static void app_init(void) {
+      sensor_init();
+      timer_init();
+      radio_init(NULL, 0);
+      app_event = APP_IDLE;
+  }
+
+  static void app_task(void) {
+      if (app_event == APP_MEASURE) {
+          run_measurement();
+          radio_set_state(STATE_TXAUTO);
+          radio_send_frame(sizeof(TxFrame), (uint8_t *) &TxFrame, 0);
+          app_event = APP_IDLE;
+      }
+  }
+
+  /* radio IRQ callback - startet timer nach senden des Rahmens */
+  void usr_radio_tx_done(radio_tx_done_t status) {
+      timer_start(tmr_transmit, T_TX_PERIOD, 0);
+  }
+
+  /* timer callback */
+  time_t tmr_transmit(timer_arg_t t) {
+      app_event = APP_MEASURE;
+      return 0;
+  }
+
+----------------------------------------------
+
+Strombedarf Muse231 Sensorknoten
+--------------------------------
+
+++++
+<br/>
+<br/>
+<div class="incremental" style="margin-left: 4em; position: relative;">
+ <img class="" src="muse231_current_overall.png" width="80%"
+      style="position: static; vertical-align: bottom;">
+ <img class="invisible" src="muse231_current_trxzoom.png" width="80%"
+      style="position: absolute; left: 0pt; top: 0pt;">
+</div>
+++++
+

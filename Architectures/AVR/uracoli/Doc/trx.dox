@@ -1,0 +1,280 @@
+/* Copyright (c) 2007 - 2011 Axel Wachtler
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   * Neither the name of the authors nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   POSSIBILITY OF SUCH DAMAGE. */
+
+/* $Id$ */
+
+/**
+ @page pgGetStarted Getting Started
+
+ @section secQuickStart Quick Start
+
+ To get into first contact with \uracoli, the following steps are required:
+
+ @par Step 0: Download the uracoli package
+
+  - Download the file @c uracoli-<version>.zip from http://uracoli.nongnu.org/download.html
+
+ @par Step 1: Install the toolchain
+
+  To compile the firmware, a working @ref pgToolChain is required.
+  The installation is described in this sections:
+
+   - @ref secToolChainLinux
+   - @ref secToolChainWindows
+
+ @par Step 2: Select your board / your boards and the programmer
+
+  - At least two of the supported transceiver boards
+    are required to esatblish a wireless connection.
+  - Select the board from  @ref pgBoards, remember the parameters
+    @em "Build Target" and @em "Baudrate".
+  - In order to flash the compiled firmware into the micro controller,
+    an hardware programmer like AVRISP, JTAGICE mkII, AVR-Dragon
+    or a similiar tool is needed.
+
+ @par Step 3: Select an application, build and flash it
+
+  A good application to start with, is the @ref pgwuart "Wireless Uart" (wuart)
+  application.
+
+    - @c "make -C src/wuart <target>", remember that @c <target> is the parameter
+      @em "Build Target" from @ref pgBoards
+    - Flash @c "src/bin/wuart_<target>.hex" to both boards, see sectin
+      @ref pgDevProgDebug for details.
+    - connect a terminal to each of the boards, the baudrate is given in the
+      parameter @em "Baudrate" on page @ref pgBoards.
+    - press reset and see in the terminal the boot message
+    - typing letters in one of the terminal windows will appear in the
+      other terminal window.
+
+*/
+
+/**
+ @page pgGetStarted
+ @section secContents Available Packages
+
+@par Source Code Package
+
+The source code package uses @c make as build system.
+This is the directory structure of the source code package:
+
+    @code
+    uracoli-<version>.zip unpacks in
+    uracoli-<version>
+    +-- doc  ............................. HTML and PDF Dcoumentation
+    |   |-- index.html
+    |   +-- uracoli-userguide.pdf
+    +-- scripts .......................... Python Scripts and Utilities
+    +-- src
+        |................................. Examples and Project Template
+        +-- as6
+        |   +-- halimbawa
+        +-- examples
+        |................................. Applications
+        +-- rdiag
+        +-- rsensor
+        +-- sniffer
+        +-- wibo
+        |   +-- wibo
+        |   +-- wibohost
+        |   +-- wibotest
+        +-- wuart
+        |.................................. Library Sources and Include Files
+        +-- inc
+        |   |-- boards
+        |   +-- sensors
+        +-- uracoli
+    @endcode
+
+@par Arduino Support Package
+
+The @ref pgContribArduino package is intended to use with the
+Arduino-IDE. It has no prefix and is intended to be extracted
+direct in the sketchbook.
+
+    @code
+    uracoli-arduino-15x-<version>.zip
+    sketchbook/
+    +-- hardware
+        +-- uracoli
+            +-- avr
+                +-- bootloaders
+                |   +-- radiofaro
+                +-- cores
+                |   +-- uracoli
+                +-- libraries
+                |   +-- HardwareRadio
+                |       +-- examples
+                |       |   +-- CosmTLogger
+                |       |   |   +-- Gateway
+                |       |   |   +-- Remote
+                |       |   +-- HelloRadio
+                |       |   +-- IoCheck
+                |       |   +-- IoRadio
+                |       |   +-- LedChat
+                |       |   +-- RadioUart
+                |       +-- extras
+                |       +-- src
+                |           +-- uracoli
+                |               +-- boards
+                +-- variants
+                    +-- atzb256rfr2xpro
+                    +-- pinoccio
+                    +-- radiofaro
+                    +-- zigbit2400
+                    +-- zigbit900
+    @endcode
+
+@par Development Package and Repository
+
+The development package and the repository both using @c scons as build system.
+
+    @code
+        uracoli-devel-<version>.zip unpacks in
+        uracoli-devel-<version>
+        +-- Config ............................... config files for the build system
+        +-- Contrib
+        |   +-- Arduino .......................... Arduino Support Package Sources
+        |   |   +-- bootloaders
+        |   |   +-- examples
+        |   |   +-- hardware_15x
+        |   |   +-- hardware_1x
+        |   |   +-- lib
+        |   |   +-- zigbit
+        |   +-- littleGee
+        |   +-- PacketCapture .................... sniffer tools
+        |   +-- RavenLCD ......................... (driver for the Raven LCD MCU)
+        |   +-- wprog ............................ (wireless programmer)
+        +-- Doc .................................. documentation sources
+        |   +-- App
+        |   +-- Contrib
+        |   +-- Dev
+        |   +-- Images
+        |   +-- Usr
+        +-- Regression ........................... regression scripts and config files
+        |   +-- jenkins-jobs
+        |       +-- uracoli_src_package
+        +-- Src
+        |   +-- App .............................. application sources
+        |   |   +-- Sniffer
+        |   |   +-- util
+        |   |   +-- WiBo
+        |   +-- Lib .............................. library sources
+        |   |   +-- Inc
+        |   |   +-- Ioutil
+        |   |   +-- Rf230
+        |   +-- Xmpl ............................. example sources
+        +-- Templates ............................ template files (also transceiver)
+        +-- Tools ................................ helper scripts for build system
+    @endcode
+
+ @section secArchitecture Package Architecture
+
+ @uracoli has the following layering of the components.
+
+ @image html uracoli_modules.png "Software modules" width=40%
+ @image latex "uracoli_modules.png" "Software modules"
+
+ */
+
+/**
+ @page pgGetStarted
+
+ @section secXmplUsage Using Examples and Applications
+
+ The examples are minimal C-Programms, that illustrate the usage of the
+ @c liburacoli functions. For more details refer to section @ref secXmplCompile.
+
+ The applications implement more complex functions and can be thought as
+ tools, like a wireless UART or a sniffer. For more details refer
+ to section @ref pgAppMain. For some of the applications a supplementary
+ PC-software is required, e.g. @c sniffer.py for the firmware @c sniffer_<board>.hex.
+ In order to be platform independent, the PC-software is written in Python.
+
+ */
+
+/**
+ @page pgGetStarted
+
+ @section secLibUsage Creating Own Projects
+
+  As a starting point for an own application, one of the
+  @ref pgXmplMain "examples" can be used.
+
+  Make a directory, e.g. @c myproject in @c "uracoli-<version>/src"
+
+  Start with writing an initial C-File and store it as @c myproject.c:
+  @code
+    #include <stdio.h>
+    #include "board.h"
+    #include "transceiver.h"
+    #include "radio.h"
+
+    uint8_t RxFrame[MAX_FRAME_SIZE];
+
+    int main(void)
+    {
+      radio_init(RxFrame, sizeof(RxFrame));
+      while(1)
+      {
+      }
+      return 0;
+    }
+  @endcode
+
+  Now the C-File can be compiled and linked against @c liburacoli.
+  In order to get the compiler and linker flags, execute the compiling
+  of one of the examples and copy the command line from there:
+
+  @code
+    make -C ../examples/  -n -f xmpl_hif.mk rdk230
+    ...
+    avr-gcc -Wall -Wundef -Os -g -ffunction-sections -fdata-sections -std=c99 -mmcu=atmega1281 -Wa,-adhlns=../build/xmpl_hif_rdk230.lst -Drdk230 -DF_CPU=8000000UL -DAPP_NAME="\"xmpl_hif\"" -I../inc -I. -c -o ../build/xmpl_hif_rdk230.o xmpl_hif.c
+    avr-gcc -o ../bin/xmpl_hif_rdk230.elf -Wall -Wundef -Os -g -ffunction-sections -fdata-sections -std=c99 -mmcu=atmega1281 -Wa,-adhlns=../build/xmpl_hif_rdk230.o -Drdk230 -DF_CPU=8000000UL -DAPP_NAME="\"xmpl_hif\"" -I../inc -I. ../build/xmpl_hif_rdk230.o -L../lib -Wl,--gc-sections -luracoli_rdk230
+    avr-objcopy -O ihex ../bin/xmpl_hif_rdk230.elf ../bin/xmpl_hif_rdk230.hex
+    ...
+  @endcode
+
+  The own project can then be build with the command line
+
+  @code
+    avr-gcc -Os -g \
+            -std=c99 -mmcu=atmega1281 \
+            -Drdk230 -DF_CPU=8000000UL \
+            -I../inc -I. \
+            -o myproject.elf \
+            myproject.c \
+            -L../lib -Wl,--gc-sections \
+            -luracoli_rdk230
+  @endcode
+
+  The file @c myproject.elf contains the firmware and can be flashed on
+  the tartet board.
+
+*/
+

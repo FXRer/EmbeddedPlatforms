@@ -1,0 +1,80 @@
+= Call for Papers 2012 =
+
+Anmeldung
+---------
+
+http://chemnitzer.linux-tage.de/2012/vortraege/call_form
+
+Titel
+-----
+
+Tic-Tac-Toe Reloaded
+
+Art des Beitrags
+----------------
+
+Workshop (3 Stunden)
+
+Kurze Zusammenfassung
+---------------------
+
+Das Spiel Tic-Tac-Toe wird in einer Hardwareversion
+neu implementiert, wobei die entwickelte Schaltung
+bewußt minimalistisch gehalten wurde.
+
+Zur Steuerung des Spiels kommt ein Mikrokontroller
+ATmega128RFA1 zum Einsatz, über dessen Funkschnittstelle
+die beiden Spielgegner kommunizieren. Die Eingabe erfolgt
+über ein kapazitives oder resistives Touchfeld, und zur
+Anzeige des Spielstandes werden zweifarbigen LEDs
+eingesetzt.
+
+Im Workshop wird die Software in einzelnen Teilmodulen
+(Tastaturscan, LED-Ansteuerung, Funkkomunikation und
+Spiellogik) auf dem Mikrocontoller entwickelt und debuggt.
+Dabei kommt die AVR GNU-Toolchain und ein JTAG-Debugger
+vom Typ AVR Dragon zum Einsatz.
+
+Hauptaugenmerk liegt dabei vor allem auf direkter Bedienung der
+Hardware sowie auf dem Kennenlernen entsprechender Konzepte wie
+Zeitmulitplex-Ansteuerung, resistive und kapazitive Sensortechnik
+("touch"). Für die Funkkommunikation kommt die µracoli-Bibliothek
+zum Einsatz, da eine "from scratch"-Implementierung den zeitlichen
+Rahmen sprengen würde.
+
+Die beiden im Workshop benutzten Versionen der
+Tic-Tac-Toe-Hardware (einmal mit resistiven Berührungsfeldern
+und einmal mit kapazitiven) können die Teilnehmer für eigene
+Experimente anschließend mitnehmen. Schaltungs- und
+Layout-Unterlagen sowie ein vorab erstelltes
+Implementierungsbeispiel werden auf einer CD-ROM mitgegeben.
+
+Vorkenntnisse
+-------------
+
+- C-Programmierung
+- Bedienung von GCC und GDB
+- Grundkenntnisse digitaler Elektronik
+
+Technik Wünsche
+---------------
+
+- Teilnehmer sollten vorzugsweise einen PC mit
+  vorinstallierter AVR GNU-Toolchain mitbringen
+  (AVR-GCC, AVR-Binutils, AVR-GDB, AVRDUDE, AVaRICE)
+
+Termin
+------
+
+- Samstag Vormittag,
+- Samstag Nachmittag,
+
+Webseite
+--------
+
+- http://uracoli.nongnu.org/clt2012
+
+Autoren
+-------
+
+Axel Wachtler, Jörg Wunsch, Matthias Vorwerk

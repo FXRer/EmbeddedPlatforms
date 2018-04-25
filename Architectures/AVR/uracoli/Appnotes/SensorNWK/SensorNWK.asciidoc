@@ -1,0 +1,31 @@
+Sensor Network
+=============================
+Daniel Thiele <daniel.thiele@ib-dt.de>
+:Author Initials: DaTh
+:toc:
+:website: http://www.ib-dt.de
+
+== Introduction ==
+
+The Sensor Network is an example for using the uracoli transceiver library.
+
+* Apps
+  Application for individual sensor boards
+* Host
+  Application for PC interface into network consisting multiple sensor boards
+* SensorGUI
+  GUI application to connect to Host
+* SensorLib
+  Driver library for sensors
+* SensorProto
+  Network protocol for the sensor network, on top of MAC layer
+
+== Result scaling ==
+
+Sensors typically deliver their results as register values that have to be scaled to physical values. This can be done at different locations:
+
+* Sensor
+* Host
+* PC (Python)
+
+Scaling mostly deals with float numbers, therefore produces lot of code. The separation of scaling into a dedicated module allows to link the module to whereever you want. Scaling in Python requires compiling the module and integrate it via ctypes.

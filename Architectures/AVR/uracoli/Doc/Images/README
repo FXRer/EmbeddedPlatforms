@@ -1,0 +1,47 @@
+$Id$
+
+Origin of Media Files
+---------------------+----------------------+-----------------
+ File                | Copyright by         | License
+---------------------+----------------------+-----------------
+ atmel_rb.jpg        | Axel Wachtler        | Mod. BSD
+ atmel_rcb.jpg       | Axel Wachtler        | Mod. BSD
+ atmel_stk50x.jpg    | Axel Wachtler        | Mod. BSD
+ atmel_stk541.jpg    | Axel Wachtler        | Mod. BSD
+ baustelle.png       | Joerg Wunsch         | Mod. BSD
+ baustelle1.jpg      | Joerg Wunsch         | Mod. BSD
+ radio23x_scheme.odg | Axel Wachtler        | Mod. BSD
+ radio23x_scheme.png | Axel Wachtler        | Mod. BSD
+ uracoli-logo.odg    | Axel Wachtler        | Mod. BSD
+ uracoli-logo*.png   | Axel Wachtler        | Mod. BSD
+ wiring_icm8.fig     | Axel Wachtler        | Mod. BSD
+ scrn_xmpl_hif.png   | Axel Wachtler        | Mod. BSD
+ dl8dtl_tiny230.jpg  | Joerg Wunsch         | Mod. BSD
+ wireshark-linux.png | Axel Wachtler        | Mod. BSD
+ usrlevel.odg        | Axel Wachtler        | Mod. BSD
+ l{1,2,3,4,5}.png    | Axel Wachtler        | Mod. BSD
+ littleG_top.png     | Daniel Thiele        | Mod. BSD
+ radiofaro_low.jpg   | Axel Wachtler        | Mod. BSD
+
+ Board and Hardware Photos
+ =========================
+ any_brick.jpg       | Joerg Wunsch         | Mod. BSD
+ any_dongle.jpg      | Joerg Wunsch         | Mod. BSD
+ board_littleg.png   | Joerg Wunsch         | Mod. BSD
+ derfa1.jpg          | Joerg Wunsch         | Mod. BSD
+ incirquit_devbrd.jpg| Joerg Wunsch         | Mod. BSD
+ littlegee.jpg       | Joerg Wunsch         | Mod. BSD
+ littlegeedev.jpg    | Joerg Wunsch         | Mod. BSD
+ meshbean.jpg        | Joerg Wunsch         | Mod. BSD
+ radiofaro.jpg       | Joerg Wunsch         | Mod. BSD
+ raven.jpg           | Joerg Wunsch         | Mod. BSD
+ rbb_rcb231ad.jpg    | Joerg Wunsch         | Mod. BSD
+ rcb212.jpg          | Joerg Wunsch         | Mod. BSD
+ rcb231ad.jpg        | Joerg Wunsch         | Mod. BSD
+ rzusbstick.jpg      | Joerg Wunsch         | Mod. BSD
+ stb_rcb231ad.jpg    | Joerg Wunsch         | Mod. BSD
+ stk541_rcb231ad.jpg | Joerg Wunsch         | Mod. BSD
+ tiny230.jpg         | Joerg Wunsch         | Mod. BSD
+ zigbit.jpg          | Joerg Wunsch         | Mod. BSD
+ zigbit_progadapter.jpg | Joerg Wunsch      | Mod. BSD
+ zigduino2.jpg       | Joerg Wunsch         | Mod. BSD

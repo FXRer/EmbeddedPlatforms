@@ -1,0 +1,64 @@
+# Build Library
+Import('board')
+bn = board['name']
+import scons_helpers
+
+# Configure Library
+x = board.Library('${LIB_DIR}/uracoli_%s' % bn,
+                  [
+                    'Src/Lib/Rf230/usr_radio_receive_frame.c',
+                    'Src/Lib/Rf230/trx_rf230_frame.c',
+                    'Src/Lib/Rf230/trx_rf230_sram.c',
+                    'Src/Lib/Rf230/usr_radio_irq.c',
+                    'Src/Lib/Rf230/usr_radio_error.c',
+                    'Src/Lib/Rf230/trx_datarate.c',
+                    'Src/Lib/Rf230/trx_rfa.c',
+                    'Src/Lib/Rf230/radio_rf230.c',
+                    'Src/Lib/Rf230/trx_rfa_irq.c',
+                    'Src/Lib/Rf230/trx_datarate_str.c',
+                    'Src/Lib/Rf230/trx_rf230.c',
+                    'Src/Lib/Rf230/trx_rf230_param.c',
+                    'Src/Lib/Rf230/trx_rf230_bitrd.c',
+                    'Src/Lib/Rf230/trx_rf230_crc.c',
+                    'Src/Lib/Rf230/trx_rf230_misc.c',
+                    'Src/Lib/Rf230/trx_rf230_bitwr.c',
+                    'Src/Lib/Rf230/usr_radio_tx_done.c',
+                    'Src/Lib/Rf230/trx_rf230_irq.c',
+                    'Src/Lib/Ioutil/hif_none.c',
+                    'Src/Lib/Ioutil/ow.c',
+                    'Src/Lib/Ioutil/lin_buffer.c',
+                    'Src/Lib/Ioutil/sensor.c',
+                    'Src/Lib/Ioutil/hif_dump.c',
+                    'Src/Lib/Ioutil/hif_at90usb.c',
+                    'Src/Lib/Ioutil/hif_print.c',
+                    'Src/Lib/Ioutil/stream_io.c',
+                    'Src/Lib/Ioutil/hif_ft245.c',
+                    'Src/Lib/Ioutil/timer_tstamp.c',
+                    'Src/Lib/Ioutil/i2c.c',
+                    'Src/Lib/Ioutil/hif_uart.c',
+                    'Src/Lib/Ioutil/timer.c',
+                    'Src/Lib/Ioutil/rtc.c',
+                  ])
+
+# Configure Examples
+for xmpl in board['xmpls']:
+    flags = str(board["EXAMPLES"][xmpl].get("flags")).upper()
+    build_flags = scons_helpers.GetBuildFlags(board, flags)
+    elf = board.Program('${BIN_DIR}/%s_%s' % (xmpl, bn),
+                        'Src/Xmpl/%s.c' % xmpl,
+                        **build_flags)
+    x += board.Command('${BIN_DIR}/%s_%s.hex' % (xmpl, bn) , elf,
+                       Action('avr-objcopy -O ihex $SOURCE $TARGET', 'Converting $name:${TARGET.file}'))
+
+# Configure Applications
+for app in board['apps']:
+    src = ["Src/App/%s" % s for s in board["APPLICATIONS"][app]["sources"]]
+    flags =  str(board["APPLICATIONS"][app].get("flags")).upper()
+    build_flags = scons_helpers.GetBuildFlags(board, flags)
+    elf = board.Program('${BIN_DIR}/%s_%s' % (app, bn),
+                        [board.Object(s, CCFLAGS = '$CCFLAGS -DAPP_NAME=\\\"%s\\\"' % app) for s in src],
+                        **build_flags)
+    x += board.Command('${BIN_DIR}/%s_%s.hex' % (app, bn) , elf,
+                       Action('avr-objcopy -O ihex $SOURCE $TARGET', 'Converting $name:${TARGET.file}'))
+
+board.Alias(bn, x)

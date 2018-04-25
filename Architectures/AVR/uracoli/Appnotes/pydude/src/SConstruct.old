@@ -1,0 +1,17 @@
+# $Id$
+import os
+import distutils.sysconfig
+
+com = Environment(ENV = os.environ)
+com['DUDEPATH'] = '../avrdude/'
+com['PYINC'] = distutils.sysconfig.get_python_inc()
+com['SWIGFLAGS']='-python -c++ -classic'
+com['CPPPATH']=com.Split('${PYINC} ${DUDEPATH}')
+com['LIBPATH']=['${DUDEPATH}']
+
+pydude = com.SharedLibrary('pydude',
+                           ['pydude.i','pydude.cpp'],
+                           SHLIBPREFIX='_',
+                           LIBS=['avrdude','usb'])
+
+com.Clean(pydude,"pydude.pyc")

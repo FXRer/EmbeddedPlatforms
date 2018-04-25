@@ -1,0 +1,73 @@
+{
+
+
+##      --   J1    (Digital)
+##  type         ATmega128RFA1
+##   d0          PE0/RXD0/PCINT8
+##   d1          PE1/TXD0
+##   d2          PE4/OC3B/INT4 (PWM)
+##   d3 (PWM)    PE5/OC3C/INT5 (PWM)
+##   d4          PE6/INT6
+##   d5 (PWM)    PE7/INT7
+##   d6 (PWM)    PE2/AIN0
+##   d7          PE3/OC3A/AIN1 (PWM)
+##
+##      --   J3 (SPI)
+##               ATmega128RFA1
+##    d8  (ICP)  PB4/OC2A/PCINT4 (PWM)
+##    d9  (PWM)  PB5/OC1A/PCINT5 (PWM)
+##    d10 (PWM)  PB0/PCINT0/SS
+##    d11 (PWM)  PB2/PCINT2/MOSI
+##    d12        PB3/PCINT3/MISO
+##    d13        PB1/PCINT1/SCK
+##
+##    AREF
+##
+##      --   J2 (AIN)
+##               ATmega128RFA1
+##   a0/d14      PF0/ADC0
+##   a1/d15      PF1/ADC1
+##   a2/d16      PF4/ADC4
+##   a3/d17      PF5/ADC5
+##   a4/d18      PF6/ADC6
+##   a5/d19      PF7/ADC7
+##
+##
+##   d20 (LED1)  PG1/DIG1
+##   d21 (LED2)  PG2/AMR
+
+
+
+    "board" : "radiofaro",
+    "serial" : "Serial1",
+    "pins" :
+    [
+            { "name" : "d0", "port" : "E", "pin" : "0", "conn": "J1", "func":  "RXD0/PCINT8/TIMER1A"},
+            { "name" : "d1", "port" : "E", "pin" : "1", "conn": "J1", "func":  "TXD0/TIMER1B"},
+            { "name" : "d2", "port" : "E", "pin" : "4", "conn": "J1", "func":  "OC3B/INT4/TIMER0A"},
+            { "name" : "d3", "port" : "E", "pin" : "5", "conn": "J1", "func":  "OC3C/INT5/TIMER3C"},
+            { "name" : "d4", "port" : "E", "pin" : "6", "conn": "J1", "func":  "INT6"},
+            { "name" : "d5", "port" : "E", "pin" : "7", "conn": "J1", "func":  "INT7"},
+            { "name" : "d6", "port" : "E", "pin" : "2", "conn": "J1", "func":  "AIN0"},
+            { "name" : "d7", "port" : "E", "pin" : "3", "conn": "J1", "func":  "OC3A/AIN1"},
+
+            { "name" : "d8",  "port" : "B", "pin" : "4", "conn": "J3", "func": "OC2A/PCINT4"},
+            { "name" : "d9",  "port" : "B", "pin" : "5", "conn": "J3", "func": "OC1A/PCINT5"},
+            { "name" : "d10", "port" : "B", "pin" : "0", "conn": "J3", "func": "PCINT0/SS"},
+            { "name" : "d11", "port" : "B", "pin" : "2", "conn": "J3", "func": "PCINT2/MOSI"},
+            { "name" : "d12", "port" : "B", "pin" : "3", "conn": "J3", "func": "PCINT3/MISO"},
+            { "name" : "d13", "port" : "B", "pin" : "1", "conn": "J3", "func": "PCINT1/SCK"},
+
+
+            { "name" : "d14", "port" : "F", "pin" : "0", "conn": "J1", "func": "ADC0", "aname":"a0"},
+            { "name" : "d15", "port" : "F", "pin" : "1", "conn": "J1", "func": "ADC1", "aname":"a1"},
+            { "name" : "d16", "port" : "F", "pin" : "4", "conn": "J1", "func": "ADC4", "aname":"a2"},
+            { "name" : "d17", "port" : "F", "pin" : "5", "conn": "J1", "func": "ADC5", "aname":"a3"},
+            { "name" : "d18", "port" : "F", "pin" : "6", "conn": "J1", "func": "ADC6", "aname":"a4"},
+            { "name" : "d19", "port" : "F", "pin" : "7", "conn": "J1", "func": "ADC7", "aname":"a5"},
+
+            { "name" : "d20", "port" : "G", "pin" : "1", "conn": "ULED1", "func": "DIG1"},
+            { "name" : "d21", "port" : "G", "pin" : "2", "conn": "ULED2", "func": "AMR"}
+
+    ]
+}

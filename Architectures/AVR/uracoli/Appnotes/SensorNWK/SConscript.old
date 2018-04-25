@@ -1,0 +1,74 @@
+
+import pprint
+
+Import("avr board")
+
+#pp = lambda x :  pprint.pprint(x)
+#ppformat = pprint.pformat
+
+# === clone the avr environment
+avrcommon = avr.Clone()
+
+avrcommon["BOARD_TYPE"] = board
+avrcommon['CPU'] = avr['boardopts'][board].cpu
+avrcommon['BOOTLOADER_ADDRESS'] = hex(int(avr['boardopts'][board].blstart/2))
+avrcommon['BOOTLOADER_OFFSET'] = hex(int(avr['boardopts'][board].blstart))
+
+
+bdir=Dir(".").path
+avrcommon['AR'] = "avr-ar"
+avrcommon['RANLIB'] = "avr-ranlib"
+avrcommon['CPPPATH'] = ["${dir_install.abspath}/inc",".", "./SensorNWK", "./SensorLib", "./Host", "./Util"]
+avrcommon['LIBPATH'] = "${dir_install.abspath}/lib"
+avrcommon.Append(CCFLAGS = ' -Os -pedantic -Wall -DF_CPU=%s -std=c99'% avr['boardopts'][board].F_CPU)
+
+avrhost = avrcommon.Clone()
+avrhost['LINKFLAGS'] = "-Wl,-Map=${TARGET.dir}/${TARGET.filebase}.map -Wl,-u,vfprintf -lprintf_flt -mmcu=$CPU -L%s -Wl,--section-start,.bootloader=$BOOTLOADER_OFFSET" % bdir
+
+avrapps = avrcommon.Clone()
+avrapps['LINKFLAGS'] = "-Wl,-Map=${TARGET.dir}/${TARGET.filebase}.map -mmcu=$CPU -L%s -Wl,-u,vfprintf -lprintf_min -Wl,--section-start,.bootloader=$BOOTLOADER_OFFSET" % bdir
+
+
+# === Sensor Library ===========================================================
+sensor_lib = avrhost.Library("libsensor_${BOARD_TYPE}",
+                        avrhost.Glob("SensorLib/*.c") + \
+                        avrhost.Glob("SensorNWK/*.c") + \
+						avrhost.Glob("Util/*.c")
+						)
+
+appinst = avrhost.Install('${dir_install.abspath}/lib', [sensor_lib])
+
+# === Sensor Host ==============================================================
+if board in ("radiofaro", "pinoccio", "ibdt232",  "psk230", "raspbee", "stb256rfr2", "wdba1281"):
+    senshost_elf = avrhost.Program("senshost_${BOARD_TYPE}",
+                          avrhost.Glob("Host/*.c"),
+                          LIBS=["sensor_${BOARD_TYPE}", "uracoli_${BOARD_TYPE}"],
+                          CPPDEFINES = ["-DPANID=0xffff", "-DNODEID=0xffff"])
+    senshost_hex = avrhost.Command("senshost_${BOARD_TYPE}.hex", senshost_elf,
+                          "avr-objcopy -O ihex $SOURCE $TARGET")
+    appinst += avrhost.Install('${dir_install.abspath}/bin', [senshost_elf, senshost_hex])
+
+
+# === Sensor App ===============================================================
+sensapp_opts = dict(muse231 = " -DACC_TYPE_ADXL345=1")
+
+mapping = { 'muse231' : ['muse231'],
+			'museIIxxx' : ['museII232', 'museIIrfa'],
+			'atmegarfx' : ['radiofaro', 'pinoccio'],
+		}
+
+for app, boards in mapping.iteritems():
+	if avrapps['BOARD_TYPE'] in boards:
+		srcs = avrapps.Glob("Apps/%s/*.c"%app)
+		avrapps.Append(CCFLAGS = sensapp_opts.get(board, ""))
+		sensapp_elf = avrapps.Program("sensapp_${BOARD_TYPE}", srcs,
+							  LIBS=["sensor_${BOARD_TYPE}", "uracoli_${BOARD_TYPE}"],
+							  CPPDEFINES = ["-DPANID=0xffff", "-DNODEID=0xffff"])
+		sensapp_hex = avrapps.Command("sensapp_${BOARD_TYPE}.hex", sensapp_elf,
+							  "avr-objcopy -O ihex $SOURCE $TARGET")
+
+		appinst += avrapps.Install('${dir_install.abspath}/bin', [sensapp_elf, sensapp_hex])
+
+
+avrhost.Alias('a${BOARD_TYPE}', appinst )
+avrapps.Alias('a${BOARD_TYPE}', appinst )

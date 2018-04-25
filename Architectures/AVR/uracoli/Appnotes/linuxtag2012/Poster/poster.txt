@@ -1,0 +1,36 @@
+Das Spiel Tic-Tac-Toe wird in einer Hardwareversion mit dem Mikrocontroller ATmega128RFA1 neu implementiert, wobei die entwickelte Schaltung bewusst minimalistisch gehalten wurde.
+
+Der gleichnamige Workshop bietet den Teilnehmern die
+Möglichkeit, das Programmieren von Mikrocontrollern
+mit OSS-Werkzeugen praktisch am Beispiel dieses
+Spiels nachzuvollziehen. Dabei werden Gemeinsamkeiten
+und Unterschiede im Vergleich zur Programmierung für einen PC deutlich.
+
+Die benutzte Hardware steht den Teilnehmern anschließend
+für eigene Experimente zur Verfügung.
+
+Schwerpunktthema bilden die Entwicklung von Software mit AVR-Mikrocontrollern sowie Funkkommunikation mit Mikrocontrollern
+gemäß IEEE 802.15.4. Zur Steuerung des Spiels dienen
+zwei verschiedene Varianten von Sensoren (“touch”).
+Wesentliche Aufgabe der Software ist dabei die
+Umsetzung der zu Grunde liegenden physikalischen
+Effekte (siehe Skizzen) in die Umgebung des Mikrocontrollers.
+
+
+Neben der eigentlichen Programmierung erfolgt eine
+Einführung in das ##on-chip debugging##, mit dem das
+Verhalten der Software in der realen Umgebung in
+Echtzeit untersucht werden kann. Mit dieser Methode
+reduziert sich der Entwicklungsaufwand für moderne
+Mikrocontroller gegenüber
+früheren Methoden wie Simulation oder Emulation des
+Controllers in teuren FPGAs.
+
+Der Posterstand bietet denjenigen, die am Workshop
+nicht teilnehmen wollen oder können, die Gelegenheit,
+mit den µracoli-Entwicklern ins Gespräch zu kommen.
+
+Tic-Tac-Toe Reloaded
+Matthias Vorwerk, Axel Wachtler, Jörg Wunsch
+
+http://uracoli.nongnu.org/clt2012

@@ -1,0 +1,108 @@
+#=== RF Arduino board =========================================
+# see http://uracoli.nongnu.org/hwlist.html#RFARDUINO
+
+#=== RadioFaro ========================================
+radiofaro.name=Radiofaro w/ ATmega128rfa1
+
+radiofaro.upload.protocol=arduino
+radiofaro.upload.maximum_size=126976
+radiofaro.upload.speed=19200
+
+radiofaro.bootloader.low_fuses=0xe2
+radiofaro.bootloader.high_fuses=0x1a
+radiofaro.bootloader.extended_fuses=0xfe
+radiofaro.bootloader.path=radiofaro
+radiofaro.bootloader.file=ATmegaBOOT_radiofaro.hex
+radiofaro.bootloader.unlock_bits=0x3F
+radiofaro.bootloader.lock_bits=0x0F
+
+radiofaro.build.mcu=atmega128rfa1
+radiofaro.build.f_cpu=8000000L
+radiofaro.build.core=radiofaro
+
+
+#=== zigduino ========================================
+zigduino.name=Zigduino w/ ATmega128rfa1
+
+zigduino.upload.protocol=stk500v1
+zigduino.upload.maximum_size=126976
+zigduino.upload.speed=57600
+
+zigduino.bootloader.low_fuses=0xFF
+zigduino.bootloader.high_fuses=0xDA
+zigduino.bootloader.extended_fuses=0xF5
+zigduino.bootloader.path=atmega
+zigduino.bootloader.file=ATmegaBOOT_168_atmega128rfa1.hex
+zigduino.bootloader.unlock_bits=0x3F
+zigduino.bootloader.lock_bits=0x0F
+
+zigduino.build.mcu=atmega128rfa1
+zigduino.build.f_cpu=16000000L
+zigduino.build.core=zigduino
+
+
+#--#=== littleGee board =========================================
+#--# see http://uracoli.nongnu.org/hwlist.html#LITTLEGEE
+#--littlegee.name=LittleGee Board
+#--
+#--littlegee.upload.protocol=stk500v1
+#--littlegee.upload.maximum_size=126976
+#--littlegee.upload.speed=9600
+#--
+#--littlegee.bootloader.low_fuses=0xe2
+#--littlegee.bootloader.high_fuses=0x10
+#--littlegee.bootloader.extended_fuses=0xff
+#--littlegee.bootloader.path=atmega
+#--littlegee.bootloader.file=ATmegaBOOT_168_littlegee.hex
+#--littlegee.bootloader.unlock_bits=0x3F
+#--littlegee.bootloader.lock_bits=0xeF
+#--
+#--littlegee.build.mcu=atmega88p
+#--littlegee.build.f_cpu=8000000L
+#--littlegee.build.core=uracoli
+#--littlegee.build.ldflags=-lradio_lgee231
+#--littlegee.build.boardid=lgee231
+#--
+#--#=== ZigBit 2.4GHz module =========================================
+#--# see http://uracoli.nongnu.org/hwlist.html#MB230
+#--zigbit24.name=Zigbit 2400MHz, w/ ATmega1281
+#--
+#--zigbit24.upload.protocol=stk500v1
+#--zigbit24.upload.maximum_size=126976
+#--zigbit24.upload.speed=9600
+#--
+#--zigbit24.bootloader.low_fuses=0xe2
+#--zigbit24.bootloader.high_fuses=0x10
+#--zigbit24.bootloader.extended_fuses=0xff
+#--zigbit24.bootloader.path=atmega
+#--zigbit24.bootloader.file=ATmegaBOOT_168_zigbit24.hex
+#--zigbit24.bootloader.unlock_bits=0x3F
+#--zigbit24.bootloader.lock_bits=0xeF
+#--
+#--zigbit24.build.mcu=atmega1281
+#--zigbit24.build.f_cpu=8000000L
+#--zigbit24.build.core=uracoli
+#--zigbit24.build.ldflags=-lradio_wdba1281
+#--zigbit24.build.boardid=wdba1281
+#--
+#--#=== ZigBit 900MHz module =========================================
+#--# see http://uracoli.nongnu.org/hwlist.html#MB230
+#--zigbit9.name=Zigbit 900MHz, w/ ATmega1281
+#--
+#--zigbit9.upload.protocol=stk500v1
+#--zigbit9.upload.maximum_size=126976
+#--zigbit9.upload.speed=9600
+#--
+#--zigbit9.bootloader.low_fuses=0xe2
+#--zigbit9.bootloader.high_fuses=0x10
+#--zigbit9.bootloader.extended_fuses=0xff
+#--zigbit9.bootloader.path=atmega
+#--zigbit9.bootloader.file=ATmegaBOOT_168_zigbit9.hex
+#--zigbit9.bootloader.unlock_bits=0x3F
+#--zigbit9.bootloader.lock_bits=0xeF
+#--
+#--zigbit9.build.mcu=atmega1281
+#--zigbit9.build.f_cpu=8000000L
+#--zigbit9.build.core=uracoli
+#--zigbit9.build.ldflags=-lradio_mnb900
+#--zigbit9.build.boardid=mnb900

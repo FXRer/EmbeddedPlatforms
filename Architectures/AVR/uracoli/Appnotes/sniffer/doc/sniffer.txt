@@ -1,0 +1,308 @@
+:Author:   A. Wachtler
+:Revision: {version}
+:stb: http://www.dresden-elektronik.de/shop/prod75.html?language=en[STB]
+:stk: http://www.atmel.com/dyn/products/tools_card.asp?tool_id=4187[STK541]
+:rcb: http://www.dresden-elektronik.de/shop/cat4_20.html[RCB]
+ifdef::win[]
+:osname:  Windows
+endif::win[]
+ifdef::lin[]
+:osname:  Linux
+endif::lin[]
+
+= &micro;racoli Sniffer Application for {osname}
+
+.Abstract
+************************************************
+With a http://www.dresden-elektronik.de/shop/prod75.html?language=en[Sensor Terminal Board]
+or a http://www.atmel.com/dyn/products/tools_card.asp?tool_id=4187[STK541]
+combined with a http://www.dresden-elektronik.de/shop/cat4_20.html?language=en[Radio
+Controller Board], a version of wireshark and the &micro;racoli-wireshark
+bridge script you can quickly setup a 802.15.4 sniffer and watch the traffic
+on your wireless sensor network.
+*************************************************
+
+== Prequisites
+
+=== Required Software
+
+.Contents of this Package
+
+ifdef::win[]   
+   - a customized version of the FT245BM CDM driver, which honors
+     the special vendor and product IDs of {stk} and {stb}.
+endif::win[]
+ifdef::lin[]   
+   - a description, how to adapt the driver to the special 
+     vendor and product IDs.
+endif::lin[]
+   - the AVR-wireshark interface programm +ieee802154.{py,exe}+
+   - the sniffer firmware for different plattforms +sniffer_{platform,radio}.hex+
+
+.Additional Packages needed
+
+The captured frames will displayed with wireshark, which is available from
+http://www.wireshark.org/
+
+ifdef::win[]
+-----------
+u5isniffer-win-0.0.1
+|   index.html .............................. this file
++---images
+|       *.png ............................... documentation graphics
+|
++---CDM 2.04.06 ............................. FTDI driver with modified inf files
+|       ftdibus.inf 
+|       ftdiport.inf
+|       ...
+|
++---firmware
+|       sniffer_psk*.hex .................... Atmel ATAVRRZ541
+|       sniffer_stb*.hex .................... DE Sensor Terminal Board
+|
++---sniffer
+    +---bin
+    |      ieee802154.exe .................. uracoli-wireshark bridge script
+    |      ...                               (after py2exe conversion)
+    +---src
+            ieee802154.py ................... pythons source code 
+            ...                               (requires packages pyserial and pywin32)
+------------
+endif::win[]
+ifdef::lin[]
+------------
+../u5isniffer-lin-{version}
+|-- index.html .............................. this file
+|-- images    
+|   `-- *.png ............................... documentation graphics
+|
+|-- driver .................................. Patch instructions for Linux drivers
+|   |-- ftdi245linux.html
+|   |-- ftdi_sio_2.6.13-15-default.patch
+|   `-- ftdi_sio_2.6.25.5-1.1-pae.patch
+|
+|-- firmware
+|   |-- sniffer_psk*.hex .................... Atmel ATAVRRZ541
+|   `-- sniffer_stb*.hex .................... DE Sensor Terminal Board
+|
+`-- sniffer
+    |-- ieee802154.py  ...................... uracoli-wireshark bridge script
+    `-- ...
+------------
+endif::lin[]
+
+=== Install the USB driver
+
+The sniffer plattforms normally come with a branded FT245BM, which 
+have vendor/product IDs, that differs from the default one.
+
+ * FTDI:  VID 0x0403, PID 0x6001, 0x6010, 
+ * Atmel: VID 0x03EB, PID 0x2109
+ * Dresden Elektronik:  VID 0x1CF1, PID 0x0001
+
+Since some professional software presumes the branded VID/PID values, 
+it is not always managable to reconfigure or unsolder 
+the eeprom, which is connected to the FT245BM. Instead 
+the use of a customized driver will be a better choice.
+ 
+ifdef::win[]
+When the sensor terminal board is connected for the first time,
+the hardware assistent is started. As driver installation directory
+use the directory "CDM 2.04.06" in this package. Since the *.inf files
+for this driver are updated with other VID/PID combinations,
+the WHQL certificate is invalid and you have to confirm the installation
+of a driver with a broken signature.
+endif::win[]
+ifdef::lin[]
+A detailed description how to get the 
+driver working with modified VID/PID can be found link:driver/ftdi245linux.html[in this document].
+endif::lin[]
+
+=== Flashing the firmware
+
+In the directory +firmware+ the hex files for different sniffer plattforms are stored.
+
+ * +sniffer_psk230.hex+   -> STK w/ AT86RF230 Rev.A RCB
+ * +sniffer_psk230b.hex+  -> STK w/ AT86RF230 Rev.B RCB
+ * +sniffer_psk231.hex+   -> STK w/ AT86RF231 RCB
+ * +sniffer_psk212.hex+   -> STK w/ AT86RF212 RCB
+ * +sniffer_stb230.hex+   -> STB w/ AT86RF230 Rev.A RCB
+ * +sniffer_stb230b.hex+  -> STB w/ AT86RF230 Rev.B RCB
+ * +sniffer_stb231.hex+   -> STB w/ AT86RF231 RCB
+ * +sniffer_stb212.hex+   -> STB w/ AT86RF212 RCB
+ 
+With an ISP or JtagICE programmer this applications can be flashed in the AVR.
+The software is compiled using the 8MHz internal clock oscilator of the AVR, so
+the fuses have to be set to:
+
+ * LF: 0xe2 - 8MHz internal RC Osc.
+ * HF: 0x11 - without boot loader
+ * HF: 0x10 - with boot loader (in this case set LOCK: 0xef --> protection of boot section)
+ * EF: 0xff
+
+=== Install Wireshark
+
+For your OS you will find the latest version of wireshark here http://www.wireshark.org/download.html.
+
+
+
+== Starting a Live Capture Session
+
+=== Start the uracoli-wireshark bridge script
+
+ifdef::win[]
+The uracoli-wireshark bridge script will be started by clicking on the 
+program icon ieee802154.exe in the folder +sniffer+. Since there are no
+command line options passed to the programm, you get prompted to enter the 
+serial port, where the sniffer plattform is connected. You can get this information
+from the hardware manager. The program 802154.{py,exe} runs in a text window, 
+where you can type commands. Type +help+ to view a list of the available commands.
+
+image:images/sniffer.png[]
+image:images/hwman.png[Sensor Terminal Board in Hardware Manager]
+endif::win[]
+
+ifdef::lin[]
+Start the uracoli-wireshark bridge by typing 
++python sniffer/ieee802154.py+ in a terminal window.
+
+image:images/snifferlx.png[]
+
+Which serial port is assigned to the {stb} or {stk} board you can
+find out with the +dmesg+ command:
+
+----
+usb 2-3.1: new full speed USB device using ehci_hcd and address 7
+usb 2-3.1: configuration #1 chosen from 1 choice
+ftdi_sio 2-3.1:1.0: FTDI USB Serial Device converter detected
+drivers/usb/serial/ftdi_sio.c: Detected FT232RL
+usb 2-3.1: FTDI USB Serial Device converter now attached to ttyUSB0
+usb 2-3.1: New USB device found, idVendor=1cf1, idProduct=0001
+usb 2-3.1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+usb 2-3.1: Product: SensorTerminalBoard
+usb 2-3.1: Manufacturer: dresden elektronik
+usb 2-3.1: SerialNumber: DEQA8EHL
+----
+endif::lin[]
+
+.Command line options
+
+The program ieee802154.{py,exe} can be started with the following options.
+
+-----
+   -p PORT     Name of the serial port where the sniffer plattform
+               is connected, e.g. /dev/ttyUSB0 or COM1.
+   -r CAPFILE  Name of a capture file which is read @c mytrace.dat.
+   -i PIPE     Name of the named pipe.
+                On a Linux system, PIPE can be a absolut path name, e.g.
+                /tmp/ieee802154. On a Windows system PIPE is a name in a
+                special pipe directory, e.g. foo maps to \\.\pipe\foo.
+                [ieee802154]
+   -c CHAN     IEEE802.15.4 channel number
+   -R RATE     IEEE802.15.4 data rate
+   -v          increase verbose level
+   -h          show help and exit.
+   -V          print version and exit.
+
+  Note:
+   * -r and -p can be used only exclusively,
+   * -c works only with -p.
+----- 
+.Interactive Commands
+
+----
+   reopen   - reopens the named pipe and places a pcap header,
+              so that wireshark can reconnect.
+   chan <n> - set new channel to sniff.
+   rate <r> - set IEEE 802.15.4 data rate (e.g. BPSK20, OQPSK100, ...)
+   devrst   - reinitialize the sniffer device
+   debug    - start python debugger
+   info     - show status of sniffer DEVIN
+   quit     - end session and terminate all threads
+   help     - show command help
+----
+
+=== Start wireshark
+
+If wireshark is running, select in the menu +Capture/Options+ or just type +Ctrl-K+,
+enter 
+ifdef::win[+\\.\pipe\ieee802154+]
+ifdef::lin[+the/path/to/ieee802154+]
+in the *Interface* field and confirm the dialog with *START*
+
+Alternatively you can create a batch file/shell script, which starts wireshark directly with 
+the option +-i ieee802154+.
+
+ifdef::win[image:images/wscfg.png[]]
+
+
+ifdef::win[]
+Now capture can be started by clicking this icon:
+
+image:images/wsstart.png[]
+endif::win[]
+image:images/wsrun.png[]
+
+
+=== Closing and Reopening a Session
+
+If you want to save a packet capture logfile, you have to close the 
+current session by selecting "Capture->Stop" or "Ctrl-E".
+After "Capture->Start", the wireshark window stays gray shaded. 
+Switch to the ieee802154.{exe,py} window and type 
+reopen. This will place the data of a pcap file header in the named
+pipe and will allow wireshark to proceed with the frame capturing.
+
+=== Changing Channels and Modulation in a Capture Session
+
+In the ieee802154.{exe,py} you can change channel (+chan+)
+and rate/modulation (+rate+) of the transceiver at
+any time without restarting the wireshark session. 
+NOTE: In the wireshark logfile there is no information about the 
+channel or rate/modulation setting stored.
+
+== Further Reading
+
+=== Trouble Shooting
+
+.Error ieee802154.exe: serial.serialutil.SerialException: could not open port
+
+This problem occurs on Windows systems, if the serial port is opened by another
+programm. To resolve this, close the other application, which has the port opened.
+
+.Error ieee802154.exe: AttributeError: PortIn instance has no attribute 'tscale'
+
+This problem occurs in the following cases:
+
+ * the RCB does not respond on the serial interface, 
+   -> check wiring, connect a terminal and press the reset button in order 
+      to see, if the platform is working.
+ * the RCB is not programmed with the current sniffer firmware 
+   -> programm the correct firmware hex file.in the RCB.
+
+.There are no frames of my nodes captured in wireshark
+
+Check in the ieee802154.{py,exe} window, if the channel and rate (modulation) is set
+correctly, use the commands +info+, +channel+, +rate+.
+
+=== Links
+
+* http://www.wireshark.org
+* http://uracoli.nongnu.org
+  - http://uracoli.nongnu.org/manual/app/group__grpAppSniffer.html[Simple Sniffer and Scanner Application] (firmware)
+  - http://uracoli.nongnu.org/manual/contrib/pgContribCapture.html[802.15.4 Packet Capturing with Wireshark] (ieee802154.py)
+  - http://uracoli.nongnu.org/manual/dev/pgDevFTDI245.html[FT245BM Driver] 
+* http://www.dresden-elektronik.de
+* http://www.atmel.com/products/zigbee/default.asp
+
+=== Licenses
+
+Wireshark(R) is available under the GNU General Public License version 2.
+http://www.wireshark.org/about.html
+
+&micro;racoli (firmware and converter application) is licensed with a
+Modified BSD License.
+http://uracoli.nongnu.org/license.html
+
+Driver for FT245BM is (c) 2000-2008 FTDI Ltd.
+http://www.ftdichip.com/

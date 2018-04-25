@@ -1,0 +1,121 @@
+/**
+
+@page pgHBM251  hbm251.py - Build, Flash and Test script
+
+@section secHBM251OVR Overview
+
+The script provides functions to build, flash and test firmware
+images. It essentially reads a configuration file, that defines
+the board configuration of the current test environment.
+
+The name of the script is derived from the legendary east german
+portable drill machine HBM 251.1 "Multimax" from VEB Werkzeugkombinat
+Schmalkalden, Elektrowerkzeuge Sebnitz.
+
+@section secHBM251CFG Configuration
+
+The configuration file is a formated in Win-Ini style.
+
+@code
+    [hbm251.py]
+    bindir =  ./src/bin
+    boardcfg = ./Config/board.cfg
+    buildcmd = scons %(targets)s
+
+    [target1]
+    board = <boardname>
+    reset = <board-reset-command>
+    flwrt = <board-flash-command>
+    flvfy = <board-verify-command>
+    fltmo = <time-to-wait-after-flash>
+
+    [target2]
+    board = wdba1281
+    fltmo = 1
+    flvfy =
+    flwrt = atprogram -t jtagice3 -i jtag -d %(cpu)s -dc 3,0,12,0 chiperase program -f %(fw)s
+    reset = atprogram -t jtagice3 -i jtag -d %(cpu)s -dc 3,0,12,0 reset
+@endcode
+
+
+@par The [hbm251.py] Section
+
+@param bindir
+    Directory where the firmware is located
+@param boardcfg
+    Location of the @uracoli board config file
+@param buildcmd
+    Commands seperated by newline, to compile the firmware
+
+@par The [target] Section
+
+@param board
+        build target name
+@param fltmo
+        time to wait after reset, before communicating with the device
+@param flvfy
+        command string for verifying the flash image
+@param flwrt
+        command string for writing the flash image
+@param reset
+        command string for resetting the device
+
+
+Alternatively the config file can be shared also with the tool @c sterm.py,
+see the following example:
+
+@code
+    [sterm.py]
+    devices = b1
+    font = Consolas 10
+    termfont = Consolas 10
+
+    [hbm251.py]
+    bindir =  ./install/bin
+    boardcfg = ./Config/board.cfg
+    buildcmd = scons %(targets)s
+
+    [b1]
+    # sterm parameters
+    port=COM28
+    baudrate = 38400
+    connect = 1
+    # hbm251 parameters
+    board=wdba1281
+    fltmo = 1
+    flvfy =
+    flwrt = atprogram -t jtagice3 -i jtag -d %(cpu)s -dc 3,0,12,0 chiperase program -f %(fw)s
+    reset = atprogram -t jtagice3 -i jtag -d %(cpu)s -dc 3,0,12,0 reset
+@endcode
+
+@section secHBM251USAGE Usage
+
+@code
+    python hbm251.py [OPTIONS] <command> [<command>]
+
+    Options:
+        -S
+            setup config file, default: hbm251.cfg
+        -h
+            show help and exit
+        -v
+            show version and exit
+        -n
+            dry-run, just show commands, do not execute anything
+
+    Commands:
+        build
+            Build all boards described in setup config
+        flash APP
+            Flash the given application to all boards of setup config
+            APP is evaluated as follows:
+              [1] is it an existing file
+              [2] is it an uracoli type application, like wuart, rdiag, rsensor
+        test
+            Exec py.test Regression
+
+    Example usage: python hbm251.py -S myenv.cfg build flash wuart
+
+@endcode
+
+*/

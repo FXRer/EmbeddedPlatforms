@@ -1,0 +1,65 @@
+diff -ur CDM 2.04.06 WHQL Certified/ftdibus.inf CDM 2.04.06-work/ftdibus.inf
+--- CDM 2.04.06 WHQL Certified/ftdibus.inf	Fri Jan 30 15:48:18 2009
++++ CDM 2.04.06-work/ftdibus.inf	Fri Jan 30 16:10:33 2009
+@@ -45,11 +45,15 @@
+ %USB\VID_0403&PID_6001.DeviceDesc%=FtdiBus.NT,USB\VID_0403&PID_6001
+ %USB\VID_0403&PID_6010&MI_00.DeviceDesc%=FtdiBus.NT,USB\VID_0403&PID_6010&MI_00
+ %USB\VID_0403&PID_6010&MI_01.DeviceDesc%=FtdiBus.NT,USB\VID_0403&PID_6010&MI_01
++%USB\VID_1CF1&PID_0001.DeviceDesc%=FtdiBus.NT,USB\VID_1CF1&PID_0001
++%USB\VID_03EB&PID_2109.DeviceDesc%=FtdiBus.NT,USB\VID_03EB&PID_2109
+
+ [FtdiHw.NTamd64]
+-%USB\VID_0403&PID_6001.DeviceDesc%=FtdiBus.NTamd64,USB\VID_0403&PID_6001
++%USB\VID_0403&PID_6001.DeviceDesc%=FtdiBus.NT,USB\VID_0403&PID_6001
+ %USB\VID_0403&PID_6010&MI_00.DeviceDesc%=FtdiBus.NTamd64,USB\VID_0403&PID_6010&MI_00
+ %USB\VID_0403&PID_6010&MI_01.DeviceDesc%=FtdiBus.NTamd64,USB\VID_0403&PID_6010&MI_01
++%USB\VID_1CF1&PID_0001.DeviceDesc%=FtdiBus.NTamd64,USB\VID_1CF1&PID_0001
++%USB\VID_03EB&PID_2109.DeviceDesc%=FtdiBus.NT,USB\VID_03EB&PID_2109
+
+ [ControlFlags]
+ ExcludeFromSelect=*
+@@ -113,5 +117,8 @@
+ USB\VID_0403&PID_6001.DeviceDesc="USB Serial Converter"
+ USB\VID_0403&PID_6010&MI_00.DeviceDesc="USB Serial Converter A"
+ USB\VID_0403&PID_6010&MI_01.DeviceDesc="USB Serial Converter B"
++USB\VID_1CF1&PID_0001.DeviceDesc="Dresden Elektronik SensTermBoard"
++USB\VID_03EB&PID_2109.DeviceDesc="Atmel STK541"
++
+ SvcDesc="USB Serial Converter Driver"
+ ClassName="USB"
+diff -ur CDM 2.04.06 WHQL Certified/ftdiport.inf CDM 2.04.06-work/ftdiport.inf
+--- CDM 2.04.06 WHQL Certified/ftdiport.inf	Fri Jan 30 15:48:18 2009
++++ CDM 2.04.06-work/ftdiport.inf	Fri Jan 30 16:02:34 2009
+@@ -41,10 +41,15 @@
+ [FtdiHw]
+ %VID_0403&PID_6001.DeviceDesc%=FtdiPort232.NT,FTDIBUS\COMPORT&VID_0403&PID_6001
+ %VID_0403&PID_6010.DeviceDesc%=FtdiPort2232.NT,FTDIBUS\COMPORT&VID_0403&PID_6010
++%VID_1CF1&PID_0001.DeviceDesc%=FtdiPort232.NT,FTDIBUS\COMPORT&VID_1CF1&PID_0001
++%VID_03EB&PID_2109.DeviceDesc%=FtdiPort232.NT,FTDIBUS\COMPORT&VID_03EB&PID_2109
++
+
+ [FtdiHw.NTamd64]
+ %VID_0403&PID_6001.DeviceDesc%=FtdiPort232.NTamd64,FTDIBUS\COMPORT&VID_0403&PID_6001
+ %VID_0403&PID_6010.DeviceDesc%=FtdiPort2232.NTamd64,FTDIBUS\COMPORT&VID_0403&PID_6010
++%VID_1CF1&PID_0001.DeviceDesc%=FtdiPort232.NTamd64,FTDIBUS\COMPORT&VID_1CF1&PID_0001
++%VID_03EB&PID_2109.DeviceDesc%=FtdiPort232.NTamd64,FTDIBUS\COMPORT&VID_03EB&PID_2109
+
+ [FtdiPort.NT.AddService]
+ DisplayName    = %SvcDesc%
+@@ -150,11 +155,14 @@
+ 
+ [Strings]
+ FTDI="FTDI"
+-DESC="CDM Driver Package"
+-DriversDisk="FTDI USB Drivers Disk"
++DESC="CDM Driver Package - uracoli"
++DriversDisk="FTDI USB Drivers Disk - uracoli"
+ PortsClassName = "Ports (COM & LPT)"
+ VID_0403&PID_6001.DeviceDesc="USB Serial Port"
+ VID_0403&PID_6010.DeviceDesc="USB Serial Port"
++VID_1CF1&PID_0001.DeviceDesc="Dresden Elektronik SensTermBoard"
++VID_03EB&PID_2109.DeviceDesc="Atmel STK541"
++
+ SvcDesc="USB Serial Port Driver"
+ SerEnum.SvcDesc="Serenum Filter Driver"
+

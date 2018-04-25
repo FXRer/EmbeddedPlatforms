@@ -1,0 +1,108 @@
+#   Copyright (c) 2009 Axel Wachtler
+#   All rights reserved.
+#
+#   Redistribution and use in source and binary forms, with or without
+#   modification, are permitted provided that the following conditions
+#   are met:
+#
+#   * Redistributions of source code must retain the above copyright
+#     notice, this list of conditions and the following disclaimer.
+#   * Redistributions in binary form must reproduce the above copyright
+#     notice, this list of conditions and the following disclaimer in the
+#     documentation and/or other materials provided with the distribution.
+#   * Neither the name of the authors nor the names of its contributors
+#     may be used to endorse or promote products derived from this software
+#     without specific prior written permission.
+#
+#   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+#   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+#   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+#   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+#   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+#   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+#   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+#   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+#   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+#   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+#   POSSIBILITY OF SUCH DAMAGE.
+
+# $Id$
+
+import os,glob
+from distutils.archive_util import make_zipfile
+
+# === Builder =================================================================
+def create_zipfile(target, source, env):
+    outname = os.path.splitext(str(target[0]))[0]
+    inpdir = str(source[0])
+    make_zipfile(outname,inpdir,verbose=3)
+
+# === Environment =============================================================
+com = Environment(
+    ENV = os.environ)
+
+if os.name == 'posix':
+    osiswin = False
+    com['osid'] = 'lin'
+else:
+    # XXX: Fix this, for now it works with windows and Linux
+    osiswin = True
+    com['osid'] = 'win'
+
+com['pkg'] = 'u5isniffer-${osid}'
+com['ver'] = '0.2.rc1'
+com['pkgdir'] ="$pkg-$ver"
+com['firmwaredir'] = '../../uracoli/install/bin'
+com['BUILDERS']['ZipFile'] = Builder(action = create_zipfile)
+
+
+# === documentation ==================================================
+if osiswin:
+    com['ADCMD']="asciidoc.py"
+else:
+    com['ADCMD']="asciidoc"
+    
+com['ADFLAGS'] = "-n -a toc -a version=${ver}"
+
+com.Command("doc/index-lin.html",
+        "doc/sniffer.txt",
+        "cd doc && $ADCMD $ADFLAGS -a lin -o index-lin.html sniffer.txt")
+com.Command("doc/index-win.html",
+        "doc/sniffer.txt",
+        "cd doc && $ADCMD $ADFLAGS -a win -o index-win.html sniffer.txt"
+        )
+com.InstallAs('${pkgdir}/index.html','doc/index-${osid}.html')
+com.Install('${pkgdir}/images',glob.glob('doc/images/*.png'))
+
+# === firmware images for different boards ==========================
+
+com.Install('${pkgdir}/firmware',source=glob.glob('../../uracoli/install/bin/sniffer_stb*hex'))
+com.Install('${pkgdir}/firmware',source=glob.glob('../../uracoli/install/bin/sniffer_psk*hex'))
+#com.Install('${pkgdir}/firmware',source=glob.glob('${firmwaredir}/sniffer_rz*hex'))
+#com.Install('${pkgdir}/firmware',source=glob.glob('${firmwaredir}/sniffer_wdba*hex'))
+
+# === uracoli-wireshark bridge script ===============================s
+pysrc = glob.glob('../../uracoli/Contrib/PacketCapture/*.py')
+if osiswin:
+    com['tmpdir'] = 'tmp/sniffer'
+    x = com.Install('$tmpdir',pysrc)
+    com.Command('dist/ieee802154.exe',x,"python setup.py py2exe")
+    com.InstallAs('${pkgdir}/sniffer/bin',Dir('dist'))
+    com.Install('${pkgdir}/sniffer/src',pysrc)
+else:
+    com.Install('${pkgdir}/sniffer/',pysrc)
+
+
+# === third party stuff =============================================
+if osiswin:
+    #com.InstallAs('${pkgdir}/WiresharkPortable','data/WiresharkPortable')
+    com.InstallAs('${pkgdir}/CDM 2.04.06','data/CDM 2.04.06')
+else:   
+    com.Install('${pkgdir}/driver',glob.glob('../../uracoli/Doc/Dev/ftdi_sio*.patch'))
+    com.Command('${pkgdir}/driver/ftdi245linux.html',
+                '../../uracoli/install/doc/dev/pgDevFTDI245Linux.html',
+                'sed \'s#<img src="doxygen.png".*$#doxygen#g\' $SOURCE > $TARGET')
+                
+# === build package ==================================================
+com.ZipFile('${pkgdir}.zip', [com.Dir('$pkgdir')])
+com.Clean('${pkgdir}.zip',['${pkgdir}','tmp','dist','build'])

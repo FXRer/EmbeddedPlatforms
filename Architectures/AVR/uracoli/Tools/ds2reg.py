@@ -1,0 +1,197 @@
+#   Copyright (c) 2007 Axel Wachtler
+#   All rights reserved.
+#
+#   Redistribution and use in source and binary forms, with or without
+#   modification, are permitted provided that the following conditions
+#   are met:
+#
+#   * Redistributions of source code must retain the above copyright
+#     notice, this list of conditions and the following disclaimer.
+#   * Redistributions in binary form must reproduce the above copyright
+#     notice, this list of conditions and the following disclaimer in the
+#     documentation and/or other materials provided with the distribution.
+#   * Neither the name of the authors nor the names of its contributors
+#     may be used to endorse or promote products derived from this software
+#     without specific prior written permission.
+#
+#   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+#   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+#   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+#   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+#   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+#   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+#   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+#   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+#   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+#   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+#   POSSIBILITY OF SUCH DAMAGE.
+
+# $Id$
+
+##
+# Generate a register header file from clipboard output of the at86rf2xx data sheets.
+#
+# "Be lazy!! Better code a generator in two hours than spending one time a hour of
+# error prone boring typing work, ... again, ... and again, ... and again ...
+#
+import sys, pprint
+
+##
+# process a line as a register description
+#
+# @param  d   line with a space seperated register description
+# @return dictionary with the organization of the register
+#
+# Example:
+#  d="0x01 TRX_STATUS CCA_DONE CCA_STATUS - TRX_STATUS[4] TRX_STATUS[3] TRX_STATUS[2] TRX_STATUS[1] TRX_STATUS[0] 44,68,97"
+#  ret = [{'name': 'TRX_STATUS',
+#          'offset': 1,
+#          'sregs': [{'shift': 7, 'mask': 128, 'name': 'CCA_DONE'},
+#                    {'shift': 6, 'mask': 64, 'name': 'CCA_STATUS'},
+#                    {'shift': 0, 'mask': 31, 'name': 'TRX_STATUS'}]}
+#
+def regstruct(d):
+    ret = None
+    #sys.stderr.write("%s\n" % str(d))
+    offset = eval(d[0])
+    name = d[1]
+    if type(offset) == type(42) and name != "-":
+        ret = {
+                'offset': offset,
+                'name': d[1],
+                'sregs': []
+              }
+        csrname = "-" # start with the "reserved" name
+        msk = 1
+        srwidth = 0
+        for i in range(8):
+            # normalize name
+            srname = d[2+i]
+            if srname[-1] == "]":
+                srname = srname[:-3]
+
+            if csrname != srname or i == 7:
+                if i == 7:
+                    if csrname == srname:
+                        srwidth += 1
+                        i = 8
+                    elif srname != "-":
+                        sr = {'name': srname, 'mask': 1, "shift": 0, 'const':[]}
+                        ret['sregs'].append(sr)
+                if csrname != "-":
+                    # finish current sub register and add it to collection
+                    sft = 8 - i
+                    msk = (1 << srwidth) - 1
+                    sr = {'name': csrname, 'mask': (msk<<sft), "shift": sft, 'const':[]}
+                    ret['sregs'].append(sr)
+                csrname = srname
+                srwidth = 0
+            srwidth += 1
+    return ret
+
+##
+# incorporate a constant to a sub-register structure
+def add_const_to_register(d,rm):
+    try:
+        srname, cname, value = d.split(" ")
+        for r in rm:
+            for s in r['sregs']:
+                if s['name'] == srname:
+                    s['const'].append((cname, eval(value)))
+    except:
+        pass
+
+##
+# writes the macro definitions for the given registermap
+#
+def write_regmacros(rm,fh):
+    for r in rm:
+        fh.write("/** Offset for register %(name)s */\n" % (r))
+        fh.write("#define RG_%(name)s (0x%(offset)x)\n" % r)
+        for sr in r['sregs']:
+            sr['offset']=r['offset']
+            fh.write("  /** Access parameters for sub-register %s in register %s */\n" % (sr['name'],r['name']))
+            fh.write("  #define SR_%(name)s 0x%(offset)x,0x%(mask)x,%(shift)d\n" % sr)
+            for c in sr['const']:
+                fh.write("#ifndef %s\n" % c[0])
+                fh.write("    #define %s (%s)\n" % c)
+                fh.write("#endif /* %s */\n" % c[0])
+
+##
+# generate headerfile from retrieved infos
+def write_headerfile(fh, radioinfo):
+    sys.stderr.write("Process %s, write to %s\n" % (radioinfo['FILE'], fh.name))
+    fh.write("/* THIS FILE IS GENERATED by ds2reg.py FROM INPUT %s */\n\n" % (radioinfo['FILE']))
+    fh.write("\n".join(radioinfo['HEADER']))
+    write_regmacros(radioinfo['REGMAP'],fh)
+    fh.write("\n".join(radioinfo['FOOTER']))
+    fh.write("\n")
+
+##
+#
+# process a text file with the following structure
+# @code
+# REGISTER
+# 0x00 - - - - - - - - - -
+# 0x01 TRX_STATUS CCA_DONE CCA_STATUS - TRX_STATUS[4] TRX_STATUS[3] TRX_STATUS[2] TRX_STATUS[1] TRX_STATUS[0] 44,68,97
+# ....
+# RESET
+# .... todo
+# CONST
+# TRX_STATUS P_ON 0
+# ....
+# @endcode
+#
+def process_templatefile(fname):
+    ret = {
+        'FILE' : fname,
+        'HEADER': [],
+        'FOOTER': [],
+        'REGMAP': [],
+    }
+    f = open(fname,"r")
+    mode="NONE"
+    regmap = []
+    for l in f.readlines():
+        l = l.rstrip()
+        if l in ('REGISTER','RESET','CONST','HEADER','FOOTER'):
+            mode = l
+        elif mode == 'REGISTER':
+            r = regstruct(l.split(" "))
+            if r:
+                regmap.append(r)
+        elif mode == 'CONST':
+            add_const_to_register(l,regmap)
+        elif mode == 'HEADER':
+            ret['HEADER'].append(l)
+        elif mode == 'FOOTER':
+            ret['FOOTER'].append(l)
+    ret['REGMAP'] = regmap
+    f.close()
+    return ret
+
+
+def generate_header(tname,oname=None):
+    radioinfo = process_templatefile(tname)
+    if oname:
+        ofh = open(oname,'w')
+    else:
+        ofh = sys.stdout
+    write_headerfile(ofh, radioinfo)
+    if ofh != sys.stdout:
+        ofh.close()
+
+
+
+##
+# Main function
+# Usage:
+#   python ds2reg.py templatefile outfile
+#
+if __name__ == "__main__":
+    tname = sys.argv[1]
+    try:
+        oname = sys.argv[2]
+    except:
+        oname = None
+    generate_header(tname,oname)

@@ -1,0 +1,63 @@
+RavenLCD Application Description
+================================
+Daniel Thiele <daniel@uracoli.de>
+:Author Initials: DaTh
+:toc:
+:website: http://www.uracoli.de
+
+== Introduction ==
+The RavenLCD Application can be used as Co-Prozessor for developing application for the Atmel RZRaven. It handles all user I/O elements on the Raven and offers a UART command interface.
+
+["ditaa"]
+.RZRaven block schematic
+---------------------------------------------------------------------
+
++-------------+       +-----------------+        +-----------------+    +----------+
+| Transceiver |  SPI  | AVR             |  UART  | AVR             +----+ LCD      |
+| AT86RF230   |<----->| ATmega1284P     +<------>| ATmega3290      +--+ +----------+
+|             |       |                 |        |                 |  |
++-------------+       +-----------------+        +-----------------+  | +----------+
+                                                                      +-+ Joystick |
+                                                                        +----------+
+---------------------------------------------------------------------
+
+== Useful Stuff ==
+
+For issuing commands remotely, the ATmega1284P can be flashed with the Wireless Uart Application "wuart". It is build when calling "scons ravrf230a" and can be found in uracoli/install/bin/wuart_ravrf230a.hex or pick it from a release package.
+
+["ditaa"]
+.WUART application setup
+---------------------------------------------------------------------
+                                     v         v     Raven         RavenLCD
+ +-------+           +-------------+ |         | +-----------+    +-----------+
+ | PC    |   RS232   | wuart       | |         | | wuart     |    | wuart     |
+ |       +<--------->| e.g. rdk231 +-+         +-+ ravrf230a +----+ ravrf230a |
+ |       |           |             |             |           |    |           |
+ +-------+           +-------------+             +-----------+    +-----------+
+---------------------------------------------------------------------
+
+Now you can type commands for the RavenLCD to your PC serial terminal.
+
+== Command Set ==
+
+The UART command interface is line oriented. Tokens are separated by whitespace. Each line consists of the command + optional parameters.
+----
+print uracoli
+----
+Prints the string "uracoli" to the 14-segment character line
+
+[options="header"]
+.Command Set
+|===
+|No|Command|Description|Parameters
+|1|echo|Echo a string|<String to echo>
+|2|print|Print characters to the 7-digit line of 14-segment characters|<String to print>
+|3|batt|Set the battery symbol|<Level to set> 0 (completely off) .. 4 (battery full)
+|===
+
+== Programming ==
+
+ - ATmega3290p: -U lf:w:0x42:m - hf:w:0x90:m -U ef:w:0xFF:m
+ - =avrdude -P usb -c jtag2 -p m3290p -U fl:w:install/bin/ravenlcd.hex=
+ - ATmega1284p: -U lf:w:0x42:m - hf:w:0x98:m -U ef:w:0xFF:m
+ - =avrdude -P usb -c jtag2 -p m1284p -U fl:w:install/bin/wuart_ravrf230b.hex:i=

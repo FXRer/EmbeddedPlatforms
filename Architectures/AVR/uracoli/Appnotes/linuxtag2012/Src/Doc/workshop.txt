@@ -1,0 +1,1150 @@
+:toc: 1
+:author: Jörg Wunsch, Matthias Vorwerk, Axel Wachtler
+:01hello: 01_HelloWorld
+:02led: 02_Leds
+:03tmr: 03_Timer
+:04cap: 04_CapTouch
+:05res: 05_ResTouch
+= Tic-Tac-Toe Reloaded =
+
+== Teil I - Erste Begegnung ==
+
+
+=== Compilieren eines AVR-Programms ===
+
+Das Arbeitsverzeichnis für diesen Teil des Workshops ist +{01hello}/+.
+
+.Ein einfaches C-Programm link:../{01hello}/hello.c[hello.c]
+
+[source,C]
+----------
+include::../{01hello}/hello.c[]
+----------
+
+Es ist auf dem PC übersetzbar und ausführbar.
+-----
+$ gcc hello.c
+$ ./a.out
+Hello World
+i=0
+i=1
+i=2
+i=3
+-----
+
+Wenn man das Programm nicht mit +gcc+ sondern mit +avr-gcc+ übersetzt,
+entsteht ebenfalls ein File +a.out+, das aber nicht mehr auf einem PC ausführbar
+ist.
+-----
+$ avr-gcc hello.c
+$ ./a.out
+bash: ./a.out: Kann die Datei nicht ausführen.
+-----
+
+Was passiert im Detail? Mit der Option -v werden detailliertere Informationen
+zum Compile- und Linkvorgang angezeigt.
+
+-----
+$ avr-gcc -v hello.c -o hello-avr.out
+$ gcc -v hello.c -o hello-pc.out
+$ file hello*out
+hello_avr.out: ELF 32-bit LSB executable, Atmel AVR 8-bit, version 1 (SYSV),\
+               statically linked, not stripped
+hello_pc.out:  ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV),\
+               dynamically linked (uses shared libs), for GNU/Linux 2.6.15, not stripped
+-----
+
+Derzeit gibt es ca. 200 unterschiedliche AVR-Controller, die sich hinsichtlich
+des Speicherausbaus, der Pin-Anzahl und der integrierten Peripherie
+unterscheiden. Innerhalb der AVR-Familie kann man folgende Untergruppen
+unterscheiden:
+
+ - ATtiny*, die kleinsten und preiswertesten Controller für einfache Aufgaben.
+ - ATmega*, besser ausgestattet als tinyAVR, für komplexere Aufgaben, auch mit
+            Spezial-Peripherie, z.B. zur LCD-Ansteuerung oder einem integrierten
+            Funk-Transceiver (ATmega128RFA1).
+ - AT90USB* und AT90CAN* mit integriertem USB- oder CAN-Bus-Controller.
+ - ATxmega* ATmega-Nachfolger-Generation mit verbesserter und leistungsfähigerer
+            Architektur.
+
+Das Programm "hello.c" wird wie folgt für den ATmega128RFA1 compiliert.
+
+-----
+$ avr-gcc -mmcu=atmega128rfa1 hello.c
+-----
+
+Das Programm liegt nun als ELF-File +a.out+ vor. Um es in den AVR zu laden, muss
+es in ein Fileformat umgewandelt werden, das vom Programm +avrdude+ gelesen
+werden kann. Eine Möglichkeit ist z.B. das Intel-HEX-Format, das mit dem Programm
++avr-objcopy+ erzeugt wird.
+
+-----
+$ avr-objcopy -O ihex a.out a.hex
+-----
+
+=== Verbinden des JTAG-Programmers und Programmierung des AVR ===
+
+.Setup mit AVR-Dragon und zwei Tic-Tac-Toe-Platinen
+image::full_setup.jpg[Foto von angeschl. Dragon]
+
+Mit dem Programm +avrdude+ wird nun das File +a.hex+ in den Mikrocontroller
+"geflasht".
+
+----------
+$ avrdude -P usb -p atmega128rfa1 -c dragon_jtag -U fl:w:a.hex:i
+----------
+
+Die Optionen des Programms bedeuten im einzelnen:
+
+[cols="2,4", width="80%"]
+|=====================
+|-P usb           | Der Programmer ist am USB Port angeschlossen
+|-p atmega128rfa1 | Der Mikrocontroller ist ein ATMega128RFA1
+|-c dragon_jtag   | Der Programmer ist ein AVR Dragon im JTAG mode.
+|-U fl:w:a.hex:i  | Das File +a.hex+ wird ins Flash (fl) geschrieben (w)
+                    und liegt im Intel-HEX Fileformat (i) vor.
+|=====================
+
+Nach dem Flashen des Programms sieht man im Gegensatz zum PC, das man nichts
+sieht :-( Das liegt daran, das kein Ausgabegerät für die +printf()+ Anweisung
+definiert ist. Als Ursachen dafür, das nichts passiert kommen aber auch folgende
+Gründe in Frage:
+
+    * Programm falsch übersetzt oder umgewandelt,
+    * Hardware defekt,
+    * vagabundierende Neutronen, Aliens, ... ?
+
+Mit einem Hardware-Debugger kann man nachweisen, ob der Mikrocontroller überhaupt
+den erzeugten Programmcode ausführt.
+
+=== JTAG-Debugging ===
+
+Beim Debugging von AVR-Programmen wird das Programm +avr-gdb+ verwendet.
+Zusätzlich ist das Programm +avarice+ erforderlich, es dient als  Proxy zwischen
+dem AVR-Dragon und dem Programm +avr-gdb+.
+
+.Debug-Komponenten
+[ditaa]
+-------------------------
+/-------------\        /------+------\
+|c00A         |        |c00A         |
+| avr-gdb     +--------+ AVaRICE     |
+|             | socket |             |
+\-------------/        \------+------/
+                              |
+                              | USB
+                              |
+                       +------+------+      +-------------+
+                       |c0A0         |      |c0A0         |
+                       | AVR Dragon  +------+ XXO Board   |
+                       |             | JTAG |             |
+                       +------+------+      +-------------+
+-------------------------
+
+Zum Debuggen wird zunächst das Programm +avarice+ gestartet. Es öffnet einen
+Socket, der vom Programm +avr-gdb+ zur Kommunikation mit dem AVR-Dragon genutzt
+wird.
+
+-----
+$ avarice -I -P atmega128rfa1 -2g --detach :4242
+AVaRICE version 2.10, Jun 30 2010 20:31:30
+...
+Waiting for connection on port 4242.
+-----
+
+Die Kommandozeilen-Optionen bedeuten im einzelnen:
+
+[width="80%", cols="2,4"]
+|=========================
+| -I               | step over interrupts, ignore
+| -P atmega128rfa1 | Der Mikrocontroller ist ein ATMega128RFA1
+| -2g              | Dragon JTAG mkII Programmer der an USB Port
+                     angeschlossen ist.
+| --detach         | Programm startet nach erfolgreichem Kontakt
+                     mit dem JTAG ICE im Hintergrund
+| :4242            | Ein Socket auf Portnummer 4242 wird  geöffnet,
+                     mit dem sich der +avr-gdb+ verbindet.
+|=========================
+
+Der Debugger +avr-gdb+ wird mit dem ELF-File +a.out+ als Argument gestartet.
+Es enthält neben dem eigentlichen Programmcode auch Zusatzinformationen,
+die zusammen mit dem Quellfile +hello.c+ zum debuggen in Hochsprache benötigt
+werden.
+
+-----------
+$ avr-gdb a.out
+GNU gdb 6.8
+...
+(gdb)
+----------
+
+Jetzt muss der +avr-gdb+ mit +avarice+ Kontakt aufnehmen,
+das geschieht mit dem Befehl "target remote :4242".
+
+----------
+(gdb) target remote :4242
+Connection opened by host 127.0.0.1, port 59513.
+0x00000000 in __vectors ()
+-----------
+
+Gehe zu zur Funktion +main()+.
+-----------
+(gdb) tb main
+Breakpoint 1 at 0x162
+(gdb) continue
+Continuing.
+
+Breakpoint 1, 0x00000162 in main ()
+Current language:  auto; currently asm
+     +------------------------------^
+ fehlende C-Debugsymbole!
+-----------
+
+Leider haben wir das Programm ohne C-Debugsymbole übersetzt, d.h. beim
+Compilieren wurde die +avr-gcc+ Option "-g" vergessen. Um den Debugger zu
+beenden, benutzen wir die Kommandos "detach" und "quit".
+
+-----------
+(gdb) detach
+Ending remote debugging.
+(gdb) quit
+$
+-----------
+
+Jetzt also nochmal das ganze, nun aber mit Debugsymbolen:
+
+----------
+$ avr-gcc -g -mmcu=atmega128rfa1 hello.c
+$ avr-objcopy -O ihex a.out a.hex
+$ avrdude -P usb -p atmega128rfa1 -c dragon_jtag -U fl:w:a.hex:i
+$ avarice -I -P atmega128rfa1 -2g  --detach :4242
+$ avr-gdb -x ../debug.cfg a.out
+----------
+
+Die GDB-Befehle um bis zur Funktion +main()+ zu kommen kann man in einem
+Startup-Script zusammenfassen, siehe link:../debug.cfg[].
+Da man beim Beenden des GDB meist den Befehl +detach+ vergisst, der das
+Programm +avarice+ beendet, ist im File +debug.cfg+ eine Funktion +q+
+definiert, die die Befehle +detach+ und +quit+ kombiniert, d.h. zum
+Verlassen des +avr-gdb+ können wir nun einfach "q" tippen.
+
+Um nun nicht jedesmal sämtliche Befehle einzeln eingeben zu müssen, kann
+man sich die Arbeit durch ein Shell-Skript, z.B. link:../{01hello}/debug.sh[]
+erleichtern.
+
+=== Zusammenfassung ===
+
+Im *Teil I* des Workshops haben wir gelernt, ein AVR Programm zu compilieren,
+es per +avrdude+ in den Mikrocontroller zu laden und es anschließend mit
++avarice+ und +avr-gdb+ zu debuggen. Die verwendeten Befehlszeilen sind
+teilweise schon recht lang, so dass man sich der Bequemlichkeit halber ein
+Shell-Script und eine GDB-Startup-Datei schreibt.
+
+== Teil II - LED Ansteuerung ==
+
+=== IO-Ports ===
+
+Aus dem Schaltplan der Tic-Tac-Toe-Platine ist ersichtlich, dass die
+zweifarbigen Leuchtdioden am PORTB des Mikrocontrollers angeschlossen sind.
+Der PORTB ist ein 8 Bit breiter digitaler IO-Port, der über 3 Register
+konfiguriert und programmiert werden kann.
+
+[width="80%",cols="2,^2,^2,4",options="header"]
+|============================================
+|Register  | IO-Adresse    | RAM-Adresse | Bezeichnung
+|PORTB     | 0x05, 0x25    | 0x800025 | Port B Data Register
+|DDRB      | 0x04, 0x24    | 0x800024 | Port B Data Direction Register
+|PINB      | 0x03, 0x23    | 0x800023 | Port B Input Register
+|============================================
+
+Die LED "DL1" ist an den Pins PB0 und PB3 angeschlossen. Das folgende Beispiel
+zeigt wie sie abwechselnd rot und grün blinkt.
+
+.LED1 Blinker link:../{02led}/led1.c[led1.c]
+
+[source,C]
+--------------
+include::../{02led}/led1.c[]
+--------------
+
+Das Programm wird mit dem Befehl +make -f led1.mk flash debug+ compiliert,
+in den AVR geflasht und anschließend wird der Debugger gestartet.
+
+Um im Debugger die Registerwerte von PORTB und DDRB anzuzeigen, macht man sich
+die Tatsache zu nutze, dass die IO-Port-Register in den RAM-Bereich des
+Controllers gemappt sind.
+
+.RAM-Memory-Map des ATmega128RFA1
+[ditaa]
+-----------
+ATmega128RFA1 Registermap
+  +-------------------+
+  | 32 core register  | 0x00 ... 0x1F
+  +-------------------+
+  | 64 I/O register   | 0x20 ... 0x5F
+  +-------------------+
+  | 416 ext. I/O reg. | 0x60 ... 0x1FF
+  +-------------------+
+  |                   |
+  |    16Kx8 SRAM     | 0x200 ... 0x41FF
+  |                   |
+  +-------------------+
+-----------
+
+Im +avr-gdb+ kann man die Register nun wie folgt anzeigen und verändern:
+
+-------------------
+#Anzeige DDRB
+(gdb) x /b 0x800024
+#Alle Port Pins fuer Zeile 1 als Ausgang freischalten
+(gdb) x /b *0x800024 = 0x0f
+# DL1 grün
+(gdb) x /b *0x800025 = 0x1
+# DL2 grün
+(gdb) x /b *0x800025 = 0x2
+# DL1 rot
+(gdb) x /b *0x800025 = 0x8
+
+... ?????
+-------------------
+
+=== Zeilenweise Ansteuerung der LEDs ===
+
+Um bei eingeschalteter Zeile 0 (ROW_0) nur eine einzelne LED "rot" zu schalten
+und die anderen im Zustand "aus" zu belassen, muss neben dem PORTB-Register auch
+noch das DDRB-Register mit dem richtig Wert programmiert werden. Wenn auf ROW_0
+eine "1" getrieben wird und an der Spalte COL_0 eine "0" ausgegeben wird, dann
+ist die LED "rot". Wenn sie "aus" sein soll, dann muss die zugehörige Spalte
+abgeklemmt sein. Das erreicht man, wenn man das entsprechende Spalten-PIN
+hochohmig auf Eingang schaltet, dadurch fließt kein Strom und die LED ist aus.
+
+=== Ansteuerung der gesamten LED-Matrix ===
+
+Um alle LEDs unabhängig ansteuern zu können, muss die Aktualisierung der
+PORTB-Register zyklisch erfolgen.
+
+Die Matrixansteuerung soll nun im Programm leds.c implementiert werden:
+
+Hier ist ein Codefragment, das nun
+funktionsfähig gemacht werden soll link:../{02led}/leds.c[leds.c].
+
+[source,C]
+--------------
+include::../{02led}/leds.c[leds.c]
+--------------
+
+Das Programm leds.c wird mit dem Befehl +make -f leds.mk flash dedug+
+geladen und debuggt.
+
+Ein fertiges Beispiel gibt's hier: link:../{02led}/leds_ref.c[leds_ref.c].
+
+=== Zusammenfassung ===
+
+Im *Teil II* des Workshops haben wir die Tücken der LED-Matrix-Ansteuerung
+gemeistert. Dabei wurden die PORT-Register des AVR näher untersucht. Um eine
+statische unabhängige LED-Anzeige zu erhalten müssen die Port-Register
+zyklisch aktualisiert werden. Man nutzt so die Trägheit des Auges aus, um
+ein scheinbar statisches Bild zu erzeugen.
+
+
+==  Teil III - Timer-Steuerung ==
+
+=== Exakte Zeitbasis ===
+
+Die Implementierung von Wartezeiten mittels Delay-Funktionen, wie im Beispiel
+link:../{02led}/leds_ref.c[leds_ref.c] gezeigt wurde, ist nicht besonders
+flexibel. Einerseits hängt die exakte Durchlaufzeit der Schleife neben dem
+Delay-Wert auch noch von den anderen auszuführenden Instruktionen ab. Ändert
+sich das Programm, so ändert sich auch die Durchlaufzeit oder aber man korrigiert
+bei jeder Programmänderung den Delay-Wert manuell.
+
+Mikrocontroller bieten mit den eingebauten Hardware-Timern eine sehr viel
+elegantere Lösungsvariante. Die in AVR-Controllern implementierten Timer-Blöcke
+bieten viele Möglichkeiten, u.a. das Messen von Zeiten anhand von Signalen
+an IO-Pins (input capture), die Ausgabe von PWM-Signalen und auch das Auslösen
+von Interrupts zu einer bestimmten programmierten Zeit.
+
+Ein Hardware-Timer besteht im wesentlichen aus einem Zähler, der von einem
+Taktsignal inkrementiert wird. Durch die programmierbare Logikbeschaltung des
+Timers kann bei Überlauf des Zählers oder bei Erreichen eines bestimmten
+Zählerstandes ein Interrupt ausgelöst werden.
+
+Das folgende Programm zeigt, wie der Timer konfiguriert wird.
+Hier ist die LED-Ausgabe aus dem vorherigen Workshop-Teil einzubauen.
+Zuvor soll mit dem Debugger getestet werden, ob die Funktion +display_leds()+
+aufgerufen wird.
+
+.Timergesteuertes LED-Programm link:../{03tmr}/timer.c[timer.c]
+
+[source,C]
+----------
+include::../{03tmr}/timer.c[]
+----------
+
+Ungeduldige finden die fertige Lösung in link:../{03tmr}/timer_ref.c[timer_ref.c].
+
+=== Wie schnell tickt der Timer? ===
+
+Die Taktfrequenz mit des Mikrocontrollers wird über sog. Fuse-Bits eingestellt.
+Diese Frequenz wird beim Compilieren üblicherweise mit dem Makro F_CPU angegeben.
+Die Delay-Funktionen der avr-libc verlangen es u.a. zwingend. Die Frequenz F_CPU
+kann beim ATmega128RFA1 im Bereich von wenigen Hertz bis hin zu 16 MHz
+eingestellt werden.
+
+Die Tic-Tac-Toe-Platinen sind mit den Fuse-Werten LF=0x62, HF=0x11, EF=0xFE
+vorprogrammiert. Durch den Wert 0x62 für die Low Fuse (LF) läuft der
+Mikrocontroller mit 1MHz Taktfrequenz.
+
+Timer 0 wird mit einem Teilerfaktor von 8 aufgerufen (CS02:00 = 2), d.h. der
+8-Bit-Timer wird mit 125kHz getaktet und generiert so aller 2ms (256 Taktzyklen)
+einen Interrupt, in dem das Display aktualisiert wird.
+
+=== Strom sparen ===
+
+Um Strom zu sparen, kann in der Endlosschleife der Befehl
++sleep_mode();+ eingefügt werden. Die zugehörigen
+Definitionen werden durch die Include-Datei +avr/sleep.h+ bereit gestellt.
+
+[source,C]
+-------
+    while(1)
+    {
+        sleep_mode();
+    }
+-------
+
+Die AVR-Controller kennen mehrere verschiedene sogenannte 'sleep modes'.
+Diese legen fest, welche Teile des Controllers noch getaktet werden
+(und damit Strom verbrauchen).  Der einfachste Modus ist der sogenannte
+'idle'-Modus.  Der komplette Controller bleibt dabei noch getaktet, nur
+die CPU wird angehalten.  Diesen Modus stellt man durch Aufruf der
+Funktion +set_sleep_mode(SLEEP_MODE_IDLE);+ ein.
+
+Der Controller kann aus einem Schlafzustand nur durch einen Interrupt
+(oder einen Reset) wieder befreit werden.  Daher ist es wichtig, dass
+es mindestens eine freigeschaltete Interruptquelle gibt und dass die
+Interrupts global freigegeben sind, bevor ein Schlafzustand
+eingenommen wird.
+
+=== Dynamischer Stromverbrauch ===
+
+Das folgende Bild zeigt Oszillogramme, die mit einer Stromzange
+gemessen wurden. Die Bilder stellen den zeitlichen Stromverbrauch
+in verschiedenen Betriebszuständen dar.
+
+image:current.png[]
+
+=== Zusammenfassung ===
+
+Im *Teil III* des Workshops wurde ein 8-Bit-Hardware-Timer eingesetzt um eine
+zeitlich exakte Aktualisierung der LED-Matrix zu erreichen. Wir haben ferner
+gesehen, dass durch die Optimierung des Compilers leere Funktionen verschwinden
+bzw. normale Funktionen durch Inline-Funktionen ersetzt werden können. Zum
+Schluss dieses Abschnittes wurde gezeigt, mit welcher Funktion der
+Mikrocontroller in den Schlafzustand versetzt werden kann. Das Aufwecken wird
+vom Timerinterrupt erledigt.
+
+==  Teil IV - Platine mit Kapazitivem Touch-Sensor  ==
+
+=== Funktion des Sensors ===
+
+In diesem Teil des Workshops kommt die Platine mit den goldfarbenen Touch-Pads
+zum Einsatz. Das Prinzip der kapazitiven Touch-Sensoren ist im nachfolgenden
+Bild gezeigt.
+
+.Funktion des kapazitiven Touch-Sensors
+image::cap_sense.png[]
+
+Zu Beginn der Messung wird zunächst die Kapazität C~in~ über den Schalter S~d~
+entladen. Im Programm wird dazu der jeweilige Port auf Ausgang
+geschaltet und eine "0" ausgegen. Nach dieser Entladung wird der Port wieder
+auf "Eingang" geschaltet. Wenn ein Touch-Sensor berührt wird, dann vergrößert
+sich die Kapazität von C~in~ durch die Parallelschaltung von C~body~ und
+C~finger~ und der Ladevorgang dauert länger. Im Programm wird während des
+Ladevorgangs der Wert des jeweiligen PIN-Registers fortlaufend in ein Array
+geschrieben (+SamplesPortD[]+, +SamplesPortG[]+). Die Auswertung erfolgt dann
+so, dass ein Pin, das zum Zeitpunkt NSAMPLE noch den Wert 0 hat, als
+"Tastendruck" bewertet wird. NSAMPLE wurde dabei einmal exemplarisch ermittelt.
+
+Hier ist ein Beispiel für eine Wertefolge die im Debugger beim berühren von
+Key #0 (PD7) gemessen wurde.
+
+--------
+(gdb) print /x SamplesPortD
+$1 = {0x1f, 0x1f, 0x7f, 0xff <repeats 13 times>}
+
+PIND: 0x1f   0x1f   0x7f   0xff    0xff
+PD7 :   0     0     *0*     1
+PD6 :   0     0      1      1
+PD5 :   0     0      1      1
+----+------+------+------+------+---------->
+       t0     t1     t2    t3
+--------
+
+=== Tasten Sortieren und Auswerten ===
+
+Die Tasten-Nummern scheinen auf den ersten Blick den Port-Pins recht willkürlich
+zugeordnet zu sein, was dem Platinen-Layout geschuldet ist. Die Software muss
+also die Tasten-Nummern und die Port-Pins einander zuordnen. Im folgenden Bild
+ist das Mapping von Tasten und Port-Pins dargestellt.
+
+[ditaa]
+------------
+PORTD Key Mapping
++-----+-----+-----+-----+-----+-----+-----+-----+
+| #0  | #3  | #6  |cCCC |cCCC |cCCC |cCCC |cCCC |
+| PD7 | PD6 | PD5 |     |     |     |     |     |
++-----+-----+-----+-----+-----+-----+-----+-----+
+
+PORTG Key Mapping
++-----+-----+-----+-----+-----+-----+-----+-----+
+|cCCC |cCCC | #1  | #4  | #7  | #2  | #5  | #8  |
+|     |     | PG5 | PG4 | PG3 | PG2 | PG1 | PG0 |
++-----+-----+-----+-----+-----+-----+-----+-----+
+
+-----------
+
+Im Beispielprogramm link:../{04cap}/captouch.c[captouch.c] fehlt noch die
+Tastenzuordnung und die Tastendruckerkennung.
+
+[source,C]
+----------
+include::../{04cap}/captouch.c[]
+----------
+
+Ungeduldige finden die fertige Lösung in
+link:..//{04cap}/captouch_ref.c[captouch_ref.c].
+
+=== Zusammenfassung ===
+
+Im *Teil IV* des Workshops wurde die Eingabe-Routine für die kapazitive Platine
+implementiert. Dabei wurde für das schnelle Abtasten des PIN-Registers Gebrauch
+von Inline-Assemblercode gemacht. Ferner wurde gezeigt, dass Einsparungen beim
+Hardware-Design zu einem erhöhten Programmieraufwand führen kann
+(Tastenzuordnung). Da aber die Ressourcen des Controllers physikalisch gegeben
+sind, bringt es keinen Vorteil, wenn man sie nicht nutzt, man bekommt kein Geld
+vom Schaltkreishersteller zurück, wenn man z.B. den RAM verwendet, oder wie
+Donald Knuth sagte: "Premature optimization is the root of all evil (or at least
+most of it) in programming."
+
+
+==  Teil V - Resistive Touch Sensoren  ==
+
+=== Funktion des Sensors ===
+
+Beim resistiven Touch-Sensor wird die Kapazität C~in~ über den Wiederstand
+R~finger~ aufgeladen. Das folgende Bild zeigt das Ersatzschaltbild.
+
+.Funktion des resistiven Touch-Sensors
+image::res_sense.png[]
+
+Zu Beginn der Messung wird PORTB und PORTD auf Augsgang geschaltet und eine
+"0" ausgegeben, wodurch C~in~ über den Schalter S~d~ entladen wird. Danach wird
+auf der Zeilen-Leitung (PORTB) eine "1" ausgegeben und PORTD (Spalten-Leitung)
+auf Eingang geschaltet. Wenn der Touch-Sensor durch einen Fingerdruck gebrückt
+ist, lädt sich über den Widerstand R~finger~ die Kapazität C~in~ auf und am
+Eingangspin der Zeilenleitung kann eine "1" detektiert werden. Um die Sicherheit
+der Eingabe zu verbessern, muss mehrmals hintereinander ein Tastendruck erkannt
+sein, bevor ein Tasten-Ereignis ausgegeben wird (+SCAN_THRS_PRESS+).
+
+In der Timer-Interruptroutine wird vor der Display-Aktualisierung die
+Tastatur-Abfrage durchgeführt. Da die jeweilige Zeilenleitung für die
+Dauer der Messung auf 1 gesetzt wird, leuchten also ganz kurzzeitig die
+roten LEDs, d.h. wenn alle LEDs aus sind, sieht man bei Dunkelheit doch
+einen leichten Rotschimmer.
+
+=== Individuelle Tastatur-Abfrage ===
+
+Der Widerstand R~finger~ variiert von Person zu Person sehr stark. Menschen mit
+sehr trockener Haut haben einen hohen Widerstand. Je nach Widerstandswert
+verkürzt oder verlängert sich damit die Aufladezeit von C~in~. Es kann auch
+vorkommen, dass man stärker drücken muss, um eine Reaktion zu erzielen.
+In der folgenden Tabelle sind die Hautwiderstandswerte, die bei einer
+informellen Messung von zehn Probanden ermittelt wurden, dargestellt.
+Die Werte variieren je nach Anpressdruck und Person zwischen 1,4 MΩ und mehr
+als 59 MΩ, d.h sie streuen um einen Faktor >40.
+
+[width="50%",cols="1,^2,^2",options="header"]
+|======================================================
+|Proband | R~finger~ (links) / MΩ | R~finger~ (rechts) / MΩ
+|  1     |   20,0 ... 55,0          |    36,0 ... > 59,0
+|  2     |    1,8 ... 14,0          |     8,0 ... 12,0
+|  3     |    5,0 ...  7,0          |    13,0 ... 14,0
+|  4     |    4,5 ...  7,0          |     1,9 ...  3,0
+|  5     |    1,5 ...  6,7          |     4,3 ...  6,5
+|  6     |    7,6 ... 20,5          |     6,8 ... 20,0
+|  7     |    2,0 ... 14,8          |     2,0 ... 26,0
+|  8     |    2,0 ...  4,9          |     2,0 ...  5,0
+|  9     |    1,4 ...  6,0          |     2,0 ... 12,0
+| 10     |    2,5 ... 10,0          |     1,6 ...  2,3
+|======================================================
+
+Als Aufgabe bietet es sich an, im Programm link:../{05res}/restouch.c[restouch.c]
+die Algorithmusparameter zu variieren und zu schauen wie sich das
+Reaktionsverhalten des Programms verändert.
+
+[source,C]
+----------
+include::../{05res}/restouch.c[]
+----------
+
+=== Zusammenfassung ===
+
+Im *Teil V* des Workshops wurde die Ansteuerung der resistiven Touch-Sensoren
+implementiert. Durch die hohe Varianz, die die Werte des Hautwiderstandes
+annehmen können, kann der Algorithmus nicht optimal stabil für alle Benutzer
+eingestellt werden. Benutzer mit sehr trockener Haut und demzufolge hohem
+Hautwiderstand müssen stärker und tw. auch länger den Touchsensor berühren als
+andere.
+
+==  Teil VI - Funkkommunikation ==
+
+=== Die Radio Library ===
+
+Nachdem die Ansteuerung der LEDs und der Touch-Sensoren fertig ist, fehlt noch
+die Funkkommunikation zwischen den beiden Tic-Tac-Toe-Platinen. Um den
+Radio-Transceiver des ATmega128RFA1 zu benutzen verwenden wir die Funktionen der
+Radio-Library des µracoli-Projektes. Im wesentlichen sind drei Module zu
+implementieren:
+
+ * die Initialisierung des Transceivers,
+ * das Senden von Daten,
+ * und das Empfangen von Daten.
+
+Das Paket +uracoli-src-0.2.0.zip+ wird wie folgt installiert und für
+die Tic-Tac-Toe Hardware vorbereitet.
+
+---------------
+$ unzip uracoli-src-0.2.0.zip
+$ ln -sfv uracoli-src-0.2.0 uracoli
+$ make -C uracoli/src xxo
+---------------
+
+Im Makefile link:../06_Funk/funk.mk[] findet man die Kommandozeile für den
+Compiler-Aufruf:
+------
+avr-gcc -I../uracoli/inc/ -Dxxo -DF_CPU=1000000UL  -O2 -g -mmcu=atmega128rfa1 \
+        -o funk_cap.out \
+        funk.c leds.c captouch.c \
+        -L../uracoli/lib -lradio_xxo
+------
+
+Die Kommandozeilenoptionen bedeuten im einzelnen:
+
+[width="80%", cols="2,4"]
+|=========================
+| -I../uracoli/inc/   | Suchpfad für die µracoli-Include-Dateien
+| -Dxxo               | Definition des Macros für das Board "xxo"
+| -O2 -g              | Optimierung Stufe 2 und Debugsymbole
+| -mmcu=atmega128rfa1 | für einen ATmega128RFA1-Mikrocontroller
+| -DF_CPU=1000000UL   | Taktfrequenz des Mikrocontrollers
+| -o funk_cap.out     | erzeuge ein ELF-File mit dem Namen
+                        +funk_cap.out+ oder +funk_res.out+
+| funk.c ...          | die Quelldateien der einzelnen Module
+| -L../uracoli/lib    | Suchpfad für die µracoli-Radio-Library
+| -lradio_xxo         | Linke die Library +libradio_xxo.a+
+|=========================
+
+Das Makefile wird wie folgt benutzt:
+
+--------------------
+# Alle Programme komplett neu bauen
+make -f funk.mk clean all
+# Flashen und Debuggen des resistiven Boards
+make cflash debug BOARD=res
+# Flashen und Debuggen des kapazitiven Boards
+make -f funk.mk flash debug BOARD=cap
+--------------------
+
+=== Initialisierung des Transceivers ===
+
+Die Initialisierung des Transceivers und der Radio-Library erfolgt in der
+Funktion
+
+[source,C]
+-------
+static uint8_t RxFrame[TRX_FRAME_SIZE];
+
+void xxo_radio_init(void)
+{
+  /* zuweisen des Empfangspuffers RxFrame */
+  radio_init(RxFrame, sizeof(RxFrame));
+
+  /* einstellen des Funkkanals */
+  radio_set_param(RP_CHANNEL(CHANNEL));
+
+  /* Als Defaultzustand soll der Transceiver im Zustand RX_ON sein */
+  radio_set_param(RP_IDLESTATE(STATE_RX));
+
+  /* Zuerst wird der Zustand TRX_OFF eingestellt */
+  radio_set_state(STATE_RX);
+
+  /* Initialisierung der globalen Variable */
+  RadioRxKey = KEY_NONE;
+  RadioTxKey = KEY_NONE;
+}
+-------
+
+=== Senden eines Rahmens ===
+
+Das Senden eines Rahmens wird durch zwei Funktionen implementiert. Die Funktion
++xxo_send()+ füllt den Sendepuffer aus. Wir versenden hier bereits einen
+richtigen IEEE-802.15.4-Rahmen, bestehend aus dem Steuerfeld (16 Bit FCF), der
+Sequenznummer und den Empfänger- und  Absender-Adressen. Nach der Payload des
+Rahmens (key) ist noch ein 16 Bit CRC-Feld enthalten, dass von Transceiver
+berechnet wird. Die Funktion +usr_radio_tx_done()+ ist eine Callback-Funktion,
+die von der TX-Interruptroutine aufgerufen wird. Hier wird das Flag
++TxInProgress+ zurück auf 0 gesetzt und damit der nächste Rahmen gesendet werden
+kann.
+
+[source,C]
+-----------
+void xxo_send(uint8_t key)
+{
+    static uint8_t seqno = 0;
+    xxo_frame_t txbuf;
+
+    /* fill frame information */
+    txbuf.fcf = FRAME_CTRL_FIELD;
+    txbuf.seq = seqno++;
+    txbuf.panid = PANID;
+    txbuf.dst = 0xffff;
+    txbuf.src = SHORTADDR;
+    radio_set_state(STATE_TXAUTO);
+
+    /* fill payload */
+    txbuf.key = key;
+
+    /* send frame */
+    TxInProgress = true;
+
+    radio_send_frame(sizeof(xxo_frame_t), (uint8_t*)&txbuf, 0);
+
+    set_sleep_mode(SLEEP_MODE_IDLE);
+    while (TxInProgress)
+    {
+        sleep_mode();
+    }
+}
+
+void usr_radio_tx_done(radio_tx_done_t status)
+{
+    TxInProgress = false;
+}
+-----------
+
+=== Empfangen eines Rahmens ===
+
+Die Verarbeitung von empfangenen Rahmen erfolgt hauptsächlich in der Funktion
++usr_radio_receive_frame()+. Das ist ebenfalls eine Callback-Funktion, die
+von der Receive-Interrupt-Routine aufgerufen wird. Hier wird der gesendete
+Key aus der Payload in die Variable +RadioRxKey+ kopiert.
+
+[source,C]
+----------
+uint8_t * usr_radio_receive_frame(uint8_t len, uint8_t *frm,
+                                  uint8_t lqi, int8_t ed, uint8_t crc)
+{
+    xxo_frame_t *pframe;
+    pframe = (xxo_frame_t *)frm;
+    RadioRxKey = pframe->key;
+    return frm;
+}
+
+uint8_t xxo_radio_get_event(void)
+{
+uint8_t ret;
+
+    cli();
+    ret = RadioRxKey;
+    RadioRxKey = KEY_NONE;
+    sei();
+    return ret;
+}
+
+----------
+
+=== LED-Battle ===
+
+Das folgende Programm implementiert das einfache Senden und Empfangen von
+Tastendrücken. Durch den Druck einer Taste wird die lokale LED grün und
+jedes Board, das den Rahmen empfängt, schaltet seine entsprechend LED auf rot.
+
+[source,C]
+-------
+include::../06_Funk/funk.c[]
+-------
+
+Das Programm hat nun das entscheidendes Manko, das jeder die LEDs aller
+anwesenden Tic-Tac-Toe-Platinen beeinflussen kann. In der Übung soll nun
+ein kleines Adressfilter programmiert werden, so dass man nur die eigenen
+Platinen beeinflusst.
+
+=== Zusammenfassung ===
+
+Im *Teil VI* des Workshops wurde eine Funkkommunikation der Platinen
+implementiert. Die lokalen Tastendrücke wurden jeweils zu einem/mehreren
+Empfänger(n) übertragen und dort angezeigt. Um ein funktionierendes Spiel
+zu implementieren muss der gesamte Funkverkehr noch ein wenig koordiniert
+und eine Spielauswertung implementiert werden.
+
+==  Teil VII - Die erste Version des Spiels ==
+
+=== Selbst- und Partnerfindung ===
+
+Eine wichtige Aufgabe ist die Kontaktaufnahme mit dem Spielpartner. Um die
+Platinen eindeutig zu identifizieren, ist jedes der Tic-Tac-Toe-Boards
+mit einer 16-Bit-Seriennummer und einer weltweit eindeutigen 64-Bit-MAC-Adresse
+ausgestattet (die 64-Bit-MAC-Adresse wird im Workshop zunächst nicht verwendet).
+Diese Informationen sind auf dem Adressaufkleber und im EEPROM gespeichert.
+Die EEPROM-Informationen können mit dem Programm +avrdude+ ausgelesen und
+überprüft werden. Zusätzlich liegt jedem Boardsatz ein Ausdruck der beiden
+EEPROM-Inhalte bei.
+
+-------
+$ avrdude -P usb -p atmega128rfa1 -c dragon_jtag -tF
+
+avrdude: AVR device initialized and ready to accept instructions
+
+Reading | ################################################## | 100% 0.00s
+
+avrdude: Device signature = 0x1ea701
+avrdude> d ee 0 16
+>>> d ee 0 16
+0000  01 00 42 42 c6 03 17 ff  ff 25 04 00 11 00 00 a4  |..BB.....%......|
+
+avrdude>
+-------
+
+Die Informationen im EEPROM sind mit der Struktur +node_config_t+ formatiert.
+Diese Struktur ist im Headerfile link:../uracoli/inc/board.h[board.h] definiert.
+
+[source,C]
+----------------------
+typedef struct
+{
+    uint16_t short_addr;
+    uint16_t pan_id;
+    uint64_t ieee_addr;
+    uint8_t  channel;
+    uint8_t _reserved_[2];
+    uint8_t crc;
+} node_config_t;
+----------------------
+
+Mit der Funktion +get_node_config_eeprom()+ kann der EEPROM-Inhalt ausgelesen
+werden. Die 8-Bit-CRC am Ende der Struktur stellt die Integrität der Daten
+sicher und die Funktion gibt den Wert 0 zurück, wenn die Prüfsumme über die
+Daten richtig berechnet ist.
+
+Bei der Vergabe der Seriennummern wurde darauf geachtet, dass die kapazitiven
+Platinen jeweils eine ungeradzahlige Seriennummer und die resistiven Platinen die
+darauffolgende geradzahlige Seriennummer haben. Ein Tic-Tac-Toe-Platinen-Paar hat
+somit die Seriennummern (2n-1) und (2n) mit, n = 1, 2, 3, 4, 5, ...
+Den jeweiligen Spielpartner erreicht man, in dem man das untere Bit der
+Short-Adresse auswertet und +1 oder -1 addiert.
+
+------------------------
+      eigene SN.        Partner SN
+CAP   0x0001     +   1    0x0002
+RES   0x0002     -   1    0x0001
+...
+CAP   0x0007     +   1    0x0008
+RES   0x0008     -   1    0x0007
+
+
+PEER_ADDR = MY_ADDR + (MY_ADDR & 1) ? +1 : -1;
+
+------------------------
+
+Neben den einfachen Sende- und Empfangsfunktionen, die im letzten Teil des
+Workshops verwendet wurden, hat der Transceiver noch einen automatischen Sende-
+und Empfangs-Modus, bei dem der Rahmenaustausch adressgefiltert und mit einem
+Antwort-Rahmen zur Empfangsbestätigung gesendet werden kann. Um diese Funktionen
+zu nutzen, muss der Transceiver nur etwas anders konfiguriert werden, wie
+es im Modul link:../07_Spiel/funk.c[] implementiert ist.
+
+[source,C]
+------------
+include::../07_Spiel/funk.c[]
+------------
+
+=== Zug um Zug ===
+
+Im nächsten Schritt sorgt ein Zustandsautomat für einen geregelten Spielablauf.
+
+["graphviz", "state.png"]
+---------------------------------------------------------------------
+digraph G {
+            IDLE;
+            A_PRESS [color="green"];
+            B_PRESS [color="red"];
+            ERROR;
+            GAME_OVER;
+            DISP_WINNER;
+
+            IDLE -> A_PRESS [label="A begins"];
+            A_PRESS -> B_PRESS [ label="key\npress"];
+            B_PRESS -> A_PRESS [ label="key\npress"];
+            A_PRESS -> GAME_OVER [label="A is\nwinner"];
+            B_PRESS -> GAME_OVER [label="B is\nlooser"];
+            GAME_OVER -> DISP_WINNER;
+            DISP_WINNER -> IDLE;
+            A_PRESS -> ERROR;
+            B_PRESS -> ERROR;
+            ERROR -> IDLE;
+}
+---------------------------------------------------------------------
+
+Die Implementierung der eigentlichen Statemachine findet man in der
+Funktion main() des Moduls link:../07_Spiel/spiel.c[spiel.c].
+
+=== Gewinnauswertung ===
+
+Nach jedem Spielzug wird die aktuelle Gewinnsituation geprüft. Dazu wird
+geprüft ob es eine Zeile, Spalte oder Diagonale gibt, die mit der gleichen
+Farbe besetzt sind. Die möglichen Gewinnkombinationen sind in einer Tabelle
+im Modul link:../07_Spiel/leds.c[leds.c] gespeichert und können so einfach
+in einer Schleife abgeprüft werden. Die 9. Möglichkeit ist ein "unentschieden",
+das sich ergibt, wenn alle Felder besetzt sind aber keine der vorigen Gewinn
+Möglichkeiten aufgetreten ist.
+
+[source, C]
+--------------------
+static uint8_t WinningPattern[8][3] = {
+        {0, 1, 2},
+        {3, 4, 5},
+        {6, 7, 8},
+        {0, 3, 6},
+        {1, 4, 7},
+        {2, 5, 8},
+        {0, 4, 8},
+        {2, 4, 6}
+};
+
+uint8_t led_check_winner(void)
+{
+    uint8_t i;
+    uint8_t *pwin;
+    uint8_t winner_color = OFF;
+    for (i = 0; i < 8; i++)
+    {
+        pwin = WinningPattern[i];
+        if ((LedState[pwin[0]] == GREEN) &&
+            (LedState[pwin[1]] == GREEN) &&
+            (LedState[pwin[2]] == GREEN))
+        {
+            winner_color = GREEN;
+            break;
+        }
+        if ((LedState[pwin[0]] == RED) &&
+            (LedState[pwin[1]] == RED) &&
+            (LedState[pwin[2]] == RED))
+        {
+            winner_color = RED;
+            break;
+        }
+    }
+
+    if (winner_color != OFF)
+    {
+        led_flash_pattern(5, pwin[0], pwin[1], pwin[2], winner_color);
+    }
+    else
+    {
+        for (i = 0; i< 9; i++)
+        {
+            if (LedState[i] == OFF)
+            {
+                break;
+            }
+        }
+        if (i == 9)
+        {
+            winner_color = 4;
+        }
+    }
+    return winner_color;
+}
+
+--------------------
+
+Die Gewinnprüfung erfolgt bei beiden Spielpartnern individuell und es
+erfolgt kein Datenaustausch am Spielende.
+
+=== Noch mehr Strom sparen ===
+
+Den Löwenanteil des Stromverbrauchs macht nicht der Controller,
+sondern der Transceiver aus.  Oft unterschätzt wird dabei der
+Energieverbrauch im reinen Bereitschaftsmodus, wenn der Empfänger auf
+Daten wartet.  Einerseits werkeln im UHF-Frontend eine Reihe von
+Schaltungsteilen mit Frequenzen im Gigahertz-Bereich, andererseits ist
+in diesem Zeitraum der digitale Demodulator die ganze Zeit damit
+beschäftigt, aus dem Rauschen des UHF-Teils per Korrelation seine
+Präambel-Sequenz zu erkennen.  Der sich dabei ergebende Stromverbrauch
+liegt im Bereich von 18 mA.
+
+Daher lohnt es sich, während der Zeit, in der keine
+Empfangsbereitschaft notwendig ist (Spielstatus 'IDLE'), den
+Transceiver selbst schlafen zu legen.  Dies erledigt der Aufruf von
++radio_set_state(STATE_SLEEP);+, der als +xxo_turn_off_radio()+ in die
+oberen Ebenen der Spiel-Logik abstrahiert wird.  Der Schlafzustand des
+Transceivers wird dabei mit dem nächsten gesendeten Datenpaket wieder
+verlassen.
+
+Diese Maßnahme reduziert den Stromverbrauch von 14 mA auf ca. 1,2 mA.
+
+Für ein Gerät ohne Ausschalter ist dieser Wert natürlich immer noch
+recht hoch.  Für übliche LR03-Zellen kann von einer Kapazität im
+Bereich um die 1000 mAh ausgegangen werden.  Bei einem Ruhestrom von
+1,2 mA wären die Batterien folglich nach ca. 1 Monat leer.
+
+Zumindest während der inaktiven Phase (kein Spiel läuft) muss der
+Energieverbrauch daher noch weiter reduziert werden.  Dies erreicht
+man, indem man einen aggressiveren 'sleep mode' benutzt, bei dem alle
+Taktleitungen, die nicht benötigt werden, abgeschaltet werden.
+CMOS-Schaltkreise benötigen im Wesentlichen nur dann Strom, wenn sie
+getaktet werden, weil dann intern immer wieder Gate- und
+Leitungskapazitäten umgeladen werden müssen.  Der rein statische
+Stromverbrauch (kein einziger Takt läuft mehr) eines ATmega128RFA1 bei
+Zimmertemperatur liegt bei wenigen 100 nA.
+
+Der Modus mit der geringsten Stromaufnahme ist der 'power-down'-Modus.
+Dabei ist der Hauptoszillator gestoppt, sodass weder CPU noch
+Peripheriegeräte getaktet werden.  Aus diesem Modus führt (neben einem
+Reset) nur ein Interrupt, der selbst keinen der normalen
+Peripherietakte benötigt.  Die Möglichkeit eines sogenannten Extern-
+oder Pin-Change-Interrupts ist im Tic-Tac-Toe-Board jedoch aufgrund
+der benutzten Sensor-Technologie für die Tasten nicht gegeben.
+
+Daher nutzen wir den sogenannten 'watchdog'.  Dieser ist eigentlich
+zur Funktionsüberwachung der Firmware gedacht, indem die aktive
+Firmware ständig den Wachhund wieder zurücksetzt.  Fährt die Software
+sich aus irgendeinem Grund fest, dann ist irgendwann die dem Wachhund
+einprogrammierte Zeit abgelaufen, und er löst einen Reset des
+Controllers aus.  Alternativ kann man ihn aber auch in einem
+Interruptmodus betreiben.  Da der Wachhund einen eigenen Oszillator
+besitzt, ist dieser auch im 'power-down'-Schlafzustand noch benutzbar.
+Bei Ablauf der programmierten Zeit erfolgt dann kein Reset, sondern
+ein normaler Interrupt.  In der zugehörigen ISR wird kurz die
+Tastaturabfrage für die mittlere Taste aktiviert.  Wenn keine solche
+Taste gedrückt erkannt worden ist, so legt der Controller sich sofort
+wieder schlafen.  Im Ergebnis entsteht mit dieser Maßnahme ein mittlerer
+Stromverbrauch von ca. 50 µA, was einer Batterielebensdauer von etwa 2
+Jahren entspricht.  Dieser Wert ist schon eher annehmbar und genügt
+zur Demonstration dieses einfachen Spiels.
+
+Wurde die mittlere Taste als gedrückt erkannt, so wird der Wachhund
+anschließend in den Reset-Modus umgeschaltet, was nach weiteren etwa
+15 ms zu einem Reboot führt, sodass das Spiel von vorn beginnen kann.
+
+Nachfolgend noch einige Oszillogramme während der Tiefschlafphase.
+Man erkennt das zyklische Aufwachen aller ca. 15 ms, während eines
+Zeitraums von ca. 500 µs wird die mittlere Taste abgefragt.  Beim
+Wiedereinschalten per mittlerer Taste läuft dann alles wieder an;
+besonders markant ist dabei der Aufladestromimpuls für den analogen
+Spannungsregler des Transceivers.
+
+image:current2.png[]
+
+Wichtig für das Stromsparen sind noch folgende Dinge:
+
+* keine Pins offen lassen ('floating'); entweder als Ausgang (vorzugsweise auf
+  'low') schalten, oder bei einem Eingang die 'pullup'-Widerstände
+  aktivieren; offene Eingänge fangen schnell Störungen ein, die dann
+  zu Umschaltströmen in den Eingangsstufen führen
+* das 'on-chip-debugging' muss deaktiviert werden; die entsprechende
+  Fuse (im 'high fuse byte') wurde für den Debugger aktiviert, sie
+  muss im endgültigen Gerät deaktiviert werden (HF = 0x91 statt 0x11)
+* ein angesteckter Programmierer/Debugger (AVR Dragon) entnimmt dem
+  Gerät Strom (für die Pegelwandler im Debugger); bei Strommessungen
+  sollte er also abgezogen werden
+
+
+=== Fehlerbehandlung ===
+
+Um das Spiel stabiler und robuster zu machen, sollten einige Fehlerfälle
+abgefangen werden. Dabei gibt es folgende Möglichkeiten für einen
+Spielabbruch, der infolge eines Fehlers auftreten kann:
+
+ * Es erfolgte keine Tasteneingabe innerhalb eines Timeout-Intervalls.
+ * Es wurde kein Rahmen vom Spielgegner innerhalb eines Timeout-Intervalls
+   empfangen.
+ * Ein Daten-Rahmen konnte nicht gesendet werden.
+ * Ein Spiel-Abbruch-Rahmen wurde von der Gegenstelle empfangen.
+
+In all diesen Fehlerfällen soll das Spiel abgebrochen und die Software in den
+Ausgangszustand versetzt werden.
+
+Die Aufgabe die Fehlerbehandlung zu implementieren, wird an dieser Stelle
+an den Leser übertragen.
+
+
+=== Zusammenfassung ===
+
+Im *Teil VII* des Workshops wurde die originale Spiel-Idee inklusive
+Zustandsautomat und Gewinnauswertung fertig implementiert. Eine robuste
+Methode zur Behandlung ist noch zu implementieren.
+
+== Ausblick ==
+
+=== Erweiterungen ===
+
+ * Freies Peering, doppelte Tastendrücke
+ * verbessertes Stromsparen
+ * 3 Spieler Modus (orange als LED-Farbe darstellbar)
+
+=== Aktualisierung des Config-Records ===
+
+Auf den Boards sind Aufkleber mit den Seriennummern und den MAC-Adressen
+angebracht.
+
+Wenn man einen neuen Config-Record in den EEPROM schreiben möchte, geht
+man wie folgt vor:
+
+-----------------
+# Disable EESAVE-Fuse
+$ avrdude -P usb -p atmega128rfa1 -c dragon_jtag -U hf:w:0x19:m
+
+# Erase Chip (inkl. EEPROM)
+$ avrdude -P usb -p atmega128rfa1 -c dragon_jtag -e
+
+# Enable EESAVE-Fuse
+$ avrdude -P usb -p atmega128rfa1 -c dragon_jtag -U hf:w:0x11:m
+
+# Erzeuge Config-Record
+$ python uracoli/wibo/nodeaddr.py \
+        -Bxxo -O 0 \
+        -a <SN> -A <MAC> -p <PAN>
+        -c <CHANNEL> -o cfg.hex
+
+# Schreibe den Config Record ins EEPROM
+$ avrdude -P usb -p atmega128rfa1 -c dragon_jtag -U ee:w:cfg.hex:i
+
+# Anzeigen des EEPROM-Inhaltes
+$ avrdude -P usb -p atmega128rfa1 -c dragon_jtag -tF
+avrdude> d ee 0 16
+>>> d ee 0 16
+0000  16 00 42 42 b4 21 17 ff  ff 25 04 00 11 00 00 e0  |..BB.!...%......|
+-----------------
+
+Diese Prozedur ist für jedes Board einzeln, mit den jeweils aktuellen
+Parametern durchzuführen. Die Parameter des Scripts +nodeaddr.py+ bedeuten
+dabei im einzelnen:
+
+[cols="2,4", width="80%"]
+|==============================================
+| -B xxo      | Tic-Tac-Toe Hardware
+| -O 0        | ist der Adress-Offset 0 im EEPROM
+| -a <SN>     | <SN> is die Seriennummer vom Aufkleber,
+                die dezimal ohne führende 0 eingegeben wird.
+                SN.0042 => -a 42
+| -A <MAC>    | Bei der MAC-Adresse werden die ":" entfernt und ein "0x"
+                vorangestellt.
+                "00:04:25:ff:ff:17:21:B4" => -A 0x000425ffff1721B4
+| -p <PAN>     | Dieser Parameter wird direkt als Hexadezimal-Zahl
+              übernommen, -p 0x4242
+| -c <CHANNEL> | Der IEEE-802.15.4-Kanal ist eine Dezimal-Zahl zwischen
+                 11 und 26.
+| -o cfg.hex   | Name des Intel-HEX-Files mit dem Config-Record.
+|==============================================

@@ -1,0 +1,104 @@
+$Id$
+
+Abstract
+--------
+
+This "overlay package for arduino-0017 and arduino-0018
+enables the use of 
+  - 2.4GHz ZigBit Modules 
+  - 900MHz ZigBit Modules   
+  - RFArduino
+  - littleGee231
+combined with the uracoli libradio_*.a from inside the Arduino 
+development environment.
+
+For updates check http://uracoli.nongnu.org
+
+
+Installation
+------------
+ - get the original arduino package and install it
+ 
+ - Unzip the package in your current arduino installation directory.
+ - Change to directory lib and copy the file pde-0017.jar to pde.jar.
+ - Open ./arduino and select Tools / Board / "Zigbit 2400MHz, w/ ATmega1281"
+ - Select File / Examples / Radio / HelloRadio compile and upload it.
+
+
+
+
+Known Bugs
+----------
+ - A bootloader is missing in this package.
+   Workaround:
+   - set in your preferences file:
+     "build.verbose=true", so you can see, where the hex file
+     of the sketch is generated.
+   - Use JTAG ICE and avrdude or AvrStudio for Upload.
+     (avrdude -P usb -pm1281 -c jtag2 -U fl:w:some/where/mysketch.hex)
+
+
+Technical Changes
+------------------
+The modification of pde.jar contains the processing of "build.ldflags"
+in boards.txt (see arduino-0017-zigbit.patch).
+
+
+Command Line Building of the example sketch
+-------------------------------------------
+make -C examples/Radio/HelloRadio
+make -C examples/Radio/IoCheck
+
+
+Pin Assignments
+---------------
+  see file pins_zigbit.c
+
+License
+-------
+The uracoli files are under Modified BSD License
+(http://uracoli.nongnu.org/license.html), which is compatible
+with LGPL V2.1 and GPL V2, used by Arduino.
+
+Package Contents
+----------------
+
+|-- examples
+|   `-- Radio
+|       `-- HelloRadio
+|           |-- HelloRadio.pde ....... example sketch file
+|           `-- Makefile
+|-- hardware
+|   |-- boards.txt
+|   `-- cores
+|       `-- zigbit
+|           |-- HardwareRadio.h ..... wrapper for libradio
+|           |-- HardwareSerial.cpp
+|           |-- HardwareSerial.h
+|           |-- Makefile
+|           |-- Print.cpp
+|           |-- Print.h
+|           |-- WConstants.h
+|           |-- WInterrupts.c
+|           |-- WMath.cpp
+|           |-- WProgram.h
+|           |-- binary.h
+|           |-- const.h .............. uracoli header
+|           |-- libradio_wdba1281.a .. uracoli lib
+|           |-- main.cxx
+|           |-- pins_zigbit.c
+|           |-- pins_zigbit.h
+|           |-- radio.h .............. uracoli header
+|           |-- wiring.c
+|           |-- wiring.h
+|           |-- wiring_analog.c
+|           |-- wiring_digital.c
+|           |-- wiring_private.h
+|           |-- wiring_pulse.c
+|           `-- wiring_shift.c
+`-- lib
+    `-- pde-0017.jar ................ this file needs to copied
+                                      to pde.jar in the same directory
+
+
+

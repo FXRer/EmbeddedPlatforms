@@ -1,0 +1,120 @@
+$Id$
+
+Registration:
+-------------
+   * http://chemnitzer.linux-tage.de/2011/vortraege/call_form
+   * Anmeldeschluss: 05.01.2011
+
+
+-------------------------------------------------------------------------------
+Anrede:
+Titel:
+Vorname:
+Nachname:
+E-Mail-Adresse - nicht "offentlich:
+
+E-Mail-Adresse - "offentlich:
+Private Homepage:
+Beruf / Tätigkeit:
+Einrichtung / Unternehmen / Organisation:
+Webseite zur Einrichtung:
+-------------------------------------------------------------------------------
+
+Details zum Beitrag
+-------------------
+
+Titel des Beitrags:
+-------------------
+
+-------------------------------------------------------------------------------
+Einfache Drahtlose Sensordatenerfassung und -verarbeitung mit Linux
+-------------------------------------------------------------------------------
+
+Art des Beitrags:
+-----------------
+
+------------------------------------------------------------------------------
+
+[X] Standardvortrag, 35--45 Minuten plus 10 Minuten Diskussion
+------------------------------------------------------------------------------
+
+Kurze Zusammenfassung:
+----------------------
+Die Erfassung physikalischer Größen wie Temperatur oder Luftfeuchte ist ein
+wichtiges Werkzeug zur Prozeßoptimierung und -überwachung. Dabei haben
+drahtlose Sensoren gegenüber kabelgebundenen Sensoren den Vorteil, dass
+sie einfach an schwer zugänglichen Orten zu installieren sind. Als
+Funkschnittstelle eines Temperatursensors eignen sich IEEE-802.15.4-Transceiver
+wegen der einfachen Ansteuerung und dem geringen Strombedarf.
+
+Im Beitrag werden am Beispiel einer verteilten Temperaturerfassung alle Schritte
+von der Firmwareentwicklung bis hin zur Datenaufbereitung im Webserver
+demonstriert.
+
+-------------------------------------------------------------------------------
+Short Paper
+-----------
+Die Erfassung und Auswertung physikalischer Größen
+wie z.B. Temperatur oder Luftfeuchte in Abhängigkeit von
+der Zeit ist ein wichtiges Werkzeug zur Optimierung und
+Überwachung von Prozessen, gleich ob es sich dabei um das
+heimische Terrarium, den Weinkeller oder um den Serverraum
+in der Firma handelt. Typische Sensoranwendungen zeichnen
+dabei die gemessenen Daten für eine spätere Auswertungen auf
+und generieren Alarme, wenn ein Parameter seinen zulässigen
+Bereich verläßt.
+
+Drahtlose Sensoren haben gegenüber kabelgebundenen Sensoren
+den Vorteil, dass sie einfach, auch an schwer erreichbaren Plätzen
+zu installieren sind und damit der Verkabelungsaufwand entfällt.
+
+In den letzten Jahren werden Funkschaltkreise, die nach dem IEEE-802.15.4-
+Standard arbeiten auch im Bastlerbereich immer populärer. Mit dieser
+Funktechnik ist es möglich, verteilte Sensoranwendungen auf
+batteriebetriebenen Funkknoten mit geringem Aufwand zu entwicklen.
+Die im Volksmund auch "ZigBee Transceiver" genannten Schaltkreise
+unterstützen Datenraten von 250 kBit/s, zeichnen sich durch
+einen geringen Energiebedarf aus und arbeiten im 2,4-GHz-ISM-Band, 
+in dem in vielen Ländern der Welt eine Allgemeinzuteilung existiert, 
+sodass keine separate Beantragung der Frequenznutzung durch den 
+Endanwender erforderlich ist.
+
+Im Beitrag werden am Beispiel einer verteilten Temperaturerfassung
+mit mehreren Messstellen alle Entwicklungsschritte von der
+Firmwareentwicklung für den AVR-Mikrocontroller bis hin zur
+Datenaufbereitung und -darstellung in einem Webserver unter Linux
+demonstriert.
+
+Die Firmware der Funkknoten verwendet die Open-Source-Libraries des
+uracoli-Projektes. Zur Anbindung der seriellen Schnittstelle des
+Gateway-Modules und zur Aufbereitung der empfangenen Daten wird die
+Programmiersprache Python verwendet. Zusätzlich werden im Beitrag
+verschiedene Temperatursensoren und Funkmodule hinsichtlich
+Preis, Programmierung und Genauigkeit gegenübergestellt.
+-------------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+[X] Ich werde einen Beitrag f"ur den Tagungsband einreichen.
+------------------------------------------------------------------------------
+
+Webseite zum Vortrag:
+---------------------
+
+------------------------------------------------------------------------------
+TODO: http://uracoli.nongnu.org
+------------------------------------------------------------------------------
+
+Notwendige Vorkenntnisse der Besucher:
+--------------------------------------
+
+------------------------------------------------------------------------------
+Linux, Interesse an Mikrocontrollertechnik.
+------------------------------------------------------------------------------
+
+Wann k"onnten Sie Ihren Vortrag bzw. Workshop halten?
+------------------------------------------------------------------------------
+[X] Samstag, 19. M"arz 2011, vormittags
+[X] Samstag, 19. M"arz 2011, nachmittags
+[X] Sonntag, 20. M"arz 2011, vormittags
+[X] Sonntag, 20. M"arz 2011, nachmittags
+------------------------------------------------------------------------------

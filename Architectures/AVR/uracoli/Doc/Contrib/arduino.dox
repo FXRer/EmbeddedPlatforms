@@ -1,0 +1,387 @@
+/* Copyright (c) 2010 Axel Wachtler
+   All rights reserved.
+
+   Redistribution and use in source and binary forms, with or without
+   modification, are permitted provided that the following conditions
+   are met:
+
+   * Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
+   * Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
+   * Neither the name of the authors nor the names of its contributors
+     may be used to endorse or promote products derived from this software
+     without specific prior written permission.
+
+   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+   POSSIBILITY OF SUCH DAMAGE. */
+
+/* $Id$ */
+
+/**
+\if ARDUINODOC
+ @mainpage
+
+ This pages describe how the Arduino Environment is used together
+ with the libraries of the @uracoli project.
+
+\else
+
+ @page pgContribArduino Arduino Support Package
+
+ @section secArduinoOverview Overview
+
+\endif
+
+ @uracoli provides a support package for the Arduino-IDE.
+ The UASP (@uracoli-arduino-support-package) includes a Arduino-Serial-like
+ library for the radio transceiver and board definitions for some selected boards.
+
+\if ARDUINODOC
+
+ @page pgContribArduino Arduino IDE support
+
+ @section secArduinoOverview Overview
+
+\endif
+
+ <a href="http://arduino.cc/">Arduino</a> is a Microcontroller Development
+ plattform that consists of a Java-IDE which supports various microcontroller
+ boards. Most of the supported boards are equipped mit 8-bit-AVR microcontrollers.
+
+ Basically the Arduino-IDE provides a simple code editor and the firmware (denoted
+ as "sketches") can be compiled and flashed with a button click. A serial terminal
+ completes the IDE. This high level of abstration makes it very easy for none
+ technicians and first-time users to start with embedded programming.
+
+ A @b sketch basically implements two functions @c setup() and
+ @c loop() that are called from the main function of the core library.
+ A simple API is provided, that is described at
+ http://arduino.cc/en/Reference/HomePage.
+
+ @uracoli provides a support package package for the Arduino-IDE with versions
+ above 1.5.x.
+
+ The following boards are supported in the package:
+
+ - @ref secradiofaro - Radiofaro w/ ATmega128rfa1
+ - @ref secpinoccio - Pinoccio Scout
+ - @ref secatzb256rfr2xpro - Atmel ATmega256RFR2 Xplained Pro Evaluation Kit
+ - @ref secwdba1281 - Zigbit 2400MHz, w/ ATmega1281
+ - @ref secmnb900 - Zigbit 900MHz, w/ ATmega1281
+
+ The Arduino project did fork in 2014, see
+ http://hackaday.com/2015/04/06/arduino-ide-forked/ for details.
+ Since this time there are two versions of the IDE avaiable.
+
+ - IDE from arduino.cc\n
+   https://www.arduino.cc/en/Main/Software
+ - IDE from arduio.org\n
+   http://www.arduino.org/downloads
+
+@note
+ In version arduino.cc-v1.6.5/arduino.org-v1.7.3 the arduino.org IDE
+ comes with a complete arm-none-eabi GNU toolchain and a CMSIS for Atmel
+ Cortex-M0/M0+/M4 controllers. The arduino.cc IDE is the SAM
+ and SAMD board variants are missing too. The rest of both IDE-packages seems
+ to be identical.
+
+@section secArduinoInstall Installation
+
+ @par Download and install one of the Arduino IDEs.
+
+ Select one of the forked IDEs
+
+ - IDE from arduino.cc\n
+   https://www.arduino.cc/en/Main/Software
+ - IDE from arduio.org\n
+   http://www.arduino.org/downloads
+
+ and install it on your computer according to the instructions for your OS
+ (Linux, Windows, MAC-OS).
+
+ @par Download the @uracoli-Arduino-Support-Package (UASP)
+
+ Download the UASP-zipfile
+ @c uracoli-arduino-15x-<version>.zip from http://uracoli.nongnu.org/download.html
+
+ @par Option A: Install UASP in the IDE directory
+
+ With this method the package is installed centrally for all users.
+ The UASP example sketches are located in @c "File / Examples / Radio"
+
+ - Change to the Arduino-IDE directory (e.g. @c "cd /opt/arduino-1.6.5/")
+ - Unpack the UASP (e.g. @c "unzip uracoli-arduino-15x-<version>.zip")\n
+   The UASP has three top level directories, @c hardware, @c examples, @c doc)
+   the fell directly in the existing Arduino-IDE directories.
+ - Open the Arduino-IDE (e.g. @c "./arduino").
+ - If you see in the menu @c "Tools / Board" the boards Radiofaro, Zigbit2400
+   and Zigbit900, the installation was successful.
+
+ @par Option B: Install UASP in the Sketchbook folder
+
+ This method installs the UASP locally in the sketchbook folder of the current
+ user. The UASP example sketches are located in @c "File / Sketchbook / Radio"
+
+ - Open the Arduino IDE (e.g. @c "/opt/arduino-1.6.5/arduino")
+ - Open the menu item @c "Files / Preferences")\n
+   a dialogue window pops up. Here you find the location of the
+   "Sketchbook location" in the first entry.
+ - Change to the @c "Sketchbook location", e.g. @c "cd /home/axel/Arduino".
+ - Unpack the UASP (e.g. @c "unzip uracoli-arduino-15x-<version>.zip")\n
+   The UASP has three top level directories, @c hardware, @c examples, @c doc)
+   the fell directly in the existing Arduino-IDE directories.
+ - Reopen the Arduino-IDE (e.g. @c "/opt/arduino-1.6.5/arduino") to load the
+   UASP boards and examples into the IDE.
+ - If you see in the menu @c "Tools / Board" the boards Radiofaro, Zigbit2400
+   and Zigbit900, the installation was successful.
+
+ @section secArduinoUsage Usage
+
+ @par Using the HelloRadio sketch
+
+ Restart the Arduino-IDE after unpacking @c uracoli-arduino-<version>.zip and check
+ if you see the new boards at the end of the list that opens if you click the menu
+ entry @c "Tools/Board" and select your radio board, e.g. "Radiofaro",
+ "Zigbit 2400MHz", etc.
+
+ In the next step select the in the menu @c "Tools / Serial Port" the serial
+ port to which your radio board is connected.
+
+ Now open the @c HelloRadio sketch. It can be found either in
+ @c "File / Examples / Radio" or @c "File / Sketchbook / Radio", depending on the
+ installation option you did choose (see @ref secArduinoInstall).
+
+ Now select the menu entry @c "File / Upload". The sketch will compiled and
+ flashed to the choosen radio board.
+
+ @note
+ If the upload fails, mark the options @c "compile verbose" and
+ @c "upload verbose" in the dialogue that opens when clicking
+ @c "File / Preferences" and check in the lower window pane of the Arduino-IDE
+ what goes wrong.
+
+ The sketch "HelloRadio", that you have currently uploaded, sends a short frame
+ every 500ms on channel 17 and reports the transmission also on its serial port.
+ You can open a terminal with @c "Tools / SerialMonitor" and you should see in the
+ terminal window:
+
+ @code
+ HelloRadio
+ TX: 0
+ TX: 1
+ TX: 2
+ ...
+ @endcode
+
+ @todo enhance the Flash to RX
+
+ Each printed number shows, that a frame was successfully transmitted.
+ If you see this output, that means that you are now "on air".
+
+ @par Example Sketches
+
+ A good starting point for using the radio functions are the example sketches.
+
+ - @ref IoCheck.ino
+ - @ref RadioUart.ino
+ - @ref HelloRadio.ino
+ - @ref IoRadio.ino
+ - @ref Gateway.ino
+ - @ref Remote.ino
+
+ @par Function Reference
+
+ The regular Arduino core functions are documented
+ at http://arduino.cc/en/Reference/HomePage.
+
+ The radio specific functions are described in section @ref grpContribArduino.
+
+ @par Building Sketches from Command Line
+
+ Beside several thirdparty CLI tools, e.g. Arscons, Inotool,
+ since version 1.5 the Arduino IDE supports its own CLI, see
+ https://github.com/arduino/Arduino/blob/ide-1.5.x/build/shared/manpage.adoc
+
+ @code
+  arduino --verify \
+          --board uracoli:avr:radiofaro \
+          examples/Radio/RadioUart/RadioUart.ino
+ @endcode
+
+ @note
+  - In order to explicitely set the Arduino build path add
+    @c --pref build.path=<your_build_dir> to the command.
+  - With option -v, a more verbose output of the build process is generated
+    and the current Arduino build directory is shown.
+
+ @section secArduinoBootloader Bootloader
+
+ If the Arduino Bootloader in your board is accidently erased, you can restore
+ it with the following procedure.
+
+
+ In order to flash the bootloader, use a flash programmer and a programming
+ tool of your choice (avrdude, atprogram, Atmel-Studio) and flash the file
+ to the board.
+
+ The source code and a precompiled Intel-Hex file of the bootloader is
+ located in the directory <tt>hardware/uracoli/avr/bootloaders/radiofaro</tt>.
+
+ Check also if the fuses are set correctly:
+
+ @code
+    LF = 0xe7
+    HF = 0x90
+    EF = 0xf6
+ @endcode
+
+ @par Examples
+
+ The preferred flashing program is avrdude since it comes with the Arduino
+ distribution.
+
+
+  @note:
+  If you use avrdude from the arduino package, an error message about the missing
+  config file may occur.
+  @code
+    avrdude: can't open config file "...avrdude.conf": No such file or directory
+    avrdude: error reading system wide configuration file
+  @endcode
+  So you have to give the path to the config file explicitely.
+
+ @par Examples
+
+ @code
+
+  # Connection AVR dragon via isp
+  PROG=avrdragon_isp
+  # Connection AVR dragon via jtag
+  PROG=avrdragon_jtag
+
+  avrdude -C $ARDUIONDIR/hardware/tools/avr/etc/avrdude.conf \
+          -P usb -c $PROG -p m128rfa1 \
+          -U lf:w:0xe7:m -U hf:w:0x90:m -U ef:w:0xf7:m \
+          -U fl:w:ATmegaBOOT_radiofaro.hex
+  @endcode
+
+
+  If the bootloader is flashed correctly, it can be checked with
+
+  @code
+  avrdude   -C $ARDUIONDIR/hardware/tools/avr/etc/avrdude.conf \
+            -P <MYSERIALPORT> \
+            -b 57600 -c arduino -p m128rfa1 -U <MYHEXFILE>
+  @endcode
+
+
+@section secArduinoLicense Licenses
+
+This package incorporates source code from different license models, which has
+an influence on the usae of the code in proprieatary projects and environments.
+
+@par GPL version 2.0
+
+According to the file header, the bootloader is licensed under GNU General
+Public License version 2.0. See http://www.gnu.org/licenses/gpl-2.0.txt or file
+link:license_gpl_2v0.txt[].
+
+@code
+    hardware/uracoli/bootloaders/radiofaro/ATmegaBOOT.c
+@endcode
+
+@par LGPL version 2.1
+
+The files copied from the original Arduino core are licensed under the GNU
+Lesser General Public License version 2.1. This code is linked to each sketch.
+See http://www.gnu.org/licensesUold-licenses/lgpl-2.1.txt or file
+link:license_lgpl_2v1.txt[].
+
+@code
+    hardware/uracoli/variants/zigbit900/pins_arduino.h
+    hardware/uracoli/variants/zigbit2400/pins_arduino.h
+    hardware/uracoli/variants/radiofaro/pins_arduino.h
+@endcode
+
+ @par Modified BSD license
+
+ The sources of the µracoli radio functions are licensed under the modified 3
+ clause BSD license. See file link:license_uracoli.txt[].
+
+@code
+    hardware/uracoli/cores/uracoli/trx_rf230_param.c
+    hardware/uracoli/cores/uracoli/const.h
+    hardware/uracoli/cores/uracoli/boards/base_zdma1281.h
+    hardware/uracoli/cores/uracoli/boards/board_derfa.h
+    hardware/uracoli/cores/uracoli/boards/board_wdba1281.h
+    hardware/uracoli/cores/uracoli/trx_rf230_sram.c
+    hardware/uracoli/cores/uracoli/trx_datarate_str.c
+    hardware/uracoli/cores/uracoli/board.h
+    hardware/uracoli/cores/uracoli/at86rf230b.h
+    hardware/uracoli/cores/uracoli/trx_rf230.c
+    hardware/uracoli/cores/uracoli/at86rf212.h
+    hardware/uracoli/cores/uracoli/atmega_rfa1.h
+    hardware/uracoli/cores/uracoli/trx_datarate.c
+    hardware/uracoli/cores/uracoli/trx_rf230_frame.c
+    hardware/uracoli/cores/uracoli/trx_rfa.c
+    hardware/uracoli/cores/uracoli/trx_rf230_irq.c
+    hardware/uracoli/cores/uracoli/trx_rf230_bitwr.c
+    hardware/uracoli/cores/uracoli/trx_rf230_bitrd.c
+    hardware/uracoli/cores/uracoli/radio_rf230.c
+    hardware/uracoli/cores/uracoli/at86rf230a.h
+    hardware/uracoli/cores/uracoli/radio_rfa.c
+    hardware/uracoli/cores/uracoli/radio.h
+    hardware/uracoli/cores/uracoli/trx_rf230_crc.c
+    hardware/uracoli/cores/uracoli/transceiver.h
+    hardware/uracoli/cores/uracoli/usr_radio_irq.c
+    hardware/uracoli/cores/uracoli/trx_rf230_misc.c
+    examples/Radio/RadioUart/RadioUart.ino
+    examples/Radio/IoCheck/IoCheck.ino
+    examples/Radio/HelloRadio/HelloRadio.ino
+    examples/Radio/IoRadio/IoRadio.ino
+@endcode
+
+ */
+
+/**
+ \ifnot ARDUINODOC
+
+  @ingroup grpApp
+
+ \endif
+
+  @defgroup grpContribArduino Arduino Radio Functions
+  @brief Description of the UASP functions.
+
+ @example IoCheck.ino
+  This is sketch performs a simple GPIO check, no radio functions included.
+
+ @example RadioUart.ino
+  This sketch implements a wireless UART application.
+
+ @example HelloRadio.ino
+  This sketch sends frames with a period of 500ms.
+
+ @example IoRadio.ino
+  This sketch reads A0 and A1 each 500ms, the results are printed to serial
+  terminal and to the Radio.
+
+ @example Gateway.ino
+  This sketch implements a COSM Gateway.
+
+ @example Remote.ino
+  This sketch implements a COSM remote sensor, that measures temperature and
+  VCC. The board sleeps during the idle period and is woken up by the watch dog.
+
+ */
