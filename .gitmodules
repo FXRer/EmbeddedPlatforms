@@ -94,3 +94,9 @@
 [submodule "Architectures/ARM/CORTEX-M/LPC/LPC1343-Obd2"]
 	path = Architectures/ARM/CORTEX-M/LPC/LPC1343-Obd2
 	url = https://github.com/kevinkrieger/CAN.git
+[submodule "Architectures/MIPS/PIC32/TNKernel-PIC32"]
+	path = Architectures/MIPS/PIC32/TNKernel-PIC32
+	url = https://github.com/andersm/TNKernel-PIC32.git
+[submodule "Architectures/ARM/ARM7TDMI-S/LPC/LPC2148_FreeRTOS_Copter"]
+	path = Architectures/ARM/ARM7TDMI-S/LPC/LPC2148_FreeRTOS_Copter
+	url = https://github.com/t413/os_copter.git
