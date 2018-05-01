@@ -100,3 +100,6 @@
 [submodule "Architectures/ARM/ARM7TDMI-S/LPC/LPC2148_FreeRTOS_Copter"]
 	path = Architectures/ARM/ARM7TDMI-S/LPC/LPC2148_FreeRTOS_Copter
 	url = https://github.com/t413/os_copter.git
+[submodule "Architectures/ARM/CORTEX-M/STM32/ARM-Ports"]
+	path = Architectures/ARM/CORTEX-M/STM32/ARM-Ports
+	url = https://github.com/ksarkies/ARM-Ports.git
