@@ -103,3 +103,9 @@
 [submodule "Architectures/ARM/CORTEX-M/STM32/ARM-Ports"]
 	path = Architectures/ARM/CORTEX-M/STM32/ARM-Ports
 	url = https://github.com/ksarkies/ARM-Ports.git
+[submodule "Architectures/ARM/CORTEX-M/STM32/stm32f429"]
+	path = Architectures/ARM/CORTEX-M/STM32/stm32f429
+	url = https://github.com/MaJerle/stm32f429.git
+[submodule "Architectures/ARM/CORTEX-M/STM32/stm32cubef4"]
+	path = Architectures/ARM/CORTEX-M/STM32/stm32cubef4
+	url = https://github.com/chettrick/stm32cubef4.git
