@@ -109,3 +109,6 @@
 [submodule "Architectures/ARM/CORTEX-M/STM32/stm32cubef4"]
 	path = Architectures/ARM/CORTEX-M/STM32/stm32cubef4
 	url = https://github.com/chettrick/stm32cubef4.git
+[submodule "Architectures/AVR/v-usb"]
+	path = Architectures/AVR/v-usb
+	url = https://github.com/obdev/v-usb.git
