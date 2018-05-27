@@ -112,3 +112,6 @@
 [submodule "Architectures/AVR/v-usb"]
 	path = Architectures/AVR/v-usb
 	url = https://github.com/obdev/v-usb.git
+[submodule "Architectures/AVR/ethersex"]
+	path = Architectures/AVR/ethersex
+	url = https://github.com/ethersex/ethersex.git
