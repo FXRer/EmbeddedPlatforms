@@ -115,3 +115,6 @@
 [submodule "Architectures/AVR/ethersex"]
 	path = Architectures/AVR/ethersex
 	url = https://github.com/ethersex/ethersex.git
+[submodule "Architectures/ARM/COMMON/Ne10"]
+	path = Architectures/ARM/COMMON/Ne10
+	url = https://github.com/projectNe10/Ne10.git
