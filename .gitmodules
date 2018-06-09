@@ -118,3 +118,6 @@
 [submodule "Architectures/ARM/COMMON/Ne10"]
 	path = Architectures/ARM/COMMON/Ne10
 	url = https://github.com/projectNe10/Ne10.git
+[submodule "Architectures/ARM/CORTEX-M/LM3S/WebRadio"]
+	path = Architectures/ARM/CORTEX-M/LM3S/WebRadio
+	url = https://github.com/watterott/WebRadio.git
