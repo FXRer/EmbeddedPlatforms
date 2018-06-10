@@ -121,3 +121,6 @@
 [submodule "Architectures/ARM/CORTEX-M/LM3S/WebRadio"]
 	path = Architectures/ARM/CORTEX-M/LM3S/WebRadio
 	url = https://github.com/watterott/WebRadio.git
+[submodule "Boards/OpenRex"]
+	path = Boards/OpenRex
+	url = https://github.com/FXRer/OpenRex.git
