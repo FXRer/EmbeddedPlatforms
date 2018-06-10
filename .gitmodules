@@ -124,3 +124,6 @@
 [submodule "Boards/OpenRex"]
 	path = Boards/OpenRex
 	url = https://github.com/FXRer/OpenRex.git
+[submodule "Boards/Wandboard"]
+	path = Boards/Wandboard
+	url = https://github.com/FXRer/Wandboard.git
