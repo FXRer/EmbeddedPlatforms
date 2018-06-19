@@ -130,3 +130,6 @@
 [submodule "Architectures/ARM/CORTEX-M/STM32/mastering-stm32"]
 	path = Architectures/ARM/CORTEX-M/STM32/mastering-stm32
 	url = https://github.com/cnoviello/mastering-stm32.git
+[submodule "Boards/Bifferboard"]
+	path = Boards/Bifferboard
+	url = https://github.com/FXRer/Bifferboard.git
