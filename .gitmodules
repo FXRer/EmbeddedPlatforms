@@ -133,3 +133,15 @@
 [submodule "Boards/Bifferboard"]
 	path = Boards/Bifferboard
 	url = https://github.com/FXRer/Bifferboard.git
+[submodule "Boards/PocketBeagle"]
+	path = Boards/PocketBeagle
+	url = https://github.com/FXRer/PocketBeagle.git
+[submodule "Boards/Bela"]
+	path = Boards/Bela
+	url = https://github.com/FXRer/Bela.git
+[submodule "Boards/VoCore"]
+	path = Boards/VoCore
+	url = https://github.com/FXRer/VoCore.git
+[submodule "Boards/TM1"]
+	path = Boards/TM1
+	url = https://github.com/FXRer/TM1.git
