@@ -145,3 +145,6 @@
 [submodule "Boards/TM1"]
 	path = Boards/TM1
 	url = https://github.com/FXRer/TM1.git
+[submodule "Architectures/FPGA/embeddedsw"]
+	path = Architectures/FPGA/embeddedsw
+	url = https://github.com/Xilinx/embeddedsw.git
