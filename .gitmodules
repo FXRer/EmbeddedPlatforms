@@ -148,3 +148,6 @@
 [submodule "Architectures/FPGA/embeddedsw"]
 	path = Architectures/FPGA/embeddedsw
 	url = https://github.com/Xilinx/embeddedsw.git
+[submodule "Boards/Gnublin"]
+	path = Boards/Gnublin
+	url = https://github.com/FXRer/Gnublin.git
